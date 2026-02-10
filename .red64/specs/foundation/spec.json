@@ -1,7 +1,7 @@
 {
   "feature_name": "foundation",
   "created_at": "2026-02-10T21:14:39.684Z",
-  "updated_at": "2026-02-10T23:26:30.815Z",
+  "updated_at": "2026-02-10T23:51:34.375Z",
   "language": "en",
   "phase": "ready-for-implementation",
   "approvals": {
@@ -16,7 +16,7 @@
     "tasks": {
       "generated": true,
       "approved": true,
-      "approvedAt": "2026-02-10T23:26:30.815Z",
+      "approvedAt": "2026-02-10T23:51:34.375Z",
       "approvedBy": "orchestrator"
     }
   },
