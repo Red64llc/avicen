@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T23:58:40.846Z",
+  "updatedAt": "2026-02-10T23:59:01.095Z",
   "history": [
     {
       "phase": {
@@ -187,6 +187,24 @@
       "timestamp": "2026-02-10T23:58:40.846Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:58:41.119Z",
+      "event": "TASK_START",
+      "subStep": "task-2.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:59:01.095Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.1-completed"
     }
   ],
   "metadata": {
@@ -245,9 +263,9 @@
       {
         "id": "2.1",
         "title": "Build the RegistrationsController with new and create actions",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-10T23:58:41.118Z",
+        "completedAt": "2026-02-10T23:59:01.093Z",
+        "status": "completed"
       },
       {
         "id": "2.2",
@@ -432,7 +450,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2"
+    "currentTaskId": "2.1"
   },
   "artifacts": [
     {
