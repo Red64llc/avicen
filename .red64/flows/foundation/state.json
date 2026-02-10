@@ -1,11 +1,11 @@
 {
   "feature": "foundation",
   "phase": {
-    "type": "gap-analysis",
+    "type": "design-generating",
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T21:18:18.924Z",
+  "updatedAt": "2026-02-10T21:23:19.275Z",
   "history": [
     {
       "phase": {
@@ -35,6 +35,13 @@
         "feature": "foundation"
       },
       "timestamp": "2026-02-10T21:18:18.924Z"
+    },
+    {
+      "phase": {
+        "type": "design-generating",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T21:23:19.275Z"
     }
   ],
   "metadata": {
@@ -57,6 +64,13 @@
       "path": ".red64/specs/foundation/requirements.md",
       "phase": "requirements-generating",
       "createdAt": "2026-02-10T21:16:37.632Z"
+    },
+    {
+      "name": "Gap Analysis",
+      "filename": "gap-analysis.md",
+      "path": ".red64/specs/foundation/gap-analysis.md",
+      "phase": "gap-analysis",
+      "createdAt": "2026-02-10T21:22:15.751Z"
     }
   ],
   "version": 2
