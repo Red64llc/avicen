@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T23:29:30.682Z",
+  "updatedAt": "2026-02-10T23:29:31.288Z",
   "history": [
     {
       "phase": {
@@ -106,6 +106,15 @@
       "timestamp": "2026-02-10T23:29:30.682Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:29:31.288Z",
+      "event": "TASK_START",
+      "subStep": "task-1.1-started"
     }
   ],
   "metadata": {
@@ -115,11 +124,9 @@
     "resolvedFeatureName": "foundation"
   },
   "taskProgress": {
-    "completedGroups": [
-      1
-    ],
+    "completedGroups": [],
     "totalGroups": 10,
-    "currentGroup": 2,
+    "currentGroup": 1,
     "subTasksInCurrentGroup": {
       "completed": [],
       "total": 4
@@ -135,9 +142,9 @@
       {
         "id": "1.1",
         "title": "Create the Profile model, database migration, and one-to-one association with User",
-        "startedAt": null,
+        "startedAt": "2026-02-10T23:29:31.287Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "in_progress"
       },
       {
         "id": "1.2",
@@ -350,7 +357,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "1"
+    "currentTaskId": "1.1"
   },
   "artifacts": [
     {

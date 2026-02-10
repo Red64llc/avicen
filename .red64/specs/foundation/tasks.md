@@ -20,8 +20,8 @@
   - Create profile fixtures for use in subsequent controller tests
   - _Requirements: 1.2, 1.3, 1.6, 5.3, 5.4, 5.5, 8.1_
 
-- [ ] 2. Implement user registration
-- [ ] 2.1 Build the RegistrationsController with new and create actions
+- [x] 2. Implement user registration
+- [x] 2.1 Build the RegistrationsController with new and create actions
   - Allow unauthenticated access to the registration actions
   - On successful registration, create the User record, start an authenticated session using the existing Authentication concern method, and redirect to the profile setup page
   - On validation failure, re-render the registration form with error messages and a 422 status
@@ -29,12 +29,12 @@
   - Use strong parameters permitting only email_address, password, and password_confirmation
   - _Requirements: 5.1, 5.2, 5.3, 5.6, 1.1_
 
-- [ ] 2.2 Create the registration view with form and routes
+- [x] 2.2 Create the registration view with form and routes
   - Build the registration form with email, password, and password_confirmation fields, displaying inline validation errors
   - Add the singular registration resource route (new and create actions only)
   - _Requirements: 5.1, 5.2, 5.4, 5.5_
 
-- [ ] 2.3 Write controller tests for registration
+- [x] 2.3 Write controller tests for registration
   - Test successful registration creates a user and session, then redirects to profile setup
   - Test invalid data (missing fields, short password) re-renders the form with 422
   - Test duplicate email shows a validation error
