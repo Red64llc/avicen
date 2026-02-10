@@ -1,0 +1,10 @@
+one:
+  user: one
+  name: User One
+  date_of_birth: 1990-01-15
+  timezone: Eastern Time (US & Canada)
+
+two:
+  user: two
+  name: User Two
+  timezone: UTC
