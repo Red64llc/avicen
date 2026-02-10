@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T23:53:43.541Z",
+  "updatedAt": "2026-02-10T23:58:40.846Z",
   "history": [
     {
       "phase": {
@@ -169,6 +169,24 @@
       "timestamp": "2026-02-10T23:53:43.541Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-1.3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:53:43.854Z",
+      "event": "TASK_START",
+      "subStep": "task-2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:58:40.846Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2-completed"
     }
   ],
   "metadata": {
@@ -179,13 +197,14 @@
   },
   "taskProgress": {
     "completedGroups": [
-      1
+      1,
+      2
     ],
     "totalGroups": 10,
-    "currentGroup": 2,
+    "currentGroup": 3,
     "subTasksInCurrentGroup": {
       "completed": [],
-      "total": 4
+      "total": 5
     },
     "taskEntries": [
       {
@@ -219,9 +238,9 @@
       {
         "id": "2",
         "title": "Implement user registration",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-10T23:53:43.854Z",
+        "completedAt": "2026-02-10T23:58:40.843Z",
+        "status": "completed"
       },
       {
         "id": "2.1",
@@ -413,7 +432,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "1.3"
+    "currentTaskId": "2"
   },
   "artifacts": [
     {

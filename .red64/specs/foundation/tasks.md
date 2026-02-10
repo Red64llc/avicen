@@ -41,8 +41,8 @@
   - Test rate limiting applies to the create action
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 1.1_
 
-- [ ] 3. Implement the Profile controller and views
-- [ ] 3.1 Build the ProfilesController with new, create, edit, and update actions
+- [x] 3. Implement the Profile controller and views
+- [x] 3.1 Build the ProfilesController with new, create, edit, and update actions
   - Require authentication for all actions (inherit default)
   - Scope all profile access to the currently authenticated user, using Current.user to build or retrieve the profile
   - On successful creation, redirect to the dashboard with a success notice
@@ -51,17 +51,17 @@
   - Use strong parameters permitting name, date_of_birth, and timezone
   - _Requirements: 1.4, 1.5, 1.8, 1.9_
 
-- [ ] 3.2 Create profile views with a shared form partial and Turbo Frame
+- [x] 3.2 Create profile views with a shared form partial and Turbo Frame
   - Build a shared form partial containing name, date_of_birth, and timezone (dropdown populated from ActiveSupport::TimeZone) fields
   - Wrap the form in a Turbo Frame tag to enable partial-page updates without full reloads
   - Create separate new (profile setup) and edit (settings) views that render the shared partial
   - _Requirements: 1.7, 1.10, 8.3_
 
-- [ ] 3.3 Add the profile resource route
+- [x] 3.3 Add the profile resource route
   - Add the singular profile resource route (new, create, edit, update actions)
   - _Requirements: 1.4, 1.7_
 
-- [ ] 3.4 Write controller tests for ProfilesController
+- [x] 3.4 Write controller tests for ProfilesController
   - Test profile creation for the current user redirects to dashboard with notice
   - Test profile update saves changes and confirms with a success notice
   - Test edit action renders the current profile in an editable form
