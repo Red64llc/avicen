@@ -1,0 +1,26 @@
+{
+  "feature": "foundation",
+  "phase": {
+    "type": "initializing",
+    "feature": "foundation",
+    "description": "implement phase 0 \"Foundation\" from file docs/IMPLEMENTATION_PLAN.md"
+  },
+  "createdAt": "2026-02-10T21:14:39.679Z",
+  "updatedAt": "2026-02-10T21:14:39.679Z",
+  "history": [
+    {
+      "phase": {
+        "type": "initializing",
+        "feature": "foundation",
+        "description": "implement phase 0 \"Foundation\" from file docs/IMPLEMENTATION_PLAN.md"
+      },
+      "timestamp": "2026-02-10T21:14:39.679Z"
+    }
+  ],
+  "metadata": {
+    "description": "implement phase 0 \"Foundation\" from file docs/IMPLEMENTATION_PLAN.md",
+    "mode": "brownfield",
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/foundation"
+  },
+  "version": 2
+}
