@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T23:59:01.095Z",
+  "updatedAt": "2026-02-10T23:59:22.054Z",
   "history": [
     {
       "phase": {
@@ -205,6 +205,24 @@
       "timestamp": "2026-02-10T23:59:01.095Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:59:01.396Z",
+      "event": "TASK_START",
+      "subStep": "task-2.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:59:22.054Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.2-completed"
     }
   ],
   "metadata": {
@@ -270,9 +288,9 @@
       {
         "id": "2.2",
         "title": "Create the registration view with form and routes",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-10T23:59:01.395Z",
+        "completedAt": "2026-02-10T23:59:22.053Z",
+        "status": "completed"
       },
       {
         "id": "2.3",
@@ -450,7 +468,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.1"
+    "currentTaskId": "2.2"
   },
   "artifacts": [
     {
