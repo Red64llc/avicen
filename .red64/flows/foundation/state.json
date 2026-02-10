@@ -1,11 +1,11 @@
 {
   "feature": "foundation",
   "phase": {
-    "type": "design-generating",
+    "type": "design-validation",
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T21:23:19.275Z",
+  "updatedAt": "2026-02-10T22:09:17.875Z",
   "history": [
     {
       "phase": {
@@ -42,6 +42,20 @@
         "feature": "foundation"
       },
       "timestamp": "2026-02-10T21:23:19.275Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T21:31:04.470Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T22:09:17.875Z"
     }
   ],
   "metadata": {
@@ -71,6 +85,13 @@
       "path": ".red64/specs/foundation/gap-analysis.md",
       "phase": "gap-analysis",
       "createdAt": "2026-02-10T21:22:15.751Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/foundation/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-10T21:31:04.468Z"
     }
   ],
   "version": 2
