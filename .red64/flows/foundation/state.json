@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T22:35:06.075Z",
+  "updatedAt": "2026-02-10T23:29:30.682Z",
   "history": [
     {
       "phase": {
@@ -88,6 +88,24 @@
       "timestamp": "2026-02-10T22:35:06.075Z",
       "event": "TASK_START",
       "subStep": "task-1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-10T23:26:30.808Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:29:30.682Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1-completed"
     }
   ],
   "metadata": {
@@ -97,9 +115,11 @@
     "resolvedFeatureName": "foundation"
   },
   "taskProgress": {
-    "completedGroups": [],
+    "completedGroups": [
+      1
+    ],
     "totalGroups": 10,
-    "currentGroup": 1,
+    "currentGroup": 2,
     "subTasksInCurrentGroup": {
       "completed": [],
       "total": 4
@@ -109,8 +129,8 @@
         "id": "1",
         "title": "Create the Profile model with migration and extend the User model",
         "startedAt": "2026-02-10T22:35:06.075Z",
-        "completedAt": null,
-        "status": "in_progress"
+        "completedAt": "2026-02-10T23:29:30.680Z",
+        "status": "completed"
       },
       {
         "id": "1.1",

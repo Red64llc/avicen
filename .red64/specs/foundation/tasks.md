@@ -1,20 +1,20 @@
 # Implementation Plan
 
-- [ ] 1. Create the Profile model with migration and extend the User model
-- [ ] 1.1 Create the Profile model, database migration, and one-to-one association with User
+- [x] 1. Create the Profile model with migration and extend the User model
+- [x] 1.1 Create the Profile model, database migration, and one-to-one association with User
   - Generate the profiles table with user reference (unique foreign key), name (required), date_of_birth (optional), and timezone (optional)
   - Define the Profile model with belongs_to :user, name presence validation, and timezone inclusion validation against ActiveSupport::TimeZone names
   - Add has_one :profile (dependent: destroy) to the User model
   - Verify the unique index on user_id enforces the one-to-one constraint
   - _Requirements: 1.2, 1.3, 1.6, 8.1_
 
-- [ ] 1.2 Add registration validations to the User model
+- [x] 1.2 Add registration validations to the User model
   - Add email_address presence and case-insensitive uniqueness validation to supplement the existing database unique index
   - Add password minimum length validation (8 characters) with a guard condition so it only runs when a password value is being set
   - Preserve the existing email normalization and has_secure_password behavior
   - _Requirements: 5.3, 5.4, 5.5, 5.7_
 
-- [ ] 1.3 Create fixtures and unit tests for Profile and User models
+- [x] 1.3 Create fixtures and unit tests for Profile and User models
   - Write Profile model tests covering name presence validation, timezone inclusion validation, belongs_to association, and rejection of duplicate user_id
   - Write User model tests covering email presence, case-insensitive uniqueness, password minimum length, has_one profile association, and dependent destroy behavior
   - Create profile fixtures for use in subsequent controller tests
