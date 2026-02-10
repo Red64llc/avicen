@@ -1,11 +1,11 @@
 {
   "feature": "foundation",
   "phase": {
-    "type": "design-validation",
+    "type": "tasks-generating",
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T22:09:17.875Z",
+  "updatedAt": "2026-02-10T22:18:32.169Z",
   "history": [
     {
       "phase": {
@@ -56,6 +56,13 @@
         "feature": "foundation"
       },
       "timestamp": "2026-02-10T22:09:17.875Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T22:18:32.169Z"
     }
   ],
   "metadata": {
