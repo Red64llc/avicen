@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:02:39.126Z",
+  "updatedAt": "2026-02-11T00:03:07.394Z",
   "history": [
     {
       "phase": {
@@ -259,6 +259,24 @@
       "timestamp": "2026-02-11T00:02:39.126Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:02:39.353Z",
+      "event": "TASK_START",
+      "subStep": "task-3.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:03:07.394Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.1-completed"
     }
   ],
   "metadata": {
@@ -346,9 +364,9 @@
       {
         "id": "3.1",
         "title": "Build the ProfilesController with new, create, edit, and update actions",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:02:39.353Z",
+        "completedAt": "2026-02-11T00:03:07.393Z",
+        "status": "completed"
       },
       {
         "id": "3.2",
@@ -505,7 +523,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "3"
+    "currentTaskId": "3.1"
   },
   "artifacts": [
     {
