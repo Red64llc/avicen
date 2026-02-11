@@ -55,7 +55,7 @@
   - _Requirements: 7.1, 7.2, 7.5, 7.7_
 
 - [ ] 2. Drug search service and external API integration
-- [ ] 2.1 Implement the DrugSearchService with local-first search and RxNorm API fallback
+- [x] 2.1 Implement the DrugSearchService with local-first search and RxNorm API fallback
   - Create the `app/services/` directory (first service object in the project) and establish the Result object pattern
   - Implement the search flow: query local drugs table first, then call RxNorm `getDrugs` endpoint if no local matches
   - Parse RxNorm JSON response, extracting entries filtered by term type (SCD, SBD), and create local Drug records from the results

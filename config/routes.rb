@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resource :profile, only: %i[new create edit update]
   resources :passwords, param: :token
 
+  # Drug search for autocomplete
+  get "drugs/search", to: "drugs#search", as: :drugs_search
+
   # Dashboard for authenticated users
   get "dashboard", to: "dashboard#show", as: :dashboard
 
