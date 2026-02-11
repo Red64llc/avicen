@@ -129,8 +129,8 @@
   - Add appropriate conditional content for authenticated versus unauthenticated states
   - _Requirements: 6.5, 6.6_
 
-- [ ] 7. Activate PWA capabilities
-- [ ] 7.1 (P) Configure the PWA manifest and layout meta tags
+- [x] 7. Activate PWA capabilities
+- [x] 7.1 (P) Configure the PWA manifest and layout meta tags
   - Update the existing manifest template with the correct app name, standalone display mode, appropriate theme and background colors, and a full app description
   - Verify the existing icon entries (512x512 with regular and maskable purposes) are present
   - Uncomment or add the manifest link tag in the application layout head
@@ -138,7 +138,7 @@
   - Uncomment the PWA manifest route
   - _Requirements: 2.1, 2.2, 2.3, 2.6, 2.7, 2.8_
 
-- [ ] 7.2 (P) Implement the service worker with offline fallback
+- [x] 7.2 (P) Implement the service worker with offline fallback
   - Update the existing service worker template to pre-cache an offline fallback page during the install event
   - Implement a fetch event listener that intercepts failed navigation requests and returns the cached offline page
   - Create a static offline HTML page in the public directory with a user-friendly offline message

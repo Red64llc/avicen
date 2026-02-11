@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:55:14.777Z",
+  "updatedAt": "2026-02-11T01:06:42.003Z",
   "history": [
     {
       "phase": {
@@ -529,6 +529,42 @@
       "timestamp": "2026-02-11T00:55:14.777Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-6.3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:55:15.027Z",
+      "event": "TASK_START",
+      "subStep": "task-7-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:06:22.347Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:06:22.350Z",
+      "event": "TASK_START",
+      "subStep": "task-7.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:06:42.003Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.1-completed"
     }
   ],
   "metadata": {
@@ -543,7 +579,8 @@
       2,
       3,
       5,
-      6
+      6,
+      7
     ],
     "totalGroups": 10,
     "currentGroup": 4,
@@ -723,16 +760,16 @@
       {
         "id": "7",
         "title": "Activate PWA capabilities",
-        "startedAt": null,
+        "startedAt": "2026-02-11T00:55:15.027Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "7.1",
         "title": "Configure the PWA manifest and layout meta tags",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T01:06:22.349Z",
+        "completedAt": "2026-02-11T01:06:42.002Z",
+        "status": "completed"
       },
       {
         "id": "7.2",
@@ -777,7 +814,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "6.3"
+    "currentTaskId": "7.1"
   },
   "artifacts": [
     {
