@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T16:49:13.972Z",
+  "updatedAt": "2026-02-11T17:46:23.850Z",
   "history": [
     {
       "phase": {
@@ -403,6 +403,51 @@
       "timestamp": "2026-02-11T16:49:13.971Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:49:14.288Z",
+      "event": "TASK_START",
+      "subStep": "task-5.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:03:27.660Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-5.1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:03:27.665Z",
+      "event": "TASK_START",
+      "subStep": "task-5.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:46:23.845Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-5.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:46:23.850Z",
+      "event": "TASK_START",
+      "subStep": "task-6-started"
     }
   ],
   "metadata": {
@@ -415,12 +460,10 @@
     "completedGroups": [
       1,
       2,
-      3,
-      4,
-      5
+      3
     ],
     "totalGroups": 12,
-    "currentGroup": 6,
+    "currentGroup": 4,
     "subTasksInCurrentGroup": {
       "completed": [],
       "total": 3
@@ -548,23 +591,23 @@
       {
         "id": "5.1",
         "title": "Implement the MedicationSchedulesController with Turbo Stream responses for dynamic schedule building",
-        "startedAt": null,
+        "startedAt": "2026-02-11T16:49:14.287Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "5.2",
         "title": "Create the schedule-builder Stimulus controller and schedule form views",
-        "startedAt": null,
+        "startedAt": "2026-02-11T17:03:27.665Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "6",
         "title": "Daily schedule view with timezone awareness",
-        "startedAt": null,
+        "startedAt": "2026-02-11T17:46:23.850Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "in_progress"
       },
       {
         "id": "6.1",
@@ -707,7 +750,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "5"
+    "currentTaskId": "6"
   },
   "artifacts": [
     {

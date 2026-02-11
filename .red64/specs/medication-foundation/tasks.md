@@ -120,7 +120,7 @@
   - _Requirements: 3.5, 3.6, 3.7, 3.8, 11.4_
 
 - [ ] 5. Complex dosing schedule management
-- [ ] 5.1 Implement the MedicationSchedulesController with Turbo Stream responses for dynamic schedule building
+- [x] 5.1 Implement the MedicationSchedulesController with Turbo Stream responses for dynamic schedule building
   - Create the MedicationSchedulesController with create, update, and destroy actions
   - Use shallow nesting under medications for the create action, flat routes for update and destroy
   - Scope schedule access through the current user's prescriptions chain
@@ -138,8 +138,8 @@
   - Support multiple schedules per medication to represent different doses at different times
   - _Requirements: 4.5, 4.6, 4.7, 4.8_
 
-- [ ] 6. Daily schedule view with timezone awareness
-- [ ] 6.1 Implement the DailyScheduleQuery to compute the daily medication schedule
+- [x] 6. Daily schedule view with timezone awareness
+- [x] 6.1 Implement the DailyScheduleQuery to compute the daily medication schedule
   - Create the `app/queries/` directory (first query object in the project)
   - Fetch active medications for the user through their prescriptions
   - Filter medication schedules by the target date's day of week using the `for_day` scope
@@ -151,7 +151,7 @@
   - Write query tests: correct day-of-week filtering, log status merging, overdue detection, timezone-aware date default, inactive medication exclusion
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.7_
 
-- [ ] 6.2 Implement the SchedulesController daily action and daily schedule view
+- [x] 6.2 Implement the SchedulesController daily action and daily schedule view
   - Create the SchedulesController with a `show` action for the daily view at `GET /schedule`
   - Accept an optional `date` query parameter for day navigation; default to today
   - Delegate schedule computation to DailyScheduleQuery

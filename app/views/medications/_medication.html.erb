@@ -48,14 +48,12 @@
           data: { turbo_frame: "schedule_form", action: "schedule-builder#add" } %>
     </div>
 
-    <div id="schedules_list" class="space-y-2" data-schedule-builder-target="list">
+    <div id="schedules_list_medication_<%= medication.id %>" class="space-y-2" data-schedule-builder-target="list">
       <% medication.medication_schedules.ordered_by_time.each do |schedule| %>
         <%= render "medication_schedules/medication_schedule", medication_schedule: schedule %>
       <% end %>
     </div>
 
-    <% if medication.medication_schedules.none? %>
-      <p class="text-gray-400 text-center text-xs py-2" data-schedule-builder-target="empty">No schedules configured yet.</p>
-    <% end %>
+    <p class="text-gray-400 text-center text-xs py-2 <%= 'hidden' if medication.medication_schedules.any? %>" data-schedule-builder-target="empty">No schedules configured yet.</p>
   </div>
 <% end %>

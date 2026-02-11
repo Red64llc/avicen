@@ -1,4 +1,4 @@
-<%= turbo_stream.append "schedules_list" do %>
+<%= turbo_stream.append "schedules_list_medication_#{@medication_schedule.medication_id}" do %>
   <%= render "medication_schedules/medication_schedule", medication_schedule: @medication_schedule %>
 <% end %>
 

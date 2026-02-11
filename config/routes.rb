@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # Medication schedules: member actions (shallow)
   resources :medication_schedules, only: [ :edit, :update, :destroy ]
 
+  # Daily schedule view
+  resource :schedule, only: [ :show ]
+
   # Drug search for autocomplete
   get "drugs/search", to: "drugs#search", as: :drugs_search
   get "drugs/search_test", to: "drugs#search_test", as: :drugs_search_test if Rails.env.test?
