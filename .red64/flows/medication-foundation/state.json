@@ -1,11 +1,11 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "design-generating",
+    "type": "design-validation",
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T10:48:57.807Z",
+  "updatedAt": "2026-02-11T11:06:04.439Z",
   "history": [
     {
       "phase": {
@@ -42,6 +42,20 @@
         "feature": "medication-foundation"
       },
       "timestamp": "2026-02-11T10:48:57.807Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:58:06.887Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:06:04.439Z"
     }
   ],
   "metadata": {
@@ -71,6 +85,13 @@
       "path": ".red64/specs/medication-foundation/gap-analysis.md",
       "phase": "gap-analysis",
       "createdAt": "2026-02-11T10:48:01.367Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/medication-foundation/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-11T10:58:06.885Z"
     }
   ],
   "version": 2
