@@ -145,7 +145,7 @@
   - Uncomment the service worker route
   - _Requirements: 2.4, 2.5, 2.7_
 
-- [ ] 8. Enable SSL enforcement in production
+- [x] 8. Enable SSL enforcement in production
   - Uncomment the assume_ssl and force_ssl configuration settings in the production environment config
   - Ensure the SSL options exclude the health check endpoint from SSL enforcement
   - _Requirements: 7.8_
