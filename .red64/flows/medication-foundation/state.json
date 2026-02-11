@@ -1,12 +1,11 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "initializing",
-    "feature": "medication-foundation",
-    "description": "implement phase 1 \"Medication Management Core\" from file docs/IMPLEMENTATION_PLAN.md"
+    "type": "requirements-generating",
+    "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T10:30:44.676Z",
+  "updatedAt": "2026-02-11T10:30:44.817Z",
   "history": [
     {
       "phase": {
@@ -15,6 +14,13 @@
         "description": "implement phase 1 \"Medication Management Core\" from file docs/IMPLEMENTATION_PLAN.md"
       },
       "timestamp": "2026-02-11T10:30:44.676Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:30:44.817Z"
     }
   ],
   "metadata": {
