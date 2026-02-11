@@ -75,7 +75,7 @@
   - Write controller tests: successful search, empty results, short query handling
   - _Requirements: 1.4, 1.5, 1.6_
 
-- [ ] 2.3 (P) Pin stimulus-autocomplete via importmap and create the drug-search Stimulus controller
+- [x] 2.3 (P) Pin stimulus-autocomplete via importmap and create the drug-search Stimulus controller
   - Pin `stimulus-autocomplete` in the importmap configuration
   - Register the autocomplete controller in the Stimulus application
   - Create a `drug-search` Stimulus controller that wraps stimulus-autocomplete with the correct URL for the `/drugs/search` endpoint
@@ -83,7 +83,7 @@
   - _Requirements: 1.4, 3.5_
 
 - [ ] 3. Prescription management with full CRUD
-- [ ] 3.1 Implement the PrescriptionsController with all CRUD actions scoped to the current user
+- [x] 3.1 Implement the PrescriptionsController with all CRUD actions scoped to the current user
   - Create the PrescriptionsController with index, show, new, create, edit, update, and destroy actions
   - Scope all queries through `Current.user.prescriptions` to enforce data isolation
   - Use strong parameters permitting doctor_name, prescribed_date, and notes

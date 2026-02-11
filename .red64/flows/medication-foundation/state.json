@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T13:59:33.917Z",
+  "updatedAt": "2026-02-11T14:27:35.422Z",
   "history": [
     {
       "phase": {
@@ -250,6 +250,60 @@
       "timestamp": "2026-02-11T13:59:33.917Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:59:34.182Z",
+      "event": "TASK_START",
+      "subStep": "task-2.3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:09:45.154Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-2.3-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:09:45.159Z",
+      "event": "TASK_START",
+      "subStep": "task-3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:22:36.385Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:22:36.389Z",
+      "event": "TASK_START",
+      "subStep": "task-3.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:27:35.421Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.1-completed"
     }
   ],
   "metadata": {
@@ -261,10 +315,11 @@
   "taskProgress": {
     "completedGroups": [
       1,
-      2
+      2,
+      3
     ],
     "totalGroups": 12,
-    "currentGroup": 3,
+    "currentGroup": 4,
     "subTasksInCurrentGroup": {
       "completed": [],
       "total": 3
@@ -336,23 +391,23 @@
       {
         "id": "2.3",
         "title": "Pin stimulus-autocomplete via importmap and create the drug-search Stimulus controller",
-        "startedAt": null,
+        "startedAt": "2026-02-11T13:59:34.181Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "3",
         "title": "Prescription management with full CRUD",
-        "startedAt": null,
+        "startedAt": "2026-02-11T14:09:45.159Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "3.1",
         "title": "Implement the PrescriptionsController with all CRUD actions scoped to the current user",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T14:22:36.389Z",
+        "completedAt": "2026-02-11T14:27:35.418Z",
+        "status": "completed"
       },
       {
         "id": "3.2",
@@ -551,7 +606,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.2"
+    "currentTaskId": "3.1"
   },
   "artifacts": [
     {
