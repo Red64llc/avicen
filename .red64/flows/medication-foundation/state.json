@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T14:42:07.894Z",
+  "updatedAt": "2026-02-11T15:58:12.315Z",
   "history": [
     {
       "phase": {
@@ -331,6 +331,24 @@
       "timestamp": "2026-02-11T14:42:07.894Z",
       "event": "TASK_START",
       "subStep": "task-4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T15:49:50.421Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T15:58:12.314Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4-completed"
     }
   ],
   "metadata": {
@@ -341,13 +359,16 @@
   },
   "taskProgress": {
     "completedGroups": [
-      1
+      1,
+      2,
+      3,
+      4
     ],
     "totalGroups": 12,
-    "currentGroup": 2,
+    "currentGroup": 5,
     "subTasksInCurrentGroup": {
       "completed": [],
-      "total": 4
+      "total": 3
     },
     "taskEntries": [
       {
@@ -445,8 +466,8 @@
         "id": "4",
         "title": "Medication entry with drug autocomplete",
         "startedAt": "2026-02-11T14:42:07.894Z",
-        "completedAt": null,
-        "status": "in_progress"
+        "completedAt": "2026-02-11T15:58:12.313Z",
+        "status": "completed"
       },
       {
         "id": "4.1",

@@ -1,0 +1,5 @@
+<%= turbo_stream.append "medications_list" do %>
+  <%= render "medications/medication", medication: @medication %>
+<% end %>
+
+<%= turbo_stream.update "medication_form", "" %>

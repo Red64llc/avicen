@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@medication) do %>
+  <%= render "medications/medication", medication: @medication %>
+<% end %>
+
+<%= turbo_stream.update "medication_form", "" %>

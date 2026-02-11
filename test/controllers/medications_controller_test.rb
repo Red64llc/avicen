@@ -104,16 +104,30 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal @ibuprofen, medication.drug
   end
 
-  test "create responds with Turbo Frame for turbo request" do
+  test "create responds with Turbo Stream when requested as turbo_stream" do
+    assert_difference "Medication.count", 1 do
+      post prescription_medications_path(@prescription), params: {
+        medication: {
+          drug_id: @drug.id,
+          dosage: "100mg",
+          form: "tablet"
+        }
+      }, as: :turbo_stream
+    end
+
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html; charset=utf-8", response.content_type
+  end
+
+  test "create with HTML format redirects to prescription" do
     post prescription_medications_path(@prescription), params: {
       medication: {
         drug_id: @drug.id,
         dosage: "100mg",
         form: "tablet"
       }
-    }, headers: { "Turbo-Frame" => "medications" }
+    }
 
-    # Should redirect to prescription show (which has the turbo frame)
     assert_response :redirect
   end
 
@@ -126,6 +140,20 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
           form: ""
         }
       }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "create with invalid params as turbo_stream re-renders form with errors" do
+    assert_no_difference "Medication.count" do
+      post prescription_medications_path(@prescription), params: {
+        medication: {
+          drug_id: nil,
+          dosage: "",
+          form: ""
+        }
+      }, as: :turbo_stream
     end
 
     assert_response :unprocessable_entity
@@ -181,11 +209,29 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_response :redirect
     @medication.reload
     assert_equal "200mg", @medication.dosage
     assert_equal "capsule", @medication.form
     assert_equal "Updated instructions", @medication.instructions
+  end
+
+  test "update responds with Turbo Stream when requested as turbo_stream" do
+    patch medication_path(@medication), params: {
+      medication: { dosage: "300mg" }
+    }, as: :turbo_stream
+
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html; charset=utf-8", response.content_type
+    @medication.reload
+    assert_equal "300mg", @medication.dosage
+  end
+
+  test "update with HTML format redirects to prescription" do
+    patch medication_path(@medication), params: {
+      medication: { dosage: "200mg" }
+    }
+
+    assert_response :redirect
   end
 
   test "update with invalid params re-renders form with errors" do
@@ -216,12 +262,21 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
 
   # --- Destroy ---
 
-  test "destroy deletes medication and redirects" do
+  test "destroy deletes medication and redirects for HTML format" do
     assert_difference "Medication.count", -1 do
       delete medication_path(@medication)
     end
 
     assert_response :redirect
+  end
+
+  test "destroy responds with Turbo Stream when requested as turbo_stream" do
+    assert_difference "Medication.count", -1 do
+      delete medication_path(@medication), as: :turbo_stream
+    end
+
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html; charset=utf-8", response.content_type
   end
 
   test "destroy returns not found for medication belonging to other user" do
@@ -345,6 +400,43 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
     get edit_medication_path(@medication)
     assert_response :success
     assert_select "input[data-drug-search-target='input'][value=?]", @medication.drug.name
+  end
+
+  # --- Turbo Stream Content ---
+
+  test "create turbo_stream response includes medication in the list" do
+    post prescription_medications_path(@prescription), params: {
+      medication: {
+        drug_id: @ibuprofen.id,
+        dosage: "500mg",
+        form: "liquid",
+        instructions: "Take slowly"
+      }
+    }, as: :turbo_stream
+
+    assert_response :success
+    # The turbo stream should contain the medication details
+    assert_match "500mg", response.body
+    assert_match @ibuprofen.name, response.body
+  end
+
+  test "update turbo_stream response includes updated medication" do
+    patch medication_path(@medication), params: {
+      medication: { dosage: "999mg" }
+    }, as: :turbo_stream
+
+    assert_response :success
+    assert_match "999mg", response.body
+  end
+
+  test "destroy turbo_stream response removes medication element" do
+    medication_dom_id = ActionView::RecordIdentifier.dom_id(@medication)
+
+    delete medication_path(@medication), as: :turbo_stream
+
+    assert_response :success
+    # Turbo Stream should target the medication's dom_id for removal
+    assert_match medication_dom_id, response.body
   end
 
   # --- Strong Parameters ---

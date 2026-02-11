@@ -43,13 +43,13 @@
             data: { turbo_frame: "medication_form" } %>
       </div>
 
-      <% if @prescription.medications.any? %>
-        <div class="space-y-3">
-          <% @prescription.medications.each do |medication| %>
-            <%= render "medications/medication", medication: medication %>
-          <% end %>
-        </div>
-      <% else %>
+      <div id="medications_list" class="space-y-3">
+        <% @prescription.medications.each do |medication| %>
+          <%= render "medications/medication", medication: medication %>
+        <% end %>
+      </div>
+
+      <% if @prescription.medications.none? %>
         <p class="text-gray-500 text-center py-4">No medications added to this prescription yet.</p>
       <% end %>
     </div>

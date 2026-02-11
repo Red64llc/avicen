@@ -10,7 +10,10 @@ class MedicationsController < ApplicationController
     @medication = @prescription.medications.build(medication_params)
 
     if @medication.save
-      redirect_to @prescription, notice: "Medication was successfully added."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @prescription, notice: "Medication was successfully added." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,16 +24,23 @@ class MedicationsController < ApplicationController
 
   def update
     if @medication.update(medication_params)
-      redirect_to @medication.prescription, notice: "Medication was successfully updated."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @medication.prescription, notice: "Medication was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    prescription = @medication.prescription
+    @prescription = @medication.prescription
     @medication.destroy!
-    redirect_to prescription, notice: "Medication was successfully removed."
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @prescription, notice: "Medication was successfully removed." }
+    end
   end
 
   def toggle
@@ -51,7 +61,7 @@ class MedicationsController < ApplicationController
   end
 
   def set_medication
-    @medication = Medication.joins(:prescription)
+    @medication = Medication.joins(:prescription).includes(:drug)
       .where(prescriptions: { user_id: Current.user.id })
       .find(params[:id])
   rescue ActiveRecord::RecordNotFound
