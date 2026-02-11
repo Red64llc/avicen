@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:02:05.054Z",
+  "updatedAt": "2026-02-11T00:02:39.126Z",
   "history": [
     {
       "phase": {
@@ -241,6 +241,24 @@
       "timestamp": "2026-02-11T00:02:05.054Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:02:05.363Z",
+      "event": "TASK_START",
+      "subStep": "task-3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:02:39.126Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3-completed"
     }
   ],
   "metadata": {
@@ -252,13 +270,14 @@
   "taskProgress": {
     "completedGroups": [
       1,
-      2
+      2,
+      3
     ],
     "totalGroups": 10,
-    "currentGroup": 3,
+    "currentGroup": 4,
     "subTasksInCurrentGroup": {
       "completed": [],
-      "total": 5
+      "total": 1
     },
     "taskEntries": [
       {
@@ -320,9 +339,9 @@
       {
         "id": "3",
         "title": "Implement the Profile controller and views",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:02:05.362Z",
+        "completedAt": "2026-02-11T00:02:39.125Z",
+        "status": "completed"
       },
       {
         "id": "3.1",
@@ -486,7 +505,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.3"
+    "currentTaskId": "3"
   },
   "artifacts": [
     {
