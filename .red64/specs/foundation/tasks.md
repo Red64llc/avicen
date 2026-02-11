@@ -117,7 +117,7 @@
   - Use conditional rendering to adjust content for authenticated versus unauthenticated states
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.6_
 
-- [ ] 6.2 (P) Create the NavToggle Stimulus controller for mobile menu
+- [x] 6.2 (P) Create the NavToggle Stimulus controller for mobile menu
   - Build a Stimulus controller that toggles the visibility of the mobile navigation menu
   - Use Stimulus targets and CSS class toggling for the hamburger menu behavior
   - Register the controller in the Stimulus application
