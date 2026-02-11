@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-10T23:59:22.054Z",
+  "updatedAt": "2026-02-11T00:02:05.054Z",
   "history": [
     {
       "phase": {
@@ -223,6 +223,24 @@
       "timestamp": "2026-02-10T23:59:22.054Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-10T23:59:22.278Z",
+      "event": "TASK_START",
+      "subStep": "task-2.3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:02:05.054Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.3-completed"
     }
   ],
   "metadata": {
@@ -295,9 +313,9 @@
       {
         "id": "2.3",
         "title": "Write controller tests for registration",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-10T23:59:22.277Z",
+        "completedAt": "2026-02-11T00:02:05.051Z",
+        "status": "completed"
       },
       {
         "id": "3",
@@ -468,7 +486,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.2"
+    "currentTaskId": "2.3"
   },
   "artifacts": [
     {

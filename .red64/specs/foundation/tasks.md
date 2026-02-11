@@ -69,7 +69,7 @@
   - Test that profile access is scoped exclusively to the authenticated user
   - _Requirements: 1.4, 1.5, 1.7, 1.8, 1.9, 1.10_
 
-- [ ] 4. Implement the SetTimezone concern
+- [x] 4. Implement the SetTimezone concern
   - Create a controller concern that wraps each request with the user's preferred timezone using Time.use_zone in an around_action
   - Read the timezone from the authenticated user's profile; default to UTC when no user, no profile, or no timezone is set
   - Include the concern in ApplicationController so it applies to all requests
