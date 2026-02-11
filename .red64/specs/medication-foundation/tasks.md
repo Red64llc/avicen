@@ -22,7 +22,7 @@
   - Create fixtures for prescription test data
   - _Requirements: 2.1, 2.2, 2.3, 2.6_
 
-- [ ] 1.3 Create the Medication model with migration, validations, and associations
+- [x] 1.3 Create the Medication model with migration, validations, and associations
   - Create the `medications` table with prescription_id, drug_id foreign keys, dosage, form, instructions, and active (boolean, default true)
   - Add database indexes on prescription_id, drug_id, and active
   - Implement `belongs_to :prescription`, `belongs_to :drug`, `has_many :medication_schedules, dependent: :destroy`, and `has_many :medication_logs, dependent: :destroy`
