@@ -109,7 +109,7 @@
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6_
 
 - [ ] 6. Build the application layout and responsive navigation
-- [ ] 6.1 Create the responsive navigation partial
+- [x] 6.1 Create the responsive navigation partial
   - Build a navigation bar partial that displays on all authenticated pages
   - Include links to the dashboard and profile settings
   - Include a logout action
