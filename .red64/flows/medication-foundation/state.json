@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T11:37:24.509Z",
+  "updatedAt": "2026-02-11T13:40:47.679Z",
   "history": [
     {
       "phase": {
@@ -178,6 +178,24 @@
       "timestamp": "2026-02-11T11:37:24.509Z",
       "event": "TASK_START",
       "subStep": "task-1.5-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T13:37:53.051Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:40:47.679Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.5-completed"
     }
   ],
   "metadata": {
@@ -187,12 +205,14 @@
     "resolvedFeatureName": "medication-foundation"
   },
   "taskProgress": {
-    "completedGroups": [],
+    "completedGroups": [
+      1
+    ],
     "totalGroups": 12,
-    "currentGroup": 1,
+    "currentGroup": 2,
     "subTasksInCurrentGroup": {
       "completed": [],
-      "total": 6
+      "total": 4
     },
     "taskEntries": [
       {
@@ -234,8 +254,8 @@
         "id": "1.5",
         "title": "Create the MedicationLog model with migration, validations, and upsert support",
         "startedAt": "2026-02-11T11:37:24.508Z",
-        "completedAt": null,
-        "status": "in_progress"
+        "completedAt": "2026-02-11T13:40:47.675Z",
+        "status": "completed"
       },
       {
         "id": "2",

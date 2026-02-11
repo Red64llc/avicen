@@ -43,7 +43,7 @@
   - Create fixtures for schedule test data
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.7, 4.8_
 
-- [ ] 1.5 Create the MedicationLog model with migration, validations, and upsert support
+- [x] 1.5 Create the MedicationLog model with migration, validations, and upsert support
   - Create the `medication_logs` table with medication_id, medication_schedule_id foreign keys, status (integer enum), logged_at (datetime), scheduled_date (date), and reason (text)
   - Add unique composite index on (medication_schedule_id, scheduled_date), plus indexes on medication_id and scheduled_date
   - Implement `belongs_to :medication` and `belongs_to :medication_schedule`
