@@ -1,0 +1,12 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Profile Settings</h1>
+  <p class="mt-2 text-gray-600">Update your personal information</p>
+
+  <% if flash[:notice] %>
+    <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg mt-5">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <%= render "form" %>
+</div>
