@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T22:13:19.715Z",
+  "updatedAt": "2026-02-11T22:14:33.412Z",
   "history": [
     {
       "phase": {
@@ -466,6 +466,24 @@
       "timestamp": "2026-02-11T22:13:19.715Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-6-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:13:19.951Z",
+      "event": "TASK_START",
+      "subStep": "task-6.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:14:33.412Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-6.1-completed"
     }
   ],
   "metadata": {
@@ -633,9 +651,9 @@
       {
         "id": "6.1",
         "title": "Implement the DailyScheduleQuery to compute the daily medication schedule",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T22:13:19.951Z",
+        "completedAt": "2026-02-11T22:14:33.410Z",
+        "status": "completed"
       },
       {
         "id": "6.2",
@@ -771,7 +789,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "6"
+    "currentTaskId": "6.1"
   },
   "artifacts": [
     {
