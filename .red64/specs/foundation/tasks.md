@@ -108,7 +108,7 @@
   - Test that an unauthenticated user can access the landing page without being redirected to login
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6_
 
-- [ ] 6. Build the application layout and responsive navigation
+- [x] 6. Build the application layout and responsive navigation
 - [x] 6.1 Create the responsive navigation partial
   - Build a navigation bar partial that displays on all authenticated pages
   - Include links to the dashboard and profile settings
@@ -158,13 +158,13 @@
   - Confirm Propshaft serves assets with proper cache headers in production config
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7_
 
-- [ ] 10. Integration testing for end-to-end flows
-- [ ] 10.1 Write integration tests for the registration-to-dashboard flow
+- [x] 10. Integration testing for end-to-end flows
+- [x] 10.1 Write integration tests for the registration-to-dashboard flow
   - Test the complete flow: register a new account, get redirected to profile setup, create a profile, land on the dashboard with a personalized greeting
   - Test root path routing: unauthenticated request shows landing page, authenticated request shows dashboard
   - _Requirements: 1.1, 1.4, 3.1, 3.2, 3.5, 4.1, 5.2, 5.6_
 
-- [ ]* 10.2 Write system tests for user-facing flows
+- [x] 10.2 Write system tests for user-facing flows
   - Test the landing page displays the app description and has functional login and signup links
   - Test the registration form: fill in fields, submit, see the profile setup page
   - Test the dashboard displays a personalized greeting after login

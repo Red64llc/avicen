@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T01:11:55.917Z",
+  "updatedAt": "2026-02-11T01:16:56.757Z",
   "history": [
     {
       "phase": {
@@ -619,6 +619,24 @@
       "timestamp": "2026-02-11T01:11:55.917Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-9-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:11:56.372Z",
+      "event": "TASK_START",
+      "subStep": "task-10-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:16:56.757Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10-completed"
     }
   ],
   "metadata": {
@@ -636,7 +654,8 @@
       6,
       7,
       8,
-      9
+      9,
+      10
     ],
     "totalGroups": 10,
     "currentGroup": 4,
@@ -851,9 +870,9 @@
       {
         "id": "10",
         "title": "Integration testing for end-to-end flows",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T01:11:56.372Z",
+        "completedAt": "2026-02-11T01:16:56.755Z",
+        "status": "completed"
       },
       {
         "id": "10.1",
@@ -870,7 +889,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "9"
+    "currentTaskId": "10"
   },
   "artifacts": [
     {
