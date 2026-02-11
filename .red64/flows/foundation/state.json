@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:45:15.699Z",
+  "updatedAt": "2026-02-11T00:46:00.119Z",
   "history": [
     {
       "phase": {
@@ -439,6 +439,24 @@
       "timestamp": "2026-02-11T00:45:15.699Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5.4-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:45:15.957Z",
+      "event": "TASK_START",
+      "subStep": "task-5.5-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:46:00.118Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.5-completed"
     }
   ],
   "metadata": {
@@ -597,9 +615,9 @@
       {
         "id": "5.5",
         "title": "Write controller tests for dashboard and landing page",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:45:15.957Z",
+        "completedAt": "2026-02-11T00:46:00.116Z",
+        "status": "completed"
       },
       {
         "id": "6",
@@ -686,7 +704,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "5.4"
+    "currentTaskId": "5.5"
   },
   "artifacts": [
     {
