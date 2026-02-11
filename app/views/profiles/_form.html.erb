@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "profile_form" do %>
+<% form_content = capture do %>
   <% if @profile.errors.any? %>
     <div id="error_explanation" class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg mt-5">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -45,4 +45,12 @@
       </div>
     </div>
   <% end %>
+<% end %>
+
+<% if @profile.persisted? %>
+  <%= turbo_frame_tag "profile_form" do %>
+    <%= form_content %>
+  <% end %>
+<% else %>
+  <%= form_content %>
 <% end %>
