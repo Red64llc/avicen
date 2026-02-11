@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@medication_schedule) do %>
+  <%= render "medication_schedules/medication_schedule", medication_schedule: @medication_schedule %>
+<% end %>

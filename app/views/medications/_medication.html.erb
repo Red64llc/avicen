@@ -1,37 +1,61 @@
 <%= tag.div id: dom_id(medication),
-    class: "flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 rounded-lg border #{medication.active? ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50 opacity-60'}" do %>
-  <div class="flex-1 min-w-0">
-    <p class="font-medium text-gray-900">
-      <%= medication.drug.name %>
-    </p>
-    <p class="text-sm text-gray-500">
-      <%= medication.dosage %> - <%= medication.form %>
-      <% if medication.instructions.present? %>
-        <span class="text-gray-400">|</span> <%= medication.instructions %>
+    class: "p-3 rounded-lg border #{medication.active? ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50 opacity-60'}" do %>
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex-1 min-w-0">
+      <p class="font-medium text-gray-900">
+        <%= medication.drug.name %>
+      </p>
+      <p class="text-sm text-gray-500">
+        <%= medication.dosage %> - <%= medication.form %>
+        <% if medication.instructions.present? %>
+          <span class="text-gray-400">|</span> <%= medication.instructions %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+      <%= button_to medication.active? ? "Deactivate" : "Activate",
+          toggle_medication_path(medication),
+          method: :patch,
+          class: "inline-flex items-center px-2 py-1 text-xs font-medium rounded-md #{medication.active? ? 'text-yellow-700 bg-yellow-100 hover:bg-yellow-200' : 'text-green-700 bg-green-100 hover:bg-green-200'}",
+          data: { turbo_stream: true } %>
+
+      <%= link_to "Edit", edit_medication_path(medication),
+          class: "text-sm text-gray-500 hover:text-gray-700",
+          data: { turbo_frame: "medication_form" } %>
+
+      <%= button_to "Remove", medication_path(medication),
+          method: :delete,
+          class: "text-sm text-red-500 hover:text-red-700",
+          data: { turbo_confirm: "Are you sure you want to remove this medication?", turbo_stream: true } %>
+
+      <% if medication.active? %>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Active</span>
+      <% else %>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Inactive</span>
       <% end %>
-    </p>
+    </div>
   </div>
 
-  <div class="flex items-center space-x-2 mt-2 sm:mt-0">
-    <%= button_to medication.active? ? "Deactivate" : "Activate",
-        toggle_medication_path(medication),
-        method: :patch,
-        class: "inline-flex items-center px-2 py-1 text-xs font-medium rounded-md #{medication.active? ? 'text-yellow-700 bg-yellow-100 hover:bg-yellow-200' : 'text-green-700 bg-green-100 hover:bg-green-200'}",
-        data: { turbo_stream: true } %>
+  <%# Schedule entries section managed by schedule-builder Stimulus controller %>
+  <div class="mt-3 pt-3 border-t border-gray-100"
+       data-controller="schedule-builder"
+       data-schedule-builder-medication-id-value="<%= medication.id %>">
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="text-sm font-medium text-gray-700">Schedules</h3>
+      <%= link_to "Add Schedule", new_medication_medication_schedule_path(medication),
+          class: "inline-flex items-center px-2 py-1 text-xs font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100",
+          data: { turbo_frame: "schedule_form", action: "schedule-builder#add" } %>
+    </div>
 
-    <%= link_to "Edit", edit_medication_path(medication),
-        class: "text-sm text-gray-500 hover:text-gray-700",
-        data: { turbo_frame: "medication_form" } %>
+    <div id="schedules_list" class="space-y-2" data-schedule-builder-target="list">
+      <% medication.medication_schedules.ordered_by_time.each do |schedule| %>
+        <%= render "medication_schedules/medication_schedule", medication_schedule: schedule %>
+      <% end %>
+    </div>
 
-    <%= button_to "Remove", medication_path(medication),
-        method: :delete,
-        class: "text-sm text-red-500 hover:text-red-700",
-        data: { turbo_confirm: "Are you sure you want to remove this medication?", turbo_stream: true } %>
-
-    <% if medication.active? %>
-      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Active</span>
-    <% else %>
-      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Inactive</span>
+    <% if medication.medication_schedules.none? %>
+      <p class="text-gray-400 text-center text-xs py-2" data-schedule-builder-target="empty">No schedules configured yet.</p>
     <% end %>
   </div>
 <% end %>

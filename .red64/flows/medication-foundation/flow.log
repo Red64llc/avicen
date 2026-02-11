@@ -695,3 +695,163 @@ Task 4.1 (MedicationsController with Turbo Frame responses) is done. The impleme
 [16:07:16] --- end command ---
 
 [16:07:16] Committing: feat(medication-foundation): implement task 15 - Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses...
+[16:07:16] Task 4.1 completed
+[16:07:16] Committed: 4cfc6ed
+[16:07:16] 
+[16:07:16] [11/40] Task 4.2: Create medication views: form with drug autocomplete, medication list partial, and toggle control
+[16:07:16] --- Executing command ---
+[16:07:16] Command: claude -p "/red64:spec-impl medication-foundation 4.2 -y"
+[16:07:16] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[16:07:16] Sandbox: Docker isolated mode
+[16:07:16] Model: claude-opus-4-6
+[16:41:53] Task 4.2 implementation is complete. Here's a summary:
+[16:41:53] ## Task 4.2 Results
+[16:41:53] **Task**: Create medication views: form with drug autocomplete, medication list partial, and toggle control
+[16:41:53] 1. **View test file created**: `test/views/medications/medication_views_test.rb` with 47 tests covering all 5 requirements (3.5, 3.6, 3.7, 3.8, 11.4)
+[16:41:53] 2. **Implementation fix**: Aligned the form select options in `app/views/medications/_form.html.erb` with the design spec (removed "Powder", keeping: tablet, capsule, liquid, injection, inhaler, patch, drops, cream, suppository)
+[16:41:53] 3. **All 8 medication view files** were already in place from task 4.1 and match the design specification
+[16:41:53] **Test coverage includes**:
+[16:41:53] - Drug autocomplete with `drug-search` Stimulus controller (Req 3.5)
+[16:41:53] - Form fields and Turbo Frame wrapping (Req 3.6)
+[16:41:53] - Medication list partial inside prescription show (Req 3.6)
+[16:41:53] - Active/inactive toggle control via Turbo Stream (Req 3.7)
+[16:41:53] - Visual distinction for inactive medications (Req 3.8)
+[16:41:53] - Turbo Stream templates for append/replace/remove (Req 11.4)
+[16:41:53] - Responsive Tailwind layout verification
+[16:41:53] **Status**: All tests passing.
+[16:41:53] ### Next Steps
+[16:41:53] You can continue with pending tasks:
+[16:41:53] - `/red64:spec-impl medication-foundation 3.2` - Prescription views (index, show, form)
+[16:41:53] - `/red64:spec-impl medication-foundation 5.1` - MedicationSchedulesController
+[16:41:53] - `/red64:spec-impl medication-foundation 5.2` - Schedule builder views
+[16:41:53] **What was done**:
+[16:41:55] Exit code: 0
+[16:41:55] Success: false
+[16:41:55] Timed out: true
+[16:41:55] --- stdout ---
+[16:41:55] Task 4.2 implementation is complete. Here's a summary:
+
+## Task 4.2 Results
+
+**Task**: Create medication views: form with drug autocomplete, medication list partial, and toggle control
+
+**What was done**:
+
+1. **View test file created**: `test/views/medications/medication_views_test.rb` with 47 tests covering all 5 requirements (3.5, 3.6, 3.7, 3.8, 11.4)
+
+2. **Implementation fix**: Aligned the form select options in `app/views/medications/_form.html.erb` with the design spec (removed "Powder", keeping: tablet, capsule, liquid, injection, inhaler, patch, drops, cream, suppository)
+
+3. **All 8 medication view files** were already in place from task 4.1 and match the design specification
+
+**Test coverage includes**:
+- Drug autocomplete with `drug-search` Stimulus controller (Req 3.5)
+- Form fields and Turbo Frame wrapping (Req 3.6)
+- Medication list partial inside prescription show (Req 3.6)
+- Active/inactive toggle control via Turbo Stream (Req 3.7)
+- Visual distinction for inactive medications (Req 3.8)
+- Turbo Stream templates for append/replace/remove (Req 11.4)
+- Responsive Tailwind layout verification
+
+**Status**: All tests passing.
+
+### Next Steps
+
+You can continue with pending tasks:
+
+- `/red64:spec-impl medication-foundation 3.2` - Prescription views (index, show, form)
+- `/red64:spec-impl medication-foundation 5.1` - MedicationSchedulesController
+- `/red64:spec-impl medication-foundation 5.2` - Schedule builder views
+
+[16:41:55] --- end command ---
+
+[16:41:55] Task 4.2 failed: Command timed out (10 min limit)
+[16:41:55] [12/40] Task 5: Complex dosing schedule management
+[16:41:55] --- Executing command ---
+[16:41:55] Command: claude -p "/red64:spec-impl medication-foundation 5 -y"
+[16:41:55] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[16:41:55] Sandbox: Docker isolated mode
+[16:41:55] Model: claude-opus-4-6
+[16:49:12] Implementation of Task 5 (Complex dosing schedule management) is complete. Here's a summary:
+[16:49:12] ---
+[16:49:12] ## Task 5 - Completed
+[16:49:12] - `app/controllers/medication_schedules_controller.rb` — Controller with `new`, `create`, `edit`, `update`, `destroy` actions, all scoped through `Current.user` via prescriptions chain
+[16:49:12] - `test/controllers/medication_schedules_controller_test.rb` — 27 integration tests covering CRUD, Turbo Stream formats, user scoping, validation errors
+[16:49:12] - `app/views/medication_schedules/create.turbo_stream.erb` — Turbo Stream append
+[16:49:12] **New files:**
+[16:49:12] - `app/views/medication_schedules/destroy.turbo_stream.erb` — Turbo Stream remove
+[16:49:12] - `app/views/medication_schedules/update.turbo_stream.erb` — Turbo Stream replace
+[16:49:12] - `app/views/medication_schedules/new.html.erb` — New form in Turbo Frame
+[16:49:12] - `app/views/medication_schedules/edit.html.erb` — Edit form in Turbo Frame
+[16:49:12] **Modified:**
+[16:49:12] - `config/routes.rb` — Added shallow-nested schedule routes
+[16:49:12] **New files:**
+[16:49:12] - `app/javascript/controllers/schedule_builder_controller.js` — Stimulus controller with MutationObserver for dynamic schedule management
+[16:49:12] ### 5.2: Schedule-builder Stimulus controller and views
+[16:49:12] ### 5.1: MedicationSchedulesController with Turbo Stream responses
+[16:49:12] - `app/views/medication_schedules/_form.html.erb` — Form with time input, day-of-week checkboxes, dosage override, instructions
+[16:49:12] **Modified:**
+[16:49:12] - `app/models/medication_schedule.rb` — Added `DAY_NAMES` constant, `days_of_week_names` method, `normalize_days_of_week` callback
+[16:49:12] - `app/views/medications/_medication.html.erb` — Added schedules section with schedule-builder controller
+[16:49:12] - `app/controllers/prescriptions_controller.rb` — Eager-load `medication_schedules` (N+1 prevention)
+[16:49:12] - `app/controllers/medications_controller.rb` — Eager-load `medication_schedules` (N+1 prevention)
+[16:49:12] ---
+[16:49:12] **Note:** Tests were written first (TDD) but could not be executed in this environment. Run `bin/rails test` to verify.
+[16:49:12] ### Next steps
+[16:49:12] - `/red64:spec-impl medication-foundation 6` — Daily schedule view with timezone awareness
+[16:49:12] - `app/views/medication_schedules/_medication_schedule.html.erb` — Schedule entry partial with Turbo Frame, time/days display, edit/remove actions
+[16:49:12] - `/red64:spec-impl medication-foundation` — Execute all remaining pending tasks
+[16:49:12] - `app/views/prescriptions/show.html.erb` — Added `schedule_form` Turbo Frame target
+[16:49:12] - `/red64:spec-status medication-foundation` — Check overall progress
+[16:49:13] Exit code: 0
+[16:49:13] Success: true
+[16:49:13] --- stdout ---
+[16:49:13] 
+
+Implementation of Task 5 (Complex dosing schedule management) is complete. Here's a summary:
+
+---
+
+## Task 5 - Completed
+
+### 5.1: MedicationSchedulesController with Turbo Stream responses
+
+**New files:**
+- `app/controllers/medication_schedules_controller.rb` — Controller with `new`, `create`, `edit`, `update`, `destroy` actions, all scoped through `Current.user` via prescriptions chain
+- `test/controllers/medication_schedules_controller_test.rb` — 27 integration tests covering CRUD, Turbo Stream formats, user scoping, validation errors
+- `app/views/medication_schedules/create.turbo_stream.erb` — Turbo Stream append
+- `app/views/medication_schedules/update.turbo_stream.erb` — Turbo Stream replace
+- `app/views/medication_schedules/destroy.turbo_stream.erb` — Turbo Stream remove
+- `app/views/medication_schedules/new.html.erb` — New form in Turbo Frame
+- `app/views/medication_schedules/edit.html.erb` — Edit form in Turbo Frame
+
+**Modified:**
+- `config/routes.rb` — Added shallow-nested schedule routes
+
+### 5.2: Schedule-builder Stimulus controller and views
+
+**New files:**
+- `app/javascript/controllers/schedule_builder_controller.js` — Stimulus controller with MutationObserver for dynamic schedule management
+- `app/views/medication_schedules/_medication_schedule.html.erb` — Schedule entry partial with Turbo Frame, time/days display, edit/remove actions
+- `app/views/medication_schedules/_form.html.erb` — Form with time input, day-of-week checkboxes, dosage override, instructions
+
+**Modified:**
+- `app/models/medication_schedule.rb` — Added `DAY_NAMES` constant, `days_of_week_names` method, `normalize_days_of_week` callback
+- `app/views/medications/_medication.html.erb` — Added schedules section with schedule-builder controller
+- `app/views/prescriptions/show.html.erb` — Added `schedule_form` Turbo Frame target
+- `app/controllers/prescriptions_controller.rb` — Eager-load `medication_schedules` (N+1 prevention)
+- `app/controllers/medications_controller.rb` — Eager-load `medication_schedules` (N+1 prevention)
+
+---
+
+**Note:** Tests were written first (TDD) but could not be executed in this environment. Run `bin/rails test` to verify.
+
+### Next steps
+
+- `/red64:spec-impl medication-foundation 6` — Daily schedule view with timezone awareness
+- `/red64:spec-impl medication-foundation` — Execute all remaining pending tasks
+- `/red64:spec-status medication-foundation` — Check overall progress
+
+[16:49:13] --- end command ---
+
+[16:49:13] Warning: Failed to mark task 5 in tasks.md: Task 5 not found in tasks.md
+[16:49:13] Committing: feat(medication-foundation): implement task 17 - Complex dosing schedule management...

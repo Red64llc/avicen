@@ -37,9 +37,8 @@
     <%= form.select :form,
         options_for_select(
           [["Tablet", "tablet"], ["Capsule", "capsule"], ["Liquid", "liquid"],
-           ["Injection", "injection"], ["Cream", "cream"], ["Drops", "drops"],
-           ["Inhaler", "inhaler"], ["Patch", "patch"], ["Powder", "powder"],
-           ["Suppository", "suppository"]],
+           ["Injection", "injection"], ["Inhaler", "inhaler"], ["Patch", "patch"],
+           ["Drops", "drops"], ["Cream", "cream"], ["Suppository", "suppository"]],
           medication.form
         ),
         { include_blank: "Select a form" },

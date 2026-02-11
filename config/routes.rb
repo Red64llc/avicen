@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     member do
       patch :toggle
     end
+    # Medication schedules: collection actions nested under medications
+    resources :medication_schedules, only: [ :new, :create ]
   end
+
+  # Medication schedules: member actions (shallow)
+  resources :medication_schedules, only: [ :edit, :update, :destroy ]
 
   # Drug search for autocomplete
   get "drugs/search", to: "drugs#search", as: :drugs_search

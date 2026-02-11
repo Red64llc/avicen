@@ -1,0 +1,5 @@
+<%= turbo_stream.append "schedules_list" do %>
+  <%= render "medication_schedules/medication_schedule", medication_schedule: @medication_schedule %>
+<% end %>
+
+<%= turbo_stream.update "schedule_form", "" %>

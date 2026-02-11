@@ -61,7 +61,7 @@ class MedicationsController < ApplicationController
   end
 
   def set_medication
-    @medication = Medication.joins(:prescription).includes(:drug)
+    @medication = Medication.joins(:prescription).includes(:drug, :medication_schedules)
       .where(prescriptions: { user_id: Current.user.id })
       .find(params[:id])
   rescue ActiveRecord::RecordNotFound

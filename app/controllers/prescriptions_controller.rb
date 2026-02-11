@@ -43,7 +43,7 @@ class PrescriptionsController < ApplicationController
   private
 
   def set_prescription
-    @prescription = Current.user.prescriptions.includes(medications: :drug).find(params[:id])
+    @prescription = Current.user.prescriptions.includes(medications: [ :drug, :medication_schedules ]).find(params[:id])
   end
 
   def prescription_params
