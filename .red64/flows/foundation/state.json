@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T01:16:56.757Z",
+  "updatedAt": "2026-02-11T01:34:46.137Z",
   "history": [
     {
       "phase": {
@@ -637,6 +637,42 @@
       "timestamp": "2026-02-11T01:16:56.757Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-10-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:16:57.260Z",
+      "event": "TASK_START",
+      "subStep": "task-10.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:33:06.956Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-10.1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:33:06.961Z",
+      "event": "TASK_START",
+      "subStep": "task-10.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T01:34:46.137Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.2-completed"
     }
   ],
   "metadata": {
@@ -877,19 +913,19 @@
       {
         "id": "10.1",
         "title": "Write integration tests for the registration-to-dashboard flow",
-        "startedAt": null,
+        "startedAt": "2026-02-11T01:16:57.260Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "10.2",
         "title": "Write system tests for user-facing flows",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T01:33:06.960Z",
+        "completedAt": "2026-02-11T01:34:46.134Z",
+        "status": "completed"
       }
     ],
-    "currentTaskId": "10"
+    "currentTaskId": "10.2"
   },
   "artifacts": [
     {
