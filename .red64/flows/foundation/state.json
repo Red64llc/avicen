@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:39:53.011Z",
+  "updatedAt": "2026-02-11T00:40:08.328Z",
   "history": [
     {
       "phase": {
@@ -385,6 +385,24 @@
       "timestamp": "2026-02-11T00:39:53.011Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:39:53.235Z",
+      "event": "TASK_START",
+      "subStep": "task-5.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:40:08.328Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.2-completed"
     }
   ],
   "metadata": {
@@ -522,9 +540,9 @@
       {
         "id": "5.2",
         "title": "Build the DashboardController and view",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:39:53.234Z",
+        "completedAt": "2026-02-11T00:40:08.326Z",
+        "status": "completed"
       },
       {
         "id": "5.3",
@@ -632,7 +650,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "5.1"
+    "currentTaskId": "5.2"
   },
   "artifacts": [
     {
