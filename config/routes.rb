@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
   # Prescriptions CRUD with nested medications (collection actions only)
   resources :prescriptions do
-    resources :medications, only: [:new, :create]
+    resources :medications, only: [ :new, :create ]
   end
 
   # Medications: member actions (shallow) with custom toggle route
-  resources :medications, only: [:edit, :update, :destroy] do
+  resources :medications, only: [ :edit, :update, :destroy ] do
     member do
       patch :toggle
     end

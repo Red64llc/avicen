@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T15:58:12.315Z",
+  "updatedAt": "2026-02-11T16:07:16.222Z",
   "history": [
     {
       "phase": {
@@ -349,6 +349,24 @@
       "timestamp": "2026-02-11T15:58:12.314Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-4-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T15:58:12.591Z",
+      "event": "TASK_START",
+      "subStep": "task-4.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:07:16.222Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4.1-completed"
     }
   ],
   "metadata": {
@@ -472,9 +490,9 @@
       {
         "id": "4.1",
         "title": "Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T15:58:12.590Z",
+        "completedAt": "2026-02-11T16:07:16.221Z",
+        "status": "completed"
       },
       {
         "id": "4.2",
@@ -652,7 +670,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "4"
+    "currentTaskId": "4.1"
   },
   "artifacts": [
     {

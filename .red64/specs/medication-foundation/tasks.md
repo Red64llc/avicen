@@ -101,7 +101,7 @@
   - _Requirements: 2.7, 2.8, 11.2_
 
 - [ ] 4. Medication entry with drug autocomplete
-- [ ] 4.1 Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses
+- [x] 4.1 Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses
   - Create the MedicationsController with new, create, edit, update, destroy, and toggle actions
   - Use shallow nesting: collection actions nested under prescriptions, member actions flat
   - Scope medication access through the current user's prescriptions chain
