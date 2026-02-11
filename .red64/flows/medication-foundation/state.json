@@ -1,11 +1,11 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "design-validation",
+    "type": "tasks-generating",
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T11:06:04.439Z",
+  "updatedAt": "2026-02-11T11:08:36.498Z",
   "history": [
     {
       "phase": {
@@ -56,6 +56,13 @@
         "feature": "medication-foundation"
       },
       "timestamp": "2026-02-11T11:06:04.439Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:08:36.498Z"
     }
   ],
   "metadata": {
