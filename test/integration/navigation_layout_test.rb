@@ -77,4 +77,55 @@ class NavigationLayoutTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "nav[role='navigation']"
   end
+
+  # Task 6.3: Application layout structure tests
+  test "application layout has responsive main container" do
+    sign_in_as(@user_with_profile)
+    get dashboard_path
+    assert_response :success
+    # Verify main element exists with responsive container classes (mobile-first approach)
+    # The main element should have: container mx-auto px-4 sm:px-6 lg:px-8 py-8
+    assert_select "main.container"
+    main_element = css_select("main").first
+    assert main_element, "Expected main element to exist"
+    main_classes = main_element["class"]
+    assert_includes main_classes, "px-4", "Expected mobile-first base padding class"
+    assert_includes main_classes, "sm:px-6", "Expected small breakpoint padding class"
+    assert_includes main_classes, "lg:px-8", "Expected large breakpoint padding class"
+  end
+
+  test "application layout body has minimum height styling" do
+    sign_in_as(@user_with_profile)
+    get dashboard_path
+    assert_response :success
+    # Body should have min-h-screen for full-height layout
+    body_element = css_select("body").first
+    assert body_element, "Expected body element to exist"
+    body_classes = body_element["class"]
+    assert_includes body_classes, "min-h-screen", "Expected min-h-screen class on body"
+  end
+
+  test "application layout has proper structure with nav and main" do
+    sign_in_as(@user_with_profile)
+    get dashboard_path
+    assert_response :success
+    # Verify proper document structure: body contains nav followed by main
+    assert_select "body" do
+      assert_select "nav", count: 1
+      assert_select "main", count: 1
+    end
+  end
+
+  test "unauthenticated layout has same responsive structure" do
+    get root_path
+    assert_response :success
+    # Verify layout structure is consistent for unauthenticated pages
+    body_element = css_select("body").first
+    assert body_element, "Expected body element to exist"
+    assert_includes body_element["class"], "min-h-screen"
+
+    main_element = css_select("main").first
+    assert main_element, "Expected main element to exist"
+    assert_includes main_element["class"], "px-4"
+  end
 end

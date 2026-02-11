@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:52:22.176Z",
+  "updatedAt": "2026-02-11T00:55:14.777Z",
   "history": [
     {
       "phase": {
@@ -511,6 +511,24 @@
       "timestamp": "2026-02-11T00:52:22.175Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-6.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:52:22.462Z",
+      "event": "TASK_START",
+      "subStep": "task-6.3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:55:14.777Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-6.3-completed"
     }
   ],
   "metadata": {
@@ -698,9 +716,9 @@
       {
         "id": "6.3",
         "title": "Update the application layout",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:52:22.461Z",
+        "completedAt": "2026-02-11T00:55:14.776Z",
+        "status": "completed"
       },
       {
         "id": "7",
@@ -759,7 +777,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "6.2"
+    "currentTaskId": "6.3"
   },
   "artifacts": [
     {
