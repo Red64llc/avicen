@@ -32,7 +32,7 @@
   - Create fixtures for medication test data
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.7, 3.8_
 
-- [ ] 1.4 Create the MedicationSchedule model with migration, validations, and day-of-week JSON handling
+- [x] 1.4 Create the MedicationSchedule model with migration, validations, and day-of-week JSON handling
   - Create the `medication_schedules` table with medication_id foreign key, time_of_day, days_of_week (text for JSON), dosage_amount, and instructions
   - Add database index on medication_id
   - Implement `belongs_to :medication` and `has_many :medication_logs, dependent: :destroy`

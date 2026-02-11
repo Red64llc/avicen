@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T11:34:33.716Z",
+  "updatedAt": "2026-02-11T11:37:24.263Z",
   "history": [
     {
       "phase": {
@@ -151,6 +151,24 @@
       "timestamp": "2026-02-11T11:34:33.716Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-1.3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:34:33.973Z",
+      "event": "TASK_START",
+      "subStep": "task-1.4-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:37:24.263Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.4-completed"
     }
   ],
   "metadata": {
@@ -201,9 +219,9 @@
       {
         "id": "1.4",
         "title": "Create the MedicationSchedule model with migration, validations, and day-of-week JSON handling",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T11:34:33.972Z",
+        "completedAt": "2026-02-11T11:37:24.261Z",
+        "status": "completed"
       },
       {
         "id": "1.5",
@@ -451,7 +469,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "1.3"
+    "currentTaskId": "1.4"
   },
   "artifacts": [
     {
