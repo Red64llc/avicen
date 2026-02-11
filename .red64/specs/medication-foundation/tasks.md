@@ -11,7 +11,7 @@
   - Create fixtures for drug test data
   - _Requirements: 1.1, 1.2, 1.3_
 
-- [ ] 1.2 Create the Prescription model with migration, validations, and user association
+- [x] 1.2 Create the Prescription model with migration, validations, and user association
   - Create the `prescriptions` table with user_id foreign key, doctor_name, prescribed_date, and notes
   - Add database indexes on user_id and on (user_id, prescribed_date)
   - Implement `belongs_to :user` and `has_many :medications, dependent: :destroy`
