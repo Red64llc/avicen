@@ -8,5 +8,5 @@
   "initializedAt": "2026-02-10T20:44:17.652Z",
   "customValues": {},
   "agent": "claude",
-  "testCommand": "bin/rails test"
+  "testCommand": "bundle install && bin/rails test"
 }
