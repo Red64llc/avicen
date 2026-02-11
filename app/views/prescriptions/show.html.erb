@@ -34,39 +34,26 @@
     </dl>
   </div>
 
-  <div class="bg-white shadow rounded-lg p-4 sm:p-6">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-900">Medications</h2>
-    </div>
-
-    <% if @prescription.medications.any? %>
-      <div class="space-y-3">
-        <% @prescription.medications.includes(:drug).each do |medication| %>
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 rounded-lg border <%= medication.active? ? 'border-gray-200 bg-white' : 'border-gray-100 bg-gray-50 opacity-60' %>">
-            <div>
-              <p class="font-medium text-gray-900">
-                <%= medication.drug.name %>
-              </p>
-              <p class="text-sm text-gray-500">
-                <%= medication.dosage %> - <%= medication.form %>
-                <% if medication.instructions.present? %>
-                  <span class="text-gray-400">|</span> <%= medication.instructions %>
-                <% end %>
-              </p>
-            </div>
-
-            <div class="mt-2 sm:mt-0">
-              <% if medication.active? %>
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Active</span>
-              <% else %>
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Inactive</span>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+  <%= turbo_frame_tag "medications" do %>
+    <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-900">Medications</h2>
+        <%= link_to "Add Medication", new_prescription_medication_path(@prescription),
+            class: "inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+            data: { turbo_frame: "medication_form" } %>
       </div>
-    <% else %>
-      <p class="text-gray-500 text-center py-4">No medications added to this prescription yet.</p>
-    <% end %>
-  </div>
+
+      <% if @prescription.medications.any? %>
+        <div class="space-y-3">
+          <% @prescription.medications.each do |medication| %>
+            <%= render "medications/medication", medication: medication %>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-gray-500 text-center py-4">No medications added to this prescription yet.</p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "medication_form" %>
 </div>

@@ -4,8 +4,17 @@ Rails.application.routes.draw do
   resource :profile, only: %i[new create edit update]
   resources :passwords, param: :token
 
-  # Prescriptions CRUD
-  resources :prescriptions
+  # Prescriptions CRUD with nested medications (collection actions only)
+  resources :prescriptions do
+    resources :medications, only: [:new, :create]
+  end
+
+  # Medications: member actions (shallow) with custom toggle route
+  resources :medications, only: [:edit, :update, :destroy] do
+    member do
+      patch :toggle
+    end
+  end
 
   # Drug search for autocomplete
   get "drugs/search", to: "drugs#search", as: :drugs_search

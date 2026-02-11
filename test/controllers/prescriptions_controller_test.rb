@@ -88,6 +88,45 @@ class PrescriptionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  # --- Show: Medications Turbo Frame ---
+
+  test "show renders medications inside a Turbo Frame" do
+    get prescription_path(@prescription)
+    assert_response :success
+    assert_select "turbo-frame#medications"
+  end
+
+  test "show renders medication list using medication partials" do
+    get prescription_path(@prescription)
+    assert_response :success
+    # Each medication should be rendered using the _medication partial with a dom_id
+    medications(:aspirin_morning).tap do |med|
+      assert_select "##{ActionView::RecordIdentifier.dom_id(med)}"
+    end
+  end
+
+  test "show renders Add Medication link" do
+    get prescription_path(@prescription)
+    assert_response :success
+    assert_select "a[href=?]", new_prescription_medication_path(@prescription)
+  end
+
+  test "show renders toggle controls on each medication" do
+    get prescription_path(@prescription)
+    assert_response :success
+    # Toggle buttons should exist for each medication
+    assert_select "form[action*='toggle']", minimum: 1
+  end
+
+  test "show visually distinguishes inactive medications" do
+    # Prescription :two has inactive_medication
+    prescription_two = prescriptions(:two)
+    get prescription_path(prescription_two)
+    assert_response :success
+    # Inactive medication should have opacity-60 class
+    assert_select ".opacity-60", minimum: 1
+  end
+
   # --- New ---
 
   test "new renders the prescription form" do

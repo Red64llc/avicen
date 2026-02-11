@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T14:27:35.422Z",
+  "updatedAt": "2026-02-11T14:42:07.894Z",
   "history": [
     {
       "phase": {
@@ -304,6 +304,33 @@
       "timestamp": "2026-02-11T14:27:35.421Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-3.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:27:35.739Z",
+      "event": "TASK_START",
+      "subStep": "task-3.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:42:07.889Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:42:07.894Z",
+      "event": "TASK_START",
+      "subStep": "task-4-started"
     }
   ],
   "metadata": {
@@ -314,15 +341,13 @@
   },
   "taskProgress": {
     "completedGroups": [
-      1,
-      2,
-      3
+      1
     ],
     "totalGroups": 12,
-    "currentGroup": 4,
+    "currentGroup": 2,
     "subTasksInCurrentGroup": {
       "completed": [],
-      "total": 3
+      "total": 4
     },
     "taskEntries": [
       {
@@ -412,16 +437,16 @@
       {
         "id": "3.2",
         "title": "Create prescription views: index with active medication counts, show with medication list, and form partial",
-        "startedAt": null,
+        "startedAt": "2026-02-11T14:27:35.739Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "4",
         "title": "Medication entry with drug autocomplete",
-        "startedAt": null,
+        "startedAt": "2026-02-11T14:42:07.894Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "in_progress"
       },
       {
         "id": "4.1",
@@ -606,7 +631,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "3.1"
+    "currentTaskId": "4"
   },
   "artifacts": [
     {

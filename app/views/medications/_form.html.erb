@@ -1,0 +1,61 @@
+<% url = medication.persisted? ? medication_path(medication) : prescription_medications_path(prescription) %>
+<%= form_with(model: medication, url: url, class: "space-y-4") do |form| %>
+  <% if medication.errors.any? %>
+    <div class="bg-red-50 text-red-600 rounded-lg p-3">
+      <h3 class="font-medium">Please fix the following errors:</h3>
+      <ul class="mt-2 list-disc list-inside text-sm">
+        <% medication.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div data-controller="drug-search"
+       data-drug-search-url-value="/drugs/search"
+       data-drug-search-min-length-value="2"
+       role="combobox">
+    <%= form.label :drug_id, "Drug", class: "block text-sm font-medium text-gray-700" %>
+    <input type="text"
+           data-drug-search-target="input"
+           placeholder="Search for a drug..."
+           value="<%= medication.drug&.name %>"
+           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" />
+    <%= form.hidden_field :drug_id, data: { drug_search_target: "hidden" } %>
+    <ul data-drug-search-target="results"
+        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm hidden"></ul>
+  </div>
+
+  <div>
+    <%= form.label :dosage, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :dosage, placeholder: "e.g., 50mg",
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= form.label :form, "Form", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :form,
+        options_for_select(
+          [["Tablet", "tablet"], ["Capsule", "capsule"], ["Liquid", "liquid"],
+           ["Injection", "injection"], ["Cream", "cream"], ["Drops", "drops"],
+           ["Inhaler", "inhaler"], ["Patch", "patch"], ["Powder", "powder"],
+           ["Suppository", "suppository"]],
+          medication.form
+        ),
+        { include_blank: "Select a form" },
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= form.label :instructions, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :instructions, rows: 3, placeholder: "e.g., Take with food",
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+  </div>
+
+  <div class="flex items-center justify-end space-x-3 pt-2">
+    <%= link_to "Cancel", prescription_path(prescription),
+        class: "text-sm text-gray-500 hover:text-gray-700" %>
+    <%= form.submit medication.persisted? ? "Update Medication" : "Add Medication",
+        class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "medication_form" do %>
+  <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Add Medication</h2>
+    <%= render "form", medication: @medication, prescription: @prescription %>
+  </div>
+<% end %>
