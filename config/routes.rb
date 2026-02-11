@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   resource :registration, only: %i[new create]
   resource :profile, only: %i[new create edit update]
   resources :passwords, param: :token
+
+  # Dashboard for authenticated users
+  get "dashboard", to: "dashboard#show", as: :dashboard
+
+  # Landing page for unauthenticated users (explicit route for testing)
+  get "landing", to: "pages#home", as: :landing_page
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,6 +20,9 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  root "sessions#new"
+  # Dual-root routing: authenticated users see dashboard, unauthenticated users see landing page.
+  # The authenticated root must be declared first (Rails matches routes top-down).
+  # AuthenticatedConstraint checks if a valid session cookie exists.
+  root "dashboard#show", constraints: AuthenticatedConstraint
+  root "pages#home", as: :unauthenticated_root
 end

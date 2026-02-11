@@ -76,32 +76,32 @@
   - Write tests verifying timezone application for users with a timezone set and UTC fallback for users without one
   - _Requirements: 8.2, 8.4, 8.5_
 
-- [ ] 5. Implement dual-root routing with dashboard and landing page
-- [ ] 5.1 Create the AuthenticatedConstraint for route-level authentication checks
+- [x] 5. Implement dual-root routing with dashboard and landing page
+- [x] 5.1 Create the AuthenticatedConstraint for route-level authentication checks
   - Implement a routing constraint class that checks the signed session cookie against the sessions table
   - Return true when a valid session exists, false otherwise
   - Place the constraint in the appropriate application directory for routing components
   - _Requirements: 3.1, 4.1, 4.6_
 
-- [ ] 5.2 (P) Build the DashboardController and view
+- [x] 5.2 (P) Build the DashboardController and view
   - Create a controller with a show action that requires authentication (inherited default)
   - Set up the view to greet the user by name when a profile with a name exists
   - Display a prompt to complete the profile when no profile has been created yet
   - Ensure the dashboard serves as the post-authentication redirect target (the default root_url behavior)
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
 
-- [ ] 5.3 (P) Build the PagesController and landing page view
+- [x] 5.3 (P) Build the PagesController and landing page view
   - Create a controller with a home action that allows unauthenticated access
   - Build the landing page view with a brief description of the application, a visible link to the login page, and a visible link to the registration page
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 5.4 Configure the dual-root routes
+- [x] 5.4 Configure the dual-root routes
   - Declare the authenticated root pointing to the dashboard before the unauthenticated root pointing to the landing page in the routes file
   - Use the AuthenticatedConstraint to differentiate between authenticated and unauthenticated requests at the routing layer
   - Authenticated users visiting the root are routed to the dashboard; unauthenticated users see the landing page; this constraint also ensures authenticated users never reach the landing page (implicit redirect)
   - _Requirements: 3.1, 4.1, 4.6_
 
-- [ ] 5.5 Write controller tests for dashboard and landing page
+- [x] 5.5 Write controller tests for dashboard and landing page
   - Test that an authenticated user sees the dashboard at the root path with a personalized greeting
   - Test that the dashboard shows a profile completion prompt when no profile exists
   - Test that an unauthenticated user sees the landing page at the root path

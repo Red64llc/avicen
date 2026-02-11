@@ -92,4 +92,84 @@ class SetTimezoneConcernTest < ActiveSupport::TestCase
     # Should have the set_timezone around_action
     assert callbacks.any?, "Expected SetTimezone to define an around_action"
   end
+
+  test "current_timezone returns user timezone when set" do
+    controller = TestController.new
+    user = users(:one)
+    profile = profiles(:one)
+
+    # Mock Current.user to return our user with timezone profile
+    Current.stub :user, user do
+      timezone = controller.send(:current_timezone)
+      assert_equal "Eastern Time (US & Canada)", timezone
+    end
+  end
+
+  test "current_timezone returns UTC when user has no profile" do
+    controller = TestController.new
+    user = User.new(email_address: "test@example.com")
+
+    Current.stub :user, user do
+      timezone = controller.send(:current_timezone)
+      assert_equal "UTC", timezone
+    end
+  end
+
+  test "current_timezone returns UTC when no user" do
+    controller = TestController.new
+
+    Current.stub :user, nil do
+      timezone = controller.send(:current_timezone)
+      assert_equal "UTC", timezone
+    end
+  end
+
+  test "current_timezone returns UTC when profile timezone is nil" do
+    controller = TestController.new
+    user = users(:one)
+    user.profile.update_column(:timezone, nil)
+
+    Current.stub :user, user do
+      timezone = controller.send(:current_timezone)
+      assert_equal "UTC", timezone
+    end
+  end
+
+  test "current_timezone returns UTC when profile timezone is blank" do
+    controller = TestController.new
+    user = users(:one)
+    user.profile.update_column(:timezone, "")
+
+    Current.stub :user, user do
+      timezone = controller.send(:current_timezone)
+      assert_equal "UTC", timezone
+    end
+  end
+
+  test "set_timezone wraps block with Time.use_zone" do
+    controller = TestController.new
+    user = users(:one)
+    captured_timezone = nil
+
+    Current.stub :user, user do
+      controller.send(:set_timezone) do
+        captured_timezone = Time.zone.name
+      end
+    end
+
+    assert_equal "Eastern Time (US & Canada)", captured_timezone
+  end
+
+  test "set_timezone uses UTC when no timezone set" do
+    controller = TestController.new
+    captured_timezone = nil
+
+    Current.stub :user, nil do
+      controller.send(:set_timezone) do
+        captured_timezone = Time.zone.name
+      end
+    end
+
+    assert_equal "UTC", captured_timezone
+  end
 end
