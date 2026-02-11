@@ -5,7 +5,7 @@
     "feature": "foundation"
   },
   "createdAt": "2026-02-10T21:14:39.679Z",
-  "updatedAt": "2026-02-11T00:03:07.394Z",
+  "updatedAt": "2026-02-11T00:04:50.565Z",
   "history": [
     {
       "phase": {
@@ -277,6 +277,24 @@
       "timestamp": "2026-02-11T00:03:07.394Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-3.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:03:07.662Z",
+      "event": "TASK_START",
+      "subStep": "task-3.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "foundation"
+      },
+      "timestamp": "2026-02-11T00:04:50.565Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.2-completed"
     }
   ],
   "metadata": {
@@ -371,9 +389,9 @@
       {
         "id": "3.2",
         "title": "Create profile views with a shared form partial and Turbo Frame",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-11T00:03:07.662Z",
+        "completedAt": "2026-02-11T00:04:50.561Z",
+        "status": "completed"
       },
       {
         "id": "3.3",
@@ -523,7 +541,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "3.1"
+    "currentTaskId": "3.2"
   },
   "artifacts": [
     {
