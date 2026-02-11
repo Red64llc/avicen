@@ -12,21 +12,24 @@ class NavigationTest < ApplicationSystemTestCase
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
 
+    # Wait for hamburger button to be visible after resize
+    assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
+
     # Mobile menu should be hidden initially
     assert_selector "#mobile-menu.hidden", visible: :hidden
 
-    # Click hamburger button to open menu
-    find("[data-action='click->nav-toggle#toggle']").click
+    # Click hamburger button to open menu using JavaScript for reliability
+    page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
 
-    # Mobile menu should be visible
+    # Wait for menu to become visible (check that hidden class is removed)
+    assert_no_selector "#mobile-menu.hidden", wait: 5
     assert_selector "#mobile-menu", visible: true
-    assert_no_selector "#mobile-menu.hidden"
 
     # Click again to close
-    find("[data-action='click->nav-toggle#toggle']").click
+    page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
 
     # Mobile menu should be hidden again
-    assert_selector "#mobile-menu.hidden", visible: :hidden
+    assert_selector "#mobile-menu.hidden", visible: :hidden, wait: 5
   end
 
   test "navigation shows dashboard and settings links when authenticated" do

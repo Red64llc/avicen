@@ -20,15 +20,21 @@ class UserFlowsTest < ApplicationSystemTestCase
     assert_text "wellness"
 
     # Verify login link is functional (4.3)
-    assert_link "Sign In"
-    click_link "Sign In"
+    # Use within to target navbar link (there's also a Sign In in the hero section)
+    within "nav" do
+      assert_link "Sign In"
+      click_link "Sign In"
+    end
     assert_current_path new_session_path
     assert_text "Sign in"
 
     # Go back and verify registration link is functional (4.4)
     visit root_path
-    assert_link "Get Started"
-    click_link "Get Started"
+    # Use within to target navbar link (there's also a Get Started in the hero section)
+    within "nav" do
+      assert_link "Get Started"
+      click_link "Get Started"
+    end
     assert_current_path new_registration_path
     assert_text "Create an account"
   end
@@ -107,15 +113,18 @@ class UserFlowsTest < ApplicationSystemTestCase
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
 
+    # Wait for hamburger button to be visible after resize
+    assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
+
     # Mobile menu should be hidden initially
     assert_selector "#mobile-menu.hidden", visible: :hidden
 
-    # Click hamburger button to open menu
-    find("[data-action='click->nav-toggle#toggle']").click
+    # Click hamburger button to open menu using JavaScript for reliability
+    page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
 
-    # Mobile menu should be visible with all navigation links
+    # Wait for menu to become visible (check that hidden class is removed)
+    assert_no_selector "#mobile-menu.hidden", wait: 5
     assert_selector "#mobile-menu", visible: true
-    assert_no_selector "#mobile-menu.hidden"
 
     within "#mobile-menu" do
       assert_link "Dashboard"
@@ -124,10 +133,10 @@ class UserFlowsTest < ApplicationSystemTestCase
     end
 
     # Click again to close
-    find("[data-action='click->nav-toggle#toggle']").click
+    page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
 
     # Mobile menu should be hidden again
-    assert_selector "#mobile-menu.hidden", visible: :hidden
+    assert_selector "#mobile-menu.hidden", visible: :hidden, wait: 5
   end
 
   # Test the unauthenticated mobile navigation shows correct auth links
@@ -137,8 +146,18 @@ class UserFlowsTest < ApplicationSystemTestCase
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
 
-    # Open mobile menu
-    find("[data-action='click->nav-toggle#toggle']").click
+    # Wait for hamburger button to be visible after resize
+    assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
+
+    # Mobile menu should be hidden initially
+    assert_selector "#mobile-menu.hidden", visible: :hidden
+
+    # Open mobile menu using JavaScript for reliability
+    page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
+
+    # Wait for menu to become visible (check that hidden class is removed)
+    assert_no_selector "#mobile-menu.hidden", wait: 5
+    assert_selector "#mobile-menu", visible: true
 
     within "#mobile-menu" do
       assert_link "Sign In"

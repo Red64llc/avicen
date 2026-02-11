@@ -13,5 +13,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     fill_in "Email address", with: user.email_address
     fill_in "Password", with: "password"
     click_on "Sign in"
+    # Wait for login to complete by checking we're no longer on the sign-in page
+    assert_no_current_path new_session_path
   end
 end
