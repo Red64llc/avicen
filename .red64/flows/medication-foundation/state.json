@@ -1,11 +1,11 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "tasks-generating",
+    "type": "tasks-approval",
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T11:08:36.498Z",
+  "updatedAt": "2026-02-11T11:28:54.321Z",
   "history": [
     {
       "phase": {
@@ -63,6 +63,58 @@
         "feature": "medication-foundation"
       },
       "timestamp": "2026-02-11T11:08:36.498Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:11:24.952Z"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T11:11:58.359Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:11:58.370Z",
+      "event": "TASK_START",
+      "subStep": "task-1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:22:41.375Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:22:41.382Z",
+      "event": "TASK_START",
+      "subStep": "task-1.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:28:54.320Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.1-completed"
     }
   ],
   "metadata": {
@@ -70,6 +122,300 @@
     "mode": "brownfield",
     "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation",
     "resolvedFeatureName": "medication-foundation"
+  },
+  "taskProgress": {
+    "completedGroups": [
+      1
+    ],
+    "totalGroups": 12,
+    "currentGroup": 2,
+    "subTasksInCurrentGroup": {
+      "completed": [],
+      "total": 4
+    },
+    "taskEntries": [
+      {
+        "id": "1",
+        "title": "Database foundation and model layer",
+        "startedAt": "2026-02-11T11:11:58.370Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "1.1",
+        "title": "Create the Drug model with migration, validations, and search scope",
+        "startedAt": "2026-02-11T11:22:41.381Z",
+        "completedAt": "2026-02-11T11:28:54.318Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.2",
+        "title": "Create the Prescription model with migration, validations, and user association",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "1.3",
+        "title": "Create the Medication model with migration, validations, and associations",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "1.4",
+        "title": "Create the MedicationSchedule model with migration, validations, and day-of-week JSON handling",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "1.5",
+        "title": "Create the MedicationLog model with migration, validations, and upsert support",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "2",
+        "title": "Drug search service and external API integration",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "2.1",
+        "title": "Implement the DrugSearchService with local-first search and RxNorm API fallback",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "2.2",
+        "title": "Create the DrugsController search endpoint returning HTML fragments for autocomplete",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "2.3",
+        "title": "Pin stimulus-autocomplete via importmap and create the drug-search Stimulus controller",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "3",
+        "title": "Prescription management with full CRUD",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "3.1",
+        "title": "Implement the PrescriptionsController with all CRUD actions scoped to the current user",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "3.2",
+        "title": "Create prescription views: index with active medication counts, show with medication list, and form partial",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "4",
+        "title": "Medication entry with drug autocomplete",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "4.1",
+        "title": "Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "4.2",
+        "title": "Create medication views: form with drug autocomplete, medication list partial, and toggle control",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "5",
+        "title": "Complex dosing schedule management",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "5.1",
+        "title": "Implement the MedicationSchedulesController with Turbo Stream responses for dynamic schedule building",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "5.2",
+        "title": "Create the schedule-builder Stimulus controller and schedule form views",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "6",
+        "title": "Daily schedule view with timezone awareness",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "6.1",
+        "title": "Implement the DailyScheduleQuery to compute the daily medication schedule",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "6.2",
+        "title": "Implement the SchedulesController daily action and daily schedule view",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "7",
+        "title": "Medication logging with Turbo Stream updates",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "7.1",
+        "title": "Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "7.2",
+        "title": "Create the medication-log Stimulus controller and quick-action UI on daily schedule entries",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "8",
+        "title": "Weekly schedule overview",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "8.1",
+        "title": "Implement the WeeklyScheduleQuery to compute the 7-day schedule overview",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "8.2",
+        "title": "Implement the SchedulesController weekly action and weekly overview view",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "9",
+        "title": "Adherence history with heatmap visualization",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "9.1",
+        "title": "Implement the AdherenceCalculationService for adherence statistics",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "9.2",
+        "title": "Implement the AdherenceController and adherence history view with calendar heatmap",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "10",
+        "title": "Printable medication plan",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "10.1",
+        "title": "Implement the printable plan view with print-optimized Tailwind CSS",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "11",
+        "title": "Navigation, loading indicators, and integration wiring",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "11.1",
+        "title": "Update the shared navbar with medication navigation links and add Turbo loading indicator",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "11.2",
+        "title": "Verify flash message display for all medication CRUD operations",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "12",
+        "title": "End-to-end system tests",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "12.1",
+        "title": "Write a system test covering the complete medication workflow",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "12.2",
+        "title": "Write system tests for printable plan and adherence history",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      },
+      {
+        "id": "12.3",
+        "title": "Write a system test verifying mobile-responsive navigation",
+        "startedAt": null,
+        "completedAt": null,
+        "status": "pending"
+      }
+    ],
+    "currentTaskId": "1.1"
   },
   "artifacts": [
     {
@@ -99,6 +445,13 @@
       "path": ".red64/specs/medication-foundation/design.md",
       "phase": "design-generating",
       "createdAt": "2026-02-11T10:58:06.885Z"
+    },
+    {
+      "name": "Tasks",
+      "filename": "tasks.md",
+      "path": ".red64/specs/medication-foundation/tasks.md",
+      "phase": "tasks-generating",
+      "createdAt": "2026-02-11T11:11:24.948Z"
     }
   ],
   "version": 2

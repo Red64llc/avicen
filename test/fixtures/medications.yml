@@ -1,0 +1,23 @@
+aspirin_morning:
+  prescription: one
+  drug: aspirin
+  dosage: "100mg"
+  form: tablet
+  instructions: Take with food
+  active: true
+
+ibuprofen_evening:
+  prescription: one
+  drug: ibuprofen
+  dosage: "200mg"
+  form: capsule
+  instructions: Take after dinner
+  active: true
+
+inactive_medication:
+  prescription: two
+  drug: aspirin
+  dosage: "50mg"
+  form: tablet
+  instructions:
+  active: false

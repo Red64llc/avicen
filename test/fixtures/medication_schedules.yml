@@ -1,0 +1,20 @@
+morning_daily:
+  medication: aspirin_morning
+  time_of_day: "08:00"
+  days_of_week: '[1,2,3,4,5,6,0]'
+  dosage_amount: "100mg"
+  instructions: Take with breakfast
+
+evening_weekdays:
+  medication: ibuprofen_evening
+  time_of_day: "20:00"
+  days_of_week: '[1,2,3,4,5]'
+  dosage_amount: "200mg"
+  instructions: Take after dinner
+
+monday_wednesday_friday:
+  medication: aspirin_morning
+  time_of_day: "12:00"
+  days_of_week: '[1,3,5]'
+  dosage_amount: "50mg"
+  instructions: Take with lunch

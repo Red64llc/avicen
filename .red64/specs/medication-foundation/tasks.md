@@ -1,7 +1,7 @@
 # Implementation Plan
 
 - [ ] 1. Database foundation and model layer
-- [ ] 1.1 Create the Drug model with migration, validations, and search scope
+- [x] 1.1 Create the Drug model with migration, validations, and search scope
   - Create the `drugs` table with name, rxcui, and active_ingredients columns
   - Add database indexes on name and a unique index on rxcui (allowing nulls)
   - Implement name presence validation and rxcui uniqueness validation (allow nil for manually entered drugs)

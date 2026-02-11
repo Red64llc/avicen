@@ -1,0 +1,17 @@
+one:
+  user: one
+  doctor_name: Dr. Smith
+  prescribed_date: 2026-01-15
+  notes: Initial prescription
+
+two:
+  user: one
+  doctor_name: Dr. Johnson
+  prescribed_date: 2026-02-01
+  notes: Follow-up prescription
+
+other_user_prescription:
+  user: two
+  doctor_name: Dr. Brown
+  prescribed_date: 2026-01-20
+  notes: Other user prescription
