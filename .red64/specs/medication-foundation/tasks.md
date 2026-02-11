@@ -67,7 +67,7 @@
   - Stub HTTP requests in tests using WebMock
   - _Requirements: 1.4, 1.5, 1.6, 1.7_
 
-- [ ] 2.2 (P) Create the DrugsController search endpoint returning HTML fragments for autocomplete
+- [x] 2.2 (P) Create the DrugsController search endpoint returning HTML fragments for autocomplete
   - Implement a search action at `GET /drugs/search?q=term` that delegates to DrugSearchService
   - Return HTML `<li>` fragments with `data-autocomplete-value` set to the Drug ID, suitable for stimulus-autocomplete consumption
   - Return an empty response for queries shorter than 2 characters
