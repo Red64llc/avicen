@@ -1,11 +1,11 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "requirements-generating",
+    "type": "gap-analysis",
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T10:30:44.817Z",
+  "updatedAt": "2026-02-11T10:43:46.813Z",
   "history": [
     {
       "phase": {
@@ -21,12 +21,43 @@
         "feature": "medication-foundation"
       },
       "timestamp": "2026-02-11T10:30:44.817Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:32:55.579Z"
+    },
+    {
+      "phase": {
+        "type": "gap-analysis",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:43:46.813Z"
     }
   ],
   "metadata": {
     "description": "implement phase 1 \"Medication Management Core\" from file docs/IMPLEMENTATION_PLAN.md",
     "mode": "brownfield",
-    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation"
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation",
+    "resolvedFeatureName": "medication-foundation"
   },
+  "artifacts": [
+    {
+      "name": "Spec Config",
+      "filename": "spec.json",
+      "path": ".red64/specs/medication-foundation/spec.json",
+      "phase": "initializing",
+      "createdAt": "2026-02-11T10:30:44.683Z"
+    },
+    {
+      "name": "Requirements",
+      "filename": "requirements.md",
+      "path": ".red64/specs/medication-foundation/requirements.md",
+      "phase": "requirements-generating",
+      "createdAt": "2026-02-11T10:32:55.577Z"
+    }
+  ],
   "version": 2
 }
