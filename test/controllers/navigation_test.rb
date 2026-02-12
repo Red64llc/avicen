@@ -77,6 +77,47 @@ class NavbarNavigationTest < ActionDispatch::IntegrationTest
     assert_select "link[href*='application']", minimum: 1
   end
 
+  # --- Navigation links on all medication pages ---
+
+  test "navbar navigation links are present on weekly schedule page" do
+    get weekly_schedule_path
+    assert_response :success
+    assert_select "nav a[href=?]", schedule_path
+    assert_select "nav a[href=?]", weekly_schedule_path
+    assert_select "nav a[href=?]", prescriptions_path
+    assert_select "nav a[href=?]", adherence_path
+  end
+
+  test "navbar navigation links are present on adherence page" do
+    get adherence_path
+    assert_response :success
+    assert_select "nav a[href=?]", schedule_path
+    assert_select "nav a[href=?]", weekly_schedule_path
+    assert_select "nav a[href=?]", prescriptions_path
+    assert_select "nav a[href=?]", adherence_path
+  end
+
+  # --- Mobile Responsive Layout ---
+
+  test "layout includes viewport meta tag for mobile responsiveness" do
+    get dashboard_path
+    assert_response :success
+    assert_select "meta[name='viewport'][content*='width=device-width']"
+  end
+
+  test "navbar has nav-toggle Stimulus controller for mobile menu" do
+    get dashboard_path
+    assert_response :success
+    assert_select "nav[data-controller='nav-toggle']"
+  end
+
+  test "mobile menu button has aria attributes for accessibility" do
+    get dashboard_path
+    assert_response :success
+    assert_select "button[aria-controls='mobile-menu']"
+    assert_select "button[aria-expanded]"
+  end
+
   # --- Navigation not shown to unauthenticated users ---
 
   test "medication navigation links are not shown to unauthenticated users" do

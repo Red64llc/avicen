@@ -121,7 +121,27 @@ class FlashMessagesTest < ActionDispatch::IntegrationTest
     assert_select ".bg-green-50", /removed/i
   end
 
+  # --- Medication Schedules Flash Messages (update HTML) ---
+
+  test "schedule update via HTML displays success flash message" do
+    patch medication_schedule_path(@medication_schedule), params: {
+      medication_schedule: { dosage_amount: "200mg" }
+    }
+    assert_redirected_to prescription_path(@medication.prescription)
+    follow_redirect!
+    assert_select ".bg-green-50", /updated/i
+  end
+
   # --- Medication Schedules Flash Messages (Turbo Stream) ---
+
+  test "schedule update via Turbo Stream includes flash in response" do
+    patch medication_schedule_path(@medication_schedule), params: {
+      medication_schedule: { dosage_amount: "200mg" }
+    }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+    assert_response :success
+    assert_match(/turbo-stream/, response.body)
+    assert_match(/flash/, response.body)
+  end
 
   test "schedule create via Turbo Stream includes flash in response" do
     post medication_medication_schedules_path(@medication), params: {
