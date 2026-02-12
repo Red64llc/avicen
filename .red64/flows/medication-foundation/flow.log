@@ -2473,3 +2473,59 @@ Would you like me to execute one of these pending tasks instead? You can run:
 
 [09:52:42] Warning: Failed to mark task 12.1 in tasks.md: Task 12.1 not found in tasks.md
 [09:52:42] Committing: feat(medication-foundation): implement task 38 - Write a system test covering the complete medication workflow...
+[09:52:43] Committed: b22b394
+[09:52:43] Task 12.1 completed
+[09:52:43] 
+[09:52:43] [25/40] Task 12.2: Write system tests for printable plan and adherence history
+[09:52:43] --- Executing command ---
+[09:52:43] Command: claude -p "/red64:spec-impl medication-foundation 12.2 -y"
+[09:52:43] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[09:52:43] Sandbox: Docker isolated mode
+[09:52:43] Model: claude-opus-4-6
+[10:00:31] The implementation is complete. Here's a summary of what was done for **Task 12.2**:
+[10:00:31] **Key fixes and improvements:**
+[10:00:31] ## Task 12.2: System tests for printable plan and adherence history
+[10:00:31] 2. **Scoped heatmap assertions** -- Heatmap day-of-week labels and aria-label checks are now scoped to `within "[data-heatmap]"` to avoid false positives from matching text elsewhere on the page.
+[10:00:31] 1. **Time freezing with `travel_to`** -- All 5 adherence tests now freeze time to `Time.utc(2026, 2, 12, 15, 0, 0)` so the adherence calculation service's date range consistently includes the fixture log dates, making tests deterministic.
+[10:00:31] 4. **Added `wait: 5` parameters** -- Added to assertions following navigation clicks to allow sufficient time for Turbo Drive page transitions.
+[10:00:31] ### Changes made to `test/system/printable_plan_and_adherence_test.rb`:
+[10:00:31] ### Test coverage (8 tests total):
+[10:00:31] 5. **Renamed misleading test** -- "printable plan is accessible from navigation" renamed to "printable plan is accessible from schedule view" to match actual behavior.
+[10:00:31] - **Adherence history** (5 tests): Statistics display, period selection (7/30/90 days), heatmap with aria-labels, day click for detail, navigation access
+[10:00:31] - **Print plan** (3 tests): Active medications by time-of-day, inactive exclusion, accessibility from schedule view
+[10:00:31] Note: Ruby is not available in this environment so the tests couldn't be executed here. You'll need to run `bin/rails test:system` in your development environment to verify they pass.
+[10:00:31] ### Requirements covered: 8.3, 8.4, 9.1, 9.4
+[10:00:31] 3. **Improved print view assertions** -- Time-of-day group headings verified with `assert_selector "h2", text: "Morning"` instead of plain `assert_text`, confirming proper semantic structure (Req 9.4).
+[10:00:32] Exit code: 0
+[10:00:32] Success: true
+[10:00:32] --- stdout ---
+[10:00:32] The implementation is complete. Here's a summary of what was done for **Task 12.2**:
+
+## Task 12.2: System tests for printable plan and adherence history
+
+### Changes made to `test/system/printable_plan_and_adherence_test.rb`:
+
+**Key fixes and improvements:**
+
+1. **Time freezing with `travel_to`** -- All 5 adherence tests now freeze time to `Time.utc(2026, 2, 12, 15, 0, 0)` so the adherence calculation service's date range consistently includes the fixture log dates, making tests deterministic.
+
+2. **Scoped heatmap assertions** -- Heatmap day-of-week labels and aria-label checks are now scoped to `within "[data-heatmap]"` to avoid false positives from matching text elsewhere on the page.
+
+3. **Improved print view assertions** -- Time-of-day group headings verified with `assert_selector "h2", text: "Morning"` instead of plain `assert_text`, confirming proper semantic structure (Req 9.4).
+
+4. **Added `wait: 5` parameters** -- Added to assertions following navigation clicks to allow sufficient time for Turbo Drive page transitions.
+
+5. **Renamed misleading test** -- "printable plan is accessible from navigation" renamed to "printable plan is accessible from schedule view" to match actual behavior.
+
+### Test coverage (8 tests total):
+- **Print plan** (3 tests): Active medications by time-of-day, inactive exclusion, accessibility from schedule view
+- **Adherence history** (5 tests): Statistics display, period selection (7/30/90 days), heatmap with aria-labels, day click for detail, navigation access
+
+### Requirements covered: 8.3, 8.4, 9.1, 9.4
+
+Note: Ruby is not available in this environment so the tests couldn't be executed here. You'll need to run `bin/rails test:system` in your development environment to verify they pass.
+
+[10:00:32] --- end command ---
+
+[10:00:32] Warning: Failed to mark task 12.2 in tasks.md: Task 12.2 not found in tasks.md
+[10:00:32] Committing: feat(medication-foundation): implement task 39 - Write system tests for printable plan and adherence history...
