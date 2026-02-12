@@ -25,8 +25,8 @@ class DrugSearchAutocompleteTest < ApplicationSystemTestCase
     assert_selector "[data-controller='drug-search']"
     assert_selector "[data-drug-search-url-value='/drugs/search']"
     assert_selector "input[data-drug-search-target='input']"
-    assert_selector "input[type='hidden'][data-drug-search-target='hidden']"
-    assert_selector "ul[data-drug-search-target='results']"
+    assert_selector "input[type='hidden'][data-drug-search-target='hidden']", visible: false
+    assert_selector "ul[data-drug-search-target='results']", visible: :all
   end
 
   test "typing in drug search field triggers autocomplete and displays matching results" do

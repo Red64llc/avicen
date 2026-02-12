@@ -64,7 +64,7 @@
   <div class="mt-3">
     <% if entry.status == :pending %>
       <%# Taken button %>
-      <%= form_with url: medication_logs_path, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
+      <%= form_with url: medication_logs_path, scope: :medication_log, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
         <%= f.hidden_field :medication_id, value: entry.medication.id %>
         <%= f.hidden_field :medication_schedule_id, value: entry.schedule.id %>
         <%= f.hidden_field :scheduled_date, value: date.to_s %>
@@ -80,7 +80,7 @@
       <% end %>
 
       <%# Skipped button with optional reason %>
-      <%= form_with url: medication_logs_path, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
+      <%= form_with url: medication_logs_path, scope: :medication_log, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
         <%= f.hidden_field :medication_id, value: entry.medication.id %>
         <%= f.hidden_field :medication_schedule_id, value: entry.schedule.id %>
         <%= f.hidden_field :scheduled_date, value: date.to_s %>

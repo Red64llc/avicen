@@ -3,6 +3,9 @@ require "test_helper"
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 900 ]
 
+  # Allow localhost connections for Selenium/ChromeDriver communication
+  WebMock.disable_net_connect!(allow_localhost: true)
+
   setup do
     # Reset viewport to desktop size before each test
     page.driver.browser.manage.window.resize_to(1400, 900)

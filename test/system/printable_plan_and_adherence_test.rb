@@ -45,12 +45,13 @@ class PrintablePlanAndAdherenceTest < ApplicationSystemTestCase
 
     # Verify the table structure with medication details (Req 9.1)
     # Each time-of-day group table shows: Time, Drug, Dosage, Form, Days, Instructions
-    assert_selector "th", text: "Time"
-    assert_selector "th", text: "Drug"
-    assert_selector "th", text: "Dosage"
-    assert_selector "th", text: "Form"
-    assert_selector "th", text: "Days"
-    assert_selector "th", text: "Instructions"
+    # Note: CSS uppercase class transforms display text to uppercase
+    assert_selector "th", text: /time/i
+    assert_selector "th", text: /drug/i
+    assert_selector "th", text: /dosage/i
+    assert_selector "th", text: /form/i
+    assert_selector "th", text: /days/i
+    assert_selector "th", text: /instructions/i
 
     # Verify schedule details are rendered in the table
     assert_text "08:00"
@@ -123,12 +124,13 @@ class PrintablePlanAndAdherenceTest < ApplicationSystemTestCase
       assert_text "Medication Statistics"
 
       # Verify per-medication stats columns exist
-      assert_selector "th", text: "Medication"
-      assert_selector "th", text: "Scheduled"
-      assert_selector "th", text: "Taken"
-      assert_selector "th", text: "Skipped"
-      assert_selector "th", text: "Missed"
-      assert_selector "th", text: "Adherence"
+      # Note: CSS uppercase class transforms display text to uppercase
+      assert_selector "th", text: /medication/i
+      assert_selector "th", text: /scheduled/i
+      assert_selector "th", text: /taken/i
+      assert_selector "th", text: /skipped/i
+      assert_selector "th", text: /missed/i
+      assert_selector "th", text: /adherence/i
     end
   end
 
@@ -209,6 +211,9 @@ class PrintablePlanAndAdherenceTest < ApplicationSystemTestCase
       sign_in_as_system(@user)
 
       visit dashboard_path
+
+      # Wait for dashboard to fully load
+      assert_text "Your Dashboard", wait: 5
 
       # Click the Adherence link in the desktop navbar
       within "nav" do

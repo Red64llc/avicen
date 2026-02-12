@@ -67,7 +67,9 @@ class MedicationWorkflowTest < ApplicationSystemTestCase
 
     # Fill in schedule details
     # Today is Thursday (2026-02-12), so we select all weekdays
-    fill_in "Time of Day", with: "08:00"
+    # Use JavaScript to set time field value (headless Chrome time input handling)
+    time_field = find("input[type='time']")
+    time_field.execute_script("this.value = '08:00'")
     check "Mon"
     check "Tue"
     check "Wed"
