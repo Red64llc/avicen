@@ -6,7 +6,7 @@
     "totalTasks": 0
   },
   "createdAt": "2026-02-12T20:26:20.273Z",
-  "updatedAt": "2026-02-12T21:18:35.203Z",
+  "updatedAt": "2026-02-12T21:24:08.620Z",
   "history": [
     {
       "phase": {
@@ -108,6 +108,26 @@
       "timestamp": "2026-02-12T21:18:35.202Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-1.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:18:35.361Z",
+      "event": "TASK_START",
+      "subStep": "task-1.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:24:08.620Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.2-completed"
     }
   ],
   "metadata": {
@@ -144,9 +164,9 @@
       {
         "id": "1.2",
         "title": "Create seed data for common biomarkers",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T21:18:35.361Z",
+        "completedAt": "2026-02-12T21:24:08.618Z",
+        "status": "completed"
       },
       {
         "id": "2",
@@ -408,7 +428,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "1.1"
+    "currentTaskId": "1.2"
   },
   "artifacts": [
     {

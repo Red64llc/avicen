@@ -21,7 +21,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Add indexes on test_results (biology_report_id, biomarker_id, out_of_range)
   - _Requirements: 7.1, 7.2, 7.5_
 
-- [ ] 1.2 (P) Create seed data for common biomarkers
+- [x] 1.2 (P) Create seed data for common biomarkers
   - Seed 20-30 common biomarkers covering CBC (hemoglobin, WBC, platelets), metabolic panel (glucose, creatinine, sodium, potassium), lipid panel (total cholesterol, LDL, HDL, triglycerides), thyroid (TSH, Free T4), vitamins (D, B12), liver function (ALT, AST), and inflammation (CRP)
   - Include LOINC-compatible codes, default units, and typical reference ranges for each biomarker
   - Use db/seeds.rb or dedicated biomarker seed file with idempotent logic
