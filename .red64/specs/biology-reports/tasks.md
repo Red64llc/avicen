@@ -47,7 +47,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Create scope for filtering by laboratory name (case-insensitive partial match)
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 4.1, 4.2, 4.5, 7.1, 7.5_
 
-- [ ] 2.3 Create TestResult model with out-of-range calculation
+- [x] 2.3 Create TestResult model with out-of-range calculation
   - Define associations: belongs_to :biology_report, belongs_to :biomarker
   - Add validations for presence of biomarker_id, value, unit
   - Add numericality validation for value
