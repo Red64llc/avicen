@@ -10,7 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_10_224534) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_11_112110) do
+  create_table "drugs", force: :cascade do |t|
+    t.text "active_ingredients"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "rxcui"
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_drugs_on_name"
+    t.index ["rxcui"], name: "index_drugs_on_rxcui", unique: true
+  end
+
+  create_table "medication_logs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "logged_at"
+    t.integer "medication_id", null: false
+    t.integer "medication_schedule_id", null: false
+    t.text "reason"
+    t.date "scheduled_date", null: false
+    t.integer "status", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medication_id"], name: "index_medication_logs_on_medication_id"
+    t.index ["medication_schedule_id", "scheduled_date"], name: "index_medication_logs_on_schedule_and_date", unique: true
+    t.index ["medication_schedule_id"], name: "index_medication_logs_on_medication_schedule_id"
+    t.index ["scheduled_date"], name: "index_medication_logs_on_scheduled_date"
+  end
+
+  create_table "medication_schedules", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "days_of_week", null: false
+    t.string "dosage_amount"
+    t.text "instructions"
+    t.integer "medication_id", null: false
+    t.string "time_of_day", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medication_id"], name: "index_medication_schedules_on_medication_id"
+  end
+
+  create_table "medications", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.string "dosage", null: false
+    t.integer "drug_id", null: false
+    t.string "form", null: false
+    t.text "instructions"
+    t.integer "prescription_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_medications_on_active"
+    t.index ["drug_id"], name: "index_medications_on_drug_id"
+    t.index ["prescription_id"], name: "index_medications_on_prescription_id"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "doctor_name"
+    t.text "notes"
+    t.date "prescribed_date", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id", "prescribed_date"], name: "index_prescriptions_on_user_id_and_prescribed_date"
+    t.index ["user_id"], name: "index_prescriptions_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date_of_birth"
@@ -38,6 +99,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_10_224534) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "medication_logs", "medication_schedules"
+  add_foreign_key "medication_logs", "medications"
+  add_foreign_key "medication_schedules", "medications"
+  add_foreign_key "medications", "drugs"
+  add_foreign_key "medications", "prescriptions"
+  add_foreign_key "prescriptions", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sessions", "users"
 end

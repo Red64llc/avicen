@@ -1,0 +1,14 @@
+aspirin:
+  name: Aspirin
+  rxcui: "1191"
+  active_ingredients: '["Aspirin"]'
+
+ibuprofen:
+  name: Ibuprofen 200mg Oral Tablet
+  rxcui: "310965"
+  active_ingredients: '["Ibuprofen"]'
+
+manual_drug:
+  name: Custom Supplement
+  rxcui:
+  active_ingredients:

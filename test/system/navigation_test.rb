@@ -9,6 +9,10 @@ class NavigationTest < ApplicationSystemTestCase
     sign_in_as_system(@user_with_profile)
     visit dashboard_path
 
+    # Wait for Stimulus controller to connect BEFORE resizing (critical for CI)
+    # The controller must be connected at desktop size first
+    wait_for_stimulus_controller("nav-toggle")
+
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
 

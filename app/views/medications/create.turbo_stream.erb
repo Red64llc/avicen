@@ -1,0 +1,11 @@
+<%= turbo_stream.append "medications_list" do %>
+  <%= render "medications/medication", medication: @medication %>
+<% end %>
+
+<%= turbo_stream.update "medication_form", "" %>
+
+<%= turbo_stream.update "flash" do %>
+  <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg print:hidden">
+    Medication was successfully added.
+  </div>
+<% end %>

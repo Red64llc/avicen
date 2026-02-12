@@ -1,0 +1,1191 @@
+{
+  "feature": "medication-foundation",
+  "phase": {
+    "type": "complete",
+    "feature": "medication-foundation"
+  },
+  "createdAt": "2026-02-11T10:30:44.676Z",
+  "updatedAt": "2026-02-12T10:03:53.574Z",
+  "history": [
+    {
+      "phase": {
+        "type": "initializing",
+        "feature": "medication-foundation",
+        "description": "implement phase 1 \"Medication Management Core\" from file docs/IMPLEMENTATION_PLAN.md"
+      },
+      "timestamp": "2026-02-11T10:30:44.676Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:30:44.817Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:32:55.579Z"
+    },
+    {
+      "phase": {
+        "type": "gap-analysis",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:43:46.813Z"
+    },
+    {
+      "phase": {
+        "type": "design-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:48:57.807Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T10:58:06.887Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:06:04.439Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:08:36.498Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:11:24.952Z"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T11:11:58.359Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:11:58.370Z",
+      "event": "TASK_START",
+      "subStep": "task-1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:22:41.375Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:22:41.382Z",
+      "event": "TASK_START",
+      "subStep": "task-1.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:28:54.320Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:28:54.556Z",
+      "event": "TASK_START",
+      "subStep": "task-1.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:31:16.323Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:31:16.587Z",
+      "event": "TASK_START",
+      "subStep": "task-1.3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:34:33.716Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.3-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:34:33.973Z",
+      "event": "TASK_START",
+      "subStep": "task-1.4-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:37:24.263Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.4-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T11:37:24.509Z",
+      "event": "TASK_START",
+      "subStep": "task-1.5-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T13:37:53.051Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:40:47.679Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.5-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:40:47.938Z",
+      "event": "TASK_START",
+      "subStep": "task-2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:51:10.442Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:51:10.447Z",
+      "event": "TASK_START",
+      "subStep": "task-2.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:57:10.566Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:57:10.836Z",
+      "event": "TASK_START",
+      "subStep": "task-2.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:59:33.917Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T13:59:34.182Z",
+      "event": "TASK_START",
+      "subStep": "task-2.3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:09:45.154Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-2.3-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:09:45.159Z",
+      "event": "TASK_START",
+      "subStep": "task-3-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:22:36.385Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:22:36.389Z",
+      "event": "TASK_START",
+      "subStep": "task-3.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:27:35.421Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:27:35.739Z",
+      "event": "TASK_START",
+      "subStep": "task-3.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:42:07.889Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T14:42:07.894Z",
+      "event": "TASK_START",
+      "subStep": "task-4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T15:49:50.421Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T15:58:12.314Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T15:58:12.591Z",
+      "event": "TASK_START",
+      "subStep": "task-4.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:07:16.222Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:07:16.510Z",
+      "event": "TASK_START",
+      "subStep": "task-4.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:41:55.275Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-4.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:41:55.279Z",
+      "event": "TASK_START",
+      "subStep": "task-5-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:49:13.971Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T16:49:14.288Z",
+      "event": "TASK_START",
+      "subStep": "task-5.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:03:27.660Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-5.1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:03:27.665Z",
+      "event": "TASK_START",
+      "subStep": "task-5.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:46:23.845Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-5.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T17:46:23.850Z",
+      "event": "TASK_START",
+      "subStep": "task-6-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-11T22:12:23.343Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:13:19.715Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-6-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:13:19.951Z",
+      "event": "TASK_START",
+      "subStep": "task-6.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:14:33.412Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-6.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:14:33.615Z",
+      "event": "TASK_START",
+      "subStep": "task-6.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:17:21.891Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-6.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:17:22.121Z",
+      "event": "TASK_START",
+      "subStep": "task-7-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:46:00.300Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:46:00.303Z",
+      "event": "TASK_START",
+      "subStep": "task-7.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T23:39:42.787Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T23:39:42.790Z",
+      "event": "TASK_START",
+      "subStep": "task-7.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:05:47.701Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:05:47.704Z",
+      "event": "TASK_START",
+      "subStep": "task-8-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:26:55.624Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-8-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:26:55.629Z",
+      "event": "TASK_START",
+      "subStep": "task-8.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:27:20.937Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:27:21.181Z",
+      "event": "TASK_START",
+      "subStep": "task-8.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:28:16.205Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:28:16.463Z",
+      "event": "TASK_START",
+      "subStep": "task-9-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:55:04.095Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-9-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:55:04.099Z",
+      "event": "TASK_START",
+      "subStep": "task-9.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:02:56.261Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-9.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:02:56.506Z",
+      "event": "TASK_START",
+      "subStep": "task-9.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:14:25.530Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-9.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:14:25.535Z",
+      "event": "TASK_START",
+      "subStep": "task-10-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:20:06.360Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:20:06.616Z",
+      "event": "TASK_START",
+      "subStep": "task-10.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:24:46.838Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:24:47.075Z",
+      "event": "TASK_START",
+      "subStep": "task-11-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "medication-foundation",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T07:25:32.574Z"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:57:26.603Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11-completed"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:57:26.797Z",
+      "event": "TASK_START",
+      "subStep": "task-11.1-started"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:58:18.978Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11.1-completed"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:58:19.153Z",
+      "event": "TASK_START",
+      "subStep": "task-11.2-started"
+    },
+    {
+      "phase": {
+        "type": "initializing",
+        "feature": "medication-foundation",
+        "description": "No description provided"
+      },
+      "timestamp": "2026-02-12T09:29:09.147Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-generating",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T09:29:09.286Z"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:44:50.028Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:44:50.225Z",
+      "event": "TASK_START",
+      "subStep": "task-12-started"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:11.327Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:11.527Z",
+      "event": "TASK_START",
+      "subStep": "task-12.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:42.948Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:43.129Z",
+      "event": "TASK_START",
+      "subStep": "task-12.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T10:00:32.677Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T10:00:33.046Z",
+      "event": "TASK_START",
+      "subStep": "task-12.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T10:03:53.371Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.3-completed"
+    },
+    {
+      "phase": {
+        "type": "complete",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T10:03:53.574Z"
+    }
+  ],
+  "metadata": {
+    "description": "No description provided",
+    "mode": "brownfield",
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation"
+  },
+  "taskProgress": {
+    "completedGroups": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "totalGroups": 12,
+    "taskEntries": [
+      {
+        "id": "1",
+        "title": "Database foundation and model layer",
+        "startedAt": "2026-02-11T11:11:58.370Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "1.1",
+        "title": "Create the Drug model with migration, validations, and search scope",
+        "startedAt": "2026-02-11T11:22:41.381Z",
+        "completedAt": "2026-02-11T11:28:54.318Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.2",
+        "title": "Create the Prescription model with migration, validations, and user association",
+        "startedAt": "2026-02-11T11:28:54.554Z",
+        "completedAt": "2026-02-11T11:31:16.322Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.3",
+        "title": "Create the Medication model with migration, validations, and associations",
+        "startedAt": "2026-02-11T11:31:16.586Z",
+        "completedAt": "2026-02-11T11:34:33.714Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.4",
+        "title": "Create the MedicationSchedule model with migration, validations, and day-of-week JSON handling",
+        "startedAt": "2026-02-11T11:34:33.972Z",
+        "completedAt": "2026-02-11T11:37:24.261Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.5",
+        "title": "Create the MedicationLog model with migration, validations, and upsert support",
+        "startedAt": "2026-02-11T11:37:24.508Z",
+        "completedAt": "2026-02-11T13:40:47.675Z",
+        "status": "completed"
+      },
+      {
+        "id": "2",
+        "title": "Drug search service and external API integration",
+        "startedAt": "2026-02-11T13:40:47.938Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "2.1",
+        "title": "Implement the DrugSearchService with local-first search and RxNorm API fallback",
+        "startedAt": "2026-02-11T13:51:10.446Z",
+        "completedAt": "2026-02-11T13:57:10.565Z",
+        "status": "completed"
+      },
+      {
+        "id": "2.2",
+        "title": "Create the DrugsController search endpoint returning HTML fragments for autocomplete",
+        "startedAt": "2026-02-11T13:57:10.836Z",
+        "completedAt": "2026-02-11T13:59:33.916Z",
+        "status": "completed"
+      },
+      {
+        "id": "2.3",
+        "title": "Pin stimulus-autocomplete via importmap and create the drug-search Stimulus controller",
+        "startedAt": "2026-02-11T13:59:34.181Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "3",
+        "title": "Prescription management with full CRUD",
+        "startedAt": "2026-02-11T14:09:45.159Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "3.1",
+        "title": "Implement the PrescriptionsController with all CRUD actions scoped to the current user",
+        "startedAt": "2026-02-11T14:22:36.389Z",
+        "completedAt": "2026-02-11T14:27:35.418Z",
+        "status": "completed"
+      },
+      {
+        "id": "3.2",
+        "title": "Create prescription views: index with active medication counts, show with medication list, and form partial",
+        "startedAt": "2026-02-11T14:27:35.739Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "4",
+        "title": "Medication entry with drug autocomplete",
+        "startedAt": "2026-02-11T14:42:07.894Z",
+        "completedAt": "2026-02-11T15:58:12.313Z",
+        "status": "completed"
+      },
+      {
+        "id": "4.1",
+        "title": "Implement the MedicationsController for CRUD nested under prescriptions with Turbo Frame responses",
+        "startedAt": "2026-02-11T15:58:12.590Z",
+        "completedAt": "2026-02-11T16:07:16.221Z",
+        "status": "completed"
+      },
+      {
+        "id": "4.2",
+        "title": "Create medication views: form with drug autocomplete, medication list partial, and toggle control",
+        "startedAt": "2026-02-11T16:07:16.509Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "5",
+        "title": "Complex dosing schedule management",
+        "startedAt": "2026-02-11T16:41:55.279Z",
+        "completedAt": "2026-02-11T16:49:13.970Z",
+        "status": "completed"
+      },
+      {
+        "id": "5.1",
+        "title": "Implement the MedicationSchedulesController with Turbo Stream responses for dynamic schedule building",
+        "startedAt": "2026-02-11T16:49:14.287Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "5.2",
+        "title": "Create the schedule-builder Stimulus controller and schedule form views",
+        "startedAt": "2026-02-11T17:03:27.665Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "6",
+        "title": "Daily schedule view with timezone awareness",
+        "startedAt": "2026-02-11T17:46:23.850Z",
+        "completedAt": "2026-02-11T22:13:19.714Z",
+        "status": "completed"
+      },
+      {
+        "id": "6.1",
+        "title": "Implement the DailyScheduleQuery to compute the daily medication schedule",
+        "startedAt": "2026-02-11T22:13:19.951Z",
+        "completedAt": "2026-02-11T22:14:33.410Z",
+        "status": "completed"
+      },
+      {
+        "id": "6.2",
+        "title": "Implement the SchedulesController daily action and daily schedule view",
+        "startedAt": "2026-02-11T22:14:33.614Z",
+        "completedAt": "2026-02-11T22:17:21.889Z",
+        "status": "completed"
+      },
+      {
+        "id": "7",
+        "title": "Medication logging with Turbo Stream updates",
+        "startedAt": "2026-02-11T22:17:22.120Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7.1",
+        "title": "Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream",
+        "startedAt": "2026-02-11T22:46:00.302Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7.2",
+        "title": "Create the medication-log Stimulus controller and quick-action UI on daily schedule entries",
+        "startedAt": "2026-02-11T23:39:42.790Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "8",
+        "title": "Weekly schedule overview",
+        "startedAt": "2026-02-12T00:05:47.704Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "8.1",
+        "title": "Implement the WeeklyScheduleQuery to compute the 7-day schedule overview",
+        "startedAt": "2026-02-12T00:26:55.628Z",
+        "completedAt": "2026-02-12T00:27:20.935Z",
+        "status": "completed"
+      },
+      {
+        "id": "8.2",
+        "title": "Implement the SchedulesController weekly action and weekly overview view",
+        "startedAt": "2026-02-12T00:27:21.181Z",
+        "completedAt": "2026-02-12T00:28:16.202Z",
+        "status": "completed"
+      },
+      {
+        "id": "9",
+        "title": "Adherence history with heatmap visualization",
+        "startedAt": "2026-02-12T00:28:16.462Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "9.1",
+        "title": "Implement the AdherenceCalculationService for adherence statistics",
+        "startedAt": "2026-02-12T00:55:04.099Z",
+        "completedAt": "2026-02-12T01:02:56.260Z",
+        "status": "completed"
+      },
+      {
+        "id": "9.2",
+        "title": "Implement the AdherenceController and adherence history view with calendar heatmap",
+        "startedAt": "2026-02-12T01:02:56.505Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "10",
+        "title": "Printable medication plan",
+        "startedAt": "2026-02-12T01:14:25.534Z",
+        "completedAt": "2026-02-12T01:20:06.359Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.1",
+        "title": "Implement the printable plan view with print-optimized Tailwind CSS",
+        "startedAt": "2026-02-12T01:20:06.615Z",
+        "completedAt": "2026-02-12T01:24:46.835Z",
+        "status": "completed"
+      },
+      {
+        "id": "11",
+        "title": "Navigation, loading indicators, and integration wiring",
+        "startedAt": "2026-02-12T01:24:47.074Z",
+        "completedAt": "2026-02-12T08:57:26.601Z",
+        "status": "completed"
+      },
+      {
+        "id": "11.1",
+        "title": "Update the shared navbar with medication navigation links and add Turbo loading indicator",
+        "startedAt": "2026-02-12T08:57:26.797Z",
+        "completedAt": "2026-02-12T08:58:18.977Z",
+        "status": "completed"
+      },
+      {
+        "id": "11.2",
+        "title": "Verify flash message display for all medication CRUD operations",
+        "startedAt": "2026-02-12T08:58:19.153Z",
+        "completedAt": "2026-02-12T09:44:50.027Z",
+        "status": "completed"
+      },
+      {
+        "id": "12",
+        "title": "End-to-end system tests",
+        "startedAt": "2026-02-12T09:44:50.225Z",
+        "completedAt": "2026-02-12T09:52:11.325Z",
+        "status": "completed"
+      },
+      {
+        "id": "12.1",
+        "title": "Write a system test covering the complete medication workflow",
+        "startedAt": "2026-02-12T09:52:11.526Z",
+        "completedAt": "2026-02-12T09:52:42.947Z",
+        "status": "completed"
+      },
+      {
+        "id": "12.2",
+        "title": "Write system tests for printable plan and adherence history",
+        "startedAt": "2026-02-12T09:52:43.128Z",
+        "completedAt": "2026-02-12T10:00:32.676Z",
+        "status": "completed"
+      },
+      {
+        "id": "12.3",
+        "title": "Write a system test verifying mobile-responsive navigation",
+        "startedAt": "2026-02-12T10:00:33.045Z",
+        "completedAt": "2026-02-12T10:03:53.370Z",
+        "status": "completed"
+      }
+    ],
+    "currentTaskId": "12.3"
+  },
+  "artifacts": [
+    {
+      "name": "Spec Config",
+      "filename": "spec.json",
+      "path": ".red64/specs/medication-foundation/spec.json",
+      "phase": "initializing",
+      "createdAt": "2026-02-11T10:30:44.683Z"
+    },
+    {
+      "name": "Requirements",
+      "filename": "requirements.md",
+      "path": ".red64/specs/medication-foundation/requirements.md",
+      "phase": "requirements-generating",
+      "createdAt": "2026-02-11T10:32:55.577Z"
+    },
+    {
+      "name": "Gap Analysis",
+      "filename": "gap-analysis.md",
+      "path": ".red64/specs/medication-foundation/gap-analysis.md",
+      "phase": "gap-analysis",
+      "createdAt": "2026-02-11T10:48:01.367Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/medication-foundation/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-11T10:58:06.885Z"
+    },
+    {
+      "name": "Tasks",
+      "filename": "tasks.md",
+      "path": ".red64/specs/medication-foundation/tasks.md",
+      "phase": "tasks-generating",
+      "createdAt": "2026-02-11T11:11:24.948Z"
+    }
+  ],
+  "version": 2
+}

@@ -1,0 +1,15 @@
+taken_log:
+  medication: aspirin_morning
+  medication_schedule: morning_daily
+  status: 0
+  logged_at: 2026-02-10 08:15:00
+  scheduled_date: 2026-02-10
+  reason:
+
+skipped_log:
+  medication: ibuprofen_evening
+  medication_schedule: evening_weekdays
+  status: 1
+  logged_at: 2026-02-10 20:00:00
+  scheduled_date: 2026-02-10
+  reason: Felt nauseous

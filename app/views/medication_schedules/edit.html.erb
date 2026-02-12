@@ -1,0 +1,6 @@
+<%= turbo_frame_tag dom_id(@medication_schedule) do %>
+  <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Edit Schedule</h2>
+    <%= render "form", medication_schedule: @medication_schedule, medication: @medication_schedule.medication %>
+  </div>
+<% end %>

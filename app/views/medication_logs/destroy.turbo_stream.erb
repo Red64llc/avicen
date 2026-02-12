@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "schedule_entry_#{@entry.schedule.id}_#{@date}" do %>
+  <%= render partial: "schedules/schedule_entry", locals: { entry: @entry, date: @date } %>
+<% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg print:hidden">
+    Dose log has been undone.
+  </div>
+<% end %>

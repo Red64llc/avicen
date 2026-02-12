@@ -8,3 +8,13 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Turbo loading progress bar customization */
+.turbo-progress-bar {
+  height: 3px;
+  background-color: #2563eb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}

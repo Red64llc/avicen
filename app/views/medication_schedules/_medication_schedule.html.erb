@@ -1,0 +1,29 @@
+<%= turbo_frame_tag dom_id(medication_schedule) do %>
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 rounded-lg border border-gray-200 bg-white">
+    <div class="flex-1 min-w-0">
+      <p class="font-medium text-gray-900">
+        <%= medication_schedule.time_of_day %>
+      </p>
+      <p class="text-sm text-gray-500">
+        <%= medication_schedule.days_of_week_names.join(", ") %>
+        <% if medication_schedule.dosage_amount.present? %>
+          <span class="text-gray-400">|</span> <%= medication_schedule.dosage_amount %>
+        <% end %>
+        <% if medication_schedule.instructions.present? %>
+          <span class="text-gray-400">|</span> <%= medication_schedule.instructions %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+      <%= link_to "Edit", edit_medication_schedule_path(medication_schedule),
+          class: "text-sm text-gray-500 hover:text-gray-700",
+          data: { turbo_frame: dom_id(medication_schedule) } %>
+
+      <%= button_to "Remove", medication_schedule_path(medication_schedule),
+          method: :delete,
+          class: "text-sm text-red-500 hover:text-red-700",
+          data: { turbo_confirm: "Are you sure you want to remove this schedule?", turbo_stream: true } %>
+    </div>
+  </div>
+<% end %>

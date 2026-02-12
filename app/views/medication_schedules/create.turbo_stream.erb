@@ -1,0 +1,11 @@
+<%= turbo_stream.append "schedules_list_medication_#{@medication_schedule.medication_id}" do %>
+  <%= render "medication_schedules/medication_schedule", medication_schedule: @medication_schedule %>
+<% end %>
+
+<%= turbo_stream.update "schedule_form", "" %>
+
+<%= turbo_stream.update "flash" do %>
+  <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg print:hidden">
+    Schedule was successfully added.
+  </div>
+<% end %>

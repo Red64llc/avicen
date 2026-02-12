@@ -1,0 +1,45 @@
+<%# Drug search autocomplete widget using the drug-search Stimulus controller.
+    Wraps stimulus-autocomplete to provide drug name search with automatic
+    Drug ID capture in a hidden field.
+
+    Local variables:
+      - field_name: Name attribute for the hidden input (default: "medication[drug_id]")
+      - selected_drug: Pre-selected Drug record for edit forms (optional)
+      - input_id: HTML id for the text input (optional)
+
+    The hidden input captures the Drug ID on selection.
+    The text input displays the drug name.
+
+    Requirements: 1.4, 3.5 %>
+
+<% field_name ||= "medication[drug_id]" %>
+<% selected_drug ||= nil %>
+<% input_id ||= "drug_search_input" %>
+
+<div data-controller="drug-search"
+     data-drug-search-url-value="<%= drugs_search_path %>"
+     data-drug-search-min-length-value="2"
+     role="combobox"
+     aria-expanded="false"
+     aria-haspopup="listbox"
+     class="relative">
+  <label for="<%= input_id %>" class="block text-sm font-medium text-gray-700 mb-1">
+    Drug name
+  </label>
+  <input type="text"
+         id="<%= input_id %>"
+         data-drug-search-target="input"
+         value="<%= selected_drug&.name %>"
+         placeholder="Search for a drug..."
+         autocomplete="off"
+         spellcheck="false"
+         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" />
+  <input type="hidden"
+         name="<%= field_name %>"
+         data-drug-search-target="hidden"
+         value="<%= selected_drug&.id %>" />
+  <ul data-drug-search-target="results"
+      role="listbox"
+      hidden
+      class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"></ul>
+</div>

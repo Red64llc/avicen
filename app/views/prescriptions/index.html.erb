@@ -1,0 +1,53 @@
+<div class="max-w-4xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Prescriptions</h1>
+    <%= link_to "New Prescription", new_prescription_path,
+        class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+
+  <% if @prescriptions.any? %>
+    <div class="space-y-4">
+      <% @prescriptions.each do |prescription| %>
+        <div class="prescription-card bg-white shadow rounded-lg p-4 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div class="mb-2 sm:mb-0">
+              <h2 class="text-lg font-semibold text-gray-900">
+                <%= link_to prescription.doctor_name.presence || "No doctor specified", prescription_path(prescription),
+                    class: "hover:text-blue-600" %>
+              </h2>
+              <p class="text-sm text-gray-500">
+                Prescribed: <%= prescription.prescribed_date.strftime("%B %d, %Y") %>
+              </p>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <% active_count = prescription.medications.select(&:active?).size %>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                <%= active_count %> active
+                <%= "medication".pluralize(active_count) %>
+              </span>
+
+              <div class="flex items-center space-x-2">
+                <%= link_to "Edit", edit_prescription_path(prescription),
+                    class: "text-sm text-gray-500 hover:text-gray-700" %>
+                <%= button_to "Delete", prescription_path(prescription), method: :delete,
+                    class: "text-sm text-red-500 hover:text-red-700",
+                    data: { turbo_confirm: "Are you sure? This will also delete all associated medications, schedules, and logs." } %>
+              </div>
+            </div>
+          </div>
+
+          <% if prescription.notes.present? %>
+            <p class="mt-2 text-sm text-gray-600"><%= prescription.notes %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center py-12 bg-white shadow rounded-lg">
+      <p class="text-gray-500 mb-4">You don't have any prescriptions yet.</p>
+      <%= link_to "Add your first prescription", new_prescription_path,
+          class: "text-blue-600 hover:text-blue-700 font-medium" %>
+    </div>
+  <% end %>
+</div>

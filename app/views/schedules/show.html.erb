@@ -1,0 +1,64 @@
+<div class="max-w-3xl mx-auto">
+  <h1 class="text-2xl font-bold text-gray-900 mb-2">Daily Schedule</h1>
+
+  <%# Date display and navigation %>
+  <div class="flex items-center justify-between mb-6">
+    <%= link_to schedule_path(date: @previous_date.to_s),
+        class: "inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+        aria: { label: "Previous day" } do %>
+      <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Prev
+    <% end %>
+
+    <div class="text-center">
+      <p class="text-lg font-semibold text-gray-900">
+        <%= @date.strftime("%A, %B %-d, %Y") %>
+      </p>
+      <% if @date == Time.zone.today %>
+        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Today</span>
+      <% end %>
+    </div>
+
+    <%= link_to schedule_path(date: @next_date.to_s),
+        class: "inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+        aria: { label: "Next day" } do %>
+      Next
+      <svg class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    <% end %>
+  </div>
+
+  <%# Schedule entries grouped by time %>
+  <% if @grouped_entries.empty? %>
+    <div class="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <p class="mt-4 text-gray-500 text-lg">No medications scheduled for this day.</p>
+      <p class="mt-1 text-gray-400 text-sm">You can add medications from your <%= link_to "prescriptions", prescriptions_path, class: "text-blue-600 hover:text-blue-700 underline" %>.</p>
+    </div>
+  <% else %>
+    <div class="space-y-6">
+      <% @grouped_entries.each do |time_of_day, entries| %>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+          <%# Time group header %>
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+              <%= time_of_day %>
+            </h2>
+          </div>
+
+          <%# Entries for this time group %>
+          <div class="divide-y divide-gray-100">
+            <% entries.each do |entry| %>
+              <%= render partial: "schedules/schedule_entry", locals: { entry: entry, date: @date } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

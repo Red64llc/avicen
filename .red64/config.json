@@ -9,4 +9,8 @@
   "customValues": {},
   "agent": "claude",
   "testCommand": "bin/rails test"
+   "ui": {
+     "leftSidebarWidth": 20,
+     "rightSidebarWidth": 30
+   }
 }
