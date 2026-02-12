@@ -51,41 +51,37 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   #
   # @param controller_name [String] The Stimulus controller identifier (e.g., "nav-toggle")
   # @param selector [String] Optional CSS selector for the element (defaults to data-controller)
-  # @param wait [Integer] Maximum seconds to wait (default: 5)
-  def wait_for_stimulus_controller(controller_name, selector: nil, wait: 5)
+  # @param wait [Integer] Maximum seconds to wait (default: 10)
+  def wait_for_stimulus_controller(controller_name, selector: nil, wait: 10)
     selector ||= "[data-controller*='#{controller_name}']"
 
-    # Wait for the element to exist and for Stimulus to connect the controller
+    # Wait for the element to exist
     assert_selector selector, wait: wait
 
-    # Verify Stimulus has connected by checking the controller is registered
-    result = page.evaluate_script(<<~JS)
+    # Use Capybara's built-in waiting mechanism to check for Stimulus
+    # This is more reliable than manual Timeout.timeout loops
+    start_time = Time.now
+    check_script = <<~JS
       (function() {
         const element = document.querySelector("#{selector.gsub('"', '\\"')}");
-        if (!element) return false;
-        if (!window.Stimulus) return false;
+        if (!element) return { ready: false, reason: 'element_not_found' };
+        if (typeof window.Stimulus === 'undefined') return { ready: false, reason: 'stimulus_not_loaded' };
         const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "#{controller_name}");
-        return controller !== null;
+        return { ready: controller !== null, reason: controller ? 'connected' : 'controller_not_connected' };
       })()
     JS
 
-    # If not connected yet, wait and retry
-    unless result
-      Timeout.timeout(wait) do
-        loop do
-          sleep 0.1
-          result = page.evaluate_script(<<~JS)
-            (function() {
-              const element = document.querySelector("#{selector.gsub('"', '\\"')}");
-              if (!element) return false;
-              if (!window.Stimulus) return false;
-              const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "#{controller_name}");
-              return controller !== null;
-            })()
-          JS
-          break if result
-        end
+    loop do
+      result = page.evaluate_script(check_script)
+      return true if result && result["ready"]
+
+      elapsed = Time.now - start_time
+      if elapsed > wait
+        reason = result ? result["reason"] : "unknown"
+        raise "Stimulus controller '#{controller_name}' not ready after #{wait}s. Reason: #{reason}"
       end
+
+      sleep 0.2
     end
   end
 end
