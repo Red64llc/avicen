@@ -228,7 +228,7 @@
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
 - [ ] 10. Printable medication plan
-- [ ] 10.1 Implement the printable plan view with print-optimized Tailwind CSS
+- [x] 10.1 Implement the printable plan view with print-optimized Tailwind CSS
   - Add a `print` action to the SchedulesController at `GET /schedule/print`
   - Render all active medications with their complete schedules organized by time-of-day groups (morning, midday, evening, night)
   - Display for each medication: drug name, dosage, form, schedule times, days of the week, and conditional instructions
