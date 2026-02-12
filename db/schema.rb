@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_11_112110) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_12_210002) do
+  create_table "biology_reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "lab_name"
+    t.text "notes"
+    t.date "test_date", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["test_date"], name: "index_biology_reports_on_test_date"
+    t.index ["user_id", "test_date"], name: "index_biology_reports_on_user_id_and_test_date"
+    t.index ["user_id"], name: "index_biology_reports_on_user_id"
+  end
+
+  create_table "biomarkers", force: :cascade do |t|
+    t.string "code", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.decimal "ref_max", precision: 10, scale: 2, null: false
+    t.decimal "ref_min", precision: 10, scale: 2, null: false
+    t.string "unit", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_biomarkers_on_code", unique: true
+    t.index ["name"], name: "index_biomarkers_on_name"
+  end
+
   create_table "drugs", force: :cascade do |t|
     t.text "active_ingredients"
     t.datetime "created_at", null: false
@@ -91,6 +115,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_11_112110) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "test_results", force: :cascade do |t|
+    t.integer "biology_report_id", null: false
+    t.integer "biomarker_id", null: false
+    t.datetime "created_at", null: false
+    t.boolean "out_of_range"
+    t.decimal "ref_max", precision: 10, scale: 2
+    t.decimal "ref_min", precision: 10, scale: 2
+    t.string "unit", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "value", precision: 10, scale: 2, null: false
+    t.index ["biology_report_id"], name: "index_test_results_on_biology_report_id"
+    t.index ["biomarker_id"], name: "index_test_results_on_biomarker_id"
+    t.index ["out_of_range"], name: "index_test_results_on_out_of_range"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email_address", null: false
@@ -99,6 +138,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_11_112110) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "biology_reports", "users", on_delete: :cascade
   add_foreign_key "medication_logs", "medication_schedules"
   add_foreign_key "medication_logs", "medications"
   add_foreign_key "medication_schedules", "medications"
@@ -107,4 +147,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_11_112110) do
   add_foreign_key "prescriptions", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "test_results", "biology_reports", on_delete: :cascade
+  add_foreign_key "test_results", "biomarkers", on_delete: :restrict
 end

@@ -1,0 +1,2 @@
+class Biomarker < ApplicationRecord
+end

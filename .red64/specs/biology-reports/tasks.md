@@ -8,7 +8,7 @@ This document outlines the implementation tasks for the biology reports feature.
 
 ## Tasks
 
-- [ ] 1. Create database schema and seed biomarker catalog
+- [x] 1. Create database schema and seed biomarker catalog
 - [ ] 1.1 (P) Generate migrations for biomarkers, biology_reports, and test_results tables
   - Create biomarkers table with name, code, unit, ref_min, ref_max, timestamps
   - Add indexes on biomarkers.code (unique) and biomarkers.name for search performance

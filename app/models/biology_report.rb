@@ -1,0 +1,2 @@
+class BiologyReport < ApplicationRecord
+end
