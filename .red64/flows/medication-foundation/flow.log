@@ -1508,3 +1508,64 @@ Would you like to:
 
 [00:27:20] Warning: Failed to mark task 8.1 in tasks.md: Task 8.1 not found in tasks.md
 [00:27:20] Committing: feat(medication-foundation): implement task 27 - Implement the WeeklyScheduleQuery to compute the 7-day schedule overview...
+[00:27:21] Committed: 150e55a
+[00:27:21] Task 8.1 completed
+[00:27:21] 
+[00:27:21] [20/40] Task 8.2: Implement the SchedulesController weekly action and weekly overview view
+[00:27:21] --- Executing command ---
+[00:27:21] Command: claude -p "/red64:spec-impl medication-foundation 8.2 -y"
+[00:27:21] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[00:27:21] Sandbox: Docker isolated mode
+[00:27:21] Model: claude-opus-4-6
+[00:28:15] Task 8.2 is **already fully implemented**. Here's what exists:
+[00:28:15] - **Controller action**: `weekly` action in `app/controllers/schedules_controller.rb` with `WeeklyScheduleQuery` integration, week navigation, and error handling
+[00:28:15] - **View template**: `app/views/schedules/weekly.html.erb` with 7-day grid layout, adherence status indicators, Turbo Frame wrapping, and week navigation controls
+[00:28:15] - **Tests**: 15 controller tests covering authentication, rendering, content display, navigation, Turbo Frame integration, and error handling
+[00:28:15] There's nothing left to implement for task 8.2 -- it was already marked as completed (`[x]`) in the tasks file and the implementation matches.
+[00:28:15] - **Routes**: `GET /schedule/weekly` defined as a member action on the singular schedule resource
+[00:28:15] ### Next steps
+[00:28:15] - `4.2` - Medication views (form with drug autocomplete, list partial, toggle)
+[00:28:15] You can run one of the remaining unchecked tasks instead:
+[00:28:15] - `5.2` - Schedule-builder Stimulus controller and schedule form views
+[00:28:15] - `7.2` - Medication-log Stimulus controller and quick-action UI
+[00:28:15] - `9.1` - AdherenceCalculationService
+[00:28:15] - `9.2` - AdherenceController and adherence history view with heatmap
+[00:28:15] - `10.1` - Printable medication plan
+[00:28:15] - `3.2` - Prescription views (index, show, form partial)
+[00:28:15] - `11.1` - Navigation and Turbo loading indicator
+[00:28:15] Example: `/red64:spec-impl medication-foundation 9.1`
+[00:28:15] - `12.1`, `12.2`, `12.3` - System tests
+[00:28:15] - `11.2` - Flash message verification
+[00:28:16] Exit code: 0
+[00:28:16] Success: true
+[00:28:16] --- stdout ---
+[00:28:16] Task 8.2 is **already fully implemented**. Here's what exists:
+
+- **Controller action**: `weekly` action in `app/controllers/schedules_controller.rb` with `WeeklyScheduleQuery` integration, week navigation, and error handling
+- **View template**: `app/views/schedules/weekly.html.erb` with 7-day grid layout, adherence status indicators, Turbo Frame wrapping, and week navigation controls
+- **Routes**: `GET /schedule/weekly` defined as a member action on the singular schedule resource
+- **Tests**: 15 controller tests covering authentication, rendering, content display, navigation, Turbo Frame integration, and error handling
+
+There's nothing left to implement for task 8.2 -- it was already marked as completed (`[x]`) in the tasks file and the implementation matches.
+
+### Next steps
+
+You can run one of the remaining unchecked tasks instead:
+
+- `3.2` - Prescription views (index, show, form partial)
+- `4.2` - Medication views (form with drug autocomplete, list partial, toggle)
+- `5.2` - Schedule-builder Stimulus controller and schedule form views
+- `7.2` - Medication-log Stimulus controller and quick-action UI
+- `9.1` - AdherenceCalculationService
+- `9.2` - AdherenceController and adherence history view with heatmap
+- `10.1` - Printable medication plan
+- `11.1` - Navigation and Turbo loading indicator
+- `11.2` - Flash message verification
+- `12.1`, `12.2`, `12.3` - System tests
+
+Example: `/red64:spec-impl medication-foundation 9.1`
+
+[00:28:16] --- end command ---
+
+[00:28:16] Warning: Failed to mark task 8.2 in tasks.md: Task 8.2 not found in tasks.md
+[00:28:16] Committing: feat(medication-foundation): implement task 28 - Implement the SchedulesController weekly action and weekly overview view...

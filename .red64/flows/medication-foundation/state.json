@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-12T00:27:20.937Z",
+  "updatedAt": "2026-02-12T00:28:16.205Z",
   "history": [
     {
       "phase": {
@@ -592,6 +592,24 @@
       "timestamp": "2026-02-12T00:27:20.937Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-8.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:27:21.181Z",
+      "event": "TASK_START",
+      "subStep": "task-8.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:28:16.205Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.2-completed"
     }
   ],
   "metadata": {
@@ -809,9 +827,9 @@
       {
         "id": "8.2",
         "title": "Implement the SchedulesController weekly action and weekly overview view",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T00:27:21.181Z",
+        "completedAt": "2026-02-12T00:28:16.202Z",
+        "status": "completed"
       },
       {
         "id": "9",
@@ -898,7 +916,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "8.1"
+    "currentTaskId": "8.2"
   },
   "artifacts": [
     {
