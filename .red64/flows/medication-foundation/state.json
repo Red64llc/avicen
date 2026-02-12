@@ -4,7 +4,7 @@
     "type": "idle"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-12T08:57:26.603Z",
+  "updatedAt": "2026-02-12T08:58:18.978Z",
   "history": [
     {
       "phase": {
@@ -725,6 +725,22 @@
       "timestamp": "2026-02-12T08:57:26.603Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-11-completed"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:57:26.797Z",
+      "event": "TASK_START",
+      "subStep": "task-11.1-started"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:58:18.978Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11.1-completed"
     }
   ],
   "metadata": {
@@ -988,9 +1004,9 @@
       {
         "id": "11.1",
         "title": "Update the shared navbar with medication navigation links and add Turbo loading indicator",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T08:57:26.797Z",
+        "completedAt": "2026-02-12T08:58:18.977Z",
+        "status": "completed"
       },
       {
         "id": "11.2",
@@ -1028,7 +1044,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "11"
+    "currentTaskId": "11.1"
   },
   "artifacts": [
     {
