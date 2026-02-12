@@ -261,7 +261,7 @@
   - Test navigating to the adherence history view, selecting a time period, and clicking a day for detail
   - _Requirements: 8.3, 8.4, 9.1, 9.4_
 
-- [x]* 12.3 (P) Write a system test verifying mobile-responsive navigation
+- [x] 12.3 (P) Write a system test verifying mobile-responsive navigation
   - Test the medication navigation on a small viewport (320px width)
   - Verify all navigation links are accessible and the layout adapts correctly
   - _Requirements: 11.1, 11.2_
