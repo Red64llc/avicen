@@ -4,7 +4,7 @@
     "type": "implementing"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-12T09:52:11.327Z",
+  "updatedAt": "2026-02-12T09:52:42.948Z",
   "history": [
     {
       "phase": {
@@ -788,6 +788,22 @@
       "timestamp": "2026-02-12T09:52:11.327Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-12-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:11.527Z",
+      "event": "TASK_START",
+      "subStep": "task-12.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing"
+      },
+      "timestamp": "2026-02-12T09:52:42.948Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.1-completed"
     }
   ],
   "metadata": {
@@ -1073,9 +1089,9 @@
       {
         "id": "12.1",
         "title": "Write a system test covering the complete medication workflow",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T09:52:11.526Z",
+        "completedAt": "2026-02-12T09:52:42.947Z",
+        "status": "completed"
       },
       {
         "id": "12.2",
@@ -1092,7 +1108,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "12"
+    "currentTaskId": "12.1"
   },
   "artifacts": [
     {
