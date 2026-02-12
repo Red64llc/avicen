@@ -6,7 +6,7 @@
     "totalTasks": 0
   },
   "createdAt": "2026-02-12T20:26:20.273Z",
-  "updatedAt": "2026-02-12T21:30:13.855Z",
+  "updatedAt": "2026-02-12T21:32:07.353Z",
   "history": [
     {
       "phase": {
@@ -148,6 +148,26 @@
       "timestamp": "2026-02-12T21:30:13.855Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:30:14.022Z",
+      "event": "TASK_START",
+      "subStep": "task-2.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:32:07.353Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.1-completed"
     }
   ],
   "metadata": {
@@ -199,9 +219,9 @@
       {
         "id": "2.1",
         "title": "Create Biomarker model",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T21:30:14.022Z",
+        "completedAt": "2026-02-12T21:32:07.351Z",
+        "status": "completed"
       },
       {
         "id": "2.2",
@@ -449,7 +469,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2"
+    "currentTaskId": "2.1"
   },
   "artifacts": [
     {
