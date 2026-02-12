@@ -28,16 +28,18 @@
     <%= render "shared/navbar" %>
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <% if flash[:notice] %>
-        <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg print:hidden">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg print:hidden">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
+      <div id="flash">
+        <% if flash[:notice] %>
+          <div class="py-2 px-3 bg-green-50 mb-5 text-green-600 font-medium rounded-lg print:hidden">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg print:hidden">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>
