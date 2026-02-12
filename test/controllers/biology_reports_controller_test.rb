@@ -74,6 +74,23 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
     assert_match /LabCorp/, response.body
   end
 
+  test "index should preserve filter parameters in turbo_frame response" do
+    get biology_reports_url, params: { date_from: "2025-01-01", lab_name: "Quest" }, headers: { "Turbo-Frame" => "biology_reports_list" }
+    assert_response :success
+    # Should apply filters in turbo frame response
+    assert_match /Quest/, response.body
+    assert_no_match /LabCorp/, response.body if BiologyReport.where("lab_name LIKE ?", "%LabCorp%").where("test_date >= ?", "2025-01-01").empty?
+  end
+
+  test "index should return full page for non-turbo requests" do
+    get biology_reports_url
+    assert_response :success
+    # Should include full page layout with heading
+    assert_match /<h1.*Biology Reports/, response.body
+    # Should also have the report list content
+    assert_match /LabCorp/, response.body
+  end
+
   # Show action tests
   test "should show biology_report" do
     get biology_report_url(@biology_report)

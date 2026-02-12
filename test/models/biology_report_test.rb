@@ -158,6 +158,24 @@ class BiologyReportTest < ActiveSupport::TestCase
     assert_equal 2, results.count
   end
 
+  test "scopes can be chained for combined filtering" do
+    user = users(:one)
+    report1 = BiologyReport.create!(user: user, test_date: Date.new(2025, 1, 15), lab_name: "LabCorp")
+    report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10), lab_name: "Quest Diagnostics")
+    report3 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 20), lab_name: "LabCorp West")
+    report4 = BiologyReport.create!(user: user, test_date: Date.new(2025, 3, 5), lab_name: "Quest")
+
+    # Filter by date range and lab name
+    results = BiologyReport.ordered
+                          .by_date_range(Date.new(2025, 2, 1), Date.new(2025, 2, 28))
+                          .by_lab_name("Quest")
+    assert_equal 1, results.count
+    assert_includes results, report2
+    assert_not_includes results, report1
+    assert_not_includes results, report3
+    assert_not_includes results, report4
+  end
+
   # Task 2.2: Document Content Type Validation
   test "accepts PDF document" do
     user = users(:one)

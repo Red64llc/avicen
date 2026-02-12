@@ -86,7 +86,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Handle validation errors with status: :unprocessable_entity
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6_
 
-- [ ] 4.2 Add filtering capabilities with Turbo Frame support
+- [x] 4.2 Add filtering capabilities with Turbo Frame support
   - Accept date_from, date_to, lab_name query parameters in index action
   - Apply filters using BiologyReport scopes
   - Return Turbo Frame partial for filtered results when turbo_frame request detected
