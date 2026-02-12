@@ -90,7 +90,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       prescription = Prescription.create!(user: @user, prescribed_date: Date.new(2026, 1, 1))
       drug = Drug.create!(name: "Test Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "10mg", form: "tablet", active: true)
-      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [0, 1, 2, 3, 4, 5, 6])
+      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 0, 1, 2, 3, 4, 5, 6 ])
 
       # Log all doses for the past 7 days as taken
       (1..7).each do |i|
@@ -123,7 +123,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       prescription = Prescription.create!(user: @user, prescribed_date: Date.new(2026, 1, 1))
       drug = Drug.create!(name: "Mix Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "20mg", form: "tablet", active: true)
-      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [0, 1, 2, 3, 4, 5, 6])
+      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 0, 1, 2, 3, 4, 5, 6 ])
 
       # 7 days: 4 taken, 2 skipped, 1 missed
       (1..7).each do |i|
@@ -157,7 +157,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       prescription = Prescription.create!(user: @user, prescribed_date: Date.new(2026, 1, 1))
       drug = Drug.create!(name: "Missed Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "5mg", form: "tablet", active: true)
-      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [0, 1, 2, 3, 4, 5, 6])
+      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 0, 1, 2, 3, 4, 5, 6 ])
 
       # 7 days: 2 taken, 1 skipped, 4 missed (no logs)
       [ 1, 3 ].each do |i|
@@ -225,7 +225,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       prescription = Prescription.create!(user: @user, prescribed_date: Date.new(2026, 1, 1))
       drug = Drug.create!(name: "Daily Ratio Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "10mg", form: "tablet", active: true)
-      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [0, 1, 2, 3, 4, 5, 6])
+      schedule = MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 0, 1, 2, 3, 4, 5, 6 ])
 
       # Log yesterday as taken
       yesterday = Time.zone.today - 1.day
@@ -276,7 +276,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       prescription = Prescription.create!(user: @user, prescribed_date: Date.new(2026, 1, 1))
       drug = Drug.create!(name: "No Log Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "10mg", form: "tablet", active: true)
-      MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [0, 1, 2, 3, 4, 5, 6])
+      MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 0, 1, 2, 3, 4, 5, 6 ])
 
       service = AdherenceCalculationService.new(user: @user, period_days: 7)
       result = service.call
@@ -300,7 +300,7 @@ class AdherenceCalculationServiceTest < ActiveSupport::TestCase
       drug = Drug.create!(name: "Weekday Drug")
       med = Medication.create!(prescription: prescription, drug: drug, dosage: "10mg", form: "tablet", active: true)
       # Schedule only on weekdays: Mon(1), Tue(2), Wed(3), Thu(4), Fri(5)
-      MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [1, 2, 3, 4, 5])
+      MedicationSchedule.create!(medication: med, time_of_day: "09:00", days_of_week: [ 1, 2, 3, 4, 5 ])
 
       service = AdherenceCalculationService.new(user: @user, period_days: 7)
       result = service.call

@@ -223,7 +223,7 @@ class MedicationLogsControllerTest < ActionDispatch::IntegrationTest
     other_schedule = MedicationSchedule.create!(
       medication: other_med,
       time_of_day: "09:00",
-      days_of_week: [1, 2, 3, 4, 5]
+      days_of_week: [ 1, 2, 3, 4, 5 ]
     )
 
     assert_no_difference "MedicationLog.count" do
@@ -251,7 +251,7 @@ class MedicationLogsControllerTest < ActionDispatch::IntegrationTest
     other_schedule = MedicationSchedule.create!(
       medication: other_med,
       time_of_day: "09:00",
-      days_of_week: [1, 2, 3, 4, 5]
+      days_of_week: [ 1, 2, 3, 4, 5 ]
     )
     other_log = MedicationLog.create!(
       medication: other_med,

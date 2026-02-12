@@ -8,7 +8,7 @@
 #   result.medication_stats.each { |s| puts "#{s.medication.drug.name}: #{s.percentage}%" }
 #   result.daily_adherence.each { |date, ratio| puts "#{date}: #{(ratio * 100).round}%" }
 class AdherenceCalculationService
-  VALID_PERIODS = [7, 30, 90].freeze
+  VALID_PERIODS = [ 7, 30, 90 ].freeze
 
   AdherenceSummary = Data.define(
     :medication_stats,   # Array<MedicationStat>
@@ -101,7 +101,7 @@ class AdherenceCalculationService
 
   # Index logs by [medication_schedule_id, scheduled_date] for O(1) lookup
   def index_logs(logs)
-    logs.index_by { |log| [log.medication_schedule_id, log.scheduled_date] }
+    logs.index_by { |log| [ log.medication_schedule_id, log.scheduled_date ] }
   end
 
   def compute_medication_stats(medications, schedules_by_medication, logs_index, date_range)
@@ -119,7 +119,7 @@ class AdherenceCalculationService
           next unless schedule_applies_on_day?(schedule, wday)
 
           total_scheduled += 1
-          log = logs_index[[schedule.id, date]]
+          log = logs_index[[ schedule.id, date ]]
           if log
             if log.taken?
               total_taken += 1
@@ -156,7 +156,7 @@ class AdherenceCalculationService
         next unless schedule_applies_on_day?(schedule, wday)
 
         day_scheduled += 1
-        log = logs_index[[schedule.id, date]]
+        log = logs_index[[ schedule.id, date ]]
         day_taken += 1 if log&.taken?
       end
 

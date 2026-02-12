@@ -1,5 +1,5 @@
 class AdherenceController < ApplicationController
-  VALID_PERIODS = [7, 30, 90].freeze
+  VALID_PERIODS = [ 7, 30, 90 ].freeze
 
   # GET /adherence
   # GET /adherence?period=7|30|90&date=YYYY-MM-DD
