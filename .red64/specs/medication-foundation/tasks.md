@@ -238,14 +238,14 @@
   - Write controller test: print view renders all active medications
   - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-- [ ] 11. Navigation, loading indicators, and integration wiring
-- [ ] 11.1 Update the shared navbar with medication navigation links and add Turbo loading indicator
+- [x] 11. Navigation, loading indicators, and integration wiring
+- [x] 11.1 Update the shared navbar with medication navigation links and add Turbo loading indicator
   - Add navigation links to the shared navbar for: daily schedule, weekly overview, prescriptions list, and adherence history
   - Add a Turbo loading progress indicator that displays during Turbo navigation
   - Ensure navigation is responsive and functions on mobile viewports from 320px and up
   - _Requirements: 11.1, 11.2, 11.5_
 
-- [ ] 11.2 (P) Verify flash message display for all medication CRUD operations
+- [x] 11.2 (P) Verify flash message display for all medication CRUD operations
   - Confirm that create, update, and delete operations across prescriptions, medications, schedules, and logs display appropriate success or error flash messages
   - Ensure flash messages render correctly within Turbo Frame and Turbo Stream responses
   - _Requirements: 11.3, 11.4_

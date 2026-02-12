@@ -1,13 +1,10 @@
 {
   "feature": "medication-foundation",
   "phase": {
-    "type": "implementing",
-    "feature": "medication-foundation",
-    "currentTask": 1,
-    "totalTasks": 0
+    "type": "idle"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-12T07:25:32.574Z",
+  "updatedAt": "2026-02-12T08:57:26.603Z",
   "history": [
     {
       "phase": {
@@ -720,13 +717,20 @@
         "totalTasks": 0
       },
       "timestamp": "2026-02-12T07:25:32.574Z"
+    },
+    {
+      "phase": {
+        "type": "idle"
+      },
+      "timestamp": "2026-02-12T08:57:26.603Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11-completed"
     }
   ],
   "metadata": {
-    "description": "implement phase 1 \"Medication Management Core\" from file docs/IMPLEMENTATION_PLAN.md",
+    "description": "No description provided",
     "mode": "brownfield",
-    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation",
-    "resolvedFeatureName": "medication-foundation"
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation"
   },
   "taskProgress": {
     "completedGroups": [
@@ -738,14 +742,10 @@
       6,
       8,
       9,
-      10
+      10,
+      11
     ],
     "totalGroups": 12,
-    "currentGroup": 7,
-    "subTasksInCurrentGroup": {
-      "completed": [],
-      "total": 3
-    },
     "taskEntries": [
       {
         "id": "1",
@@ -982,8 +982,8 @@
         "id": "11",
         "title": "Navigation, loading indicators, and integration wiring",
         "startedAt": "2026-02-12T01:24:47.074Z",
-        "completedAt": null,
-        "status": "in_progress"
+        "completedAt": "2026-02-12T08:57:26.601Z",
+        "status": "completed"
       },
       {
         "id": "11.1",
