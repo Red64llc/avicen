@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-11T22:17:21.892Z",
+  "updatedAt": "2026-02-12T00:27:20.937Z",
   "history": [
     {
       "phase": {
@@ -502,6 +502,96 @@
       "timestamp": "2026-02-11T22:17:21.891Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-6.2-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:17:22.121Z",
+      "event": "TASK_START",
+      "subStep": "task-7-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:46:00.300Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T22:46:00.303Z",
+      "event": "TASK_START",
+      "subStep": "task-7.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T23:39:42.787Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.1-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-11T23:39:42.790Z",
+      "event": "TASK_START",
+      "subStep": "task-7.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:05:47.701Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:05:47.704Z",
+      "event": "TASK_START",
+      "subStep": "task-8-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:26:55.624Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-8-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:26:55.629Z",
+      "event": "TASK_START",
+      "subStep": "task-8.1-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T00:27:20.937Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.1-completed"
     }
   ],
   "metadata": {
@@ -517,7 +607,8 @@
       3,
       4,
       5,
-      6
+      6,
+      8
     ],
     "totalGroups": 12,
     "currentGroup": 7,
@@ -683,37 +774,37 @@
       {
         "id": "7",
         "title": "Medication logging with Turbo Stream updates",
-        "startedAt": null,
+        "startedAt": "2026-02-11T22:17:22.120Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "7.1",
         "title": "Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream",
-        "startedAt": null,
+        "startedAt": "2026-02-11T22:46:00.302Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "7.2",
         "title": "Create the medication-log Stimulus controller and quick-action UI on daily schedule entries",
-        "startedAt": null,
+        "startedAt": "2026-02-11T23:39:42.790Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "8",
         "title": "Weekly schedule overview",
-        "startedAt": null,
+        "startedAt": "2026-02-12T00:05:47.704Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "8.1",
         "title": "Implement the WeeklyScheduleQuery to compute the 7-day schedule overview",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T00:26:55.628Z",
+        "completedAt": "2026-02-12T00:27:20.935Z",
+        "status": "completed"
       },
       {
         "id": "8.2",
@@ -807,7 +898,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "6.2"
+    "currentTaskId": "8.1"
   },
   "artifacts": [
     {

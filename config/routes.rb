@@ -21,8 +21,14 @@ Rails.application.routes.draw do
   # Medication schedules: member actions (shallow)
   resources :medication_schedules, only: [ :edit, :update, :destroy ]
 
+  # Medication logs: create (taken/skipped) and destroy (undo)
+  resources :medication_logs, only: [ :create, :destroy ]
+
   # Daily schedule view
-  resource :schedule, only: [ :show ]
+  resource :schedule, only: [ :show ] do
+    # Weekly schedule overview
+    get :weekly, on: :member
+  end
 
   # Drug search for autocomplete
   get "drugs/search", to: "drugs#search", as: :drugs_search

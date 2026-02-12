@@ -163,4 +163,146 @@ class SchedulesControllerTest < ActionDispatch::IntegrationTest
     # Should fall back to today gracefully
     assert_match Time.zone.today.strftime("%B"), response.body
   end
+
+  # =============================================
+  # Weekly view tests (Task 8.2)
+  # =============================================
+
+  # --- Authentication ---
+
+  test "weekly requires authentication" do
+    sign_out
+    get weekly_schedule_path
+    assert_redirected_to new_session_path
+  end
+
+  # --- Basic weekly view rendering ---
+
+  test "weekly renders the weekly schedule overview" do
+    get weekly_schedule_path
+    assert_response :success
+    assert_select "h1", /weekly/i
+  end
+
+  test "weekly defaults to current week when no week_start param" do
+    travel_to Time.zone.local(2026, 2, 11, 10, 0, 0) do
+      get weekly_schedule_path
+      assert_response :success
+      # Should display the Monday of the current week (Feb 9)
+      assert_match "February", response.body
+      assert_match "9", response.body
+    end
+  end
+
+  # --- Week start parameter navigation ---
+
+  test "weekly accepts week_start parameter" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+    # Should show the week starting Feb 9 (Monday)
+    assert_match "February", response.body
+  end
+
+  test "weekly displays all 7 days of the week" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Should display each day: Mon Feb 9 through Sun Feb 15
+    assert_match "Mon", response.body
+    assert_match "Tue", response.body
+    assert_match "Wed", response.body
+    assert_match "Thu", response.body
+    assert_match "Fri", response.body
+    assert_match "Sat", response.body
+    assert_match "Sun", response.body
+  end
+
+  # --- Weekly content: medication details ---
+
+  test "weekly displays medication name, dosage, and time for each day" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Monday should show Aspirin (morning_daily at 08:00 and monday_wednesday_friday at 12:00)
+    # and Ibuprofen (evening_weekdays at 20:00)
+    assert_match "Aspirin", response.body
+    assert_match "Ibuprofen", response.body
+    assert_match "08:00", response.body
+    assert_match "20:00", response.body
+  end
+
+  # --- Adherence status visual distinction ---
+
+  test "weekly visually distinguishes complete adherence day" do
+    # Tuesday Feb 10: 2 schedules, 2 logs (complete)
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Should contain adherence indicator for complete day
+    assert_match(/complete/i, response.body)
+  end
+
+  test "weekly visually distinguishes none adherence day" do
+    # Monday Feb 9: 3 schedules, 0 logs (none)
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Should contain adherence indicator for no-adherence day
+    assert_match(/none/i, response.body)
+  end
+
+  # --- Week navigation controls ---
+
+  test "weekly includes previous week navigation link" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Previous week starts Feb 2
+    assert_select "a[href=?]", weekly_schedule_path(week_start: "2026-02-02")
+  end
+
+  test "weekly includes next week navigation link" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    # Next week starts Feb 16
+    assert_select "a[href=?]", weekly_schedule_path(week_start: "2026-02-16")
+  end
+
+  # --- Turbo Frame response ---
+
+  test "weekly view is wrapped in a Turbo Frame" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" }
+    assert_response :success
+
+    assert_select "turbo-frame#weekly_schedule"
+  end
+
+  test "weekly responds to Turbo Frame request" do
+    get weekly_schedule_path, params: { week_start: "2026-02-09" },
+        headers: { "Turbo-Frame" => "weekly_schedule" }
+    assert_response :success
+    assert_select "turbo-frame#weekly_schedule"
+  end
+
+  # --- Invalid week_start handling ---
+
+  test "weekly falls back to current week for invalid week_start parameter" do
+    get weekly_schedule_path, params: { week_start: "invalid-date" }
+    assert_response :success
+    # Should still render successfully
+    assert_select "h1", /weekly/i
+  end
+
+  # --- Empty state ---
+
+  test "weekly handles user with no scheduled medications" do
+    sign_out
+    sign_in_as(@other_user)
+
+    get weekly_schedule_path
+    assert_response :success
+    # Should render without errors
+    assert_select "h1", /weekly/i
+  end
 end

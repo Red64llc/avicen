@@ -164,7 +164,7 @@
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7_
 
 - [ ] 7. Medication logging with Turbo Stream updates
-- [ ] 7.1 Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream
+- [x] 7.1 Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream
   - Create the MedicationLogsController with create and destroy actions
   - Implement idempotent upsert in create: use `find_or_initialize_by(medication_schedule_id, scheduled_date)` to prevent duplicate logs
   - Set `logged_at` to `Time.current` automatically on log creation
@@ -183,8 +183,8 @@
   - Ensure each schedule entry has a unique Turbo Stream target DOM ID for in-place replacement
   - _Requirements: 7.3, 7.4, 7.6_
 
-- [ ] 8. Weekly schedule overview
-- [ ] 8.1 Implement the WeeklyScheduleQuery to compute the 7-day schedule overview
+- [x] 8. Weekly schedule overview
+- [x] 8.1 Implement the WeeklyScheduleQuery to compute the 7-day schedule overview
   - Reuse DailyScheduleQuery for each day of the week to maintain consistent logic
   - Eager-load associations once to avoid N+1 queries across the 7-day span
   - Calculate per-day adherence summary: total scheduled, total logged, and adherence status (complete, partial, none, or empty)
@@ -192,7 +192,7 @@
   - Write query tests: 7-day span correctness, adherence status per day, week boundary handling
   - _Requirements: 6.1, 6.2, 6.4, 6.5_
 
-- [ ] 8.2 Implement the SchedulesController weekly action and weekly overview view
+- [x] 8.2 Implement the SchedulesController weekly action and weekly overview view
   - Add a `weekly` action to the SchedulesController at `GET /schedule/weekly`
   - Accept an optional `week_start` query parameter for week navigation
   - Delegate computation to WeeklyScheduleQuery

@@ -1,59 +1,121 @@
-<%# Local: entry (DailyScheduleQuery::ScheduleEntry) %>
-<div id="schedule_entry_<%= entry.schedule.id %>"
-     class="px-4 py-3 flex items-start justify-between gap-4 <%= 'bg-red-50' if entry.overdue %>">
-  <div class="flex-1 min-w-0">
-    <%# Drug name and form %>
-    <div class="flex items-center gap-2">
-      <p class="text-sm font-semibold text-gray-900"><%= entry.drug_name %></p>
-      <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600">
-        <%= entry.form %>
-      </span>
+<%# Local: entry (DailyScheduleQuery::ScheduleEntry), date (Date) %>
+<div id="schedule_entry_<%= entry.schedule.id %>_<%= date %>"
+     class="px-4 py-3 <%= 'bg-red-50' if entry.overdue %>"
+     data-controller="medication-log">
+  <div class="flex items-start justify-between gap-4">
+    <div class="flex-1 min-w-0">
+      <%# Drug name and form %>
+      <div class="flex items-center gap-2">
+        <p class="text-sm font-semibold text-gray-900"><%= entry.drug_name %></p>
+        <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600">
+          <%= entry.form %>
+        </span>
+      </div>
+
+      <%# Dosage %>
+      <p class="mt-0.5 text-sm text-gray-700">
+        <%= entry.dosage %>
+      </p>
+
+      <%# Instructions %>
+      <% if entry.instructions.present? %>
+        <p class="mt-1 text-xs text-gray-500 italic">
+          <%= entry.instructions %>
+        </p>
+      <% end %>
+
+      <%# Overdue indicator %>
+      <% if entry.overdue %>
+        <p class="mt-1 text-xs font-medium text-red-600">
+          Overdue
+        </p>
+      <% end %>
     </div>
 
-    <%# Dosage %>
-    <p class="mt-0.5 text-sm text-gray-700">
-      <%= entry.dosage %>
-    </p>
-
-    <%# Instructions %>
-    <% if entry.instructions.present? %>
-      <p class="mt-1 text-xs text-gray-500 italic">
-        <%= entry.instructions %>
-      </p>
-    <% end %>
-
-    <%# Overdue indicator %>
-    <% if entry.overdue %>
-      <p class="mt-1 text-xs font-medium text-red-600">
-        Overdue
-      </p>
-    <% end %>
+    <%# Status badge %>
+    <div class="flex-shrink-0">
+      <% case entry.status %>
+      <% when :taken %>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+          <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Taken
+        </span>
+      <% when :skipped %>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+          <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          Skipped
+        </span>
+      <% when :pending %>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+          <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+          </svg>
+          Pending
+        </span>
+      <% end %>
+    </div>
   </div>
 
-  <%# Status badge %>
-  <div class="flex-shrink-0">
-    <% case entry.status %>
-    <% when :taken %>
-      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-        Taken
-      </span>
-    <% when :skipped %>
-      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-        Skipped
-      </span>
-    <% when :pending %>
-      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
-        <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
-        </svg>
-        Pending
-      </span>
+  <%# Quick-action buttons %>
+  <div class="mt-3">
+    <% if entry.status == :pending %>
+      <%# Taken button %>
+      <%= form_with url: medication_logs_path, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
+        <%= f.hidden_field :medication_id, value: entry.medication.id %>
+        <%= f.hidden_field :medication_schedule_id, value: entry.schedule.id %>
+        <%= f.hidden_field :scheduled_date, value: date.to_s %>
+        <%= f.hidden_field :status, value: "taken" %>
+        <button type="submit"
+                class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                data-medication-log-target="submitButton">
+          <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Taken
+        </button>
+      <% end %>
+
+      <%# Skipped button with optional reason %>
+      <%= form_with url: medication_logs_path, method: :post, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
+        <%= f.hidden_field :medication_id, value: entry.medication.id %>
+        <%= f.hidden_field :medication_schedule_id, value: entry.schedule.id %>
+        <%= f.hidden_field :scheduled_date, value: date.to_s %>
+        <%= f.hidden_field :status, value: "skipped" %>
+        <div class="mt-2 flex items-center gap-2">
+          <input type="text"
+                 name="medication_log[reason]"
+                 placeholder="Reason for skipping (optional)"
+                 class="flex-1 text-xs border border-gray-300 rounded-md px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500"
+                 data-medication-log-target="reasonField" />
+          <button type="submit"
+                  class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  data-medication-log-target="submitButton">
+            <svg class="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            Skipped
+          </button>
+        </div>
+      <% end %>
+
+    <% else %>
+      <%# Undo button (for taken or skipped entries) %>
+      <% if entry.log.present? %>
+        <%= form_with url: medication_log_path(entry.log), method: :delete, data: { turbo_stream: true, action: "submit->medication-log#submit" } do |f| %>
+          <button type="submit"
+                  class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  data-medication-log-target="submitButton">
+            <svg class="mr-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+            </svg>
+            Undo
+          </button>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>

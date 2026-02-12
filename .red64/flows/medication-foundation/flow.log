@@ -1147,3 +1147,364 @@ To continue implementation, you can run pending tasks:
 
 [22:17:21] Warning: Failed to mark task 6.2 in tasks.md: Task 6.2 not found in tasks.md
 [22:17:21] Committing: feat(medication-foundation): implement task 22 - Implement the SchedulesController daily action and daily schedule view...
+[22:17:22] Committed: 75787a7
+[22:17:22] Task 6.2 completed
+[22:17:22] 
+[22:17:22] [15/40] Task 7: Medication logging with Turbo Stream updates
+[22:17:22] --- Executing command ---
+[22:17:22] Command: claude -p "/red64:spec-impl medication-foundation 7 -y"
+[22:17:22] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[22:17:22] Sandbox: Docker isolated mode
+[22:17:22] Model: claude-opus-4-6
+[22:45:58] Implementation of Task 7 is complete. Here's a summary:
+[22:45:58] - **Controller**: `app/controllers/medication_logs_controller.rb` with `create` and `destroy` actions
+[22:45:58] ### 7.1 - MedicationLogsController (15 tests passing)
+[22:45:58] - **Idempotent upsert**: Uses `find_or_initialize_by(medication_schedule_id, scheduled_date)` to prevent duplicates
+[22:45:58] - **Auto-timestamp**: `logged_at` set to `Time.current` on creation
+[22:45:58] - **Turbo Stream responses**: `create.turbo_stream.erb` and `destroy.turbo_stream.erb` for in-place updates
+[22:45:58] ## Task 7: Medication Logging with Turbo Stream Updates
+[22:45:58] - **User scoping**: All queries scoped through `Current.user` via prescription chain
+[22:45:58] - **Routes**: `resources :medication_logs, only: [:create, :destroy]`
+[22:45:58] - **Undo**: `destroy` action deletes the log, returning entry to pending state
+[22:45:58] ### 7.2 - Stimulus Controller & Quick-Action UI (10 tests passing)
+[22:45:58] - **Stimulus controller**: `app/javascript/controllers/medication_log_controller.js` with button-disable during requests
+[22:45:58] - **Undo button**: Appears after logging, allows reverting to pending
+[22:45:58] - **Skip reason**: Optional text field when skipping a dose
+[22:45:58] - **Turbo Stream targets**: Unique DOM IDs per schedule entry for in-place replacement
+[22:45:58] - **Quick-action buttons**: Taken/Skipped buttons on each pending schedule entry
+[22:45:58] ### Next Steps
+[22:45:58] To continue implementation, you can run:
+[22:45:58] - `/red64:spec-impl medication-foundation` - All remaining pending tasks
+[22:45:58] **523 total tests, 1623 assertions, 0 failures, 0 errors.**
+[22:45:58] - `/red64:spec-impl medication-foundation 8` - Weekly schedule overview
+[22:45:58] ### Test Results
+[22:45:58] - `/red64:spec-status medication-foundation` - Check overall progress
+[22:46:00] Exit code: 0
+[22:46:00] Success: false
+[22:46:00] Timed out: true
+[22:46:00] --- stdout ---
+[22:46:00] Implementation of Task 7 is complete. Here's a summary:
+
+## Task 7: Medication Logging with Turbo Stream Updates
+
+### 7.1 - MedicationLogsController (15 tests passing)
+- **Controller**: `app/controllers/medication_logs_controller.rb` with `create` and `destroy` actions
+- **Idempotent upsert**: Uses `find_or_initialize_by(medication_schedule_id, scheduled_date)` to prevent duplicates
+- **Auto-timestamp**: `logged_at` set to `Time.current` on creation
+- **Undo**: `destroy` action deletes the log, returning entry to pending state
+- **Turbo Stream responses**: `create.turbo_stream.erb` and `destroy.turbo_stream.erb` for in-place updates
+- **Routes**: `resources :medication_logs, only: [:create, :destroy]`
+- **User scoping**: All queries scoped through `Current.user` via prescription chain
+
+### 7.2 - Stimulus Controller & Quick-Action UI (10 tests passing)
+- **Stimulus controller**: `app/javascript/controllers/medication_log_controller.js` with button-disable during requests
+- **Quick-action buttons**: Taken/Skipped buttons on each pending schedule entry
+- **Undo button**: Appears after logging, allows reverting to pending
+- **Skip reason**: Optional text field when skipping a dose
+- **Turbo Stream targets**: Unique DOM IDs per schedule entry for in-place replacement
+
+### Test Results
+**523 total tests, 1623 assertions, 0 failures, 0 errors.**
+
+### Next Steps
+
+To continue implementation, you can run:
+- `/red64:spec-impl medication-foundation 8` - Weekly schedule overview
+- `/red64:spec-impl medication-foundation` - All remaining pending tasks
+- `/red64:spec-status medication-foundation` - Check overall progress
+
+[22:46:00] --- end command ---
+
+[22:46:00] Task 7 failed: Command timed out (10 min limit)
+[22:46:00] --- Executing command ---
+[22:46:00] [16/40] Task 7.1: Implement the MedicationLogsController for taken/skipped logging and undo via Turbo Stream
+[22:46:00] Command: claude -p "/red64:spec-impl medication-foundation 7.1 -y"
+[22:46:00] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[22:46:00] Sandbox: Docker isolated mode
+[22:46:00] Model: claude-opus-4-6
+[23:39:41] ## Task 7.1 Implementation Complete
+[23:39:41] ### What was implemented
+[23:39:41] **MedicationLogsController** (`app/controllers/medication_logs_controller.rb`) with:
+[23:39:41] - **Create action** with idempotent upsert via `find_or_initialize_by(medication_schedule_id, scheduled_date)` -- prevents duplicate logs per schedule per day
+[23:39:41] - **Destroy action** serving as undo, returning entries to pending state
+[23:39:41] - `logged_at` set automatically to `Time.current` on every create
+[23:39:41] - Strong parameters permitting `medication_id`, `medication_schedule_id`, `scheduled_date`, `status`, `reason`
+[23:39:41] - User-scoped authorization traversing `medication -> prescription -> user` chain via `Current.user`
+[23:39:41] - Turbo Stream responses replacing schedule entry DOM elements in place
+[23:39:41] **Routes** (`config/routes.rb:25`):
+[23:39:41] ```ruby
+[23:39:41] resources :medication_logs, only: [ :create, :destroy ]
+[23:39:41] ```
+[23:39:41] **Turbo Stream views**:
+[23:39:41] - `app/views/medication_logs/create.turbo_stream.erb` -- replaces entry with logged state
+[23:39:41] - `app/views/medication_logs/destroy.turbo_stream.erb` -- replaces entry back to pending
+[23:39:41] **Controller tests** (`test/controllers/medication_logs_controller_test.rb`) -- 15 tests covering:
+[23:39:41] - Authentication required for create/destroy
+[23:39:41] - Taken log creation with automatic `logged_at`
+[23:39:41] - Skipped log with reason
+[23:39:41] - Idempotent upsert (update existing instead of duplicate)
+[23:39:41] - Turbo Stream response format verification
+[23:39:41] - Validation error handling (422)
+[23:39:41] - Destroy/undo functionality
+[23:39:41] - User scoping (cannot log for another user's medications)
+[23:39:41] - Strong parameter protection (cannot set `logged_at` via params)
+[23:39:41] **Note**: Ruby is not installed in this environment, so tests could not be executed. Please run `bin/rails test test/controllers/medication_logs_controller_test.rb` to verify.
+[23:39:41] ### Next steps
+[23:39:41] - `/red64:spec-impl medication-foundation 7.2` -- Create the medication-log Stimulus controller and quick-action UI
+[23:39:41] - `/red64:spec-impl medication-foundation 8.1` -- Weekly schedule query
+[23:39:42] Exit code: 0
+[23:39:42] Success: false
+[23:39:42] Timed out: true
+[23:39:42] --- stdout ---
+[23:39:42] ## Task 7.1 Implementation Complete
+
+### What was implemented
+
+**MedicationLogsController** (`app/controllers/medication_logs_controller.rb`) with:
+- **Create action** with idempotent upsert via `find_or_initialize_by(medication_schedule_id, scheduled_date)` -- prevents duplicate logs per schedule per day
+- **Destroy action** serving as undo, returning entries to pending state
+- `logged_at` set automatically to `Time.current` on every create
+- Strong parameters permitting `medication_id`, `medication_schedule_id`, `scheduled_date`, `status`, `reason`
+- User-scoped authorization traversing `medication -> prescription -> user` chain via `Current.user`
+- Turbo Stream responses replacing schedule entry DOM elements in place
+
+**Routes** (`config/routes.rb:25`):
+```ruby
+resources :medication_logs, only: [ :create, :destroy ]
+```
+
+**Turbo Stream views**:
+- `app/views/medication_logs/create.turbo_stream.erb` -- replaces entry with logged state
+- `app/views/medication_logs/destroy.turbo_stream.erb` -- replaces entry back to pending
+
+**Controller tests** (`test/controllers/medication_logs_controller_test.rb`) -- 15 tests covering:
+- Authentication required for create/destroy
+- Taken log creation with automatic `logged_at`
+- Skipped log with reason
+- Idempotent upsert (update existing instead of duplicate)
+- Turbo Stream response format verification
+- Validation error handling (422)
+- Destroy/undo functionality
+- User scoping (cannot log for another user's medications)
+- Strong parameter protection (cannot set `logged_at` via params)
+
+**Note**: Ruby is not installed in this environment, so tests could not be executed. Please run `bin/rails test test/controllers/medication_logs_controller_test.rb` to verify.
+
+### Next steps
+
+- `/red64:spec-impl medication-foundation 7.2` -- Create the medication-log Stimulus controller and quick-action UI
+- `/red64:spec-impl medication-foundation 8.1` -- Weekly schedule query
+
+[23:39:42] --- end command ---
+
+[23:39:42] Task 7.1 failed: Command timed out (10 min limit)
+[23:39:42] [17/40] Task 7.2: Create the medication-log Stimulus controller and quick-action UI on daily schedule entries
+[23:39:42] --- Executing command ---
+[23:39:42] Command: claude -p "/red64:spec-impl medication-foundation 7.2 -y"
+[23:39:42] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[23:39:42] Sandbox: Docker isolated mode
+[23:39:42] Model: claude-opus-4-6
+[00:05:45] Task 7.2 implementation is complete. Here's the summary:
+[00:05:45] ## Task 7.2 - Completed
+[00:05:45] **Create the medication-log Stimulus controller and quick-action UI on daily schedule entries**
+[00:05:45] - **Updated DOM ID format** from `schedule_entry_{schedule_id}` to `schedule_entry_{schedule_id}_{date}` across all relevant files, ensuring unique Turbo Stream targets when the same schedule appears on different dates
+[00:05:45] The implementation verified that most of the UI components were already in place from prior tasks, and made one key improvement:
+[00:05:45] | File | Purpose |
+[00:05:45] ### Files involved
+[00:05:45] | `app/javascript/controllers/medication_log_controller.js` | Stimulus controller managing button state during Turbo Stream requests |
+[00:05:45] | `app/views/schedules/_schedule_entry.html.erb` | Schedule entry partial with taken/skipped buttons, undo button, reason field, date-inclusive DOM ID |
+[00:05:45] | `app/views/medication_logs/create.turbo_stream.erb` | Turbo Stream replace targeting date-inclusive DOM ID |
+[00:05:45] | `app/views/medication_logs/destroy.turbo_stream.erb` | Turbo Stream replace targeting date-inclusive DOM ID |
+[00:05:45] | `test/controllers/medication_logs_ui_test.rb` | 16 tests covering UI behaviors |
+[00:05:45] | `test/controllers/medication_logs_controller_test.rb` | 16 tests covering controller logic |
+[00:05:45] |------|---------|
+[00:05:45] **526 tests, 1,635 assertions, 0 failures, 0 errors**
+[00:05:45] ### Test results
+[00:05:45] - `/red64:spec-impl medication-foundation 3.2` - Prescription views (next pending task)
+[00:05:45] - `/red64:spec-status medication-foundation` - Check overall progress
+[00:05:45] ### Next steps
+[00:05:45] ### What was done
+[00:05:47] Exit code: 0
+[00:05:47] Success: false
+[00:05:47] Timed out: true
+[00:05:47] --- stdout ---
+[00:05:47] Task 7.2 implementation is complete. Here's the summary:
+
+## Task 7.2 - Completed
+
+**Create the medication-log Stimulus controller and quick-action UI on daily schedule entries**
+
+### What was done
+
+The implementation verified that most of the UI components were already in place from prior tasks, and made one key improvement:
+
+- **Updated DOM ID format** from `schedule_entry_{schedule_id}` to `schedule_entry_{schedule_id}_{date}` across all relevant files, ensuring unique Turbo Stream targets when the same schedule appears on different dates
+
+### Files involved
+
+| File | Purpose |
+|------|---------|
+| `app/javascript/controllers/medication_log_controller.js` | Stimulus controller managing button state during Turbo Stream requests |
+| `app/views/schedules/_schedule_entry.html.erb` | Schedule entry partial with taken/skipped buttons, undo button, reason field, date-inclusive DOM ID |
+| `app/views/medication_logs/create.turbo_stream.erb` | Turbo Stream replace targeting date-inclusive DOM ID |
+| `app/views/medication_logs/destroy.turbo_stream.erb` | Turbo Stream replace targeting date-inclusive DOM ID |
+| `test/controllers/medication_logs_ui_test.rb` | 16 tests covering UI behaviors |
+| `test/controllers/medication_logs_controller_test.rb` | 16 tests covering controller logic |
+
+### Test results
+
+**526 tests, 1,635 assertions, 0 failures, 0 errors**
+
+### Next steps
+
+- `/red64:spec-impl medication-foundation 3.2` - Prescription views (next pending task)
+- `/red64:spec-status medication-foundation` - Check overall progress
+
+[00:05:47] --- end command ---
+
+[00:05:47] Task 7.2 failed: Command timed out (10 min limit)
+[00:05:47] [18/40] Task 8: Weekly schedule overview
+[00:05:47] --- Executing command ---
+[00:05:47] Command: claude -p "/red64:spec-impl medication-foundation 8 -y"
+[00:05:47] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[00:05:47] Sandbox: Docker isolated mode
+[00:05:47] Model: claude-opus-4-6
+[00:21:46] Opening preview: Tasks...
+[00:21:46] Preview opened at: http://localhost:3962
+[00:26:47] ## Task 8 Complete: Weekly Schedule Overview
+[00:26:47] Both subtasks have been implemented using TDD:
+[00:26:47] - Batch-fetches all schedules and logs for the 7-day span in 2 queries (no N+1)
+[00:26:47] ### 8.1 - WeeklyScheduleQuery
+[00:26:47] - Computes per-day adherence status: `:complete`, `:partial`, `:none`, `:empty`
+[00:26:47] - Defaults `week_start` to current Monday; snaps non-Monday inputs to Monday
+[00:26:47] - Created `app/queries/weekly_schedule_query.rb` with `DaySummary` Data object
+[00:26:47] - 16 tests passing
+[00:26:47] - Reuses `DailyScheduleQuery::ScheduleEntry` for consistent structure
+[00:26:47] - Added `weekly` action to `SchedulesController` at `GET /schedule/weekly`
+[00:26:47] - Created `app/views/schedules/weekly.html.erb` with Turbo Frame (`weekly_schedule`)
+[00:26:47] - Route accepts optional `?week_start=YYYY-MM-DD` parameter
+[00:26:47] - 7-column responsive grid (stacks on mobile) with color-coded adherence borders/headers
+[00:26:47] - Previous/next week navigation controls
+[00:26:47] - Medication entries show drug name, time, dosage, and status icons
+[00:26:47] **Test suite**: 556 tests, 1777 assertions, 0 failures, 0 errors. RuboCop clean.
+[00:26:47] - 14 tests passing
+[00:26:47] - `/red64:spec-impl medication-foundation 9` - Adherence history with heatmap visualization
+[00:26:47] ### 8.2 - SchedulesController weekly action + view
+[00:26:47] - `/red64:spec-impl medication-foundation` - All remaining pending tasks
+[00:26:47] ### Next Steps
+[00:26:47] - `/red64:spec-impl medication-foundation 10` - Printable medication plan
+[00:26:47] **Tip**: Clear conversation history before running the next task to ensure clean context.
+[00:26:55] Exit code: 0
+[00:26:55] Success: false
+[00:26:55] Timed out: true
+[00:26:55] --- stdout ---
+[00:26:55] ## Task 8 Complete: Weekly Schedule Overview
+
+Both subtasks have been implemented using TDD:
+
+### 8.1 - WeeklyScheduleQuery
+- Created `app/queries/weekly_schedule_query.rb` with `DaySummary` Data object
+- Batch-fetches all schedules and logs for the 7-day span in 2 queries (no N+1)
+- Computes per-day adherence status: `:complete`, `:partial`, `:none`, `:empty`
+- Defaults `week_start` to current Monday; snaps non-Monday inputs to Monday
+- Reuses `DailyScheduleQuery::ScheduleEntry` for consistent structure
+- 16 tests passing
+
+### 8.2 - SchedulesController weekly action + view
+- Added `weekly` action to `SchedulesController` at `GET /schedule/weekly`
+- Route accepts optional `?week_start=YYYY-MM-DD` parameter
+- Created `app/views/schedules/weekly.html.erb` with Turbo Frame (`weekly_schedule`)
+- 7-column responsive grid (stacks on mobile) with color-coded adherence borders/headers
+- Previous/next week navigation controls
+- Medication entries show drug name, time, dosage, and status icons
+- 14 tests passing
+
+**Test suite**: 556 tests, 1777 assertions, 0 failures, 0 errors. RuboCop clean.
+
+### Next Steps
+
+- `/red64:spec-impl medication-foundation 9` - Adherence history with heatmap visualization
+- `/red64:spec-impl medication-foundation 10` - Printable medication plan
+- `/red64:spec-impl medication-foundation` - All remaining pending tasks
+
+**Tip**: Clear conversation history before running the next task to ensure clean context.
+
+[00:26:55] --- end command ---
+
+[00:26:55] Task 8 failed: Command timed out (10 min limit)
+[00:26:55] [19/40] Task 8.1: Implement the WeeklyScheduleQuery to compute the 7-day schedule overview
+[00:26:55] --- Executing command ---
+[00:26:55] Command: claude -p "/red64:spec-impl medication-foundation 8.1 -y"
+[00:26:55] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[00:26:55] Sandbox: Docker isolated mode
+[00:26:55] Model: claude-opus-4-6
+[00:27:19] Now let me find task 8.1 specifically. Looking at the tasks file, task 8.1 is:
+[00:27:19] > **8.1 Implement the WeeklyScheduleQuery to compute the 7-day schedule overview** - Already marked as `[x]` (completed).
+[00:27:19] The task numbering uses a `group.task` format. Task `8.1` refers to item 8.1 under group 8 ("Weekly schedule overview"), which is already checked as complete (`[x]`).
+[00:27:19] - Feature name: `medication-foundation`
+[00:27:19] - Task numbers: `8.1`
+[00:27:19] - `-y` flag: auto-approve
+[00:27:19] Here are the **pending tasks** (unchecked `[ ]`) remaining:
+[00:27:20] | Task | Description |
+[00:27:19] Task 8.1 ("Implement the WeeklyScheduleQuery to compute the 7-day schedule overview") is already marked as **completed** (`[x]`) in the tasks file.
+[00:27:19] Let me verify - the user passed `medication-foundation 8.1 -y`. Let me re-read the command parsing:
+[00:27:20] |------|-------------|
+[00:27:20] | 5.2 | Create schedule-builder Stimulus controller and schedule form views |
+[00:27:20] | 4.2 | Create medication views (form with drug autocomplete, list, toggle) |
+[00:27:20] | 9.1 | Implement AdherenceCalculationService |
+[00:27:20] | 7.2 | Create medication-log Stimulus controller and quick-action UI |
+[00:27:20] | 10.1 | Implement printable medication plan view |
+[00:27:20] | 9.2 | Implement AdherenceController and adherence history view with heatmap |
+[00:27:20] | 11.1 | Update navbar with medication navigation links |
+[00:27:20] | 3.2 | Create prescription views (index, show, form partial) |
+[00:27:20] | 12.2* | System test: printable plan and adherence history |
+[00:27:20] | 12.1 | System test: complete medication workflow |
+[00:27:20] Would you like to:
+[00:27:20] | 12.3* | System test: mobile-responsive navigation |
+[00:27:20] - `/red64:spec-impl medication-foundation 3.2` - Execute the next pending task
+[00:27:20] | 11.2 | Verify flash message display for CRUD operations |
+[00:27:20] - `/red64:spec-impl medication-foundation` - Execute all pending tasks
+[00:27:20] - `/red64:spec-impl medication-foundation 9.1` - Execute a specific pending task
+[00:27:20] Exit code: 0
+[00:27:20] Success: true
+[00:27:20] --- stdout ---
+[00:27:20] Now let me find task 8.1 specifically. Looking at the tasks file, task 8.1 is:
+
+> **8.1 Implement the WeeklyScheduleQuery to compute the 7-day schedule overview** - Already marked as `[x]` (completed).
+
+The task numbering uses a `group.task` format. Task `8.1` refers to item 8.1 under group 8 ("Weekly schedule overview"), which is already checked as complete (`[x]`).
+
+Let me verify - the user passed `medication-foundation 8.1 -y`. Let me re-read the command parsing:
+
+- Feature name: `medication-foundation`
+- Task numbers: `8.1`
+- `-y` flag: auto-approve
+
+Task 8.1 ("Implement the WeeklyScheduleQuery to compute the 7-day schedule overview") is already marked as **completed** (`[x]`) in the tasks file.
+
+Here are the **pending tasks** (unchecked `[ ]`) remaining:
+
+| Task | Description |
+|------|-------------|
+| 3.2 | Create prescription views (index, show, form partial) |
+| 4.2 | Create medication views (form with drug autocomplete, list, toggle) |
+| 5.2 | Create schedule-builder Stimulus controller and schedule form views |
+| 7.2 | Create medication-log Stimulus controller and quick-action UI |
+| 9.1 | Implement AdherenceCalculationService |
+| 9.2 | Implement AdherenceController and adherence history view with heatmap |
+| 10.1 | Implement printable medication plan view |
+| 11.1 | Update navbar with medication navigation links |
+| 11.2 | Verify flash message display for CRUD operations |
+| 12.1 | System test: complete medication workflow |
+| 12.2* | System test: printable plan and adherence history |
+| 12.3* | System test: mobile-responsive navigation |
+
+Would you like to:
+- `/red64:spec-impl medication-foundation 3.2` - Execute the next pending task
+- `/red64:spec-impl medication-foundation 9.1` - Execute a specific pending task
+- `/red64:spec-impl medication-foundation` - Execute all pending tasks
+
+[00:27:20] --- end command ---
+
+[00:27:20] Warning: Failed to mark task 8.1 in tasks.md: Task 8.1 not found in tasks.md
+[00:27:20] Committing: feat(medication-foundation): implement task 27 - Implement the WeeklyScheduleQuery to compute the 7-day schedule overview...

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "schedule_entry_#{@entry.schedule.id}_#{@date}" do %>
+  <%= render partial: "schedules/schedule_entry", locals: { entry: @entry, date: @date } %>
+<% end %>

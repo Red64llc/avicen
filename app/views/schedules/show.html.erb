@@ -54,7 +54,7 @@
           <%# Entries for this time group %>
           <div class="divide-y divide-gray-100">
             <% entries.each do |entry| %>
-              <%= render partial: "schedules/schedule_entry", locals: { entry: entry } %>
+              <%= render partial: "schedules/schedule_entry", locals: { entry: entry, date: @date } %>
             <% end %>
           </div>
         </div>
