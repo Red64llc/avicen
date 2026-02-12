@@ -21,6 +21,16 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%# Error catcher for debugging module loading issues in CI %>
+    <script>
+      window.__jsLoadErrors = [];
+      window.addEventListener('error', function(e) {
+        window.__jsLoadErrors.push({type: 'error', message: e.message, filename: e.filename, lineno: e.lineno});
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        window.__jsLoadErrors.push({type: 'unhandledrejection', reason: String(e.reason)});
+      });
+    </script>
     <%= javascript_importmap_tags %>
   </head>
 
