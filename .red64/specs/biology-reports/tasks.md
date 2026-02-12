@@ -66,7 +66,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Handle edge case where value equals boundary (considered in range)
   - _Requirements: 3.4, 3.6_
 
-- [ ] 3.2 (P) Create DocumentValidator custom validator
+- [x] 3.2 (P) Create DocumentValidator custom validator
   - Implement ActiveModel::Validator for BiologyReport document attachment
   - Define ALLOWED_TYPES constant with application/pdf, image/jpeg, image/png
   - Check attached document content_type against allowed list

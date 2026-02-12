@@ -7,7 +7,7 @@ class BiologyReport < ApplicationRecord
   # Validations
   validates :test_date, presence: true
   validates :user_id, presence: true
-  validate :document_content_type
+  validates_with DocumentValidator
 
   # Scopes
   scope :ordered, -> { order(test_date: :desc) }
@@ -22,15 +22,4 @@ class BiologyReport < ApplicationRecord
     sanitized_query = sanitize_sql_like(query)
     where("LOWER(lab_name) LIKE LOWER(?)", "%#{sanitized_query}%")
   }
-
-  private
-
-  def document_content_type
-    return unless document.attached?
-
-    allowed_types = %w[application/pdf image/jpeg image/png]
-    unless allowed_types.include?(document.content_type)
-      errors.add(:document, "must be a PDF, JPEG, or PNG file")
-    end
-  end
 end
