@@ -22,7 +22,7 @@ class MedicationLogsController < ApplicationController
       @date = @medication_log.scheduled_date
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to schedule_path(date: @medication_log.scheduled_date) }
+        format.html { redirect_to schedule_path(date: @medication_log.scheduled_date), notice: "Dose marked as #{@medication_log.status}." }
       end
     else
       respond_to do |format|
@@ -43,7 +43,7 @@ class MedicationLogsController < ApplicationController
     @date = @scheduled_date
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to schedule_path(date: @scheduled_date) }
+      format.html { redirect_to schedule_path(date: @scheduled_date), notice: "Dose log has been undone." }
     end
   end
 

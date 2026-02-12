@@ -164,9 +164,36 @@ class FlashMessagesTest < ActionDispatch::IntegrationTest
     assert_match(/flash/, response.body)
   end
 
+  # --- Medications Flash Messages (Turbo Stream toggle) ---
+
+  test "medication toggle via Turbo Stream includes flash in response" do
+    patch toggle_medication_path(@medication), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+    assert_response :success
+    assert_match(/turbo-stream/, response.body)
+    assert_match(/flash/, response.body)
+    assert_match(/deactivated/i, response.body)
+  end
+
+  test "medication toggle via HTML displays success flash message" do
+    patch toggle_medication_path(@medication)
+    assert_redirected_to prescription_path(@medication.prescription)
+    follow_redirect!
+    assert_select ".bg-green-50", /deactivated/i
+  end
+
+  test "medication update via Turbo Stream includes flash in response" do
+    patch medication_path(@medication), params: {
+      medication: { dosage: "250mg" }
+    }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+    assert_response :success
+    assert_match(/turbo-stream/, response.body)
+    assert_match(/flash/, response.body)
+    assert_match(/updated/i, response.body)
+  end
+
   # --- Medication Logs Flash Messages ---
 
-  test "medication log create via Turbo Stream responds successfully" do
+  test "medication log create via Turbo Stream includes flash in response" do
     schedule = medication_schedules(:monday_wednesday_friday)
     post medication_logs_path, params: {
       medication_log: {
@@ -178,13 +205,66 @@ class FlashMessagesTest < ActionDispatch::IntegrationTest
     }, headers: { "Accept" => "text/vnd.turbo-stream.html" }
     assert_response :success
     assert_match(/turbo-stream/, response.body)
+    assert_match(/flash/, response.body)
+    assert_match(/taken/i, response.body)
   end
 
-  test "medication log destroy via Turbo Stream responds successfully" do
+  test "medication log destroy via Turbo Stream includes flash in response" do
     log = medication_logs(:taken_log)
     delete medication_log_path(log), headers: { "Accept" => "text/vnd.turbo-stream.html" }
     assert_response :success
     assert_match(/turbo-stream/, response.body)
+    assert_match(/flash/, response.body)
+    assert_match(/undone/i, response.body)
+  end
+
+  test "medication log create via HTML redirects with success flash" do
+    schedule = medication_schedules(:monday_wednesday_friday)
+    post medication_logs_path, params: {
+      medication_log: {
+        medication_id: @medication.id,
+        medication_schedule_id: schedule.id,
+        scheduled_date: Date.new(2026, 2, 11),
+        status: "taken"
+      }
+    }
+    assert_redirected_to schedule_path(date: Date.new(2026, 2, 11))
+    follow_redirect!
+    assert_select ".bg-green-50", /taken/i
+  end
+
+  test "medication log destroy via HTML redirects with success flash" do
+    log = medication_logs(:taken_log)
+    delete medication_log_path(log)
+    assert_redirected_to schedule_path(date: log.scheduled_date)
+    follow_redirect!
+    assert_select ".bg-green-50", /undone/i
+  end
+
+  # --- Validation error flash messages ---
+
+  test "prescription create with invalid params re-renders form with errors" do
+    post prescriptions_path, params: {
+      prescription: { doctor_name: "Dr. Invalid", prescribed_date: nil }
+    }
+    assert_response :unprocessable_entity
+    assert_select "form"
+  end
+
+  test "medication create with invalid params re-renders form with errors" do
+    post prescription_medications_path(@prescription), params: {
+      medication: { drug_id: drugs(:aspirin).id, dosage: "", form: "" }
+    }
+    assert_response :unprocessable_entity
+    assert_select "form"
+  end
+
+  test "schedule create with invalid params re-renders form with errors" do
+    post medication_medication_schedules_path(@medication), params: {
+      medication_schedule: { time_of_day: "", days_of_week: [] }
+    }
+    assert_response :unprocessable_entity
+    assert_select "form"
   end
 
   # --- Flash messages render within layout ---
@@ -198,6 +278,7 @@ class FlashMessagesTest < ActionDispatch::IntegrationTest
     }
     follow_redirect!
     # Flash container in application layout
+    assert_select "div#flash", minimum: 1
     assert_select "div.bg-green-50", minimum: 1
     assert_match(/created/i, response.body)
   end

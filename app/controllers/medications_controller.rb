@@ -48,7 +48,7 @@ class MedicationsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to @medication.prescription }
+      format.html { redirect_to @medication.prescription, notice: "Medication was successfully #{@medication.active? ? "activated" : "deactivated"}." }
     end
   end
 
