@@ -36,9 +36,8 @@ class DrugSearchAutocompleteTest < ApplicationSystemTestCase
     # Wait for Stimulus controller to connect (critical for CI)
     wait_for_stimulus_controller("drug-search")
 
-    # Use send_keys to ensure input events fire properly for Stimulus controller
-    drug_input = find("input[data-drug-search-target='input']")
-    drug_input.send_keys("Aspirin")
+    # Type a search query (minimum 2 characters per design)
+    fill_in "Drug name", with: "Aspirin"
 
     # Wait for autocomplete results to appear (stimulus-autocomplete fetches from server)
     assert_selector "li[role='option']", text: "Aspirin", wait: 5
@@ -51,9 +50,8 @@ class DrugSearchAutocompleteTest < ApplicationSystemTestCase
     # Wait for Stimulus controller to connect (critical for CI)
     wait_for_stimulus_controller("drug-search")
 
-    # Use send_keys to ensure input events fire properly for Stimulus controller
-    drug_input = find("input[data-drug-search-target='input']")
-    drug_input.send_keys("Aspirin")
+    # Type and wait for results
+    fill_in "Drug name", with: "Aspirin"
     assert_selector "li[role='option']", wait: 5
 
     # Click the matching result
@@ -72,16 +70,16 @@ class DrugSearchAutocompleteTest < ApplicationSystemTestCase
     # Wait for Stimulus controller to connect (critical for CI)
     wait_for_stimulus_controller("drug-search")
 
-    # Use send_keys to ensure input events fire properly for Stimulus controller
-    drug_input = find("input[data-drug-search-target='input']")
-    drug_input.send_keys("Aspirin")
+    # Type and wait for results
+    fill_in "Drug name", with: "Aspirin"
     assert_selector "li[role='option']", wait: 5
 
     # Click the matching result
     find("li[role='option']", text: "Aspirin").click
 
     # Verify the text input shows the drug name
-    assert_equal "Aspirin", drug_input.value,
+    input = find("input[data-drug-search-target='input']")
+    assert_equal "Aspirin", input.value,
       "Text input should display the selected drug name"
   end
 

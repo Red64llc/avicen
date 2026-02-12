@@ -35,32 +35,18 @@ class MedicationWorkflowTest < ApplicationSystemTestCase
     assert_text "System test prescription"
 
     # Step 2: Add a medication with drug search (Req 3.5)
-    # Get the Add Medication link URL before clicking
-    add_medication_url = find_link("Add Medication")["href"]
-
-    # Click the Add Medication link (uses Turbo Frame)
     click_link "Add Medication"
 
-    # Wait for the medication form to load in the Turbo Frame
-    # Look for the drug search input which is unique to the form
-    # If Turbo Frame fails to load, fall back to direct navigation
-    unless has_selector?("input[data-drug-search-target='input']", wait: 5)
-      # Turbo Frame didn't load - navigate directly
-      visit add_medication_url
-      assert_selector "input[data-drug-search-target='input']", wait: 5
-    end
+    # Wait for the medication form to appear within Turbo Frame
+    assert_selector "h2", text: "Add Medication", wait: 5
 
     # Wait for Stimulus controller to connect (critical for CI)
     wait_for_stimulus_controller("drug-search")
 
     # Search for a drug using the autocomplete
-    # Click to focus, then type character by character to ensure events fire
-    drug_input = find("input[data-drug-search-target='input']")
-    drug_input.click
-    sleep 0.2  # Small delay after focus
-    drug_input.send_keys("Aspirin")
-    # Wait for autocomplete results to appear (debounce delay 300ms + fetch time)
-    assert_selector "li[role='option']", text: "Aspirin", wait: 10
+    fill_in "Search for a drug...", with: "Aspirin"
+    # Wait for autocomplete results to appear
+    assert_selector "li[role='option']", text: "Aspirin", wait: 5
     # Select the drug from autocomplete results
     find("li[role='option']", text: "Aspirin").click
 
@@ -77,13 +63,10 @@ class MedicationWorkflowTest < ApplicationSystemTestCase
     assert_text "100mg"
 
     # Step 3: Configure a dosing schedule (Req 4.5)
-    # Wait for Turbo to be ready before clicking links that use Turbo Frames
-    wait_for_turbo
     click_link "Add Schedule"
 
-    # Wait for the schedule form Turbo Frame to load by checking for its content
-    # The form appears inside turbo-frame#schedule_form
-    assert_selector "turbo-frame#schedule_form h2", text: "Add Schedule", wait: 10
+    # Wait for the schedule form to appear within Turbo Frame
+    assert_selector "h2", text: "Add Schedule", wait: 5
 
     # Fill in schedule details
     # Today is Thursday (2026-02-12), so we select all weekdays

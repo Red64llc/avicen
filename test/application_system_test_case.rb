@@ -38,40 +38,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def sign_in_as_system(user)
     visit new_session_path
-    # Wait for the form to be ready before filling
-    assert_field "Email address", wait: 5
-    # Use find + fill_in with clear to ensure reliable input
-    email_field = find_field("Email address")
-    email_field.fill_in with: user.email_address
-    password_field = find_field("Password")
-    password_field.fill_in with: "password"
+    fill_in "Email address", with: user.email_address
+    fill_in "Password", with: "password"
     click_on "Sign in"
     # Wait for login to complete by checking for authenticated UI elements
-    # Using a positive assertion with wait ensures Capybara retries until the condition is met
     # Note: "Log out" is rendered via button_to (a form button), not a link
-    assert_button "Log out", wait: 10
-  end
-
-  # Wait for Turbo to be ready (no pending requests).
-  # Call this after page navigation to ensure Turbo Drive has finished processing.
-  #
-  # @param wait [Integer] Maximum seconds to wait (default: 5)
-  def wait_for_turbo(wait: 5)
-    Timeout.timeout(wait) do
-      loop do
-        turbo_ready = page.evaluate_script(<<~JS)
-          (function() {
-            // Check if Turbo is loaded
-            if (typeof Turbo === 'undefined') return true;
-            // Check if there are any pending frame requests
-            const frames = document.querySelectorAll('turbo-frame[busy]');
-            return frames.length === 0;
-          })()
-        JS
-        break if turbo_ready
-        sleep 0.1
-      end
-    end
+    assert_button "Log out", wait: 5
   end
 
   # Wait for a Stimulus controller to be connected to an element.
