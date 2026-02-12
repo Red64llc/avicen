@@ -110,11 +110,11 @@ class UserFlowsTest < ApplicationSystemTestCase
 
     visit dashboard_path
 
+    # Wait for Stimulus controller to connect BEFORE resizing (critical for CI)
+    wait_for_stimulus_controller("nav-toggle")
+
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
-
-    # Wait for Stimulus controller to connect (critical for CI)
-    wait_for_stimulus_controller("nav-toggle")
 
     # Wait for hamburger button to be visible after resize
     assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
@@ -146,11 +146,11 @@ class UserFlowsTest < ApplicationSystemTestCase
   test "mobile navigation shows auth links when unauthenticated" do
     visit root_path
 
+    # Wait for Stimulus controller to connect BEFORE resizing (critical for CI)
+    wait_for_stimulus_controller("nav-toggle")
+
     # Resize to mobile viewport
     page.driver.browser.manage.window.resize_to(375, 667)
-
-    # Wait for Stimulus controller to connect (critical for CI)
-    wait_for_stimulus_controller("nav-toggle")
 
     # Wait for hamburger button to be visible after resize
     assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
