@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resource :schedule, only: [ :show ] do
     # Weekly schedule overview
     get :weekly, on: :member
+    # Printable medication plan
+    get :print, on: :member
   end
 
   # Adherence history with calendar heatmap

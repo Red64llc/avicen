@@ -1,0 +1,93 @@
+<div class="max-w-4xl mx-auto print:max-w-full print:mx-0 print:p-0">
+  <%# Header with print button %>
+  <div class="flex items-center justify-between mb-6 print:mb-4">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900 print:text-black">Medication Plan</h1>
+      <p class="mt-1 text-sm text-gray-500 print:text-black">
+        Generated on <%= @generated_at.strftime("%B %-d, %Y at %I:%M %p") %>
+      </p>
+    </div>
+    <div class="print:hidden">
+      <button onclick="window.print()"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+        </svg>
+        Print
+      </button>
+      <%= link_to "Back to Schedule", schedule_path,
+          class: "ml-3 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    </div>
+  </div>
+
+  <% if @medications.empty? %>
+    <%# Empty state %>
+    <div class="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200 print:border-0 print:shadow-none">
+      <p class="text-gray-500 text-lg print:text-black">No active medications found.</p>
+      <p class="mt-2 text-gray-400 text-sm print:hidden">
+        Add medications from your <%= link_to "prescriptions", prescriptions_path, class: "text-blue-600 hover:text-blue-700 underline" %>.
+      </p>
+    </div>
+  <% else %>
+    <%# Medication plan organized by time-of-day groups %>
+    <div class="space-y-6 print:space-y-4">
+      <% @time_groups.each do |group_name, entries| %>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden print:border print:border-gray-400 print:shadow-none print:break-inside-avoid">
+          <%# Time-of-day group header %>
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200 print:bg-gray-100 print:border-gray-400">
+            <h2 class="text-lg font-semibold text-gray-800 print:text-black">
+              <%= group_name %>
+            </h2>
+          </div>
+
+          <%# Medications table for this time group %>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 print:divide-gray-400">
+              <thead>
+                <tr class="bg-gray-50 print:bg-white">
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Time</th>
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Drug</th>
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Dosage</th>
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Form</th>
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Days</th>
+                  <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider print:text-black print:font-bold">Instructions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-100 print:divide-gray-300">
+                <% entries.each do |entry| %>
+                  <tr class="print:text-black">
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 print:text-black font-medium">
+                      <%= entry[:time_of_day] %>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 print:text-black font-semibold">
+                      <%= entry[:drug_name] %>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 print:text-black">
+                      <%= entry[:dosage] %>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700 print:text-black">
+                      <%= entry[:form] %>
+                    </td>
+                    <td class="px-4 py-3 text-sm text-gray-700 print:text-black">
+                      <%= entry[:days_of_week_names].join(", ") %>
+                    </td>
+                    <td class="px-4 py-3 text-sm text-gray-500 print:text-black italic">
+                      <%= entry[:instructions].presence || "-" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%# Summary section %>
+    <div class="mt-8 pt-6 border-t border-gray-200 print:mt-4 print:pt-4 print:border-gray-400">
+      <p class="text-sm text-gray-500 print:text-black">
+        Total active medications: <%= @medications.size %>
+      </p>
+    </div>
+  <% end %>
+</div>

@@ -5,7 +5,7 @@
     "feature": "medication-foundation"
   },
   "createdAt": "2026-02-11T10:30:44.676Z",
-  "updatedAt": "2026-02-12T01:02:56.261Z",
+  "updatedAt": "2026-02-12T01:20:06.360Z",
   "history": [
     {
       "phase": {
@@ -646,6 +646,42 @@
       "timestamp": "2026-02-12T01:02:56.261Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-9.1-completed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:02:56.506Z",
+      "event": "TASK_START",
+      "subStep": "task-9.2-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:14:25.530Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-9.2-failed"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:14:25.535Z",
+      "event": "TASK_START",
+      "subStep": "task-10-started"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval",
+        "feature": "medication-foundation"
+      },
+      "timestamp": "2026-02-12T01:20:06.360Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10-completed"
     }
   ],
   "metadata": {
@@ -663,7 +699,8 @@
       5,
       6,
       8,
-      9
+      9,
+      10
     ],
     "totalGroups": 12,
     "currentGroup": 7,
@@ -885,16 +922,16 @@
       {
         "id": "9.2",
         "title": "Implement the AdherenceController and adherence history view with calendar heatmap",
-        "startedAt": null,
+        "startedAt": "2026-02-12T01:02:56.505Z",
         "completedAt": null,
-        "status": "pending"
+        "status": "failed"
       },
       {
         "id": "10",
         "title": "Printable medication plan",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-12T01:14:25.534Z",
+        "completedAt": "2026-02-12T01:20:06.359Z",
+        "status": "completed"
       },
       {
         "id": "10.1",
@@ -953,7 +990,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "9.1"
+    "currentTaskId": "10"
   },
   "artifacts": [
     {

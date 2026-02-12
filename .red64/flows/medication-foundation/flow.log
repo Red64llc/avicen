@@ -1690,3 +1690,150 @@ Or jump to other pending tasks:
 
 [01:02:56] Warning: Failed to mark task 9.1 in tasks.md: Task 9.1 not found in tasks.md
 [01:02:56] Committing: feat(medication-foundation): implement task 30 - Implement the AdherenceCalculationService for adherence statistics...
+[01:02:56] Committed: 8cc860d
+[01:02:56] 
+[01:02:56] Task 9.1 completed
+[01:02:56] --- Executing command ---
+[01:02:56] [23/40] Task 9.2: Implement the AdherenceController and adherence history view with calendar heatmap
+[01:02:56] Command: claude -p "/red64:spec-impl medication-foundation 9.2 -y"
+[01:02:56] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[01:02:56] Sandbox: Docker isolated mode
+[01:02:56] Model: claude-opus-4-6
+[01:14:21] Task 9.2 implementation is complete. Here's the summary:
+[01:14:21] ## Task 9.2 - AdherenceController and Adherence History View
+[01:14:21] **Status**: Complete
+[01:14:21] 2. **Route** added in `config/routes.rb`: `get "adherence", to: "adherence#index"`
+[01:14:21] **What was implemented:**
+[01:14:21]    - Period selection controls (7, 30, 90 day buttons) with active state styling
+[01:14:21] 3. **Adherence history view** (`app/views/adherence/index.html.erb`):
+[01:14:21]    - Overall adherence percentage display
+[01:14:21]    - Clickable day cells linking to `?date=` for detailed log view
+[01:14:21]    - Pure CSS/HTML calendar heatmap using CSS Grid with `--intensity` custom property and color mapping
+[01:14:21]    - `aria-label` attributes on heatmap cells for accessibility
+[01:14:21]    - Per-medication statistics table (Scheduled, Taken, Skipped, Missed, Adherence %)
+[01:14:21]    - Empty state handling
+[01:14:21]    - Date detail section showing log entries (drug name, time, dosage, status, reason)
+[01:14:21] 4. **Controller tests** (`test/controllers/adherence_controller_test.rb`) - 18 tests covering authentication, default period, period selection, invalid period fallback, heatmap rendering, aria-labels, intensity custom property, date detail view, clickable cells, overall percentage, and empty state
+[01:14:21] ### Next steps
+[01:14:21] You can continue with remaining pending tasks:
+[01:14:21] - `/red64:spec-impl medication-foundation 3.2` - Prescription views
+[01:14:21] 1. **AdherenceController** (`app/controllers/adherence_controller.rb`) - `index` action at `GET /adherence` with optional `period` (7/30/90, default 30) and `date` query parameters, delegating to `AdherenceCalculationService`
+[01:14:21] **Test results**: 595 tests, 0 failures, 0 errors
+[01:14:21] - `/red64:spec-impl medication-foundation 4.2` - Medication views with drug autocomplete
+[01:14:21] - `/red64:spec-impl medication-foundation 5.2` - Schedule builder views
+[01:14:21] - `/red64:spec-impl medication-foundation 7.2` - Medication log quick-action UI
+[01:14:21] - `/red64:spec-impl medication-foundation 10.1` - Printable medication plan
+[01:14:21] - `/red64:spec-impl medication-foundation 11.1` - Navigation and loading indicators
+[01:14:21] - `/red64:spec-impl medication-foundation 11.2` - Flash message verification
+[01:14:21] - `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+[01:14:25] Exit code: 0
+[01:14:25] Success: false
+[01:14:25] Timed out: true
+[01:14:25] Claude Error: AUTH_FAILED - authentication, default period, period selection, invalid
+[01:14:25] Suggestion: Verify your API key is correct and active
+[01:14:25] --- stdout ---
+[01:14:25] Task 9.2 implementation is complete. Here's the summary:
+
+## Task 9.2 - AdherenceController and Adherence History View
+
+**Status**: Complete
+
+**What was implemented:**
+
+1. **AdherenceController** (`app/controllers/adherence_controller.rb`) - `index` action at `GET /adherence` with optional `period` (7/30/90, default 30) and `date` query parameters, delegating to `AdherenceCalculationService`
+
+2. **Route** added in `config/routes.rb`: `get "adherence", to: "adherence#index"`
+
+3. **Adherence history view** (`app/views/adherence/index.html.erb`):
+   - Period selection controls (7, 30, 90 day buttons) with active state styling
+   - Overall adherence percentage display
+   - Pure CSS/HTML calendar heatmap using CSS Grid with `--intensity` custom property and color mapping
+   - Clickable day cells linking to `?date=` for detailed log view
+   - `aria-label` attributes on heatmap cells for accessibility
+   - Date detail section showing log entries (drug name, time, dosage, status, reason)
+   - Per-medication statistics table (Scheduled, Taken, Skipped, Missed, Adherence %)
+   - Empty state handling
+
+4. **Controller tests** (`test/controllers/adherence_controller_test.rb`) - 18 tests covering authentication, default period, period selection, invalid period fallback, heatmap rendering, aria-labels, intensity custom property, date detail view, clickable cells, overall percentage, and empty state
+
+**Test results**: 595 tests, 0 failures, 0 errors
+
+### Next steps
+
+You can continue with remaining pending tasks:
+- `/red64:spec-impl medication-foundation 3.2` - Prescription views
+- `/red64:spec-impl medication-foundation 4.2` - Medication views with drug autocomplete
+- `/red64:spec-impl medication-foundation 5.2` - Schedule builder views
+- `/red64:spec-impl medication-foundation 7.2` - Medication log quick-action UI
+- `/red64:spec-impl medication-foundation 10.1` - Printable medication plan
+- `/red64:spec-impl medication-foundation 11.1` - Navigation and loading indicators
+- `/red64:spec-impl medication-foundation 11.2` - Flash message verification
+- `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+
+[01:14:25] --- end command ---
+
+[01:14:25] Task 9.2 failed: Authentication Failed: Verify your API key is correct and active
+[01:14:25] [24/40] Task 10: Printable medication plan
+[01:14:25] --- Executing command ---
+[01:14:25] Command: claude -p "/red64:spec-impl medication-foundation 10 -y"
+[01:14:25] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[01:14:25] Sandbox: Docker isolated mode
+[01:14:25] Model: claude-opus-4-6
+[01:20:04] ## Task 10.1 Complete
+[01:20:04] **Printable medication plan view** has been implemented with TDD methodology. Here's what was done:
+[01:20:04] |------|--------|
+[01:20:04] | `test/controllers/schedules_controller_test.rb` | 11 new tests for print view |
+[01:20:04] ### Files Modified/Created
+[01:20:04] | File | Change |
+[01:20:04] | `app/controllers/schedules_controller.rb` | Added `print` action with time-of-day grouping logic |
+[01:20:04] | `app/views/shared/_navbar.html.erb` | Added `print:hidden` to navbar |
+[01:20:04] | `app/views/layouts/application.html.erb` | Added print-optimized classes to body and flash containers |
+[01:20:04] ### Requirements Covered
+[01:20:04] - **9.1** - Formatted view of all active medications with complete schedules
+[01:20:04] - **9.2** - Drug name, dosage, form, schedule times, days of week, and instructions
+[01:20:04] - **9.3** - Print-optimized CSS layout (Tailwind `print:` variants)
+[01:20:04] | `config/routes.rb` | Added `GET /schedule/print` route |
+[01:20:04] - **9.4** - Organized by time-of-day groups (Morning, Midday, Evening, Night)
+[01:20:04] ### Next Steps
+[01:20:04] You can mark task 10.1 in `tasks.md` as complete, then continue with:
+[01:20:04] - `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+[01:20:04] - `/red64:spec-impl medication-foundation` - All remaining pending tasks
+[01:20:04] | `app/views/schedules/print.html.erb` | New printable plan view with Tailwind `print:` classes |
+[01:20:04] - `/red64:spec-impl medication-foundation 11` - Navigation, loading indicators, and integration wiring
+[01:20:04] **Tip**: Clear conversation history before starting the next task for a fresh context window.
+[01:20:06] Exit code: 0
+[01:20:06] Success: true
+[01:20:06] --- stdout ---
+[01:20:06] ## Task 10.1 Complete
+
+**Printable medication plan view** has been implemented with TDD methodology. Here's what was done:
+
+### Files Modified/Created
+| File | Change |
+|------|--------|
+| `test/controllers/schedules_controller_test.rb` | 11 new tests for print view |
+| `config/routes.rb` | Added `GET /schedule/print` route |
+| `app/controllers/schedules_controller.rb` | Added `print` action with time-of-day grouping logic |
+| `app/views/schedules/print.html.erb` | New printable plan view with Tailwind `print:` classes |
+| `app/views/shared/_navbar.html.erb` | Added `print:hidden` to navbar |
+| `app/views/layouts/application.html.erb` | Added print-optimized classes to body and flash containers |
+
+### Requirements Covered
+- **9.1** - Formatted view of all active medications with complete schedules
+- **9.2** - Drug name, dosage, form, schedule times, days of week, and instructions
+- **9.3** - Print-optimized CSS layout (Tailwind `print:` variants)
+- **9.4** - Organized by time-of-day groups (Morning, Midday, Evening, Night)
+
+### Next Steps
+
+You can mark task 10.1 in `tasks.md` as complete, then continue with:
+- `/red64:spec-impl medication-foundation 11` - Navigation, loading indicators, and integration wiring
+- `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+- `/red64:spec-impl medication-foundation` - All remaining pending tasks
+
+**Tip**: Clear conversation history before starting the next task for a fresh context window.
+
+[01:20:06] --- end command ---
+
+[01:20:06] Warning: Failed to mark task 10 in tasks.md: Task 10 not found in tasks.md
+[01:20:06] Committing: feat(medication-foundation): implement task 32 - Printable medication plan...

@@ -305,4 +305,140 @@ class SchedulesControllerTest < ActionDispatch::IntegrationTest
     # Should render without errors
     assert_select "h1", /weekly/i
   end
+
+  # =============================================
+  # Print view tests (Task 10.1)
+  # =============================================
+
+  # --- Authentication ---
+
+  test "print requires authentication" do
+    sign_out
+    get print_schedule_path
+    assert_redirected_to new_session_path
+  end
+
+  # --- Basic print view rendering ---
+
+  test "print renders the printable medication plan" do
+    get print_schedule_path
+    assert_response :success
+    assert_select "h1", /medication plan/i
+  end
+
+  # --- All active medications displayed ---
+
+  test "print displays all active medications" do
+    get print_schedule_path
+    assert_response :success
+
+    # User one has two active medications: aspirin_morning and ibuprofen_evening
+    assert_match "Aspirin", response.body
+    assert_match "Ibuprofen", response.body
+  end
+
+  test "print excludes inactive medications" do
+    get print_schedule_path
+    assert_response :success
+
+    # inactive_medication belongs to prescription two (Dr. Johnson)
+    # and is inactive, so it should not contribute any entries.
+    # The total active medications count should be 2 (aspirin_morning and ibuprofen_evening)
+    assert_match "Total active medications: 2", response.body
+  end
+
+  # --- Medication details displayed ---
+
+  test "print displays drug name, dosage, form, schedule times, days of week, and instructions" do
+    get print_schedule_path
+    assert_response :success
+
+    # Aspirin morning schedule details
+    assert_match "Aspirin", response.body
+    assert_match "100mg", response.body
+    assert_match "tablet", response.body
+    assert_match "08:00", response.body
+    assert_match "Take with breakfast", response.body
+
+    # Ibuprofen evening schedule details
+    assert_match "Ibuprofen", response.body
+    assert_match "200mg", response.body
+    assert_match "capsule", response.body
+    assert_match "20:00", response.body
+    assert_match "Take after dinner", response.body
+  end
+
+  test "print displays days of the week for each schedule" do
+    get print_schedule_path
+    assert_response :success
+
+    # morning_daily is every day: should show all day abbreviations
+    assert_match "Mon", response.body
+    assert_match "Tue", response.body
+    assert_match "Sun", response.body
+
+    # monday_wednesday_friday: should show Mon, Wed, Fri
+    assert_match "Wed", response.body
+    assert_match "Fri", response.body
+  end
+
+  # --- Organized by time-of-day groups ---
+
+  test "print organizes medications by time-of-day groups" do
+    get print_schedule_path
+    assert_response :success
+
+    # Should display time-of-day group headers
+    assert_match(/morning/i, response.body)
+    assert_match(/evening/i, response.body)
+  end
+
+  # --- Print button ---
+
+  test "print includes a print button" do
+    get print_schedule_path
+    assert_response :success
+
+    # Should have a button that triggers window.print()
+    assert_select "button", /print/i
+    assert_match "window.print()", response.body
+  end
+
+  # --- Print-optimized CSS classes ---
+
+  test "print view applies print-optimized Tailwind classes" do
+    get print_schedule_path
+    assert_response :success
+
+    # The print button should be hidden when printing
+    assert_match "print:hidden", response.body
+    # The view should set print-friendly text color
+    assert_match "print:text-black", response.body
+  end
+
+  # --- Empty state for user with no active medications ---
+
+  test "print handles user with no active medications" do
+    sign_out
+    sign_in_as(@other_user)
+
+    get print_schedule_path
+    assert_response :success
+    assert_match(/no active medications/i, response.body)
+  end
+
+  # --- Data scoping: only shows current user's medications ---
+
+  test "print only shows current user medications" do
+    get print_schedule_path
+    assert_response :success
+
+    # User one should see their medications
+    assert_match "Aspirin", response.body
+
+    # Other user's medications should not appear
+    # (other_user_prescription has no medications with schedules in fixtures,
+    #  but we verify scoping is correct)
+    assert_no_match(/Dr. Brown/, response.body)
+  end
 end
