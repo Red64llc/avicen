@@ -8,5 +8,9 @@
   "initializedAt": "2026-02-10T20:44:17.652Z",
   "customValues": {},
   "agent": "claude",
-  "testCommand": "bundle install && bin/rails test"
+  "testCommand": "bin/rails test"
+   "ui": {
+     "leftSidebarWidth": 20,
+     "rightSidebarWidth": 30
+   }
 }
