@@ -1,0 +1,33 @@
+<% if biology_reports.any? %>
+  <div class="grid gap-4">
+    <% biology_reports.each do |report| %>
+      <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+        <div class="flex justify-between items-start">
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold mb-2">
+              <%= link_to l(report.test_date, format: :long), report, class: "text-blue-600 hover:text-blue-800" %>
+            </h3>
+            <% if report.lab_name.present? %>
+              <p class="text-gray-600 mb-1">
+                <span class="font-medium">Laboratory:</span> <%= report.lab_name %>
+              </p>
+            <% end %>
+            <% if report.notes.present? %>
+              <p class="text-gray-700 mt-2"><%= report.notes %></p>
+            <% end %>
+          </div>
+          <div class="flex space-x-2 ml-4">
+            <%= link_to "View", report, class: "btn btn-sm btn-primary" %>
+            <%= link_to "Edit", edit_biology_report_path(report), class: "btn btn-sm btn-secondary" %>
+            <%= button_to "Delete", biology_report_path(report), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="bg-gray-50 rounded-lg p-12 text-center">
+    <p class="text-gray-500 text-lg mb-4">No biology reports found.</p>
+    <%= link_to "Create your first report", new_biology_report_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

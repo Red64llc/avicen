@@ -1,0 +1,31 @@
+one:
+  user: one
+  test_date: 2025-02-01
+  lab_name: "LabCorp"
+  notes: "Regular check-up"
+  created_at: <%= 2.days.ago %>
+  updated_at: <%= 2.days.ago %>
+
+two:
+  user: one
+  test_date: 2025-01-15
+  lab_name: "Quest Diagnostics"
+  notes: "Follow-up tests"
+  created_at: <%= 5.days.ago %>
+  updated_at: <%= 5.days.ago %>
+
+three:
+  user: one
+  test_date: 2024-12-20
+  lab_name: "LabCorp"
+  notes: "Annual physical"
+  created_at: <%= 30.days.ago %>
+  updated_at: <%= 30.days.ago %>
+
+other_user_report:
+  user: two
+  test_date: 2025-02-05
+  lab_name: "Mayo Clinic"
+  notes: "Specialist consultation"
+  created_at: <%= 1.day.ago %>
+  updated_at: <%= 1.day.ago %>

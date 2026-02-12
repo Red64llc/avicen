@@ -1,0 +1,101 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <%= link_to "← Back to Reports", biology_reports_path, class: "text-blue-600 hover:text-blue-800" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-8">
+    <div class="flex justify-between items-start mb-6">
+      <h1 class="text-3xl font-bold">Biology Report</h1>
+      <div class="flex space-x-2">
+        <%= link_to "Edit", edit_biology_report_path(@biology_report), class: "btn btn-primary" %>
+        <%= button_to "Delete", biology_report_path(@biology_report), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div>
+        <h3 class="text-sm font-medium text-gray-500 mb-1">Test Date</h3>
+        <p class="text-lg"><%= l(@biology_report.test_date, format: :long) %></p>
+      </div>
+      <% if @biology_report.lab_name.present? %>
+        <div>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">Laboratory</h3>
+          <p class="text-lg"><%= @biology_report.lab_name %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @biology_report.notes.present? %>
+      <div class="mb-8">
+        <h3 class="text-sm font-medium text-gray-500 mb-1">Notes</h3>
+        <p class="text-gray-700"><%= @biology_report.notes %></p>
+      </div>
+    <% end %>
+
+    <% if @biology_report.document.attached? %>
+      <div class="mb-8">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">Attached Document</h3>
+        <div class="flex items-center space-x-4">
+          <%= link_to "View Document", rails_blob_path(@biology_report.document, disposition: "inline"), target: "_blank", class: "btn btn-primary" %>
+          <%= link_to "Download", rails_blob_path(@biology_report.document, disposition: "attachment"), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Test Results Section -->
+    <div class="border-t pt-8">
+      <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+      <% if @biology_report.test_results.any? %>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Biomarker</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Range</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <% @biology_report.test_results.each do |test_result| %>
+                <tr class="<%= 'bg-red-50' if test_result.out_of_range %>">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900"><%= test_result.biomarker.name %></div>
+                    <div class="text-sm text-gray-500"><%= test_result.biomarker.code %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <%= test_result.value %> <%= test_result.unit %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <% if test_result.ref_min.present? && test_result.ref_max.present? %>
+                      <%= test_result.ref_min %> - <%= test_result.ref_max %> <%= test_result.unit %>
+                    <% else %>
+                      N/A
+                    <% end %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <% if test_result.out_of_range %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                        ⚠ Out of Range
+                      </span>
+                    <% elsif test_result.out_of_range == false %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        ✓ Normal
+                      </span>
+                    <% else %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                        N/A
+                      </span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-gray-500">No test results yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

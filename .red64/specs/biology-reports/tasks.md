@@ -75,7 +75,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - _Requirements: 4.2, 4.5_
 
 - [ ] 4. Build BiologyReportsController with CRUD and filtering
-- [ ] 4.1 Implement RESTful controller actions
+- [x] 4.1 Implement RESTful controller actions
   - Create index action scoped through Current.user.biology_reports with default ordering
   - Implement show action with user-scoped find to prevent unauthorized access
   - Create new action rendering empty form

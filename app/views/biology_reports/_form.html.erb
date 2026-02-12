@@ -1,0 +1,42 @@
+<%= form_with(model: biology_report, local: true, class: "space-y-6") do |f| %>
+  <% if biology_report.errors.any? %>
+    <div class="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-6">
+      <h3 class="font-bold mb-2"><%= pluralize(biology_report.errors.count, "error") %> prohibited this report from being saved:</h3>
+      <ul class="list-disc list-inside">
+        <% biology_report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :test_date, "Test Date", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.date_field :test_date, class: "input", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :lab_name, "Laboratory Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_field :lab_name, class: "input", placeholder: "e.g., LabCorp, Quest Diagnostics" %>
+  </div>
+
+  <div>
+    <%= f.label :notes, "Notes", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_area :notes, rows: 4, class: "input", placeholder: "Add any notes about this report..." %>
+  </div>
+
+  <div>
+    <%= f.label :document, "Upload Document (PDF, JPEG, PNG)", class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.file_field :document, accept: "application/pdf,image/jpeg,image/png", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
+    <% if biology_report.document.attached? %>
+      <p class="text-sm text-gray-600 mt-2">
+        Current: <%= biology_report.document.filename %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="flex justify-end space-x-3">
+    <%= link_to "Cancel", biology_report.persisted? ? biology_report : biology_reports_path, class: "btn btn-secondary" %>
+    <%= f.submit biology_report.persisted? ? "Update Report" : "Create Report", class: "btn btn-primary" %>
+  </div>
+<% end %>
