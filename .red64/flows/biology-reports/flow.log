@@ -911,3 +911,101 @@ The Biomarker model has been created with full TDD coverage:
 [21:32:07] --- end command ---
 
 [21:32:07] Committing: feat(biology-reports): implement task 5 - Create Biomarker model...
+[21:32:07] Committed: fc89723
+[21:32:07] 
+[21:32:07] Task 2.1 completed
+[21:32:07] [6/40] Task 2.2: Create BiologyReport model with Active Storage integration
+[21:32:07] --- Executing command ---
+[21:32:07] Command: claude -p "/red64:spec-impl biology-reports 2.2 -y"
+[21:32:07] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/biology-reports
+[21:32:07] Sandbox: Docker isolated mode
+[21:32:07] Model: sonnet
+[21:35:02] Perfect! Task 2.2 has been completed successfully. The TDD implementation agent has:
+[21:35:02] ### What Was Implemented
+[21:35:02] - ✅ Associations: `belongs_to :user`, `has_many :test_results, dependent: :destroy`
+[21:35:02] - ✅ Active Storage: `has_one_attached :document` for PDF/image attachments
+[21:35:02] **BiologyReport Model** (`app/models/biology_report.rb`):
+[21:35:02] - ✅ Custom document validator (PDF, JPEG, PNG only)
+[21:35:02] ## ✅ Task 2.2 Complete: BiologyReport Model with Active Storage
+[21:35:02] - ✅ Scopes: `ordered` (by test_date desc), `by_date_range`, `by_lab_name`
+[21:35:02] **Database Migration**:
+[21:35:02] - ✅ biology_reports table with proper schema
+[21:35:02] - ✅ Foreign key to users with cascade delete
+[21:35:02] - ✅ Composite index on (user_id, test_date)
+[21:35:02] - ✅ Active Storage tables migration
+[21:35:02] **Comprehensive Test Coverage**:
+[21:35:02] - ✅ Validations: presence of `test_date` and `user_id`
+[21:35:02] - ✅ Association and validation tests
+[21:35:02] - ✅ User scoping tests
+[21:35:02] ### Verification
+[21:35:02] - ✅ Scope tests
+[21:35:02] - ✅ Document content type validation tests
+[21:35:02] bin/rails test test/models/biology_report_test.rb
+[21:35:02] ```
+[21:35:02] ---
+[21:35:02] ## Next Steps
+[21:35:02] Continue with remaining tasks:
+[21:35:02] The implementation follows strict TDD methodology. To verify everything works:
+[21:35:02] - Task 2.3: Create TestResult model with out-of-range calculation
+[21:35:02] ```bash
+[21:35:02] **Quick Reference**:
+[21:35:02] - Single task: `/red64:spec-impl biology-reports [task-number]`
+[21:35:02] - Multiple tasks: `/red64:spec-impl biology-reports [task1,task2,task3]`
+[21:35:02] - All pending: `/red64:spec-impl biology-reports`
+[21:35:02] **Next task**: `/red64:spec-impl biology-reports 2.3`
+[21:35:02] **View all pending tasks**: Check `.red64/specs/biology-reports/tasks.md`
+[21:35:03] Exit code: 0
+[21:35:03] Success: true
+[21:35:03] --- stdout ---
+[21:35:03] Perfect! Task 2.2 has been completed successfully. The TDD implementation agent has:
+
+## ✅ Task 2.2 Complete: BiologyReport Model with Active Storage
+
+### What Was Implemented
+
+**BiologyReport Model** (`app/models/biology_report.rb`):
+- ✅ Associations: `belongs_to :user`, `has_many :test_results, dependent: :destroy`
+- ✅ Active Storage: `has_one_attached :document` for PDF/image attachments
+- ✅ Validations: presence of `test_date` and `user_id`
+- ✅ Custom document validator (PDF, JPEG, PNG only)
+- ✅ Scopes: `ordered` (by test_date desc), `by_date_range`, `by_lab_name`
+
+**Database Migration**:
+- ✅ biology_reports table with proper schema
+- ✅ Foreign key to users with cascade delete
+- ✅ Composite index on (user_id, test_date)
+- ✅ Active Storage tables migration
+
+**Comprehensive Test Coverage**:
+- ✅ Document content type validation tests
+- ✅ Association and validation tests
+- ✅ Scope tests
+- ✅ User scoping tests
+
+### Verification
+
+The implementation follows strict TDD methodology. To verify everything works:
+
+```bash
+bin/rails test test/models/biology_report_test.rb
+```
+
+---
+
+## Next Steps
+
+Continue with remaining tasks:
+
+**Next task**: `/red64:spec-impl biology-reports 2.3`
+- Task 2.3: Create TestResult model with out-of-range calculation
+
+**View all pending tasks**: Check `.red64/specs/biology-reports/tasks.md`
+
+**Quick Reference**:
+- Single task: `/red64:spec-impl biology-reports [task-number]`
+- Multiple tasks: `/red64:spec-impl biology-reports [task1,task2,task3]`
+- All pending: `/red64:spec-impl biology-reports`
+
+[21:35:03] --- end command ---
+
+[21:35:03] Committing: feat(biology-reports): implement task 6 - Create BiologyReport model with Active Storage integration...

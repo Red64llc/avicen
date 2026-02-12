@@ -157,4 +157,107 @@ class BiologyReportTest < ActiveSupport::TestCase
     results = BiologyReport.by_lab_name(nil)
     assert_equal 2, results.count
   end
+
+  # Task 2.2: Document Content Type Validation
+  test "accepts PDF document" do
+    user = users(:one)
+    report = BiologyReport.new(user: user, test_date: Date.today)
+
+    # Create a mock PDF file
+    pdf_file = Tempfile.new(["test", ".pdf"])
+    pdf_file.write("%PDF-1.4")
+    pdf_file.rewind
+
+    report.document.attach(
+      io: pdf_file,
+      filename: "test.pdf",
+      content_type: "application/pdf"
+    )
+
+    assert report.valid?, "PDF should be accepted"
+
+    pdf_file.close
+    pdf_file.unlink
+  end
+
+  test "accepts JPEG document" do
+    user = users(:one)
+    report = BiologyReport.new(user: user, test_date: Date.today)
+
+    # Create a mock JPEG file
+    jpeg_file = Tempfile.new(["test", ".jpg"])
+    jpeg_file.write("\xFF\xD8\xFF")
+    jpeg_file.rewind
+
+    report.document.attach(
+      io: jpeg_file,
+      filename: "test.jpg",
+      content_type: "image/jpeg"
+    )
+
+    assert report.valid?, "JPEG should be accepted"
+
+    jpeg_file.close
+    jpeg_file.unlink
+  end
+
+  test "accepts PNG document" do
+    user = users(:one)
+    report = BiologyReport.new(user: user, test_date: Date.today)
+
+    # Create a mock PNG file
+    png_file = Tempfile.new(["test", ".png"])
+    png_file.write("\x89PNG")
+    png_file.rewind
+
+    report.document.attach(
+      io: png_file,
+      filename: "test.png",
+      content_type: "image/png"
+    )
+
+    assert report.valid?, "PNG should be accepted"
+
+    png_file.close
+    png_file.unlink
+  end
+
+  test "rejects unsupported document types" do
+    user = users(:one)
+    report = BiologyReport.new(user: user, test_date: Date.today)
+
+    # Create a mock text file
+    txt_file = Tempfile.new(["test", ".txt"])
+    txt_file.write("Test content")
+    txt_file.rewind
+
+    report.document.attach(
+      io: txt_file,
+      filename: "test.txt",
+      content_type: "text/plain"
+    )
+
+    assert_not report.valid?, "Text file should be rejected"
+    assert_includes report.errors[:document], "must be a PDF, JPEG, or PNG file"
+
+    txt_file.close
+    txt_file.unlink
+  end
+
+  test "valid without document attachment" do
+    user = users(:one)
+    report = BiologyReport.new(user: user, test_date: Date.today)
+    assert report.valid?, "Report should be valid without document"
+  end
+
+  # Task 2.2: Cascade Delete Test
+  test "deleting biology report cascades to test_results" do
+    user = users(:one)
+    report = BiologyReport.create!(user: user, test_date: Date.today)
+
+    # This test will be more meaningful once TestResult model exists
+    # For now, verify the association has dependent: :destroy
+    reflection = BiologyReport.reflect_on_association(:test_results)
+    assert_equal :destroy, reflection.options[:dependent]
+  end
 end

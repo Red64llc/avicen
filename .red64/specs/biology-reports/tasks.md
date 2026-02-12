@@ -37,7 +37,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Implement class method to return top 10 matches for autocomplete
   - _Requirements: 1.1, 1.2, 7.2_
 
-- [ ] 2.2 Create BiologyReport model with Active Storage integration
+- [x] 2.2 Create BiologyReport model with Active Storage integration
   - Define associations: belongs_to :user, has_many :test_results with dependent: :destroy
   - Add validations for presence of test_date, user_id
   - Configure has_one_attached :document for PDF/image attachment
