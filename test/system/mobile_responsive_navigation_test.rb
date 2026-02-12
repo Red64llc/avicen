@@ -35,6 +35,9 @@ class MobileResponsiveNavigationTest < ApplicationSystemTestCase
     # Resize to 320px mobile viewport
     page.driver.browser.manage.window.resize_to(320, 568)
 
+    # Wait for Stimulus controller to connect (critical for CI)
+    wait_for_stimulus_controller("nav-toggle")
+
     # Open the mobile menu
     assert_selector "[data-action='click->nav-toggle#toggle']", visible: true
     page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
@@ -61,6 +64,9 @@ class MobileResponsiveNavigationTest < ApplicationSystemTestCase
 
     # Resize to 320px
     page.driver.browser.manage.window.resize_to(320, 568)
+
+    # Wait for Stimulus controller to connect (critical for CI)
+    wait_for_stimulus_controller("nav-toggle")
 
     # Test Daily Schedule link
     page.execute_script("document.querySelector('[data-action=\"click->nav-toggle#toggle\"]').click()")
