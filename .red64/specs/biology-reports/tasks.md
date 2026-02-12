@@ -27,7 +27,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Use db/seeds.rb or dedicated biomarker seed file with idempotent logic
   - _Requirements: 1.1_
 
-- [ ] 2. Implement core models with associations and validations
+- [x] 2. Implement core models with associations and validations
 - [ ] 2.1 (P) Create Biomarker model
   - Define associations: has_many :test_results
   - Add validations for presence of name, code, unit, ref_min, ref_max

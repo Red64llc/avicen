@@ -1,6 +1,7 @@
 require "test_helper"
 
 class BiomarkerTest < ActiveSupport::TestCase
+  # Schema tests (from Task 1)
   test "biomarkers table exists" do
     assert ActiveRecord::Base.connection.table_exists?(:biomarkers)
   end
@@ -45,5 +46,116 @@ class BiomarkerTest < ActiveSupport::TestCase
     assert_not columns["unit"].null
     assert_not columns["ref_min"].null
     assert_not columns["ref_max"].null
+  end
+
+  # Task 2.1: Validations
+  test "validates presence of name" do
+    biomarker = Biomarker.new(code: "TEST", unit: "mg/dL", ref_min: 10, ref_max: 20)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:name], "can't be blank"
+  end
+
+  test "validates presence of code" do
+    biomarker = Biomarker.new(name: "Test", unit: "mg/dL", ref_min: 10, ref_max: 20)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:code], "can't be blank"
+  end
+
+  test "validates presence of unit" do
+    biomarker = Biomarker.new(name: "Test", code: "TEST", ref_min: 10, ref_max: 20)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:unit], "can't be blank"
+  end
+
+  test "validates presence of ref_min" do
+    biomarker = Biomarker.new(name: "Test", code: "TEST", unit: "mg/dL", ref_max: 20)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:ref_min], "can't be blank"
+  end
+
+  test "validates presence of ref_max" do
+    biomarker = Biomarker.new(name: "Test", code: "TEST", unit: "mg/dL", ref_min: 10)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:ref_max], "can't be blank"
+  end
+
+  test "validates uniqueness of code case-insensitively" do
+    Biomarker.create!(name: "Test", code: "TEST123", unit: "mg/dL", ref_min: 10, ref_max: 20)
+    duplicate = Biomarker.new(name: "Test 2", code: "test123", unit: "mg/dL", ref_min: 10, ref_max: 20)
+    assert_not duplicate.valid?
+    assert_includes duplicate.errors[:code], "has already been taken"
+  end
+
+  test "validates numericality of ref_min" do
+    biomarker = Biomarker.new(name: "Test", code: "TEST", unit: "mg/dL", ref_min: "invalid", ref_max: 20)
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:ref_min], "is not a number"
+  end
+
+  test "validates numericality of ref_max" do
+    biomarker = Biomarker.new(name: "Test", code: "TEST", unit: "mg/dL", ref_min: 10, ref_max: "invalid")
+    assert_not biomarker.valid?
+    assert_includes biomarker.errors[:ref_max], "is not a number"
+  end
+
+  test "valid biomarker with all required attributes" do
+    biomarker = Biomarker.new(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    assert biomarker.valid?
+  end
+
+  # Task 2.1: Associations
+  test "has many test_results" do
+    assert_respond_to Biomarker.new, :test_results
+  end
+
+  # Task 2.1: Scopes and search
+  test "search scope finds biomarkers by name case-insensitively" do
+    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "Hemoglobin", code: "HGB", unit: "g/dL", ref_min: 12, ref_max: 16)
+
+    results = Biomarker.search("glucose")
+    assert_equal 1, results.count
+    assert_equal "Glucose", results.first.name
+  end
+
+  test "search scope finds biomarkers by code case-insensitively" do
+    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "Hemoglobin", code: "HGB", unit: "g/dL", ref_min: 12, ref_max: 16)
+
+    results = Biomarker.search("glu")
+    assert_equal 1, results.count
+    assert_equal "Glucose", results.first.name
+  end
+
+  test "search scope finds biomarkers by partial match" do
+    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "Glycated Hemoglobin", code: "HBA1C", unit: "%", ref_min: 4, ref_max: 6)
+
+    results = Biomarker.search("glu")
+    assert_equal 1, results.count
+    assert_equal "Glucose", results.first.name
+  end
+
+  test "autocomplete_search returns top 10 matches" do
+    15.times do |i|
+      Biomarker.create!(name: "Test #{i}", code: "TEST#{i}", unit: "mg/dL", ref_min: 10, ref_max: 20)
+    end
+
+    results = Biomarker.autocomplete_search("test")
+    assert_equal 10, results.count
+  end
+
+  test "autocomplete_search returns empty array for blank query" do
+    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+
+    results = Biomarker.autocomplete_search("")
+    assert_equal 0, results.count
+  end
+
+  test "autocomplete_search returns empty array for nil query" do
+    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+
+    results = Biomarker.autocomplete_search(nil)
+    assert_equal 0, results.count
   end
 end
