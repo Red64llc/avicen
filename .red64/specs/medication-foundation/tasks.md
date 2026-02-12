@@ -205,7 +205,7 @@
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
 - [ ] 9. Adherence history with heatmap visualization
-- [ ] 9.1 Implement the AdherenceCalculationService for adherence statistics
+- [x] 9.1 Implement the AdherenceCalculationService for adherence statistics
   - Create the service with configurable time periods (7, 30, or 90 days)
   - Calculate per-medication adherence: total scheduled doses (based on schedule entries and day-of-week rules), total taken, total skipped, and total missed (scheduled minus taken minus skipped)
   - Calculate daily adherence percentages for each day in the period (ratio of taken to total scheduled)

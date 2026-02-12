@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     get :weekly, on: :member
   end
 
+  # Adherence history with calendar heatmap
+  get "adherence", to: "adherence#index", as: :adherence
+
   # Drug search for autocomplete
   get "drugs/search", to: "drugs#search", as: :drugs_search
   get "drugs/search_test", to: "drugs#search_test", as: :drugs_search_test if Rails.env.test?

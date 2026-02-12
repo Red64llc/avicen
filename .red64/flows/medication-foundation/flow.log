@@ -1569,3 +1569,124 @@ Example: `/red64:spec-impl medication-foundation 9.1`
 
 [00:28:16] Warning: Failed to mark task 8.2 in tasks.md: Task 8.2 not found in tasks.md
 [00:28:16] Committing: feat(medication-foundation): implement task 28 - Implement the SchedulesController weekly action and weekly overview view...
+[00:28:16] Committed: e0294f8
+[00:28:16] 
+[00:28:16] Task 8.2 completed
+[00:28:16] [21/40] Task 9: Adherence history with heatmap visualization
+[00:28:16] --- Executing command ---
+[00:28:16] Command: claude -p "/red64:spec-impl medication-foundation 9 -y"
+[00:28:16] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[00:28:16] Sandbox: Docker isolated mode
+[00:28:16] Model: claude-opus-4-6
+[00:55:02] Task 9 implementation is complete. Here's the summary:
+[00:55:02] ### Task 9.1 - AdherenceCalculationService
+[00:55:02] - Implements `Data.define` value objects (`AdherenceSummary`, `MedicationStat`)
+[00:55:02] - Configurable periods (7, 30, 90 days)
+[00:55:02] - Daily adherence ratios for heatmap data
+[00:55:02] - **Service**: `app/services/adherence_calculation_service.rb`
+[00:55:02] - Day-of-week schedule rule calculation
+[00:55:02] - Per-medication stats: scheduled, taken, skipped, missed, percentage
+[00:55:02] - Overall adherence percentage across all medications
+[00:55:02] - **21 tests** written and passing
+[00:55:02] - Eager-loaded queries to prevent N+1
+[00:55:02] ### Task 9.2 - AdherenceController + Calendar Heatmap View
+[00:55:02] - **View**: `app/views/adherence/index.html.erb`
+[00:55:02] - **Controller**: `app/controllers/adherence_controller.rb` with `GET /adherence`
+[00:55:02] - Period selection controls (7/30/90 day buttons)
+[00:55:02] - Route added to `config/routes.rb`
+[00:55:02] - `aria-label` on heatmap day cells for accessibility
+[00:55:02] - CSS Grid calendar heatmap with `--intensity` custom property and `color-mix` color mapping
+[00:55:02] - Per-medication statistics table (scheduled/taken/skipped/missed/percentage)
+[00:55:02] - **18 tests** written and passing
+[00:55:02] **All 595 tests pass** (556 existing + 39 new), 0 failures, 0 errors, 0 regressions.
+[00:55:02] ### Next Steps
+[00:55:02] - Overall adherence percentage display
+[00:55:02] - `/red64:spec-impl medication-foundation 10` - Printable medication plan
+[00:55:02] ### Test Results
+[00:55:02] - Clickable day cells linking to date detail view with log entries
+[00:55:02] - `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+[00:55:02] - `/red64:spec-status medication-foundation` - Check overall progress
+[00:55:02] - `/red64:spec-impl medication-foundation 11` - Navigation and loading indicators
+[00:55:04] Exit code: 0
+[00:55:04] Success: false
+[00:55:04] Timed out: true
+[00:55:04] --- stdout ---
+[00:55:04] Task 9 implementation is complete. Here's the summary:
+
+### Task 9.1 - AdherenceCalculationService
+- **Service**: `app/services/adherence_calculation_service.rb`
+- Implements `Data.define` value objects (`AdherenceSummary`, `MedicationStat`)
+- Configurable periods (7, 30, 90 days)
+- Per-medication stats: scheduled, taken, skipped, missed, percentage
+- Daily adherence ratios for heatmap data
+- Overall adherence percentage across all medications
+- Day-of-week schedule rule calculation
+- Eager-loaded queries to prevent N+1
+- **21 tests** written and passing
+
+### Task 9.2 - AdherenceController + Calendar Heatmap View
+- **Controller**: `app/controllers/adherence_controller.rb` with `GET /adherence`
+- **View**: `app/views/adherence/index.html.erb`
+- Route added to `config/routes.rb`
+- Period selection controls (7/30/90 day buttons)
+- Overall adherence percentage display
+- CSS Grid calendar heatmap with `--intensity` custom property and `color-mix` color mapping
+- `aria-label` on heatmap day cells for accessibility
+- Clickable day cells linking to date detail view with log entries
+- Per-medication statistics table (scheduled/taken/skipped/missed/percentage)
+- **18 tests** written and passing
+
+### Test Results
+**All 595 tests pass** (556 existing + 39 new), 0 failures, 0 errors, 0 regressions.
+
+### Next Steps
+- `/red64:spec-impl medication-foundation 10` - Printable medication plan
+- `/red64:spec-impl medication-foundation 11` - Navigation and loading indicators
+- `/red64:spec-impl medication-foundation 12` - End-to-end system tests
+- `/red64:spec-status medication-foundation` - Check overall progress
+
+[00:55:04] --- end command ---
+
+[00:55:04] Task 9 failed: Command timed out (10 min limit)
+[00:55:04] [22/40] Task 9.1: Implement the AdherenceCalculationService for adherence statistics
+[00:55:04] --- Executing command ---
+[00:55:04] Command: claude -p "/red64:spec-impl medication-foundation 9.1 -y"
+[00:55:04] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[00:55:04] Sandbox: Docker isolated mode
+[00:55:04] Model: claude-opus-4-6
+[01:02:54] Task 9.1 is now marked as complete in `tasks.md`.
+[01:02:54] ### Next steps
+[01:02:54] Or jump to other pending tasks:
+[01:02:54] You can continue with the remaining tasks in group 9:
+[01:02:54] - `3.2` - Prescription views (UI)
+[01:02:54] - `4.2` - Medication views with drug autocomplete (UI)
+[01:02:54] - `/red64:spec-impl medication-foundation 9.2` - AdherenceController and adherence history view with calendar heatmap
+[01:02:54] - `7.2` - Medication-log Stimulus controller (UI)
+[01:02:54] - `5.2` - Schedule-builder Stimulus controller (UI)
+[01:02:54] - `11.1`, `11.2` - Navigation and flash messages
+[01:02:54] - `10.1` - Printable medication plan
+[01:02:54] - `12.1`, `12.2`, `12.3` - End-to-end system tests
+[01:02:56] Exit code: 0
+[01:02:56] Success: true
+[01:02:56] --- stdout ---
+[01:02:56] Task 9.1 is now marked as complete in `tasks.md`.
+
+### Next steps
+
+You can continue with the remaining tasks in group 9:
+
+- `/red64:spec-impl medication-foundation 9.2` - AdherenceController and adherence history view with calendar heatmap
+
+Or jump to other pending tasks:
+- `3.2` - Prescription views (UI)
+- `4.2` - Medication views with drug autocomplete (UI)
+- `5.2` - Schedule-builder Stimulus controller (UI)
+- `7.2` - Medication-log Stimulus controller (UI)
+- `10.1` - Printable medication plan
+- `11.1`, `11.2` - Navigation and flash messages
+- `12.1`, `12.2`, `12.3` - End-to-end system tests
+
+[01:02:56] --- end command ---
+
+[01:02:56] Warning: Failed to mark task 9.1 in tasks.md: Task 9.1 not found in tasks.md
+[01:02:56] Committing: feat(medication-foundation): implement task 30 - Implement the AdherenceCalculationService for adherence statistics...
