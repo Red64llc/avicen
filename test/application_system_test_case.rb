@@ -176,9 +176,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
         const moduleScript = document.querySelector('script[type="module"]');
         const moduleContent = moduleScript ? moduleScript.textContent.substring(0, 100) : null;
 
-        // Check for any global errors captured by our error handler
-        const jsLoadErrors = window.__jsLoadErrors || [];
-
         return {
           scripts: scripts,
           hasImportmap: hasImportmap,
@@ -187,8 +184,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
           documentReady: document.readyState,
           importmapContent: importmapContent,
           currentUrl: window.location.href,
-          moduleContent: moduleContent,
-          jsLoadErrors: jsLoadErrors
+          moduleContent: moduleContent
         };
       })()
     JS
@@ -226,18 +222,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       unless console_logs.empty?
         lines << "  Browser console (errors/warnings):"
         console_logs.each { |log| lines << "    #{log}" }
-      end
-
-      # Show captured JS load errors
-      if info["jsLoadErrors"].is_a?(Array) && !info["jsLoadErrors"].empty?
-        lines << "  JS Load Errors (captured):"
-        info["jsLoadErrors"].each do |err|
-          if err["type"] == "error"
-            lines << "    [ERROR] #{err['message']} (#{err['filename']}:#{err['lineno']})"
-          else
-            lines << "    [#{err['type'].upcase}] #{err['reason']}"
-          end
-        end
       end
 
       # Show module script content for debugging
