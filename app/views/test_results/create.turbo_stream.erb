@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "test_results_list", partial: "test_results/test_result", locals: { test_result: @test_result } %>
+<%= turbo_stream.update "test_results_empty_state", "" %>
+<%= turbo_stream.update "flash", partial: "shared/flash", locals: { notice: "Test result was successfully added." } %>

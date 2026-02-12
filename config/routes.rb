@@ -39,8 +39,10 @@ Rails.application.routes.draw do
   get "drugs/search", to: "drugs#search", as: :drugs_search
   get "drugs/search_test", to: "drugs#search_test", as: :drugs_search_test if Rails.env.test?
 
-  # Biology Reports with test results
-  resources :biology_reports
+  # Biology Reports with nested test results
+  resources :biology_reports do
+    resources :test_results, only: [ :new, :create, :edit, :update, :destroy ]
+  end
 
   # Dashboard for authenticated users
   get "dashboard", to: "dashboard#show", as: :dashboard

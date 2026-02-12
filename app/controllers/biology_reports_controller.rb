@@ -57,7 +57,7 @@ class BiologyReportsController < ApplicationController
   private
 
   def set_biology_report
-    @biology_report = Current.user.biology_reports.find(params.expect(:id))
+    @biology_report = Current.user.biology_reports.includes(test_results: :biomarker).find(params.expect(:id))
   end
 
   def biology_report_params

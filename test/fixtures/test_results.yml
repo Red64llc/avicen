@@ -1,0 +1,37 @@
+# Test result fixtures for biology reports
+
+glucose_normal:
+  biology_report: one
+  biomarker: glucose
+  value: 95.0
+  unit: mg/dL
+  ref_min: 70.0
+  ref_max: 100.0
+  out_of_range: false
+
+glucose_high:
+  biology_report: two
+  biomarker: glucose
+  value: 150.0
+  unit: mg/dL
+  ref_min: 70.0
+  ref_max: 100.0
+  out_of_range: true
+
+hemoglobin_normal:
+  biology_report: one
+  biomarker: hemoglobin
+  value: 14.5
+  unit: g/dL
+  ref_min: 13.5
+  ref_max: 17.5
+  out_of_range: false
+
+cholesterol_high:
+  biology_report: three
+  biomarker: cholesterol_total
+  value: 250.0
+  unit: mg/dL
+  ref_min: 0.0
+  ref_max: 200.0
+  out_of_range: true

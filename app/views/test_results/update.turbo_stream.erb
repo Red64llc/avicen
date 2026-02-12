@@ -1,0 +1,2 @@
+<%= turbo_stream.replace dom_id(@test_result), partial: "test_results/test_result", locals: { test_result: @test_result } %>
+<%= turbo_stream.update "flash", partial: "shared/flash", locals: { notice: "Test result was successfully updated." } %>

@@ -44,7 +44,17 @@
 
     <!-- Test Results Section -->
     <div class="border-t pt-8">
-      <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Test Results</h2>
+        <%= link_to "Add Test Result", new_biology_report_test_result_path(@biology_report), class: "btn btn-primary" %>
+      </div>
+
+      <div id="test_results_empty_state">
+        <% unless @biology_report.test_results.any? %>
+          <p class="text-gray-500">No test results yet.</p>
+        <% end %>
+      </div>
+
       <% if @biology_report.test_results.any? %>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
@@ -54,47 +64,14 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Range</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <% @biology_report.test_results.each do |test_result| %>
-                <tr class="<%= 'bg-red-50' if test_result.out_of_range %>">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-medium text-gray-900"><%= test_result.biomarker.name %></div>
-                    <div class="text-sm text-gray-500"><%= test_result.biomarker.code %></div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <%= test_result.value %> <%= test_result.unit %>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <% if test_result.ref_min.present? && test_result.ref_max.present? %>
-                      <%= test_result.ref_min %> - <%= test_result.ref_max %> <%= test_result.unit %>
-                    <% else %>
-                      N/A
-                    <% end %>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <% if test_result.out_of_range %>
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                        ⚠ Out of Range
-                      </span>
-                    <% elsif test_result.out_of_range == false %>
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        ✓ Normal
-                      </span>
-                    <% else %>
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                        N/A
-                      </span>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
+            <tbody id="test_results_list" class="bg-white divide-y divide-gray-200">
+              <%= render partial: "test_results/test_result", collection: @biology_report.test_results, as: :test_result %>
             </tbody>
           </table>
         </div>
-      <% else %>
-        <p class="text-gray-500">No test results yet.</p>
       <% end %>
     </div>
   </div>

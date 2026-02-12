@@ -106,7 +106,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - _Requirements: 2.1, 2.3, 2.4, 4.3, 4.4, 5.5_
 
 - [ ] 5. Build TestResultsController with nested CRUD
-- [ ] 5.1 Implement nested controller under biology_reports
+- [x] 5.1 Implement nested controller under biology_reports
   - Configure nested routes: /biology_reports/:biology_report_id/test_results
   - Add before_action to load parent biology_report with user scoping
   - Implement new action with biomarker_id query parameter for auto-fill
