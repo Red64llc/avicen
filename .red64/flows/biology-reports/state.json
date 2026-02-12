@@ -1,10 +1,10 @@
 {
   "feature": "biology-reports",
   "phase": {
-    "type": "design-validation"
+    "type": "tasks-generating"
   },
   "createdAt": "2026-02-12T20:26:20.273Z",
-  "updatedAt": "2026-02-12T20:55:38.644Z",
+  "updatedAt": "2026-02-12T20:59:00.181Z",
   "history": [
     {
       "phase": {
@@ -46,6 +46,12 @@
         "type": "design-validation"
       },
       "timestamp": "2026-02-12T20:55:38.644Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating"
+      },
+      "timestamp": "2026-02-12T20:59:00.181Z"
     }
   ],
   "metadata": {
