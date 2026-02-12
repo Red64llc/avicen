@@ -1,10 +1,10 @@
 {
   "feature": "biology-reports",
   "phase": {
-    "type": "design-generating"
+    "type": "design-validation"
   },
   "createdAt": "2026-02-12T20:26:20.273Z",
-  "updatedAt": "2026-02-12T20:49:13.725Z",
+  "updatedAt": "2026-02-12T20:55:38.644Z",
   "history": [
     {
       "phase": {
@@ -34,6 +34,18 @@
         "type": "design-generating"
       },
       "timestamp": "2026-02-12T20:49:13.725Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval"
+      },
+      "timestamp": "2026-02-12T20:54:43.875Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation"
+      },
+      "timestamp": "2026-02-12T20:55:38.644Z"
     }
   ],
   "metadata": {
@@ -49,6 +61,13 @@
       "path": ".red64/specs/biology-reports/gap-analysis.md",
       "phase": "gap-analysis",
       "createdAt": "2026-02-12T20:47:13.962Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/biology-reports/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-12T20:54:43.874Z"
     }
   ],
   "version": 2
