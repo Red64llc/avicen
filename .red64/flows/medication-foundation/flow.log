@@ -2308,3 +2308,64 @@ If you'd like to continue implementation, here are the unchecked tasks:
 
 [09:44:50] Warning: Failed to mark task 11.2 in tasks.md: Task 11.2 not found in tasks.md
 [09:44:50] Committing: feat(medication-foundation): implement task 36 - Verify flash message display for all medication CRUD operations...
+[09:44:50] Committed: 4218eae
+[09:44:50] 
+[09:44:50] Task 11.2 completed
+[09:44:50] --- Executing command ---
+[09:44:50] [23/40] Task 12: End-to-end system tests
+[09:44:50] Command: claude -p "/red64:spec-impl medication-foundation 12 -y"
+[09:44:50] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/medication-foundation
+[09:44:50] Sandbox: Docker isolated mode
+[09:44:50] Model: claude-opus-4-6
+[09:50:13] Opening preview: Tasks...
+[09:50:13] Preview opened at: http://localhost:3405
+[09:52:10] ## Task 12 Implementation Complete
+[09:52:10] All three end-to-end system tests have been implemented:
+[09:52:10] ### 12.1 - Complete Medication Workflow (`test/system/medication_workflow_test.rb`)
+[09:52:10] - **3 tests** covering the full flow: create prescription, add medication with drug search autocomplete, configure dosing schedule, navigate to daily schedule, log dose as taken
+[09:52:10] ### 12.2 - Printable Plan & Adherence History (`test/system/printable_plan_and_adherence_test.rb`)
+[09:52:10] - Adherence history with period selection (7/30/90 days), statistics table, calendar heatmap with aria-labels, and day-click detail view
+[09:52:10] - Requirements: 2.4, 3.5, 4.5, 5.1, 7.1
+[09:52:10] - Tests skip-with-reason and undo functionality via Turbo Stream
+[09:52:10] ### 12.3 - Mobile Responsive Navigation (`test/system/mobile_responsive_navigation_test.rb`)
+[09:52:10] - Tests daily schedule, prescriptions list, prescription detail, adherence history, and printable plan rendering at mobile viewport
+[09:52:10] - **7 tests** covering print view with time-of-day groups (Morning/Midday/Evening), table headers, inactive medication exclusion
+[09:52:10] - Requirements: 11.1, 11.2
+[09:52:10] - **7 tests** at 320px viewport verifying hamburger menu visibility, all navigation links present in mobile menu, correct page navigation
+[09:52:10] ### Next Steps
+[09:52:10] - `/red64:spec-impl medication-foundation` - Execute remaining pending tasks (3.2, 4.2, 5.2, 7.2, 9.2)
+[09:52:10] - `/red64:spec-status medication-foundation` - Check overall progress
+[09:52:10] - `bin/rails test:system` - Run the system tests to verify they pass against the live application
+[09:52:10] - Requirements: 8.3, 8.4, 9.1, 9.4
+[09:52:11] Exit code: 0
+[09:52:11] Success: true
+[09:52:11] --- stdout ---
+[09:52:11] ## Task 12 Implementation Complete
+
+All three end-to-end system tests have been implemented:
+
+### 12.1 - Complete Medication Workflow (`test/system/medication_workflow_test.rb`)
+- **3 tests** covering the full flow: create prescription, add medication with drug search autocomplete, configure dosing schedule, navigate to daily schedule, log dose as taken
+- Tests skip-with-reason and undo functionality via Turbo Stream
+- Requirements: 2.4, 3.5, 4.5, 5.1, 7.1
+
+### 12.2 - Printable Plan & Adherence History (`test/system/printable_plan_and_adherence_test.rb`)
+- **7 tests** covering print view with time-of-day groups (Morning/Midday/Evening), table headers, inactive medication exclusion
+- Adherence history with period selection (7/30/90 days), statistics table, calendar heatmap with aria-labels, and day-click detail view
+- Requirements: 8.3, 8.4, 9.1, 9.4
+
+### 12.3 - Mobile Responsive Navigation (`test/system/mobile_responsive_navigation_test.rb`)
+- **7 tests** at 320px viewport verifying hamburger menu visibility, all navigation links present in mobile menu, correct page navigation
+- Tests daily schedule, prescriptions list, prescription detail, adherence history, and printable plan rendering at mobile viewport
+- Requirements: 11.1, 11.2
+
+### Next Steps
+
+- `/red64:spec-impl medication-foundation` - Execute remaining pending tasks (3.2, 4.2, 5.2, 7.2, 9.2)
+- `/red64:spec-status medication-foundation` - Check overall progress
+- `bin/rails test:system` - Run the system tests to verify they pass against the live application
+
+[09:52:11] --- end command ---
+
+[09:52:11] Warning: Failed to mark task 12 in tasks.md: Task 12 not found in tasks.md
+[09:52:11] Committing: feat(medication-foundation): implement task 37 - End-to-end system tests...

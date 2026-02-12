@@ -250,18 +250,18 @@
   - Ensure flash messages render correctly within Turbo Frame and Turbo Stream responses
   - _Requirements: 11.3, 11.4_
 
-- [ ] 12. End-to-end system tests
-- [ ] 12.1 Write a system test covering the complete medication workflow
+- [x] 12. End-to-end system tests
+- [x] 12.1 Write a system test covering the complete medication workflow
   - Test the full flow: create a prescription, add a medication with drug search, configure a dosing schedule, navigate to the daily schedule, and log a dose as taken
   - Verify Turbo Frame and Turbo Stream interactions work end-to-end in the browser
   - _Requirements: 2.4, 3.5, 4.5, 5.1, 7.1_
 
-- [ ]* 12.2 (P) Write system tests for printable plan and adherence history
+- [x]* 12.2 (P) Write system tests for printable plan and adherence history
   - Test navigating to the print view and verifying the print-optimized layout includes all active medications organized by time of day
   - Test navigating to the adherence history view, selecting a time period, and clicking a day for detail
   - _Requirements: 8.3, 8.4, 9.1, 9.4_
 
-- [ ]* 12.3 (P) Write a system test verifying mobile-responsive navigation
+- [x]* 12.3 (P) Write a system test verifying mobile-responsive navigation
   - Test the medication navigation on a small viewport (320px width)
   - Verify all navigation links are accessible and the layout adapts correctly
   - _Requirements: 11.1, 11.2_
