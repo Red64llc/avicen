@@ -1,70 +1,85 @@
-<%= form_with(model: [ @biology_report, @test_result ], local: true, class: "space-y-6") do |form| %>
-  <% if @test_result.errors.any? %>
-    <div class="bg-red-50 border border-red-200 rounded p-4 mb-4">
-      <h3 class="text-red-800 font-medium mb-2"><%= pluralize(@test_result.errors.count, "error") %> prohibited this test result from being saved:</h3>
-      <ul class="list-disc list-inside text-red-700">
-        <% @test_result.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :biomarker_id, "Biomarker", class: "block text-sm font-medium text-gray-700 mb-2" %>
-    <%= form.collection_select :biomarker_id,
-        Biomarker.order(:name),
-        :id,
-        :name,
-        { prompt: "Select a biomarker" },
-        { class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500", required: true } %>
-    <p class="mt-1 text-sm text-gray-500">Choose the biomarker that was tested</p>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div>
-      <%= form.label :value, "Test Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.number_field :value,
-          step: :any,
-          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
-          placeholder: "Enter test result value",
-          required: true %>
-    </div>
+<div data-controller="biomarker-autofill">
+  <%= form_with(model: [ @biology_report, @test_result ], local: true, class: "space-y-6") do |form| %>
+    <% if @test_result.errors.any? %>
+      <div class="bg-red-50 border border-red-200 rounded p-4 mb-4">
+        <h3 class="text-red-800 font-medium mb-2"><%= pluralize(@test_result.errors.count, "error") %> prohibited this test result from being saved:</h3>
+        <ul class="list-disc list-inside text-red-700">
+          <% @test_result.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <div>
-      <%= form.label :unit, "Unit of Measurement", class: "block text-sm font-medium text-gray-700 mb-2" %>
-      <%= form.text_field :unit,
-          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
-          placeholder: "e.g., mg/dL, g/dL",
-          required: true %>
+      <%= form.label :biomarker_id, "Biomarker", class: "block text-sm font-medium text-gray-700 mb-2" %>
+      <%= form.select :biomarker_id,
+          options_for_select(
+            [["Select a biomarker", ""]] + Biomarker.order(:name).map { |b|
+              [b.name, b.id, { "data-unit" => b.unit, "data-ref-min" => b.ref_min, "data-ref-max" => b.ref_max }]
+            },
+            @test_result.biomarker_id
+          ),
+          {},
+          {
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+            required: true,
+            data: {
+              biomarker_autofill_target: "biomarkerSelect",
+              action: "change->biomarker-autofill#autofill"
+            }
+          } %>
+      <p class="mt-1 text-sm text-gray-500">Choose the biomarker that was tested</p>
     </div>
-  </div>
-
-  <div class="border-t pt-6">
-    <h3 class="text-lg font-medium text-gray-900 mb-4">Reference Range</h3>
-    <p class="text-sm text-gray-500 mb-4">These values are used to determine if the test result is within normal range</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <%= form.label :ref_min, "Minimum Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <%= form.number_field :ref_min,
+        <%= form.label :value, "Test Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.number_field :value,
             step: :any,
             class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
-            placeholder: "Lower bound" %>
+            placeholder: "Enter test result value",
+            required: true %>
       </div>
 
       <div>
-        <%= form.label :ref_max, "Maximum Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
-        <%= form.number_field :ref_max,
-            step: :any,
+        <%= form.label :unit, "Unit of Measurement", class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.text_field :unit,
             class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
-            placeholder: "Upper bound" %>
+            placeholder: "e.g., mg/dL, g/dL",
+            required: true,
+            data: { biomarker_autofill_target: "unitField" } %>
       </div>
     </div>
-  </div>
 
-  <div class="flex justify-end space-x-3 pt-6 border-t">
-    <%= link_to "Cancel", @biology_report, class: "btn btn-secondary" %>
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+    <div class="border-t pt-6">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">Reference Range</h3>
+      <p class="text-sm text-gray-500 mb-4">These values are used to determine if the test result is within normal range</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <%= form.label :ref_min, "Minimum Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= form.number_field :ref_min,
+              step: :any,
+              class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+              placeholder: "Lower bound",
+              data: { biomarker_autofill_target: "refMinField" } %>
+        </div>
+
+        <div>
+          <%= form.label :ref_max, "Maximum Value", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= form.number_field :ref_max,
+              step: :any,
+              class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+              placeholder: "Upper bound",
+              data: { biomarker_autofill_target: "refMaxField" } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end space-x-3 pt-6 border-t">
+      <%= link_to "Cancel", @biology_report, class: "btn btn-secondary" %>
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

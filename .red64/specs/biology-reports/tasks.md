@@ -117,7 +117,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Implement destroy action with Turbo Stream removal
   - _Requirements: 3.1, 3.2, 3.3, 3.5, 3.6_
 
-- [ ] 5.2 (P) Create views for test results (nested forms, list partial)
+- [x] 5.2 (P) Create views for test results (nested forms, list partial)
   - Build _form partial with fields for biomarker selection, value, unit, ref_min, ref_max
   - Pre-populate unit and reference ranges from biomarker catalog when biomarker_id present
   - Allow user to override auto-filled ref_min and ref_max values
