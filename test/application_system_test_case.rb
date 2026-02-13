@@ -251,6 +251,17 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     logs.take(10) # Limit to 10 entries
   end
 
+  # Fill in an HTML5 date field with a date string (YYYY-MM-DD format)
+  # This uses JavaScript to set the value directly, avoiding browser-specific
+  # date input behaviors that can cause issues in headless Chrome
+  def fill_in_date(label, with:)
+    field = find_field(label)
+    field_id = field[:id]
+    page.execute_script("document.getElementById('#{field_id}').value = '#{with}'")
+    # Trigger change event so any JavaScript listeners are notified
+    page.execute_script("document.getElementById('#{field_id}').dispatchEvent(new Event('change', { bubbles: true }))")
+  end
+
   # Check if key assets are accessible via XMLHttpRequest (sync)
   def check_asset_accessibility(imports)
     results = []

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class BiologyReportFilteringTest < ApplicationSystemTestCase
   test "filter form auto-submits on input change with debouncing" do
-    sign_in_as(users(:one))
+    sign_in_as_system(users(:one))
 
     # Create test data
     visit biology_reports_path
@@ -11,7 +11,7 @@ class BiologyReportFilteringTest < ApplicationSystemTestCase
     assert_selector "form"
 
     # Type in lab name filter - should auto-submit after debounce
-    fill_in "lab_name", with: "Quest"
+    fill_in "Laboratory", with: "Quest"
 
     # Give debounce time to trigger (default 300ms)
     sleep 0.5
@@ -22,11 +22,11 @@ class BiologyReportFilteringTest < ApplicationSystemTestCase
   end
 
   test "date filters auto-submit via Turbo Frame" do
-    sign_in_as(users(:one))
+    sign_in_as_system(users(:one))
     visit biology_reports_path
 
-    # Change date filter
-    fill_in "date_from", with: 1.month.ago.to_date
+    # Change date filter (use helper for date field)
+    fill_in_date "From Date", with: 1.month.ago.to_date.to_s
 
     sleep 0.5
 
@@ -35,15 +35,15 @@ class BiologyReportFilteringTest < ApplicationSystemTestCase
   end
 
   test "multiple rapid filter changes are debounced" do
-    sign_in_as(users(:one))
+    sign_in_as_system(users(:one))
     visit biology_reports_path
 
     # Rapid typing should only trigger one request after debounce
-    fill_in "lab_name", with: "Q"
-    fill_in "lab_name", with: "Qu"
-    fill_in "lab_name", with: "Que"
-    fill_in "lab_name", with: "Ques"
-    fill_in "lab_name", with: "Quest"
+    fill_in "Laboratory", with: "Q"
+    fill_in "Laboratory", with: "Qu"
+    fill_in "Laboratory", with: "Que"
+    fill_in "Laboratory", with: "Ques"
+    fill_in "Laboratory", with: "Quest"
 
     sleep 0.5
 

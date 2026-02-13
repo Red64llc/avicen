@@ -29,8 +29,9 @@
       <%= form.hidden_field :biomarker_id,
           data: { biomarker_search_target: "hidden" } %>
       <ul data-biomarker-search-target="results"
-          class="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg mt-1 max-h-60 overflow-auto hidden"
-          role="listbox"></ul>
+          class="absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg mt-1 max-h-60 overflow-auto"
+          role="listbox"
+          hidden></ul>
     </div>
     <p class="mt-1 text-sm text-gray-500">Start typing to search for a biomarker (minimum 2 characters)</p>
   </div>

@@ -8,11 +8,6 @@ class BiologyReportsController < ApplicationController
     # Apply filters
     @biology_reports = @biology_reports.by_date_range(params[:date_from], params[:date_to]) if params[:date_from].present? || params[:date_to].present?
     @biology_reports = @biology_reports.by_lab_name(params[:lab_name]) if params[:lab_name].present?
-
-    # Handle Turbo Frame requests
-    if turbo_frame_request?
-      render partial: "biology_reports_list", locals: { biology_reports: @biology_reports }, layout: false
-    end
   end
 
   # GET /biology_reports/:id

@@ -3,7 +3,7 @@ require "application_system_test_case"
 class BiomarkerTrendsTest < ApplicationSystemTestCase
   setup do
     @user = users(:one)
-    login_as(@user)
+    sign_in_as_system(@user)
 
     @biomarker = biomarkers(:glucose)
     @biology_report1 = biology_reports(:one)
@@ -38,19 +38,28 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
   end
 
   test "displays table when fewer than 2 data points exist" do
+    # Use a biomarker with no existing test results
+    biomarker_without_results = Biomarker.create!(
+      name: "TestBiomarker",
+      code: "TST",
+      unit: "mg/dL",
+      ref_min: 70,
+      ref_max: 100
+    )
+
     # Create only 1 test result
     TestResult.create!(
       biology_report: @biology_report1,
-      biomarker: @biomarker,
+      biomarker: biomarker_without_results,
       value: 95,
       unit: "mg/dL",
       ref_min: 70,
       ref_max: 100
     )
 
-    visit biomarker_trends_path(@biomarker)
+    visit biomarker_trends_path(biomarker_without_results)
 
-    assert_selector "h1", text: @biomarker.name
+    assert_selector "h1", text: biomarker_without_results.name
     assert_selector "table"
     assert_text "Insufficient data for trend chart"
     assert_no_selector "canvas"
@@ -59,7 +68,8 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
   test "returns 404 when biomarker not found" do
     visit biomarker_trends_path(id: 99999)
 
-    assert_text "not found", count: 1, minimum: 1
+    # Rails shows error page with "Couldn't find Biomarker" in test/development mode
+    assert_text "Couldn't find Biomarker"
   end
 
   test "chart.js and annotation plugin are loaded via importmap" do
@@ -86,14 +96,5 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
 
     # Check that canvas element exists (chart would render if JS loaded)
     assert_selector "canvas[data-biomarker-chart-target='canvas']"
-  end
-
-  private
-
-  def login_as(user)
-    visit new_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "password123"
-    click_button "Sign in"
   end
 end

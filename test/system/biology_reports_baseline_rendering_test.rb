@@ -53,12 +53,12 @@ class BiologyReportsBaselineRenderingTest < ApplicationSystemTestCase
     assert_selector "table thead"
     assert_selector "table tbody"
 
-    # Verify table headers
+    # Verify table headers (use case-insensitive match since CSS may transform text)
     within "table thead" do
-      assert_text "Biomarker"
-      assert_text "Value"
-      assert_text "Reference Range"
-      assert_text "Status"
+      assert_selector "th", text: /biomarker/i
+      assert_selector "th", text: /value/i
+      assert_selector "th", text: /reference range/i
+      assert_selector "th", text: /status/i
     end
 
     # Verify test result row renders
@@ -191,8 +191,8 @@ class BiologyReportsBaselineRenderingTest < ApplicationSystemTestCase
   end
 
   test "biomarker trend page handles insufficient data correctly" do
-    # Create only one test result (need 2+ for chart)
-    glucose = biomarkers(:glucose)
+    # Use TSH which has no existing test results in fixtures
+    tsh = biomarkers(:tsh)
 
     report = BiologyReport.create!(
       user: @user,
@@ -200,19 +200,20 @@ class BiologyReportsBaselineRenderingTest < ApplicationSystemTestCase
       lab_name: "Test Lab"
     )
 
+    # Create only one test result (need 2+ for chart)
     TestResult.create!(
       biology_report: report,
-      biomarker: glucose,
-      value: 95.0,
-      unit: "mg/dL",
-      ref_min: 70.0,
-      ref_max: 100.0
+      biomarker: tsh,
+      value: 2.5,
+      unit: "mIU/L",
+      ref_min: 0.4,
+      ref_max: 4.0
     )
 
-    visit biomarker_trends_path(glucose)
+    visit biomarker_trends_path(tsh)
 
     # Page should still render
-    assert_selector "h1", text: glucose.name
+    assert_selector "h1", text: tsh.name
 
     # Should show message about insufficient data
     assert_text "Insufficient data for trend chart"
