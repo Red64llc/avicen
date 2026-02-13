@@ -237,7 +237,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test Turbo Frame responses for filtered index
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 4.1, 4.3, 4.4, 6.1, 6.2, 6.3_
 
-- [ ] 10.4 Create controller tests for TestResultsController
+- [x] 10.4 Create controller tests for TestResultsController
   - Test nested routes and parent biology_report scoping
   - Test create action with auto-filled reference ranges
   - Test update action with Turbo Stream responses
