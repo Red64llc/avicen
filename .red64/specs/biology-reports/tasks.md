@@ -259,7 +259,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test 404 response when biomarker not found
   - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 10.7 Create system tests for end-to-end flows
+- [x] 10.7 Create system tests for end-to-end flows
   - Test create biology report, add test results, view report detail, verify out-of-range flagging
   - Test upload document, view document, delete document
   - Test biomarker autocomplete search, select biomarker, verify auto-filled ranges
