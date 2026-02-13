@@ -267,7 +267,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test filter biology reports by date range and lab name with Turbo Frame updates
   - _Requirements: 1.2, 1.3, 2.1, 2.5, 3.4, 4.3, 4.4, 5.4, 6.1, 6.2, 6.3_
 
-- [ ]* 10.8 Create baseline rendering tests for UI components
+- [x]* 10.8 Create baseline rendering tests for UI components
   - Test biology report index page renders correctly
   - Test biology report show page renders with test results
   - Test biomarker trend chart canvas element present
