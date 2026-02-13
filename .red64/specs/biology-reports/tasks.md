@@ -174,7 +174,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Handle missing data gracefully by checking data point count
   - _Requirements: 5.1, 5.2, 5.4_
 
-- [ ] 7.4 (P) Create biomarker trends view
+- [x] 7.4 (P) Create biomarker trends view
   - Build view displaying biomarker name and trend chart canvas element
   - Attach biomarker-chart Stimulus controller with data attributes
   - Render table view when fewer than 2 data points available
