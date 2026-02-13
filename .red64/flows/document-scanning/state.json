@@ -1,11 +1,11 @@
 {
   "feature": "document-scanning",
   "phase": {
-    "type": "gap-analysis",
+    "type": "design-generating",
     "feature": "document-scanning"
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T10:59:54.734Z",
+  "updatedAt": "2026-02-13T11:55:05.570Z",
   "history": [
     {
       "phase": {
@@ -35,6 +35,13 @@
         "feature": "document-scanning"
       },
       "timestamp": "2026-02-13T10:59:54.734Z"
+    },
+    {
+      "phase": {
+        "type": "design-generating",
+        "feature": "document-scanning"
+      },
+      "timestamp": "2026-02-13T11:55:05.570Z"
     }
   ],
   "metadata": {
@@ -53,6 +60,16 @@
       "outputTokens": 5200,
       "cacheReadTokens": 169664,
       "cacheCreationTokens": 55933
+    },
+    "gap-analysis": {
+      "startedAt": "2026-02-13T10:59:54.737Z",
+      "completedAt": "2026-02-13T11:03:42.919Z",
+      "elapsedMs": 228182,
+      "costUsd": 1.4924625,
+      "inputTokens": 10540,
+      "outputTokens": 9823,
+      "cacheReadTokens": 1160277,
+      "cacheCreationTokens": 94892
     }
   },
   "artifacts": [
@@ -69,6 +86,13 @@
       "path": ".red64/specs/document-scanning/requirements.md",
       "phase": "requirements-generating",
       "createdAt": "2026-02-13T10:51:18.173Z"
+    },
+    {
+      "name": "Gap Analysis",
+      "filename": "gap-analysis.md",
+      "path": ".red64/specs/document-scanning/gap-analysis.md",
+      "phase": "gap-analysis",
+      "createdAt": "2026-02-13T11:03:43.099Z"
     }
   ],
   "version": 2
