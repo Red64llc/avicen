@@ -6,7 +6,7 @@ Implementation tasks for AI-powered document scanning feature.
 
 ---
 
-- [ ] 1. Add ruby_llm gem and configure Claude Vision integration
+- [x] 1. Add ruby_llm gem and configure Claude Vision integration
   - Add `ruby_llm` gem to Gemfile and run bundle install
   - Create initializer at `config/initializers/ruby_llm.rb` with Anthropic API key from credentials
   - Configure default model for vision capabilities (Claude Sonnet)
