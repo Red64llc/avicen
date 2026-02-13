@@ -504,6 +504,91 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
     end
   end
 
+  # --- Schema Validation Tests (Task 5.2) ---
+
+  test "returns error when medication missing required drug_name field" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"medications": [{"dosage": "500mg", "confidence": 0.9}]}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :extraction, result.error_type
+      assert_match(/drug_name/i, result.error_message)
+    end
+  end
+
+  test "returns error when medication missing required confidence field" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"medications": [{"drug_name": "Aspirin", "dosage": "500mg"}]}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :extraction, result.error_type
+      assert_match(/confidence/i, result.error_message)
+    end
+  end
+
+  test "handles medication with all optional fields missing except required ones" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"medications": [{"drug_name": "Aspirin", "confidence": 0.9}]}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_equal 1, result.medications.length
+      medication = result.medications.first
+      assert_equal "Aspirin", medication.drug_name
+      assert_equal 0.9, medication.confidence
+      assert_nil medication.dosage
+      assert_nil medication.frequency
+      assert_nil medication.duration
+      assert_nil medication.quantity
+    end
+  end
+
+  test "validates medications array is not empty when extraction returns no medications" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"doctor_name": "Dr. Smith", "medications": []}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      # Empty medications array should still succeed - it's valid JSON
+      # The caller can decide how to handle empty extractions
+      assert result.success?
+      assert_equal 0, result.medications.length
+    end
+  end
+
   private
 
   def create_mock_blob

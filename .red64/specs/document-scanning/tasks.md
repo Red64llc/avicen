@@ -77,7 +77,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Implement constructor accepting image blob and optional llm_client for testing
   - _Requirements: 7.1, 7.6, 7.7_
 
-- [ ] 5.2 Implement prescription extraction logic
+- [x] 5.2 Implement prescription extraction logic
   - Build extraction prompt requesting structured medication data
   - Use ruby_llm gem with vision capabilities to process image
   - Send prompt with image to Claude API via ruby_llm

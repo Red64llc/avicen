@@ -202,6 +202,7 @@ class PrescriptionScannerService
   end
 
   # Parse the LLM response content, handling markdown code fences
+  # Validates response structure against PrescriptionExtractionSchema requirements.
   #
   # @param content [String] Raw response content
   # @return [Hash] Parsed JSON as hash with symbol keys
@@ -218,9 +219,39 @@ class PrescriptionScannerService
       raise ExtractionError, "Response missing required 'medications' array"
     end
 
+    # Validate each medication against PrescriptionExtractionSchema requirements
+    validate_medications_schema(parsed["medications"])
+
     symbolize_keys_deep(parsed)
   rescue JSON::ParserError => e
     raise ExtractionError, "Failed to parse JSON response: #{e.message}"
+  end
+
+  # Validate medications array against PrescriptionExtractionSchema requirements.
+  # The schema defines required fields for each medication:
+  #   - drug_name: Name of the medication (required)
+  #   - confidence: Extraction confidence score 0.0-1.0 (required)
+  # Optional fields (dosage, frequency, duration, quantity) are not validated here.
+  #
+  # @param medications [Array<Hash>] Array of medication hashes from JSON response
+  # @raise [ExtractionError] If required fields are missing per PrescriptionExtractionSchema
+  # @see PrescriptionExtractionSchema for the authoritative schema definition
+  def validate_medications_schema(medications)
+    medications.each_with_index do |medication, index|
+      unless medication.is_a?(Hash)
+        raise ExtractionError, "Medication at index #{index} is not an object"
+      end
+
+      # drug_name is required per PrescriptionExtractionSchema
+      unless medication.key?("drug_name") && medication["drug_name"].present?
+        raise ExtractionError, "Medication at index #{index} missing required 'drug_name' field"
+      end
+
+      # confidence is required per PrescriptionExtractionSchema
+      unless medication.key?("confidence")
+        raise ExtractionError, "Medication at index #{index} missing required 'confidence' field"
+      end
+    end
   end
 
   # Extract JSON from content that may be wrapped in markdown code fences

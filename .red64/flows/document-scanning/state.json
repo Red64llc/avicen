@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:06:06.170Z",
+  "updatedAt": "2026-02-13T17:10:04.332Z",
   "history": [
     {
       "phase": {
@@ -1452,6 +1452,28 @@
       "timestamp": "2026-02-13T17:06:06.170Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:06:06.348Z",
+      "event": "TASK_START",
+      "subStep": "task-5.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:10:04.332Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.2-completed"
     }
   ],
   "metadata": {
@@ -1862,9 +1884,32 @@
       {
         "id": "5.2",
         "title": "Implement prescription extraction logic",
-        "startedAt": "2026-02-13T13:46:03.782Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T17:06:06.348Z",
+        "completedAt": "2026-02-13T17:10:04.330Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 15644,
+          "outputTokens": 10122,
+          "totalTokens": 25766,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2203542,
+          "cacheCreationTokens": 147413,
+          "costUsd": 2.3698672500000004
+        },
+        "contextUsage": {
+          "inputTokens": 15644,
+          "outputTokens": 10122,
+          "totalTokens": 25766,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2203542,
+          "cacheCreationTokens": 147413,
+          "costUsd": 2.3698672500000004,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 7.822,
+          "cumulativeInputTokens": 212112,
+          "cumulativeUtilization": 106.056,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "5.3",
@@ -2147,7 +2192,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "5.1"
+    "currentTaskId": "5.2"
   },
   "phaseMetrics": {
     "requirements-generating": {
