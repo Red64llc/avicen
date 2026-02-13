@@ -69,9 +69,10 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
   test "index should return turbo_frame for turbo_frame requests" do
     get biology_reports_url, headers: { "Turbo-Frame" => "biology_reports_list" }
     assert_response :success
-    # Should render partial without full page layout
-    assert_no_match /<h1.*Biology Reports/, response.body
-    # Should have the report list content
+    # Should use minimal turbo_rails/frame layout (no navbar)
+    assert_no_match /shared\/navbar/, response.body
+    # Should have the turbo frame with report list content
+    assert_match /turbo-frame.*biology_reports_list/, response.body
     assert_match /LabCorp/, response.body
   end
 
