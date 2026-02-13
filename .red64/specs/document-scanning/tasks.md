@@ -37,7 +37,7 @@ Implementation tasks for AI-powered document scanning feature.
   - _Requirements: 1.3, 1.8, 1.9_
 
 - [x] 3. Image processing service for Claude Vision optimization
-- [ ] 3.1 Create ImageProcessingService
+- [x] 3.1 Create ImageProcessingService
   - Implement service that resizes images to max 1568px in largest dimension
   - Preserve aspect ratio during resize operation
   - Convert HEIC format to JPEG for API compatibility
