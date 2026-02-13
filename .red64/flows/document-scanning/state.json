@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:10:04.332Z",
+  "updatedAt": "2026-02-13T17:13:06.657Z",
   "history": [
     {
       "phase": {
@@ -1474,6 +1474,28 @@
       "timestamp": "2026-02-13T17:10:04.332Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:10:04.514Z",
+      "event": "TASK_START",
+      "subStep": "task-5.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:13:06.657Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.3-completed"
     }
   ],
   "metadata": {
@@ -1914,9 +1936,32 @@
       {
         "id": "5.3",
         "title": "Add drug matching and confidence scoring",
-        "startedAt": "2026-02-13T13:46:03.909Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T17:10:04.514Z",
+        "completedAt": "2026-02-13T17:13:06.655Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 14172,
+          "outputTokens": 7348,
+          "totalTokens": 21520,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1261697,
+          "cacheCreationTokens": 85000,
+          "costUsd": 1.4281455
+        },
+        "contextUsage": {
+          "inputTokens": 14172,
+          "outputTokens": 7348,
+          "totalTokens": 21520,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1261697,
+          "cacheCreationTokens": 85000,
+          "costUsd": 1.4281455,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 7.086,
+          "cumulativeInputTokens": 226284,
+          "cumulativeUtilization": 113.14200000000001,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "5.4",
@@ -2192,7 +2237,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "5.2"
+    "currentTaskId": "5.3"
   },
   "phaseMetrics": {
     "requirements-generating": {

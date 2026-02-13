@@ -86,7 +86,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Extract multiple medications when present on single prescription
   - _Requirements: 3.1, 3.2, 3.4, 3.5, 7.3, 7.9_
 
-- [ ] 5.3 Add drug matching and confidence scoring
+- [x] 5.3 Add drug matching and confidence scoring
   - Query Drug model to match extracted drug names
   - Use fuzzy matching for AI-generated name variations
   - Populate matched_drug reference and associated metadata (active ingredients, RxCUI)
