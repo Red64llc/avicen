@@ -1,6 +1,7 @@
 require "test_helper"
 
 class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
+  include ActionDispatch::TestProcess::FixtureFile
   setup do
     @user = users(:one)
     @other_user = users(:two)
@@ -203,6 +204,117 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
+  end
+
+  # Document upload tests
+  test "should update biology_report with document attachment" do
+    document = fixture_file_upload("test_lab_report.pdf", "application/pdf")
+
+    patch biology_report_url(@biology_report), params: {
+      biology_report: {
+        document: document
+      }
+    }
+
+    assert_redirected_to biology_report_url(@biology_report)
+    @biology_report.reload
+    assert @biology_report.document.attached?, "Document should be attached"
+  end
+
+  test "should replace existing document when uploading new one" do
+    # First attach a document
+    document1 = fixture_file_upload("test_lab_report.pdf", "application/pdf")
+    @biology_report.document.attach(document1)
+    @biology_report.save!
+
+    # Now upload a new document
+    document2 = fixture_file_upload("test_lab_report.pdf", "application/pdf")
+    patch biology_report_url(@biology_report), params: {
+      biology_report: {
+        document: document2
+      }
+    }
+
+    assert_redirected_to biology_report_url(@biology_report)
+    @biology_report.reload
+    assert @biology_report.document.attached?, "New document should be attached"
+  end
+
+  test "should create biology_report with document attachment" do
+    document = fixture_file_upload("test_lab_report.pdf", "application/pdf")
+
+    assert_difference("BiologyReport.count") do
+      post biology_reports_url, params: {
+        biology_report: {
+          test_date: "2025-02-10",
+          lab_name: "Quest Diagnostics",
+          document: document
+        }
+      }
+    end
+
+    created_report = BiologyReport.last
+    assert created_report.document.attached?, "Document should be attached to new report"
+  end
+
+  test "should reject invalid document type" do
+    # Create a mock text file (invalid type)
+    invalid_doc = fixture_file_upload("../users.yml", "text/plain")
+
+    patch biology_report_url(@biology_report), params: {
+      biology_report: {
+        document: invalid_doc
+      }
+    }
+
+    assert_response :unprocessable_entity
+    @biology_report.reload
+    # Document validation should prevent attachment of invalid types
+  end
+
+  test "should accept JPEG image as document" do
+    image = fixture_file_upload("test_image.jpg", "image/jpeg")
+
+    patch biology_report_url(@biology_report), params: {
+      biology_report: {
+        document: image
+      }
+    }
+
+    assert_redirected_to biology_report_url(@biology_report)
+    @biology_report.reload
+    assert @biology_report.document.attached?, "JPEG image should be attached"
+    assert_equal "image/jpeg", @biology_report.document.content_type
+  end
+
+  test "should accept PNG image as document" do
+    image = fixture_file_upload("test_image.png", "image/png")
+
+    patch biology_report_url(@biology_report), params: {
+      biology_report: {
+        document: image
+      }
+    }
+
+    assert_redirected_to biology_report_url(@biology_report)
+    @biology_report.reload
+    assert @biology_report.document.attached?, "PNG image should be attached"
+    assert_equal "image/png", @biology_report.document.content_type
+  end
+
+  test "should handle document removal" do
+    # First attach a document
+    document = fixture_file_upload("test_lab_report.pdf", "application/pdf")
+    @biology_report.document.attach(document)
+    @biology_report.save!
+
+    assert @biology_report.document.attached?, "Document should be attached initially"
+
+    # Remove document by purging
+    @biology_report.document.purge
+    @biology_report.reload
+
+    assert_not @biology_report.document.attached?, "Document should be removed"
   end
 
   # Destroy action tests

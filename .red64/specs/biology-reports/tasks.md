@@ -228,7 +228,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test boundary conditions (value equals min or max) treated as in range
   - _Requirements: 3.4, 3.6_
 
-- [ ] 10.3 Create controller tests for BiologyReportsController
+- [x] 10.3 Create controller tests for BiologyReportsController
   - Test index action with user scoping and filtering by date/lab
   - Test show action with user scoping, 404 for unauthorized access
   - Test create action with valid and invalid parameters
