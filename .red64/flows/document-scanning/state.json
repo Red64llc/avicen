@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:35:12.269Z",
+  "updatedAt": "2026-02-13T17:42:30.387Z",
   "history": [
     {
       "phase": {
@@ -1628,6 +1628,28 @@
       "timestamp": "2026-02-13T17:35:12.269Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-6.4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:35:12.463Z",
+      "event": "TASK_START",
+      "subStep": "task-7-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:42:30.387Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7-completed"
     }
   ],
   "metadata": {
@@ -1642,7 +1664,8 @@
       3,
       4,
       5,
-      6
+      6,
+      7
     ],
     "totalGroups": 13,
     "taskEntries": [
@@ -2256,9 +2279,32 @@
       {
         "id": "7",
         "title": "Document extraction background job",
-        "startedAt": "2026-02-13T13:46:04.527Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T17:35:12.463Z",
+        "completedAt": "2026-02-13T17:42:30.384Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 18649,
+          "outputTokens": 23552,
+          "totalTokens": 42201,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 3070794,
+          "cacheCreationTokens": 167725,
+          "costUsd": 3.287343250000001
+        },
+        "contextUsage": {
+          "inputTokens": 18649,
+          "outputTokens": 23552,
+          "totalTokens": 42201,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 3070794,
+          "cacheCreationTokens": 167725,
+          "costUsd": 3.287343250000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 9.324499999999999,
+          "cumulativeInputTokens": 297649,
+          "cumulativeUtilization": 148.8245,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "7.1",
@@ -2485,7 +2531,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "6.4"
+    "currentTaskId": "7"
   },
   "phaseMetrics": {
     "requirements-generating": {

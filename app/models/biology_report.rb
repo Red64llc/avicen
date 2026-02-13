@@ -1,4 +1,7 @@
 class BiologyReport < ApplicationRecord
+  # Includes
+  include Turbo::Broadcastable
+
   # Associations
   belongs_to :user
   has_many :test_results, dependent: :destroy

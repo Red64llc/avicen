@@ -136,7 +136,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Test error handling for API failures
   - _Requirements: 7.10_
 
-- [ ] 7. Document extraction background job
+- [x] 7. Document extraction background job
 - [ ] 7.1 Create DocumentExtractionJob
   - Inherit from ApplicationJob with default queue
   - Accept record_type, record_id, and blob_id as perform arguments

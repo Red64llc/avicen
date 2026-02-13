@@ -1,4 +1,7 @@
 class Prescription < ApplicationRecord
+  # Includes
+  include Turbo::Broadcastable
+
   # Associations
   belongs_to :user
   has_many :medications, dependent: :destroy

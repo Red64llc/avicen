@@ -751,3 +751,56 @@ Or to execute all remaining pending tasks:
 [17:35:12] --- end command ---
 
 [17:35:12] Committing: feat(document-scanning): implement task 21 - Add BiologyReportScannerService tests...
+[17:35:12] Committed: cc85a37
+[17:35:12] Task 6.4 completed
+[17:35:12] 
+[17:35:12] [22/54] Task 7: Document extraction background job
+[17:35:12] --- Executing command ---
+[17:35:12] Command: claude -p "/red64:spec-impl document-scanning 7 -y"
+[17:35:12] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/document-scanning
+[17:35:12] Sandbox: Docker isolated mode
+[17:35:12] Model: opus
+[17:42:29] {"type":"result","subtype":"success","is_error":false,"duration_ms":436305,"duration_api_ms":449385,"num_turns":8,"result":"The TDD implementation for Task 7 (Document extraction background job) has been completed.\n\n## Summary\n\n### Tasks Completed: 7.1, 7.2, 7.3, 7.4\n\n**Files Created:**\n\n1. **`app/jobs/document_extraction_job.rb`** - The main background job that:\n   - Routes to PrescriptionScannerService or BiologyReportScannerService based on record_type\n   - Updates extraction_status through the lifecycle (pending → processing → extracted/failed)\n   - Stores results in `extracted_data` jsonb column\n   - Configures `retry_on` for RateLimitError with polynomial backoff (3 attempts)\n   - Configures `discard_on` for ConfigurationError (non-retryable)\n   - Handles RecordNotFound gracefully when record is deleted while queued\n   - Logs sanitized error details (no medical content)\n   - Broadcasts Turbo Stream updates on completion\n\n2. **`test/jobs/document_extraction_job_test.rb`** - Comprehensive test suite with 25 tests covering:\n   - Successful extraction for both Prescription and BiologyReport\n   - Status transitions through the extraction lifecycle\n   - Retry/discard behavior configuration\n   - Turbo Stream broadcasting\n   - Error handling and logging\n\n3. **`app/views/document_scans/_extraction_status.html.erb`** - Turbo Stream partial showing extraction status with appropriate UI for each state\n\n**Files Modified:**\n\n- `app/models/prescription.rb` - Added `include Turbo::Broadcastable`\n- `app/models/biology_report.rb` - Added `include Turbo::Broadcastable`\n\n### Next Steps\n\nTo continue implementation, run:\n- `/red64:spec-impl document-scanning 8` - Document scans controller and routing\n- `/red64:spec-impl document-scanning` - All remaining pending tasks","session_id":"1eabccfc-c936-4740-920c-1f67237d5db3","total_cost_usd":3.287343250000001,"usage":{"input_tokens":5642,"cache_creation_input_tokens":63014,"cache_read_input_tokens":98629,"output_tokens":1958,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0},"service_tier":"standard","cache_creation":{"ephemeral_1h_input_tokens":0,"ephemeral_5m_input_tokens":63014}},"modelUsage":{"claude-opus-4-5-20251101":{"inputTokens":18649,"outputTokens":23552,"cacheReadInputTokens":3070794,"cacheCreationInputTokens":167725,"webSearchRequests":0,"costUSD":3.26572325,"contextWindow":200000,"maxOutputTokens":64000},"claude-haiku-4-5-20251001":{"inputTokens":18930,"outputTokens":538,"cacheReadInputTokens":0,"cacheCreationInputTokens":0,"webSearchRequests":0,"costUSD":0.02162,"contextWindow":200000,"maxOutputTokens":64000}},"permission_denials":[],"uuid":"1de9ed1c-cf06-4348-89d9-325262f1f5c0"}
+[17:42:30] Exit code: 0
+[17:42:30] Success: true
+[17:42:30] --- stdout ---
+[17:42:30] The TDD implementation for Task 7 (Document extraction background job) has been completed.
+
+## Summary
+
+### Tasks Completed: 7.1, 7.2, 7.3, 7.4
+
+**Files Created:**
+
+1. **`app/jobs/document_extraction_job.rb`** - The main background job that:
+   - Routes to PrescriptionScannerService or BiologyReportScannerService based on record_type
+   - Updates extraction_status through the lifecycle (pending → processing → extracted/failed)
+   - Stores results in `extracted_data` jsonb column
+   - Configures `retry_on` for RateLimitError with polynomial backoff (3 attempts)
+   - Configures `discard_on` for ConfigurationError (non-retryable)
+   - Handles RecordNotFound gracefully when record is deleted while queued
+   - Logs sanitized error details (no medical content)
+   - Broadcasts Turbo Stream updates on completion
+
+2. **`test/jobs/document_extraction_job_test.rb`** - Comprehensive test suite with 25 tests covering:
+   - Successful extraction for both Prescription and BiologyReport
+   - Status transitions through the extraction lifecycle
+   - Retry/discard behavior configuration
+   - Turbo Stream broadcasting
+   - Error handling and logging
+
+3. **`app/views/document_scans/_extraction_status.html.erb`** - Turbo Stream partial showing extraction status with appropriate UI for each state
+
+**Files Modified:**
+
+- `app/models/prescription.rb` - Added `include Turbo::Broadcastable`
+- `app/models/biology_report.rb` - Added `include Turbo::Broadcastable`
+
+### Next Steps
+
+To continue implementation, run:
+- `/red64:spec-impl document-scanning 8` - Document scans controller and routing
+- `/red64:spec-impl document-scanning` - All remaining pending tasks
+[17:42:30] --- end command ---
+
+[17:42:30] Committing: feat(document-scanning): implement task 22 - Document extraction background job...
