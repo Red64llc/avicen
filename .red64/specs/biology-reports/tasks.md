@@ -245,7 +245,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test user scoping prevents access to other users' test results
   - _Requirements: 3.1, 3.2, 3.3, 3.5, 3.6_
 
-- [ ] 10.5 Create controller tests for BiomarkerSearchController
+- [x] 10.5 Create controller tests for BiomarkerSearchController
   - Test search with valid query returns HTML fragments
   - Test search with short query (less than 2 chars) returns empty list
   - Test search matches biomarker name and code
