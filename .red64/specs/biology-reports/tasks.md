@@ -213,7 +213,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Position link appropriately in authenticated user menu
   - _Requirements: 2.1_
 
-- [ ] 10. Write comprehensive test coverage
+- [x] 10. Write comprehensive test coverage
 - [ ] 10.1 Create model tests for BiologyReport, TestResult, Biomarker
   - Test BiologyReport associations, validations, scopes, user scoping, cascade delete
   - Test TestResult associations, validations, out-of-range flag calculation, numeric validation
