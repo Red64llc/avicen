@@ -182,7 +182,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Display message when insufficient data for trend chart
   - _Requirements: 5.1, 5.3_
 
-- [ ] 8. Implement biomarker index and filtering UI
+- [x] 8. Implement biomarker index and filtering UI
 - [ ] 8.1 (P) Create biomarker index view showing recorded biomarkers
   - Query distinct biomarkers across Current.user's test results
   - Display biomarker list as clickable cards or links

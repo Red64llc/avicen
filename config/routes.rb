@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   # Biomarker search for autocomplete
   get "biomarkers/search", to: "biomarker_search#search", as: :biomarkers_search
 
-  # Biomarker trend visualization
+  # Biomarker index and trend visualization
+  get "biomarkers", to: "biomarkers#index", as: :biomarkers
   get "biomarker_trends/:id", to: "biomarker_trends#show", as: :biomarker_trends
 
   # Biology Reports with nested test results
