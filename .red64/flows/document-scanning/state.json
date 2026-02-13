@@ -1,11 +1,11 @@
 {
   "feature": "document-scanning",
   "phase": {
-    "type": "design-validation",
+    "type": "tasks-generating",
     "feature": "document-scanning"
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T12:21:04.607Z",
+  "updatedAt": "2026-02-13T12:55:59.268Z",
   "history": [
     {
       "phase": {
@@ -56,6 +56,13 @@
         "feature": "document-scanning"
       },
       "timestamp": "2026-02-13T12:21:04.607Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating",
+        "feature": "document-scanning"
+      },
+      "timestamp": "2026-02-13T12:55:59.268Z"
     }
   ],
   "metadata": {
@@ -94,6 +101,16 @@
       "outputTokens": 17170,
       "cacheReadTokens": 707871,
       "cacheCreationTokens": 149117
+    },
+    "design-validation": {
+      "startedAt": "2026-02-13T12:21:04.609Z",
+      "completedAt": "2026-02-13T12:22:25.585Z",
+      "elapsedMs": 80976,
+      "costUsd": 0.6600385,
+      "inputTokens": 17416,
+      "outputTokens": 3542,
+      "cacheReadTokens": 212942,
+      "cacheCreationTokens": 60470
     }
   },
   "artifacts": [
