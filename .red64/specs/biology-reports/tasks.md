@@ -208,7 +208,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Add custom route for biomarker index: get 'biomarkers'
   - _Requirements: 2.1, 3.1, 5.1, 6.4_
 
-- [ ] 9.2 (P) Add Biology Reports link to application navigation
+- [x] 9.2 (P) Add Biology Reports link to application navigation
   - Update shared navbar partial with link to biology_reports_path
   - Position link appropriately in authenticated user menu
   - _Requirements: 2.1_
