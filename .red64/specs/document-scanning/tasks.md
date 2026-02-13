@@ -137,7 +137,7 @@ Implementation tasks for AI-powered document scanning feature.
   - _Requirements: 7.10_
 
 - [x] 7. Document extraction background job
-- [ ] 7.1 Create DocumentExtractionJob
+- [x] 7.1 Create DocumentExtractionJob
   - Inherit from ApplicationJob with default queue
   - Accept record_type, record_id, and blob_id as perform arguments
   - Route to appropriate scanner service based on record_type
@@ -146,21 +146,21 @@ Implementation tasks for AI-powered document scanning feature.
   - Update extraction_status to extracted on success, failed on failure
   - _Requirements: 10.2, 10.4, 10.5_
 
-- [ ] 7.2 Configure job retry and discard behavior
+- [x] 7.2 Configure job retry and discard behavior
   - Use retry_on for RateLimitError with polynomial backoff and max 3 attempts
   - Use discard_on for ConfigurationError (non-retryable)
   - Handle ActiveRecord::RecordNotFound gracefully (record deleted while queued)
   - Log sanitized error details for troubleshooting (no medical content)
   - _Requirements: 7.6, 7.7, 8.6, 10.5_
 
-- [ ] 7.3 Add Turbo Stream broadcast on completion
+- [x] 7.3 Add Turbo Stream broadcast on completion
   - Broadcast status update to user's channel when extraction completes
   - Use broadcast_replace_later_to for async notification
   - Include extraction status and link to review extracted data
   - Handle case where user is no longer on related page
   - _Requirements: 10.4_
 
-- [ ] 7.4 Add DocumentExtractionJob tests
+- [x] 7.4 Add DocumentExtractionJob tests
   - Test successful extraction flow for both record types
   - Test status transitions: pending to processing to extracted
   - Test failure handling and status update to failed

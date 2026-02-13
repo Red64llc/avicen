@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:42:30.387Z",
+  "updatedAt": "2026-02-13T17:44:05.752Z",
   "history": [
     {
       "phase": {
@@ -1650,6 +1650,28 @@
       "timestamp": "2026-02-13T17:42:30.387Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-7-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:42:30.586Z",
+      "event": "TASK_START",
+      "subStep": "task-7.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:44:05.752Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.1-completed"
     }
   ],
   "metadata": {
@@ -2309,9 +2331,32 @@
       {
         "id": "7.1",
         "title": "Create DocumentExtractionJob",
-        "startedAt": "2026-02-13T13:46:04.606Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T17:42:30.586Z",
+        "completedAt": "2026-02-13T17:44:05.750Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5686,
+          "outputTokens": 5258,
+          "totalTokens": 10944,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 811981,
+          "cacheCreationTokens": 52143,
+          "costUsd": 0.89269225
+        },
+        "contextUsage": {
+          "inputTokens": 5686,
+          "outputTokens": 5258,
+          "totalTokens": 10944,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 811981,
+          "cacheCreationTokens": 52143,
+          "costUsd": 0.89269225,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.843,
+          "cumulativeInputTokens": 303335,
+          "cumulativeUtilization": 151.6675,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "7.2",
@@ -2531,7 +2576,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "7"
+    "currentTaskId": "7.1"
   },
   "phaseMetrics": {
     "requirements-generating": {

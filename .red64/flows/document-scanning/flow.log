@@ -804,3 +804,51 @@ To continue implementation, run:
 [17:42:30] --- end command ---
 
 [17:42:30] Committing: feat(document-scanning): implement task 22 - Document extraction background job...
+[17:42:30] Committed: 0e5ef3f
+[17:42:30] Task 7 completed
+[17:42:30] 
+[17:42:30] --- Executing command ---
+[17:42:30] [23/54] Task 7.1: Create DocumentExtractionJob
+[17:42:30] Command: claude -p "/red64:spec-impl document-scanning 7.1 -y"
+[17:42:30] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/document-scanning
+[17:42:30] Sandbox: Docker isolated mode
+[17:42:30] Model: opus
+[17:44:04] {"type":"result","subtype":"success","is_error":false,"duration_ms":93221,"duration_api_ms":90460,"num_turns":25,"result":"## Summary\n\nTasks 7.1-7.4 for **Document Extraction Background Job** have been verified as **already fully implemented**:\n\n### Task 7.1: Create DocumentExtractionJob ✅\n- Located at `app/jobs/document_extraction_job.rb`\n- Inherits from `ApplicationJob` with default queue\n- Accepts `record_type`, `record_id`, and `blob_id` as arguments\n- Routes to appropriate scanner service via `scanner_service_for` method\n- Updates status to `processing` before extraction\n- Stores results in `extracted_data` jsonb column\n- Updates status to `extracted`/`failed` appropriately\n\n### Task 7.2: Configure job retry and discard behavior ✅\n- `retry_on` for `RateLimitError` with polynomial backoff, max 3 attempts\n- `discard_on` for `ConfigurationError` (non-retryable)\n- Graceful handling of `ActiveRecord::RecordNotFound`\n- Sanitized logging via `log_error` method\n\n### Task 7.3: Add Turbo Stream broadcast on completion ✅\n- `broadcast_completion` method broadcasts to user's channel\n- Uses `broadcast_replace_later_to` for async notification\n- Handles disconnected users gracefully via rescue block\n\n### Task 7.4: Add DocumentExtractionJob tests ✅\n- Located at `test/jobs/document_extraction_job_test.rb`\n- Tests both Prescription and BiologyReport extraction flows\n- Tests status transitions: pending → processing → extracted/failed\n- Tests retry/discard behavior\n- 25+ test cases covering all requirements\n\nThe `tasks.md` file has been updated to reflect the completed status of all section 7 tasks.","session_id":"206d8353-36e3-4cd8-acd1-543c99a4965c","total_cost_usd":0.89269225,"usage":{"input_tokens":5686,"cache_creation_input_tokens":52143,"cache_read_input_tokens":811981,"output_tokens":5258,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0},"service_tier":"standard","cache_creation":{"ephemeral_1h_input_tokens":0,"ephemeral_5m_input_tokens":52143}},"modelUsage":{"claude-opus-4-5-20251101":{"inputTokens":5686,"outputTokens":5258,"cacheReadInputTokens":811981,"cacheCreationInputTokens":52143,"webSearchRequests":0,"costUSD":0.8917642499999999,"contextWindow":200000,"maxOutputTokens":64000},"claude-haiku-4-5-20251001":{"inputTokens":893,"outputTokens":7,"cacheReadInputTokens":0,"cacheCreationInputTokens":0,"webSearchRequests":0,"costUSD":0.000928,"contextWindow":200000,"maxOutputTokens":64000}},"permission_denials":[],"uuid":"46309162-a82f-4752-9244-594d1347fc9a"}
+[17:44:05] Exit code: 0
+[17:44:05] Success: true
+[17:44:05] --- stdout ---
+[17:44:05] ## Summary
+
+Tasks 7.1-7.4 for **Document Extraction Background Job** have been verified as **already fully implemented**:
+
+### Task 7.1: Create DocumentExtractionJob ✅
+- Located at `app/jobs/document_extraction_job.rb`
+- Inherits from `ApplicationJob` with default queue
+- Accepts `record_type`, `record_id`, and `blob_id` as arguments
+- Routes to appropriate scanner service via `scanner_service_for` method
+- Updates status to `processing` before extraction
+- Stores results in `extracted_data` jsonb column
+- Updates status to `extracted`/`failed` appropriately
+
+### Task 7.2: Configure job retry and discard behavior ✅
+- `retry_on` for `RateLimitError` with polynomial backoff, max 3 attempts
+- `discard_on` for `ConfigurationError` (non-retryable)
+- Graceful handling of `ActiveRecord::RecordNotFound`
+- Sanitized logging via `log_error` method
+
+### Task 7.3: Add Turbo Stream broadcast on completion ✅
+- `broadcast_completion` method broadcasts to user's channel
+- Uses `broadcast_replace_later_to` for async notification
+- Handles disconnected users gracefully via rescue block
+
+### Task 7.4: Add DocumentExtractionJob tests ✅
+- Located at `test/jobs/document_extraction_job_test.rb`
+- Tests both Prescription and BiologyReport extraction flows
+- Tests status transitions: pending → processing → extracted/failed
+- Tests retry/discard behavior
+- 25+ test cases covering all requirements
+
+The `tasks.md` file has been updated to reflect the completed status of all section 7 tasks.
+[17:44:05] --- end command ---
+
+[17:44:05] Committing: feat(document-scanning): implement task 23 - Create DocumentExtractionJob...
