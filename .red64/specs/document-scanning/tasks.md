@@ -103,7 +103,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Test JSON parsing with and without markdown fences
   - _Requirements: 7.10_
 
-- [ ] 6. Biology report scanner service for AI extraction
+- [x] 6. Biology report scanner service for AI extraction
 - [x] 6.1 Create BiologyReportScannerService with error hierarchy
   - Define custom error classes matching PrescriptionScannerService pattern
   - Create ExtractionResult value object for biology reports
@@ -119,7 +119,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Handle markdown code fence wrapping in responses
   - _Requirements: 4.1, 4.2, 4.4, 7.3, 7.9_
 
-- [ ] 6.3 Add biomarker matching and out-of-range detection
+- [x] 6.3 Add biomarker matching and out-of-range detection
   - Query Biomarker model to match extracted biomarker names
   - Use fuzzy matching for AI-generated name variations
   - Populate default reference ranges from matched biomarker if not extracted
@@ -127,7 +127,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Flag fields with confidence below threshold as requiring verification
   - _Requirements: 4.5, 4.6, 4.7, 4.8_
 
-- [ ] 6.4 Add BiologyReportScannerService tests
+- [x] 6.4 Add BiologyReportScannerService tests
   - Mock ruby_llm responses with sample biology report JSON
   - Test successful extraction with multiple test results
   - Test biomarker matching integration
