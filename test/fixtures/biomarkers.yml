@@ -1,0 +1,51 @@
+# Biomarker test fixtures
+# Based on seed data from db/seeds/biomarkers.rb
+
+glucose:
+  name: Glucose
+  code: "2345-7"
+  unit: mg/dL
+  ref_min: 70.0
+  ref_max: 100.0
+
+hemoglobin:
+  name: Hemoglobin
+  code: "718-7"
+  unit: g/dL
+  ref_min: 13.5
+  ref_max: 17.5
+
+wbc:
+  name: White Blood Cell Count
+  code: "6690-2"
+  unit: 10^3/uL
+  ref_min: 4.5
+  ref_max: 11.0
+
+cholesterol_total:
+  name: Total Cholesterol
+  code: "2093-3"
+  unit: mg/dL
+  ref_min: 0.0
+  ref_max: 200.0
+
+ldl:
+  name: LDL Cholesterol
+  code: "2089-1"
+  unit: mg/dL
+  ref_min: 0.0
+  ref_max: 100.0
+
+hdl:
+  name: HDL Cholesterol
+  code: "2085-9"
+  unit: mg/dL
+  ref_min: 40.0
+  ref_max: 999.0
+
+tsh:
+  name: TSH
+  code: "3016-3"
+  unit: mIU/L
+  ref_min: 0.4
+  ref_max: 4.0

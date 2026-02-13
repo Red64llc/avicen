@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Load biomarker catalog
+puts "Seeding biomarkers..."
+load Rails.root.join("db", "seeds", "biomarkers.rb")

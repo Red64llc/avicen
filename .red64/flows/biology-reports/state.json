@@ -1,0 +1,1201 @@
+{
+  "feature": "biology-reports",
+  "phase": {
+    "type": "complete",
+    "feature": "biology-reports"
+  },
+  "createdAt": "2026-02-12T20:26:20.273Z",
+  "updatedAt": "2026-02-13T05:40:01.672Z",
+  "history": [
+    {
+      "phase": {
+        "type": "initializing",
+        "feature": "biology-reports",
+        "description": "implement phase 3 \"Phase 3: Biology Reports\"   from file docs/IMPLEMENTATION_PLAN.md"
+      },
+      "timestamp": "2026-02-12T20:26:20.273Z"
+    },
+    {
+      "phase": {
+        "type": "requirements-generating",
+        "feature": "biology-reports"
+      },
+      "timestamp": "2026-02-12T20:26:20.425Z"
+    },
+    {
+      "phase": {
+        "type": "gap-review"
+      },
+      "timestamp": "2026-02-12T20:47:13.964Z",
+      "event": "PHASE_COMPLETE",
+      "subStep": "gap-analysis-completed"
+    },
+    {
+      "phase": {
+        "type": "design-generating"
+      },
+      "timestamp": "2026-02-12T20:49:13.725Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval"
+      },
+      "timestamp": "2026-02-12T20:54:43.875Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation"
+      },
+      "timestamp": "2026-02-12T20:55:38.644Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-generating"
+      },
+      "timestamp": "2026-02-12T20:59:00.181Z"
+    },
+    {
+      "phase": {
+        "type": "tasks-approval"
+      },
+      "timestamp": "2026-02-12T21:01:31.605Z"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:03:08.828Z"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:03:08.837Z",
+      "event": "TASK_START",
+      "subStep": "task-1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:11:56.318Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:11:56.522Z",
+      "event": "TASK_START",
+      "subStep": "task-1.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:18:35.202Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:18:35.361Z",
+      "event": "TASK_START",
+      "subStep": "task-1.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:24:08.620Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-1.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:24:08.798Z",
+      "event": "TASK_START",
+      "subStep": "task-2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:30:13.855Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:30:14.022Z",
+      "event": "TASK_START",
+      "subStep": "task-2.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:32:07.353Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:32:07.523Z",
+      "event": "TASK_START",
+      "subStep": "task-2.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:35:03.963Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:35:04.120Z",
+      "event": "TASK_START",
+      "subStep": "task-2.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:37:34.235Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.3-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:37:34.406Z",
+      "event": "TASK_START",
+      "subStep": "task-3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:51:30.083Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T21:51:30.086Z",
+      "event": "TASK_START",
+      "subStep": "task-3.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T22:27:30.334Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-3.1-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T22:27:30.336Z",
+      "event": "TASK_START",
+      "subStep": "task-3.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T22:29:26.164Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T22:29:26.327Z",
+      "event": "TASK_START",
+      "subStep": "task-4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:03:10.459Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-4-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:03:10.461Z",
+      "event": "TASK_START",
+      "subStep": "task-4.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:04:56.848Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:04:57.034Z",
+      "event": "TASK_START",
+      "subStep": "task-4.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:10:36.684Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:10:36.856Z",
+      "event": "TASK_START",
+      "subStep": "task-4.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:39:52.306Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-4.3-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:39:52.308Z",
+      "event": "TASK_START",
+      "subStep": "task-5-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:55:15.817Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-5-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:55:15.818Z",
+      "event": "TASK_START",
+      "subStep": "task-5.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:58:00.880Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-12T23:58:01.070Z",
+      "event": "TASK_START",
+      "subStep": "task-5.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T00:02:41.406Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T00:02:41.583Z",
+      "event": "TASK_START",
+      "subStep": "task-6-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T00:39:38.052Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-6-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T00:39:38.054Z",
+      "event": "TASK_START",
+      "subStep": "task-6.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T01:16:03.832Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-6.1-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T01:16:03.834Z",
+      "event": "TASK_START",
+      "subStep": "task-6.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T01:56:01.321Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-6.2-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T01:56:01.324Z",
+      "event": "TASK_START",
+      "subStep": "task-7-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:15:20.709Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:15:20.711Z",
+      "event": "TASK_START",
+      "subStep": "task-7.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:48:02.994Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.1-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:48:02.996Z",
+      "event": "TASK_START",
+      "subStep": "task-7.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:49:30.105Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T03:49:30.326Z",
+      "event": "TASK_START",
+      "subStep": "task-7.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:33:47.202Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-7.3-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:33:47.204Z",
+      "event": "TASK_START",
+      "subStep": "task-7.4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:41:55.937Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:41:56.113Z",
+      "event": "TASK_START",
+      "subStep": "task-8-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:48:01.708Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:48:01.891Z",
+      "event": "TASK_START",
+      "subStep": "task-8.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:50:39.209Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:50:39.377Z",
+      "event": "TASK_START",
+      "subStep": "task-8.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:53:41.189Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:53:41.364Z",
+      "event": "TASK_START",
+      "subStep": "task-9-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:58:29.207Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-9-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T04:58:29.390Z",
+      "event": "TASK_START",
+      "subStep": "task-9.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:02:33.798Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-9.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:02:33.983Z",
+      "event": "TASK_START",
+      "subStep": "task-9.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:05:05.931Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-9.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:05:06.117Z",
+      "event": "TASK_START",
+      "subStep": "task-10-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:10:16.063Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:10:16.255Z",
+      "event": "TASK_START",
+      "subStep": "task-10.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:13:41.089Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:13:41.269Z",
+      "event": "TASK_START",
+      "subStep": "task-10.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:15:12.639Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:15:12.811Z",
+      "event": "TASK_START",
+      "subStep": "task-10.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:22:27.630Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.3-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:22:27.812Z",
+      "event": "TASK_START",
+      "subStep": "task-10.4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:24:34.730Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:24:34.928Z",
+      "event": "TASK_START",
+      "subStep": "task-10.5-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:28:33.881Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.5-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:28:34.047Z",
+      "event": "TASK_START",
+      "subStep": "task-10.6-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:33:33.507Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.6-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:33:33.681Z",
+      "event": "TASK_START",
+      "subStep": "task-10.7-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:35:44.956Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.7-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:35:45.128Z",
+      "event": "TASK_START",
+      "subStep": "task-10.8-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T05:40:01.446Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.8-completed"
+    },
+    {
+      "phase": {
+        "type": "complete",
+        "feature": "biology-reports"
+      },
+      "timestamp": "2026-02-13T05:40:01.672Z"
+    }
+  ],
+  "metadata": {
+    "description": "implement phase 3 \"Phase 3: Biology Reports\"   from file docs/IMPLEMENTATION_PLAN.md",
+    "mode": "brownfield",
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/biology-reports",
+    "resolvedFeatureName": "biology-reports"
+  },
+  "taskProgress": {
+    "completedGroups": [],
+    "totalGroups": 10,
+    "currentGroup": 1,
+    "subTasksInCurrentGroup": {
+      "completed": [],
+      "total": 3
+    },
+    "taskEntries": [
+      {
+        "id": "1",
+        "title": "Create database schema and seed biomarker catalog",
+        "startedAt": "2026-02-12T21:03:08.837Z",
+        "completedAt": "2026-02-12T21:11:56.317Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.1",
+        "title": "Generate migrations for biomarkers, biology_reports, and test_results tables",
+        "startedAt": "2026-02-12T21:11:56.522Z",
+        "completedAt": "2026-02-12T21:18:35.201Z",
+        "status": "completed"
+      },
+      {
+        "id": "1.2",
+        "title": "Create seed data for common biomarkers",
+        "startedAt": "2026-02-12T21:18:35.361Z",
+        "completedAt": "2026-02-12T21:24:08.618Z",
+        "status": "completed"
+      },
+      {
+        "id": "2",
+        "title": "Implement core models with associations and validations",
+        "startedAt": "2026-02-12T21:24:08.798Z",
+        "completedAt": "2026-02-12T21:30:13.853Z",
+        "status": "completed"
+      },
+      {
+        "id": "2.1",
+        "title": "Create Biomarker model",
+        "startedAt": "2026-02-12T21:30:14.022Z",
+        "completedAt": "2026-02-12T21:32:07.351Z",
+        "status": "completed"
+      },
+      {
+        "id": "2.2",
+        "title": "Create BiologyReport model with Active Storage integration",
+        "startedAt": "2026-02-12T21:32:07.523Z",
+        "completedAt": "2026-02-12T21:35:03.962Z",
+        "status": "completed"
+      },
+      {
+        "id": "2.3",
+        "title": "Create TestResult model with out-of-range calculation",
+        "startedAt": "2026-02-12T21:35:04.120Z",
+        "completedAt": "2026-02-12T21:37:34.234Z",
+        "status": "completed"
+      },
+      {
+        "id": "3",
+        "title": "Implement service objects for business logic",
+        "startedAt": "2026-02-12T21:37:34.406Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "3.1",
+        "title": "Create OutOfRangeCalculator service",
+        "startedAt": "2026-02-12T21:51:30.085Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "3.2",
+        "title": "Create DocumentValidator custom validator",
+        "startedAt": "2026-02-12T22:27:30.335Z",
+        "completedAt": "2026-02-12T22:29:26.162Z",
+        "status": "completed"
+      },
+      {
+        "id": "4",
+        "title": "Build BiologyReportsController with CRUD and filtering",
+        "startedAt": "2026-02-12T22:29:26.327Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "4.1",
+        "title": "Implement RESTful controller actions",
+        "startedAt": "2026-02-12T23:03:10.461Z",
+        "completedAt": "2026-02-12T23:04:56.847Z",
+        "status": "completed"
+      },
+      {
+        "id": "4.2",
+        "title": "Add filtering capabilities with Turbo Frame support",
+        "startedAt": "2026-02-12T23:04:57.034Z",
+        "completedAt": "2026-02-12T23:10:36.683Z",
+        "status": "completed"
+      },
+      {
+        "id": "4.3",
+        "title": "Create views for biology reports (index, show, form)",
+        "startedAt": "2026-02-12T23:10:36.855Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "5",
+        "title": "Build TestResultsController with nested CRUD",
+        "startedAt": "2026-02-12T23:39:52.307Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "5.1",
+        "title": "Implement nested controller under biology_reports",
+        "startedAt": "2026-02-12T23:55:15.818Z",
+        "completedAt": "2026-02-12T23:58:00.878Z",
+        "status": "completed"
+      },
+      {
+        "id": "5.2",
+        "title": "Create views for test results (nested forms, list partial)",
+        "startedAt": "2026-02-12T23:58:01.070Z",
+        "completedAt": "2026-02-13T00:02:41.405Z",
+        "status": "completed"
+      },
+      {
+        "id": "6",
+        "title": "Implement biomarker search with autocomplete",
+        "startedAt": "2026-02-13T00:02:41.583Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "6.1",
+        "title": "Create BiomarkerSearchController for autocomplete endpoint",
+        "startedAt": "2026-02-13T00:39:38.054Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "6.2",
+        "title": "Create biomarker-search Stimulus controller",
+        "startedAt": "2026-02-13T01:16:03.834Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7",
+        "title": "Integrate Chart.js for biomarker trend visualization",
+        "startedAt": "2026-02-13T01:56:01.323Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7.1",
+        "title": "Pin Chart.js and annotation plugin via importmap",
+        "startedAt": "2026-02-13T03:15:20.711Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7.2",
+        "title": "Create BiomarkerTrendsController for chart data",
+        "startedAt": "2026-02-13T03:48:02.996Z",
+        "completedAt": "2026-02-13T03:49:30.101Z",
+        "status": "completed"
+      },
+      {
+        "id": "7.3",
+        "title": "Create biomarker-chart Stimulus controller",
+        "startedAt": "2026-02-13T03:49:30.326Z",
+        "completedAt": null,
+        "status": "failed"
+      },
+      {
+        "id": "7.4",
+        "title": "Create biomarker trends view",
+        "startedAt": "2026-02-13T04:33:47.204Z",
+        "completedAt": "2026-02-13T04:41:55.935Z",
+        "status": "completed"
+      },
+      {
+        "id": "8",
+        "title": "Implement biomarker index and filtering UI",
+        "startedAt": "2026-02-13T04:41:56.112Z",
+        "completedAt": "2026-02-13T04:48:01.706Z",
+        "status": "completed"
+      },
+      {
+        "id": "8.1",
+        "title": "Create biomarker index view showing recorded biomarkers",
+        "startedAt": "2026-02-13T04:48:01.890Z",
+        "completedAt": "2026-02-13T04:50:39.208Z",
+        "status": "completed"
+      },
+      {
+        "id": "8.2",
+        "title": "Create filter-form Stimulus controller for Turbo Frame filtering",
+        "startedAt": "2026-02-13T04:50:39.377Z",
+        "completedAt": "2026-02-13T04:53:41.188Z",
+        "status": "completed"
+      },
+      {
+        "id": "9",
+        "title": "Add navigation and routes for biology reports feature",
+        "startedAt": "2026-02-13T04:53:41.363Z",
+        "completedAt": "2026-02-13T04:58:29.206Z",
+        "status": "completed"
+      },
+      {
+        "id": "9.1",
+        "title": "Configure routes for biology reports and nested resources",
+        "startedAt": "2026-02-13T04:58:29.390Z",
+        "completedAt": "2026-02-13T05:02:33.797Z",
+        "status": "completed"
+      },
+      {
+        "id": "9.2",
+        "title": "Add Biology Reports link to application navigation",
+        "startedAt": "2026-02-13T05:02:33.983Z",
+        "completedAt": "2026-02-13T05:05:05.930Z",
+        "status": "completed"
+      },
+      {
+        "id": "10",
+        "title": "Write comprehensive test coverage",
+        "startedAt": "2026-02-13T05:05:06.117Z",
+        "completedAt": "2026-02-13T05:10:16.062Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.1",
+        "title": "Create model tests for BiologyReport, TestResult, Biomarker",
+        "startedAt": "2026-02-13T05:10:16.254Z",
+        "completedAt": "2026-02-13T05:13:41.088Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.2",
+        "title": "Create service tests for OutOfRangeCalculator",
+        "startedAt": "2026-02-13T05:13:41.268Z",
+        "completedAt": "2026-02-13T05:15:12.636Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.3",
+        "title": "Create controller tests for BiologyReportsController",
+        "startedAt": "2026-02-13T05:15:12.811Z",
+        "completedAt": "2026-02-13T05:22:27.629Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.4",
+        "title": "Create controller tests for TestResultsController",
+        "startedAt": "2026-02-13T05:22:27.812Z",
+        "completedAt": "2026-02-13T05:24:34.728Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.5",
+        "title": "Create controller tests for BiomarkerSearchController",
+        "startedAt": "2026-02-13T05:24:34.928Z",
+        "completedAt": "2026-02-13T05:28:33.880Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.6",
+        "title": "Create controller tests for BiomarkerTrendsController",
+        "startedAt": "2026-02-13T05:28:34.046Z",
+        "completedAt": "2026-02-13T05:33:33.506Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.7",
+        "title": "Create system tests for end-to-end flows",
+        "startedAt": "2026-02-13T05:33:33.681Z",
+        "completedAt": "2026-02-13T05:35:44.955Z",
+        "status": "completed"
+      },
+      {
+        "id": "10.8",
+        "title": "Create baseline rendering tests for UI components",
+        "startedAt": "2026-02-13T05:35:45.128Z",
+        "completedAt": "2026-02-13T05:40:01.445Z",
+        "status": "completed"
+      }
+    ],
+    "currentTaskId": "10.8"
+  },
+  "artifacts": [
+    {
+      "name": "Gap Analysis",
+      "filename": "gap-analysis.md",
+      "path": ".red64/specs/biology-reports/gap-analysis.md",
+      "phase": "gap-analysis",
+      "createdAt": "2026-02-12T20:47:13.962Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/biology-reports/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-12T20:54:43.874Z"
+    },
+    {
+      "name": "Tasks",
+      "filename": "tasks.md",
+      "path": ".red64/specs/biology-reports/tasks.md",
+      "phase": "tasks-generating",
+      "createdAt": "2026-02-12T21:01:31.603Z"
+    }
+  ],
+  "version": 2
+}

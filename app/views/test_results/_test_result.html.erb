@@ -1,0 +1,47 @@
+<%= tag.tr id: dom_id(test_result), class: "#{'bg-red-50' if test_result.out_of_range}" do %>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm font-medium text-gray-900">
+      <%= test_result.biomarker.name %>
+      <%= link_to "📊", biomarker_trends_path(test_result.biomarker),
+          class: "ml-2 text-blue-600 hover:text-blue-800",
+          title: "View trend for #{test_result.biomarker.name}" %>
+    </div>
+    <div class="text-sm text-gray-500"><%= test_result.biomarker.code %></div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+    <%= test_result.value %> <%= test_result.unit %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    <% if test_result.ref_min.present? && test_result.ref_max.present? %>
+      <%= test_result.ref_min %> - <%= test_result.ref_max %> <%= test_result.unit %>
+    <% else %>
+      N/A
+    <% end %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <% if test_result.out_of_range %>
+      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+        ⚠ Out of Range
+      </span>
+    <% elsif test_result.out_of_range == false %>
+      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+        ✓ Normal
+      </span>
+    <% else %>
+      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+        N/A
+      </span>
+    <% end %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+    <div class="flex justify-end space-x-2">
+      <%= link_to "Edit", edit_biology_report_test_result_path(test_result.biology_report, test_result),
+          class: "text-blue-600 hover:text-blue-900" %>
+      <%= button_to "Delete",
+          biology_report_test_result_path(test_result.biology_report, test_result),
+          method: :delete,
+          data: { turbo_confirm: "Are you sure?" },
+          class: "text-red-600 hover:text-red-900" %>
+    </div>
+  </td>
+<% end %>

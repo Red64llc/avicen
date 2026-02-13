@@ -1,0 +1,78 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <%= link_to "← Back to Reports", biology_reports_path, class: "text-blue-600 hover:text-blue-800" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-8">
+    <div class="flex justify-between items-start mb-6">
+      <h1 class="text-3xl font-bold">Biology Report</h1>
+      <div class="flex space-x-2">
+        <%= link_to "Edit", edit_biology_report_path(@biology_report), class: "btn btn-primary" %>
+        <%= button_to "Delete", biology_report_path(@biology_report), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div>
+        <h3 class="text-sm font-medium text-gray-500 mb-1">Test Date</h3>
+        <p class="text-lg"><%= l(@biology_report.test_date, format: :long) %></p>
+      </div>
+      <% if @biology_report.lab_name.present? %>
+        <div>
+          <h3 class="text-sm font-medium text-gray-500 mb-1">Laboratory</h3>
+          <p class="text-lg"><%= @biology_report.lab_name %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @biology_report.notes.present? %>
+      <div class="mb-8">
+        <h3 class="text-sm font-medium text-gray-500 mb-1">Notes</h3>
+        <p class="text-gray-700"><%= @biology_report.notes %></p>
+      </div>
+    <% end %>
+
+    <% if @biology_report.document.attached? %>
+      <div class="mb-8">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">Attached Document</h3>
+        <div class="flex items-center space-x-4">
+          <%= link_to "View Document", rails_blob_path(@biology_report.document, disposition: "inline"), target: "_blank", class: "btn btn-primary" %>
+          <%= link_to "Download", rails_blob_path(@biology_report.document, disposition: "attachment"), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Test Results Section -->
+    <div class="border-t pt-8">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Test Results</h2>
+        <%= link_to "Add Test Result", new_biology_report_test_result_path(@biology_report), class: "btn btn-primary" %>
+      </div>
+
+      <div id="test_results_empty_state">
+        <% unless @biology_report.test_results.any? %>
+          <p class="text-gray-500">No test results yet.</p>
+        <% end %>
+      </div>
+
+      <% if @biology_report.test_results.any? %>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Biomarker</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Range</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="test_results_list" class="bg-white divide-y divide-gray-200">
+              <%= render partial: "test_results/test_result", collection: @biology_report.test_results, as: :test_result %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

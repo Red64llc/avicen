@@ -1,0 +1,5 @@
+<%= turbo_stream.remove dom_id(@test_result) %>
+<% if @biology_report.test_results.empty? %>
+  <%= turbo_stream.update "test_results_empty_state", "<p class='text-gray-500'>No test results yet.</p>" %>
+<% end %>
+<%= turbo_stream.update "flash", partial: "shared/flash", locals: { notice: "Test result was successfully deleted." } %>

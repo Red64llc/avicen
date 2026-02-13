@@ -1,0 +1,142 @@
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Header with navigation -->
+  <div class="mb-6">
+    <%= link_to biology_reports_path, class: "text-blue-600 hover:text-blue-800 text-sm font-medium" do %>
+      &larr; Back to Reports
+    <% end %>
+  </div>
+
+  <!-- Biomarker name and trend chart -->
+  <div class="bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">
+      <%= @biomarker.name %> Trend
+    </h1>
+
+    <% if @insufficient_data %>
+      <!-- Table view when fewer than 2 data points -->
+      <div class="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+        <p class="text-sm text-yellow-800">
+          Insufficient data for trend chart (minimum 2 data points required)
+        </p>
+      </div>
+
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Test Date
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Value
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Reference Range
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @test_results.each do |result| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <%= link_to result.biology_report.test_date.strftime("%B %d, %Y"), biology_report_path(result.biology_report), class: "text-blue-600 hover:text-blue-800" %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <%= result.value %> <%= result.unit %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <% if result.ref_min && result.ref_max %>
+                  <%= result.ref_min %> - <%= result.ref_max %> <%= result.unit %>
+                <% else %>
+                  <span class="text-gray-400">Not set</span>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">
+                <% if result.out_of_range %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                    Out of Range
+                  </span>
+                <% else %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Normal
+                  </span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <!-- Chart view when sufficient data available -->
+      <div 
+        data-controller="biomarker-chart"
+        data-biomarker-chart-chart-data-value="<%= @chart_data.to_json %>"
+        class="w-full"
+      >
+        <canvas data-biomarker-chart-target="canvas" class="w-full" style="max-height: 400px;"></canvas>
+      </div>
+
+      <div class="mt-6 text-sm text-gray-600">
+        <p class="mb-2">
+          <strong>Tips:</strong>
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Click on data points to view the full report</li>
+          <li>The shaded green area represents the normal reference range</li>
+          <li>Hover over points to see exact values</li>
+        </ul>
+      </div>
+
+      <!-- Summary table below chart -->
+      <div class="mt-8">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Test History</h2>
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Test Date
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Value
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Lab
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @test_results.each do |result| %>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= link_to result.biology_report.test_date.strftime("%B %d, %Y"), biology_report_path(result.biology_report), class: "text-blue-600 hover:text-blue-800" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= result.value %> <%= result.unit %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= result.biology_report.lab_name || "Not specified" %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <% if result.out_of_range %>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                      Out of Range
+                    </span>
+                  <% else %>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      Normal
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

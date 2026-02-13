@@ -1,0 +1,10 @@
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+  <div class="mb-6">
+    <%= link_to "← Back to Reports", biology_reports_path, class: "text-blue-600 hover:text-blue-800" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-8">
+    <h1 class="text-3xl font-bold mb-6">New Biology Report</h1>
+    <%= render "form", biology_report: @biology_report %>
+  </div>
+</div>

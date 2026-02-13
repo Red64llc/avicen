@@ -64,4 +64,25 @@ class NavigationTest < ApplicationSystemTestCase
       assert_link "Get Started"
     end
   end
+
+  test "navigation shows Biology Reports link when authenticated" do
+    sign_in_as_system(@user_with_profile)
+    visit dashboard_path
+
+    within "nav" do
+      assert_link "Biology Reports", href: biology_reports_path
+    end
+  end
+
+  test "Biology Reports link navigates to biology reports index" do
+    sign_in_as_system(@user_with_profile)
+    visit dashboard_path
+
+    within "nav" do
+      click_link "Biology Reports"
+    end
+
+    assert_current_path biology_reports_path
+    assert_text "Biology Reports"
+  end
 end
