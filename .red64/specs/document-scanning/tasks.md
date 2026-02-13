@@ -104,7 +104,7 @@ Implementation tasks for AI-powered document scanning feature.
   - _Requirements: 7.10_
 
 - [ ] 6. Biology report scanner service for AI extraction
-- [ ] 6.1 Create BiologyReportScannerService with error hierarchy
+- [x] 6.1 Create BiologyReportScannerService with error hierarchy
   - Define custom error classes matching PrescriptionScannerService pattern
   - Create ExtractionResult value object for biology reports
   - Create ExtractedTestResult data class with out_of_range flag
