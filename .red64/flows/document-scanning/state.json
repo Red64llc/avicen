@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T16:50:26.592Z",
+  "updatedAt": "2026-02-13T16:55:12.916Z",
   "history": [
     {
       "phase": {
@@ -1342,6 +1342,28 @@
       "timestamp": "2026-02-13T16:50:26.592Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-3.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:50:26.759Z",
+      "event": "TASK_START",
+      "subStep": "task-4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:55:12.916Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4-completed"
     }
   ],
   "metadata": {
@@ -1353,7 +1375,8 @@
     "completedGroups": [
       1,
       2,
-      3
+      3,
+      4
     ],
     "totalGroups": 13,
     "taskEntries": [
@@ -1600,9 +1623,32 @@
       {
         "id": "4",
         "title": "RubyLLM schema definitions for structured extraction",
-        "startedAt": "2026-02-13T13:46:03.344Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T16:50:26.758Z",
+        "completedAt": "2026-02-13T16:55:12.914Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 33375,
+          "outputTokens": 13912,
+          "totalTokens": 47287,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1743840,
+          "cacheCreationTokens": 110242,
+          "costUsd": 2.189854500000001
+        },
+        "contextUsage": {
+          "inputTokens": 33375,
+          "outputTokens": 13912,
+          "totalTokens": 47287,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1743840,
+          "cacheCreationTokens": 110242,
+          "costUsd": 2.189854500000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 16.6875,
+          "cumulativeInputTokens": 141746,
+          "cumulativeUtilization": 70.87299999999999,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "4.1",
@@ -1920,7 +1966,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "3.2"
+    "currentTaskId": "4"
   },
   "phaseMetrics": {
     "requirements-generating": {

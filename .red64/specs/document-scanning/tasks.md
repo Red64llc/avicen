@@ -54,15 +54,15 @@ Implementation tasks for AI-powered document scanning feature.
   - Mock MiniMagick operations for unit tests
   - _Requirements: 3.1, 4.1_
 
-- [ ] 4. RubyLLM schema definitions for structured extraction
-- [ ] 4.1 (P) Create PrescriptionExtractionSchema
+- [x] 4. RubyLLM schema definitions for structured extraction
+- [x] 4.1 (P) Create PrescriptionExtractionSchema
   - Define schema class extending RubyLLM::Schema
   - Add optional string fields for doctor_name and prescription_date
   - Add medications array with drug_name (required), dosage, frequency, duration, quantity (optional), and confidence (required number)
   - Schema ensures structured JSON output from Claude
   - _Requirements: 3.2, 3.4, 7.5_
 
-- [ ] 4.2 (P) Create BiologyReportExtractionSchema
+- [x] 4.2 (P) Create BiologyReportExtractionSchema
   - Define schema class extending RubyLLM::Schema
   - Add optional string fields for lab_name and test_date
   - Add test_results array with biomarker_name (required), value (required), unit, reference_range (optional), and confidence (required number)
