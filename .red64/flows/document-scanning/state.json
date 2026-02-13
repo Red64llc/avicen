@@ -7,7 +7,7 @@
     "totalTasks": 0
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T13:39:40.940Z",
+  "updatedAt": "2026-02-13T13:40:30.420Z",
   "history": [
     {
       "phase": {
@@ -169,6 +169,28 @@
       "timestamp": "2026-02-13T13:39:40.940Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:39:41.125Z",
+      "event": "TASK_START",
+      "subStep": "task-2.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:40:30.420Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.3-completed"
     }
   ],
   "metadata": {
@@ -312,9 +334,32 @@
       {
         "id": "2.3",
         "title": "Extend DocumentValidator for scanning requirements",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-13T13:39:41.124Z",
+        "completedAt": "2026-02-13T13:40:30.418Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5623,
+          "outputTokens": 1935,
+          "totalTokens": 7558,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 239213,
+          "cacheCreationTokens": 29057,
+          "costUsd": 0.37862674999999996
+        },
+        "contextUsage": {
+          "inputTokens": 5623,
+          "outputTokens": 1935,
+          "totalTokens": 7558,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 239213,
+          "cacheCreationTokens": 29057,
+          "costUsd": 0.37862674999999996,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8115,
+          "cumulativeInputTokens": 67366,
+          "cumulativeUtilization": 33.683,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "3",
@@ -660,7 +705,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.2"
+    "currentTaskId": "2.3"
   },
   "phaseMetrics": {
     "requirements-generating": {

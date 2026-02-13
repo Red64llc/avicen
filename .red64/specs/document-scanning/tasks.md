@@ -30,7 +30,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Define `extraction_status` enum matching Prescription model
   - _Requirements: 5.8, 10.3_
 
-- [ ] 2.3 (P) Extend DocumentValidator for scanning requirements
+- [x] 2.3 (P) Extend DocumentValidator for scanning requirements
   - Add HEIC and HEIF content types to allowed types array
   - Add 10MB maximum file size validation
   - Create validation error messages for oversized files and invalid types
