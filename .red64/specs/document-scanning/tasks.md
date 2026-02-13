@@ -36,7 +36,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Create validation error messages for oversized files and invalid types
   - _Requirements: 1.3, 1.8, 1.9_
 
-- [ ] 3. Image processing service for Claude Vision optimization
+- [x] 3. Image processing service for Claude Vision optimization
 - [ ] 3.1 Create ImageProcessingService
   - Implement service that resizes images to max 1568px in largest dimension
   - Preserve aspect ratio during resize operation
