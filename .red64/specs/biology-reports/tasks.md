@@ -221,7 +221,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test DocumentValidator with valid and invalid file types
   - _Requirements: 1.1, 2.1, 2.6, 3.2, 3.4, 3.6, 4.2, 4.5, 7.1, 7.2, 7.3, 7.4, 7.5_
 
-- [ ] 10.2 Create service tests for OutOfRangeCalculator
+- [x] 10.2 Create service tests for OutOfRangeCalculator
   - Test in-range values return false
   - Test out-of-range values (below min, above max) return true
   - Test nil reference ranges return nil flag
