@@ -287,6 +287,71 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test "handles markdown fence without language specifier" do
+    json_content = {
+      medications: [ { drug_name: "Aspirin", confidence: 0.9 } ]
+    }.to_json
+
+    markdown_wrapped = "```\n#{json_content}\n```"
+
+    mock_client = mock_llm_client_with_raw_content(markdown_wrapped)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_equal 1, result.medications.length
+    end
+  end
+
+  test "handles JSON with leading and trailing whitespace" do
+    json_content = {
+      medications: [ { drug_name: "Aspirin", confidence: 0.9 } ]
+    }.to_json
+
+    whitespace_padded = "   \n\n#{json_content}\n\n   "
+
+    mock_client = mock_llm_client_with_raw_content(whitespace_padded)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+    end
+  end
+
+  test "handles markdown fence with javascript language specifier" do
+    json_content = {
+      medications: [ { drug_name: "Aspirin", confidence: 0.9 } ]
+    }.to_json
+
+    # Some LLMs might use ```javascript instead of ```json
+    markdown_wrapped = "```javascript\n#{json_content}\n```"
+
+    mock_client = mock_llm_client_with_raw_content(markdown_wrapped)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+    end
+  end
+
   # --- Drug Matching Tests (Task 5.3) ---
 
   test "matches extracted drug names against local Drug database" do
@@ -353,6 +418,130 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
       assert_nil medication.matched_drug
       assert_nil medication.rxcui
       assert_nil medication.active_ingredients
+    end
+  end
+
+  test "matches drug with case-insensitive exact match" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "ASPIRIN", confidence: 0.9 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      medication = result.medications.first
+      assert_equal @aspirin, medication.matched_drug
+    end
+  end
+
+  test "matches drug when extracted name contains database drug name" do
+    # The fixture has "Ibuprofen 200mg Oral Tablet"
+    # Test that "Advil Ibuprofen 200mg" matches by finding "Ibuprofen" word
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "Advil Ibuprofen 400mg Extended Release", confidence: 0.9 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      medication = result.medications.first
+      assert_equal @ibuprofen, medication.matched_drug
+    end
+  end
+
+  test "handles blank drug name gracefully" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "", confidence: 0.5 }
+      ]
+    )
+
+    mock_client = mock_llm_client_with_raw_content(mock_response.to_json)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      # Should return extraction error because drug_name is required and blank
+      assert result.error?
+      assert_equal :extraction, result.error_type
+    end
+  end
+
+  test "matches multiple medications with different match outcomes" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "Aspirin", confidence: 0.95 },
+        { drug_name: "Ibuprofen 200mg", confidence: 0.88 },
+        { drug_name: "Nonexistent Drug ABC", confidence: 0.7 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_equal 3, result.medications.length
+
+      # First medication should match Aspirin
+      assert_equal @aspirin, result.medications[0].matched_drug
+      assert_equal "1191", result.medications[0].rxcui
+
+      # Second medication should match Ibuprofen
+      assert_equal @ibuprofen, result.medications[1].matched_drug
+      assert_equal "310965", result.medications[1].rxcui
+
+      # Third medication should have no match
+      assert_nil result.medications[2].matched_drug
+      assert_nil result.medications[2].rxcui
+    end
+  end
+
+  test "populates active_ingredients from matched drug" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "Aspirin", confidence: 0.9 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      medication = result.medications.first
+      assert_not_nil medication.active_ingredients
+      assert_kind_of Array, medication.active_ingredients
+      assert_includes medication.active_ingredients, "Aspirin"
     end
   end
 
@@ -440,6 +629,25 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test "returns error result on rate limit error with message" do
+    mock_client = mock_llm_client_that_raises(
+      RubyLLM::RateLimitError.new(OpenStruct.new(body: "Rate limit exceeded. Please retry after 60 seconds."))
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :rate_limit, result.error_type
+      assert_not_nil result.error_message
+    end
+  end
+
   test "returns error result on authentication error" do
     mock_client = mock_llm_client_that_raises(RubyLLM::UnauthorizedError.new(nil))
 
@@ -456,6 +664,25 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test "returns error result on authentication error with message" do
+    mock_client = mock_llm_client_that_raises(
+      RubyLLM::UnauthorizedError.new(OpenStruct.new(body: "Invalid API key"))
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :authentication, result.error_type
+      assert_not_nil result.error_message
+    end
+  end
+
   test "returns error result on API error" do
     mock_client = mock_llm_client_that_raises(RubyLLM::Error.new("API Error"))
 
@@ -469,6 +696,45 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
 
       assert result.error?
       assert_equal :api_error, result.error_type
+    end
+  end
+
+  test "returns error result on network error wrapped as API error" do
+    # Network errors like connection refused, timeouts etc. are wrapped by ruby_llm
+    mock_client = mock_llm_client_that_raises(
+      RubyLLM::Error.new("Connection refused - connect(2) for api.anthropic.com:443")
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :api_error, result.error_type
+      assert_match(/connection/i, result.error_message)
+    end
+  end
+
+  test "returns error result on timeout wrapped as API error" do
+    mock_client = mock_llm_client_that_raises(
+      RubyLLM::Error.new("Net::ReadTimeout: Net::ReadTimeout")
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :api_error, result.error_type
+      assert_match(/timeout/i, result.error_message)
     end
   end
 
@@ -586,6 +852,266 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
       # The caller can decide how to handle empty extractions
       assert result.success?
       assert_equal 0, result.medications.length
+    end
+  end
+
+  test "returns error when response is not a JSON object" do
+    mock_client = mock_llm_client_with_raw_content('["not", "an", "object"]')
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :extraction, result.error_type
+      assert_match(/not a JSON object/i, result.error_message)
+    end
+  end
+
+  test "returns error when medications is not an array" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"medications": "not an array"}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :extraction, result.error_type
+    end
+  end
+
+  test "returns error when medication entry is not an object" do
+    mock_client = mock_llm_client_with_raw_content(
+      '{"medications": ["just a string"]}'
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.error?
+      assert_equal :extraction, result.error_type
+      assert_match(/not an object/i, result.error_message)
+    end
+  end
+
+  test "handles all optional prescription fields" do
+    mock_response = build_mock_llm_response(
+      doctor_name: "Dr. Sarah Johnson",
+      prescription_date: "2026-02-13",
+      medications: [
+        {
+          drug_name: "Aspirin",
+          dosage: "81mg",
+          frequency: "once daily",
+          duration: "30 days",
+          quantity: "30",
+          confidence: 0.95
+        }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_equal "Dr. Sarah Johnson", result.doctor_name
+      assert_equal "2026-02-13", result.prescription_date
+
+      medication = result.medications.first
+      assert_equal "Aspirin", medication.drug_name
+      assert_equal "81mg", medication.dosage
+      assert_equal "once daily", medication.frequency
+      assert_equal "30 days", medication.duration
+      assert_equal "30", medication.quantity
+      assert_equal 0.95, medication.confidence
+    end
+  end
+
+  test "handles null values in optional fields" do
+    json_with_nulls = {
+      doctor_name: nil,
+      prescription_date: nil,
+      medications: [
+        {
+          drug_name: "Aspirin",
+          dosage: nil,
+          frequency: nil,
+          duration: nil,
+          quantity: nil,
+          confidence: 0.8
+        }
+      ]
+    }.to_json
+
+    mock_client = mock_llm_client_with_raw_content(json_with_nulls)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_nil result.doctor_name
+      assert_nil result.prescription_date
+      assert_nil result.medications.first.dosage
+    end
+  end
+
+  test "preserves confidence value of zero" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "Possibly Aspirin?", confidence: 0.0 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      medication = result.medications.first
+      assert_equal 0.0, medication.confidence
+      assert medication.requires_verification
+    end
+  end
+
+  test "handles confidence value of one" do
+    mock_response = build_mock_llm_response(
+      medications: [
+        { drug_name: "Aspirin", confidence: 1.0 }
+      ]
+    )
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_llm_client(mock_response)
+      )
+
+      result = service.call
+
+      assert result.success?
+      medication = result.medications.first
+      assert_equal 1.0, medication.confidence
+      assert_not medication.requires_verification
+    end
+  end
+
+  # --- Sample Prescription JSON Tests (Task 5.4) ---
+
+  test "extracts data from realistic prescription JSON response" do
+    # Simulates a realistic response from Claude Vision API
+    realistic_response = {
+      doctor_name: "Dr. Michael Chen, MD",
+      prescription_date: "2026-02-10",
+      medications: [
+        {
+          drug_name: "Aspirin 81mg Enteric Coated Tablet",
+          dosage: "81mg",
+          frequency: "once daily in the morning",
+          duration: "ongoing",
+          quantity: "90",
+          confidence: 0.92
+        },
+        {
+          drug_name: "Ibuprofen 200mg",
+          dosage: "200mg",
+          frequency: "every 6 hours as needed for pain",
+          duration: "7 days",
+          quantity: "28",
+          confidence: 0.88
+        }
+      ]
+    }.to_json
+
+    mock_client = mock_llm_client_with_raw_content(realistic_response)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+      assert_equal "Dr. Michael Chen, MD", result.doctor_name
+      assert_equal "2026-02-10", result.prescription_date
+      assert_equal 2, result.medications.length
+
+      # First medication
+      aspirin = result.medications[0]
+      assert_equal "Aspirin 81mg Enteric Coated Tablet", aspirin.drug_name
+      assert_equal "81mg", aspirin.dosage
+      assert_equal "once daily in the morning", aspirin.frequency
+      assert_equal @aspirin, aspirin.matched_drug
+      assert_not aspirin.requires_verification
+
+      # Second medication
+      ibuprofen = result.medications[1]
+      assert_equal "Ibuprofen 200mg", ibuprofen.drug_name
+      assert_equal "every 6 hours as needed for pain", ibuprofen.frequency
+      assert_equal @ibuprofen, ibuprofen.matched_drug
+    end
+  end
+
+  test "handles response with mixed confidence levels" do
+    response_with_mixed_confidence = {
+      doctor_name: "Dr. Smith",
+      medications: [
+        { drug_name: "Aspirin", confidence: 0.95 },          # High confidence
+        { drug_name: "Metformin 500mg", confidence: 0.65 },  # Medium confidence
+        { drug_name: "Unclear Med", confidence: 0.3 }        # Low confidence
+      ]
+    }.to_json
+
+    mock_client = mock_llm_client_with_raw_content(response_with_mixed_confidence)
+
+    stub_image_processing do
+      service = PrescriptionScannerService.new(
+        image_blob: @mock_blob,
+        llm_client: mock_client
+      )
+
+      result = service.call
+
+      assert result.success?
+
+      # High confidence - no verification needed
+      assert_not result.medications[0].requires_verification
+
+      # Medium confidence - no verification needed (above 0.5)
+      assert_not result.medications[1].requires_verification
+
+      # Low confidence - verification required
+      assert result.medications[2].requires_verification
     end
   end
 

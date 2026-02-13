@@ -94,7 +94,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Return ExtractionResult with all medications and metadata
   - _Requirements: 3.6, 3.7, 3.8_
 
-- [ ] 5.4 Add PrescriptionScannerService tests
+- [x] 5.4 Add PrescriptionScannerService tests
   - Mock ruby_llm responses with sample prescription JSON
   - Test successful extraction with multiple medications
   - Test drug matching integration
