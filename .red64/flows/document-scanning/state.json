@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T16:49:32.960Z",
+  "updatedAt": "2026-02-13T16:50:26.592Z",
   "history": [
     {
       "phase": {
@@ -1320,6 +1320,28 @@
       "timestamp": "2026-02-13T16:49:32.960Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-3.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:49:33.143Z",
+      "event": "TASK_START",
+      "subStep": "task-3.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:50:26.592Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-3.2-completed"
     }
   ],
   "metadata": {
@@ -1548,9 +1570,32 @@
       {
         "id": "3.2",
         "title": "Add ImageProcessingService tests",
-        "startedAt": "2026-02-13T13:46:03.244Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T16:49:33.143Z",
+        "completedAt": "2026-02-13T16:50:26.590Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 6806,
+          "outputTokens": 2039,
+          "totalTokens": 8845,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 340709,
+          "cacheCreationTokens": 31731,
+          "costUsd": 0.45601725
+        },
+        "contextUsage": {
+          "inputTokens": 6806,
+          "outputTokens": 2039,
+          "totalTokens": 8845,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 340709,
+          "cacheCreationTokens": 31731,
+          "costUsd": 0.45601725,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 3.4029999999999996,
+          "cumulativeInputTokens": 108371,
+          "cumulativeUtilization": 54.1855,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "4",
@@ -1875,7 +1920,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "3.1"
+    "currentTaskId": "3.2"
   },
   "phaseMetrics": {
     "requirements-generating": {

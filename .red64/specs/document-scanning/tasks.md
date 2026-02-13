@@ -46,7 +46,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Handle Active Storage blob input and tempfile output
   - _Requirements: 3.1, 4.1_
 
-- [ ] 3.2 Add ImageProcessingService tests
+- [x] 3.2 Add ImageProcessingService tests
   - Test resize behavior for images exceeding max dimension
   - Test aspect ratio preservation
   - Test HEIC to JPEG conversion
