@@ -7,7 +7,7 @@
     "totalTasks": 0
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T13:38:30.843Z",
+  "updatedAt": "2026-02-13T13:39:40.940Z",
   "history": [
     {
       "phase": {
@@ -147,6 +147,28 @@
       "timestamp": "2026-02-13T13:38:30.843Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:38:31.095Z",
+      "event": "TASK_START",
+      "subStep": "task-2.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:39:40.940Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.2-completed"
     }
   ],
   "metadata": {
@@ -260,9 +282,32 @@
       {
         "id": "2.2",
         "title": "Add extraction support to BiologyReport model",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-13T13:38:31.095Z",
+        "completedAt": "2026-02-13T13:39:40.938Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5622,
+          "outputTokens": 2092,
+          "totalTokens": 7714,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 510173,
+          "cacheCreationTokens": 38309,
+          "costUsd": 0.5787767500000001
+        },
+        "contextUsage": {
+          "inputTokens": 5622,
+          "outputTokens": 2092,
+          "totalTokens": 7714,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 510173,
+          "cacheCreationTokens": 38309,
+          "costUsd": 0.5787767500000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.811,
+          "cumulativeInputTokens": 61743,
+          "cumulativeUtilization": 30.8715,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "2.3",
@@ -615,7 +660,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2.1"
+    "currentTaskId": "2.2"
   },
   "phaseMetrics": {
     "requirements-generating": {

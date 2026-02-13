@@ -23,7 +23,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Add extraction prefix to enum to avoid method conflicts
   - _Requirements: 5.8, 10.3_
 
-- [ ] 2.2 (P) Add extraction support to BiologyReport model
+- [x] 2.2 (P) Add extraction support to BiologyReport model
   - Add migration for `extraction_status` integer column with default 0 and null: false
   - Add migration for `extracted_data` jsonb column (nullable)
   - BiologyReport already has document attachment (verify existing `has_one_attached :document`)
