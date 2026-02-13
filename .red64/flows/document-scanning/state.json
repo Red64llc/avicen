@@ -1,0 +1,26 @@
+{
+  "feature": "document-scanning",
+  "phase": {
+    "type": "initializing",
+    "feature": "document-scanning",
+    "description": "implement \"Phase 4: AI-Powered Document Scanning\"   from file docs/IMPLEMENTATION_PLAN.md"
+  },
+  "createdAt": "2026-02-13T10:49:32.222Z",
+  "updatedAt": "2026-02-13T10:49:32.222Z",
+  "history": [
+    {
+      "phase": {
+        "type": "initializing",
+        "feature": "document-scanning",
+        "description": "implement \"Phase 4: AI-Powered Document Scanning\"   from file docs/IMPLEMENTATION_PLAN.md"
+      },
+      "timestamp": "2026-02-13T10:49:32.222Z"
+    }
+  ],
+  "metadata": {
+    "description": "implement \"Phase 4: AI-Powered Document Scanning\"   from file docs/IMPLEMENTATION_PLAN.md",
+    "mode": "brownfield",
+    "worktreePath": "/Users/yacin/Workspace/Hackatons/avicen.worktrees/document-scanning"
+  },
+  "version": 2
+}
