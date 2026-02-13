@@ -200,7 +200,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - _Requirements: 6.1, 6.2, 6.3_
 
 - [x] 9. Add navigation and routes for biology reports feature
-- [ ] 9.1 (P) Configure routes for biology reports and nested resources
+- [x] 9.1 (P) Configure routes for biology reports and nested resources
   - Add resources :biology_reports with standard REST routes
   - Nest resources :test_results under biology_reports
   - Add custom route for biomarker search: get 'biomarkers/search'
