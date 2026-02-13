@@ -191,7 +191,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Order biomarkers alphabetically by name
   - _Requirements: 6.4_
 
-- [ ] 8.2 Create filter-form Stimulus controller for Turbo Frame filtering
+- [x] 8.2 Create filter-form Stimulus controller for Turbo Frame filtering
   - Listen to form input change events (date range, lab name)
   - Submit form automatically via Turbo Frame on input change
   - Debounce input events to prevent rapid successive requests
