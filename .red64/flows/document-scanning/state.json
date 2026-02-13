@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T16:55:12.916Z",
+  "updatedAt": "2026-02-13T16:56:52.088Z",
   "history": [
     {
       "phase": {
@@ -1364,6 +1364,28 @@
       "timestamp": "2026-02-13T16:55:12.916Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:55:13.107Z",
+      "event": "TASK_START",
+      "subStep": "task-4.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:56:52.088Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-4.1-completed"
     }
   ],
   "metadata": {
@@ -1653,9 +1675,32 @@
       {
         "id": "4.1",
         "title": "Create PrescriptionExtractionSchema",
-        "startedAt": "2026-02-13T13:46:03.449Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T16:55:13.107Z",
+        "completedAt": "2026-02-13T16:56:52.085Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 13709,
+          "outputTokens": 3612,
+          "totalTokens": 17321,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 639520,
+          "cacheCreationTokens": 64744,
+          "costUsd": 0.892684
+        },
+        "contextUsage": {
+          "inputTokens": 13709,
+          "outputTokens": 3612,
+          "totalTokens": 17321,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 639520,
+          "cacheCreationTokens": 64744,
+          "costUsd": 0.892684,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 6.8545,
+          "cumulativeInputTokens": 155455,
+          "cumulativeUtilization": 77.7275,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "4.2",
@@ -1966,7 +2011,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "4"
+    "currentTaskId": "4.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
