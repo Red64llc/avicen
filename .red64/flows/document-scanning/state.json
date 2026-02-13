@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:04:13.280Z",
+  "updatedAt": "2026-02-13T17:06:06.170Z",
   "history": [
     {
       "phase": {
@@ -1430,6 +1430,28 @@
       "timestamp": "2026-02-13T17:04:13.280Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-5-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:04:13.508Z",
+      "event": "TASK_START",
+      "subStep": "task-5.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:06:06.170Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5.1-completed"
     }
   ],
   "metadata": {
@@ -1810,9 +1832,32 @@
       {
         "id": "5.1",
         "title": "Create PrescriptionScannerService with error hierarchy",
-        "startedAt": "2026-02-13T13:46:03.707Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T17:04:13.507Z",
+        "completedAt": "2026-02-13T17:06:06.169Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 15075,
+          "outputTokens": 4526,
+          "totalTokens": 19601,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 864495,
+          "cacheCreationTokens": 63698,
+          "costUsd": 1.0339000000000003
+        },
+        "contextUsage": {
+          "inputTokens": 15075,
+          "outputTokens": 4526,
+          "totalTokens": 19601,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 864495,
+          "cacheCreationTokens": 63698,
+          "costUsd": 1.0339000000000003,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 7.5375,
+          "cumulativeInputTokens": 196468,
+          "cumulativeUtilization": 98.234,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "5.2",
@@ -2102,7 +2147,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "5"
+    "currentTaskId": "5.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
