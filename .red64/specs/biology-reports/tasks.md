@@ -252,7 +252,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Test result limit to 10 matches
   - _Requirements: 1.2_
 
-- [ ] 10.6 Create controller tests for BiomarkerTrendsController
+- [x] 10.6 Create controller tests for BiomarkerTrendsController
   - Test show action with valid biomarker returns chart data JSON
   - Test show action with insufficient data renders table view
   - Test user scoping returns only Current.user's test results
