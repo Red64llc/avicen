@@ -27,9 +27,8 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not get new for other user's biology report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get new_biology_report_test_result_path(other_report)
-    end
+    get new_biology_report_test_result_path(other_report)
+    assert_response :not_found
   end
 
   # CREATE ACTION TESTS
@@ -43,11 +42,11 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
           ref_min: 4.5,
           ref_max: 11.0
         }
-      }
+      }, as: :turbo_stream
     end
 
     assert_response :success
-    assert_equal "turbo-stream", response.media_type
+    assert_equal "text/vnd.turbo-stream.html", response.media_type
 
     test_result = TestResult.last
     assert_equal @biology_report.id, test_result.biology_report_id
@@ -102,7 +101,7 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create test result for other user's biology report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
+    assert_no_difference("TestResult.count") do
       post biology_report_test_results_path(other_report), params: {
         test_result: {
           biomarker_id: @biomarker.id,
@@ -111,6 +110,7 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
+    assert_response :not_found
   end
 
   # EDIT ACTION TESTS
@@ -125,9 +125,8 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
     other_test_result = test_results(:glucose_high)
     other_test_result.update!(biology_report: other_report)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get edit_biology_report_test_result_path(other_report, other_test_result)
-    end
+    get edit_biology_report_test_result_path(other_report, other_test_result)
+    assert_response :not_found
   end
 
   # UPDATE ACTION TESTS
@@ -139,10 +138,10 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
         ref_min: 70.0,
         ref_max: 100.0
       }
-    }
+    }, as: :turbo_stream
 
     assert_response :success
-    assert_equal "turbo-stream", response.media_type
+    assert_equal "text/vnd.turbo-stream.html", response.media_type
 
     @test_result.reload
     assert_equal 92.0, @test_result.value
@@ -178,22 +177,24 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
     other_report = biology_reports(:other_user_report)
     other_test_result = test_results(:glucose_high)
     other_test_result.update!(biology_report: other_report)
+    original_value = other_test_result.value
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch biology_report_test_result_path(other_report, other_test_result), params: {
-        test_result: { value: 100.0 }
-      }
-    end
+    patch biology_report_test_result_path(other_report, other_test_result), params: {
+      test_result: { value: 100.0 }
+    }
+    assert_response :not_found
+    other_test_result.reload
+    assert_equal original_value, other_test_result.value
   end
 
   # DESTROY ACTION TESTS
   test "should destroy test result" do
     assert_difference("TestResult.count", -1) do
-      delete biology_report_test_result_path(@biology_report, @test_result)
+      delete biology_report_test_result_path(@biology_report, @test_result), as: :turbo_stream
     end
 
     assert_response :success
-    assert_equal "turbo-stream", response.media_type
+    assert_equal "text/vnd.turbo-stream.html", response.media_type
   end
 
   test "should not destroy other user's test result" do
@@ -202,9 +203,8 @@ class TestResultsControllerTest < ActionDispatch::IntegrationTest
     other_test_result.update!(biology_report: other_report)
 
     assert_no_difference("TestResult.count") do
-      assert_raises(ActiveRecord::RecordNotFound) do
-        delete biology_report_test_result_path(other_report, other_test_result)
-      end
+      delete biology_report_test_result_path(other_report, other_test_result)
     end
+    assert_response :not_found
   end
 end

@@ -1,9 +1,15 @@
 require "test_helper"
 
 class BiomarkerSeedsTest < ActiveSupport::TestCase
-  test "biomarker seed data loads successfully" do
-    # Clear existing data
+  # Helper to clear biomarkers safely (respecting foreign keys)
+  def clear_biomarkers
+    TestResult.delete_all
     Biomarker.delete_all
+  end
+
+  test "biomarker seed data loads successfully" do
+    # Clear existing data (must clear dependent records first)
+    clear_biomarkers
 
     # Load seed data
     load Rails.root.join("db", "seeds", "biomarkers.rb")
@@ -14,7 +20,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes CBC panel biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     # Verify CBC markers exist
@@ -24,7 +30,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes metabolic panel biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     # Verify metabolic markers
@@ -35,7 +41,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes lipid panel biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     # Verify lipid markers
@@ -46,7 +52,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes thyroid biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     assert Biomarker.exists?(code: "3016-3"), "TSH biomarker should exist"
@@ -54,7 +60,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes vitamin biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     assert Biomarker.exists?(code: "1989-3"), "Vitamin D biomarker should exist"
@@ -62,7 +68,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes liver function biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     assert Biomarker.exists?(code: "1742-6"), "ALT biomarker should exist"
@@ -70,14 +76,14 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data includes inflammation biomarkers" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     assert Biomarker.exists?(code: "1988-5"), "CRP biomarker should exist"
   end
 
   test "biomarkers have valid LOINC codes" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     Biomarker.all.each do |biomarker|
@@ -87,19 +93,19 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "biomarkers have valid reference ranges" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     Biomarker.all.each do |biomarker|
       assert biomarker.ref_min.present?, "Biomarker #{biomarker.name} should have ref_min"
       assert biomarker.ref_max.present?, "Biomarker #{biomarker.name} should have ref_max"
-      assert biomarker.ref_min < biomarker.ref_max, 
+      assert biomarker.ref_min < biomarker.ref_max,
         "Biomarker #{biomarker.name} ref_min (#{biomarker.ref_min}) should be less than ref_max (#{biomarker.ref_max})"
     end
   end
 
   test "biomarkers have valid units" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     Biomarker.all.each do |biomarker|
@@ -108,12 +114,12 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "seed data is idempotent" do
-    Biomarker.delete_all
-    
+    clear_biomarkers
+
     # Load seeds twice
     load Rails.root.join("db", "seeds", "biomarkers.rb")
     first_count = Biomarker.count
-    
+
     load Rails.root.join("db", "seeds", "biomarkers.rb")
     second_count = Biomarker.count
 
@@ -121,7 +127,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
   end
 
   test "specific biomarker data is correct" do
-    Biomarker.delete_all
+    clear_biomarkers
     load Rails.root.join("db", "seeds", "biomarkers.rb")
 
     # Check hemoglobin details

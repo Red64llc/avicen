@@ -10,6 +10,6 @@ class CreateBiologyReports < ActiveRecord::Migration[8.1]
     end
 
     add_index :biology_reports, :test_date
-    add_index :biology_reports, [:user_id, :test_date]
+    add_index :biology_reports, [ :user_id, :test_date ]
   end
 end

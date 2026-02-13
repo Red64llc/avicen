@@ -110,30 +110,33 @@ class BiomarkerTest < ActiveSupport::TestCase
 
   # Task 2.1: Scopes and search
   test "search scope finds biomarkers by name case-insensitively" do
-    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
-    Biomarker.create!(name: "Hemoglobin", code: "HGB", unit: "g/dL", ref_min: 12, ref_max: 16)
+    # Use unique names that won't match fixtures
+    biomarker1 = Biomarker.create!(name: "UniqueZymarker", code: "UZM1", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "OtherMarker", code: "OTH1", unit: "g/dL", ref_min: 12, ref_max: 16)
 
-    results = Biomarker.search("glucose")
+    results = Biomarker.search("uniquezymarker")
     assert_equal 1, results.count
-    assert_equal "Glucose", results.first.name
+    assert_equal "UniqueZymarker", results.first.name
   end
 
   test "search scope finds biomarkers by code case-insensitively" do
-    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
-    Biomarker.create!(name: "Hemoglobin", code: "HGB", unit: "g/dL", ref_min: 12, ref_max: 16)
+    # Use unique codes that won't match fixtures
+    biomarker1 = Biomarker.create!(name: "UniqueZymarker", code: "UZM2", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "OtherMarker", code: "OTH2", unit: "g/dL", ref_min: 12, ref_max: 16)
 
-    results = Biomarker.search("glu")
+    results = Biomarker.search("uzm2")
     assert_equal 1, results.count
-    assert_equal "Glucose", results.first.name
+    assert_equal "UniqueZymarker", results.first.name
   end
 
   test "search scope finds biomarkers by partial match" do
-    Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
-    Biomarker.create!(name: "Glycated Hemoglobin", code: "HBA1C", unit: "%", ref_min: 4, ref_max: 6)
+    # Use unique names that won't match fixtures
+    biomarker1 = Biomarker.create!(name: "UniqueZymarkerFull", code: "UZF1", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    Biomarker.create!(name: "OtherDifferentMarker", code: "ODM1", unit: "%", ref_min: 4, ref_max: 6)
 
-    results = Biomarker.search("glu")
+    results = Biomarker.search("uniquezy")
     assert_equal 1, results.count
-    assert_equal "Glucose", results.first.name
+    assert_equal "UniqueZymarkerFull", results.first.name
   end
 
   test "autocomplete_search returns top 10 matches" do

@@ -17,13 +17,9 @@ class BiomarkerSearchAutocompleteTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     sign_in_as(@user)
 
-    @glucose = Biomarker.create!(
-      name: "Glucose",
-      code: "2345-7",
-      unit: "mg/dL",
-      ref_min: 70.0,
-      ref_max: 100.0
-    )
+    # Use fixtures instead of creating biomarkers (to avoid duplicate code errors)
+    @glucose = biomarkers(:glucose)
+    @hemoglobin = biomarkers(:hemoglobin)
   end
 
   test "search results include role=option for stimulus-autocomplete compatibility" do
@@ -45,30 +41,25 @@ class BiomarkerSearchAutocompleteTest < ActionDispatch::IntegrationTest
     get biomarkers_search_path(q: "Glucose")
 
     assert_response :success
-    assert_select "li", text: /Glucose \(2345-7\)/
+    # Fixture glucose has code "2345-7"
+    assert_select "li", text: /Glucose.*#{@glucose.code}/
   end
 
   test "each search result li has data attributes for auto-filling form fields" do
     get biomarkers_search_path(q: "Glucose")
 
     assert_response :success
-    assert_select "li[data-biomarker-name='Glucose']"
-    assert_select "li[data-biomarker-code='2345-7']"
-    assert_select "li[data-biomarker-unit='mg/dL']"
-    assert_select "li[data-biomarker-ref-min='70.0']"
-    assert_select "li[data-biomarker-ref-max='100.0']"
+    # Use fixture values
+    assert_select "li[data-biomarker-name='#{@glucose.name}']"
+    assert_select "li[data-biomarker-code='#{@glucose.code}']"
+    assert_select "li[data-biomarker-unit='#{@glucose.unit}']"
+    assert_select "li[data-biomarker-ref-min='#{@glucose.ref_min}']"
+    assert_select "li[data-biomarker-ref-max='#{@glucose.ref_max}']"
   end
 
   test "each search result li has both data-autocomplete-value and role=option" do
-    hemoglobin = Biomarker.create!(
-      name: "Hemoglobin",
-      code: "718-7",
-      unit: "g/dL",
-      ref_min: 13.5,
-      ref_max: 17.5
-    )
-
-    get biomarkers_search_path(q: "o") # matches "Glucose", "Hemoglobin"
+    # Use at least 2 characters since search requires minimum length
+    get biomarkers_search_path(q: "ol") # matches "Cholesterol", "Hemoglobin", etc.
 
     assert_response :success
     # Every li should have both attributes for proper stimulus-autocomplete integration
@@ -83,14 +74,6 @@ class BiomarkerSearchAutocompleteTest < ActionDispatch::IntegrationTest
   end
 
   test "search results include all required data attributes for each biomarker" do
-    hemoglobin = Biomarker.create!(
-      name: "Hemoglobin",
-      code: "718-7",
-      unit: "g/dL",
-      ref_min: 13.5,
-      ref_max: 17.5
-    )
-
     get biomarkers_search_path(q: "Hemoglobin")
 
     assert_response :success

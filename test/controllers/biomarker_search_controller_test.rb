@@ -5,30 +5,10 @@ class BiomarkerSearchControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     sign_in_as(@user)
 
-    # Create test biomarkers
-    @glucose = Biomarker.create!(
-      name: "Glucose",
-      code: "2345-7",
-      unit: "mg/dL",
-      ref_min: 70.0,
-      ref_max: 100.0
-    )
-
-    @hemoglobin = Biomarker.create!(
-      name: "Hemoglobin",
-      code: "718-7",
-      unit: "g/dL",
-      ref_min: 13.5,
-      ref_max: 17.5
-    )
-
-    @cholesterol = Biomarker.create!(
-      name: "Total Cholesterol",
-      code: "2093-3",
-      unit: "mg/dL",
-      ref_min: 0,
-      ref_max: 200.0
-    )
+    # Use fixtures instead of creating biomarkers (to avoid duplicate code errors)
+    @glucose = biomarkers(:glucose)
+    @hemoglobin = biomarkers(:hemoglobin)
+    @cholesterol = biomarkers(:cholesterol_total)
   end
 
   test "search requires authentication" do
@@ -103,18 +83,18 @@ class BiomarkerSearchControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "search limits results to 10 matches" do
-    # Create 15 biomarkers with similar names
+    # Create 15 biomarkers with unique names and codes
     15.times do |i|
       Biomarker.create!(
-        name: "Test Biomarker #{i}",
-        code: "TEST-#{i}",
+        name: "SearchLimitTest Biomarker #{i}",
+        code: "SRCHTEST-#{i}",
         unit: "unit",
         ref_min: 0,
         ref_max: 100
       )
     end
 
-    get biomarkers_search_path(q: "Test")
+    get biomarkers_search_path(q: "SearchLimitTest")
 
     assert_response :success
     assert_select "li[role='option']", count: 10

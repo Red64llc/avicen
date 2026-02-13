@@ -96,22 +96,25 @@ class BiologyReportTest < ActiveSupport::TestCase
 
   # Task 2.2: Scopes
   test "ordered scope returns reports by test_date descending" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "scope_test@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.today - 2.days)
     report2 = BiologyReport.create!(user: user, test_date: Date.today)
     report3 = BiologyReport.create!(user: user, test_date: Date.today - 1.day)
 
-    ordered = BiologyReport.ordered
-    assert_equal [report2, report3, report1], ordered.to_a
+    # Scope to just this user's reports
+    ordered = user.biology_reports.ordered
+    assert_equal [ report2, report3, report1 ], ordered.to_a
   end
 
   test "by_date_range scope filters by date range" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "range_test@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.new(2025, 1, 15))
     report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10))
     report3 = BiologyReport.create!(user: user, test_date: Date.new(2025, 3, 5))
 
-    results = BiologyReport.by_date_range(Date.new(2025, 2, 1), Date.new(2025, 2, 28))
+    results = user.biology_reports.by_date_range(Date.new(2025, 2, 1), Date.new(2025, 2, 28))
     assert_equal 1, results.count
     assert_includes results, report2
     assert_not_includes results, report1
@@ -119,30 +122,33 @@ class BiologyReportTest < ActiveSupport::TestCase
   end
 
   test "by_date_range scope returns all when from_date is nil" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "range_nil_from@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.new(2025, 1, 15))
     report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10))
 
-    results = BiologyReport.by_date_range(nil, Date.new(2025, 3, 1))
+    results = user.biology_reports.by_date_range(nil, Date.new(2025, 3, 1))
     assert_equal 2, results.count
   end
 
   test "by_date_range scope returns all when to_date is nil" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "range_nil_to@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.new(2025, 1, 15))
     report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10))
 
-    results = BiologyReport.by_date_range(Date.new(2025, 1, 1), nil)
+    results = user.biology_reports.by_date_range(Date.new(2025, 1, 1), nil)
     assert_equal 2, results.count
   end
 
   test "by_lab_name scope filters by laboratory name case-insensitively" do
-    user = users(:one)
-    report1 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "LabCorp")
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "lab_name_test@example.com", password: "password")
+    report1 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "TestLabCorp")
     report2 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "Quest Diagnostics")
-    report3 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "LabCorp West")
+    report3 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "TestLabCorp West")
 
-    results = BiologyReport.by_lab_name("labcorp")
+    results = user.biology_reports.by_lab_name("testlabcorp")
     assert_equal 2, results.count
     assert_includes results, report1
     assert_includes results, report3
@@ -150,25 +156,27 @@ class BiologyReportTest < ActiveSupport::TestCase
   end
 
   test "by_lab_name scope returns all when query is blank" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "lab_nil_test@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "LabCorp")
     report2 = BiologyReport.create!(user: user, test_date: Date.today, lab_name: "Quest")
 
-    results = BiologyReport.by_lab_name(nil)
+    results = user.biology_reports.by_lab_name(nil)
     assert_equal 2, results.count
   end
 
   test "scopes can be chained for combined filtering" do
-    user = users(:one)
+    # Use a separate user to avoid fixture interference
+    user = User.create!(email_address: "chained_test@example.com", password: "password")
     report1 = BiologyReport.create!(user: user, test_date: Date.new(2025, 1, 15), lab_name: "LabCorp")
-    report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10), lab_name: "Quest Diagnostics")
+    report2 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 10), lab_name: "ChainQuest Diagnostics")
     report3 = BiologyReport.create!(user: user, test_date: Date.new(2025, 2, 20), lab_name: "LabCorp West")
     report4 = BiologyReport.create!(user: user, test_date: Date.new(2025, 3, 5), lab_name: "Quest")
 
     # Filter by date range and lab name
-    results = BiologyReport.ordered
+    results = user.biology_reports.ordered
                           .by_date_range(Date.new(2025, 2, 1), Date.new(2025, 2, 28))
-                          .by_lab_name("Quest")
+                          .by_lab_name("ChainQuest")
     assert_equal 1, results.count
     assert_includes results, report2
     assert_not_includes results, report1
@@ -182,7 +190,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock PDF file
-    pdf_file = Tempfile.new(["test", ".pdf"])
+    pdf_file = Tempfile.new([ "test", ".pdf" ])
     pdf_file.write("%PDF-1.4")
     pdf_file.rewind
 
@@ -203,7 +211,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock JPEG file
-    jpeg_file = Tempfile.new(["test", ".jpg"])
+    jpeg_file = Tempfile.new([ "test", ".jpg" ])
     jpeg_file.write("\xFF\xD8\xFF")
     jpeg_file.rewind
 
@@ -224,7 +232,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock PNG file
-    png_file = Tempfile.new(["test", ".png"])
+    png_file = Tempfile.new([ "test", ".png" ])
     png_file.write("\x89PNG")
     png_file.rewind
 
@@ -245,7 +253,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock text file
-    txt_file = Tempfile.new(["test", ".txt"])
+    txt_file = Tempfile.new([ "test", ".txt" ])
     txt_file.write("Test content")
     txt_file.rewind
 

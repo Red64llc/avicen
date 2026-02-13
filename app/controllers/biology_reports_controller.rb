@@ -1,5 +1,5 @@
 class BiologyReportsController < ApplicationController
-  before_action :set_biology_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_biology_report, only: [ :show, :edit, :update, :destroy ]
 
   # GET /biology_reports
   def index
@@ -61,6 +61,6 @@ class BiologyReportsController < ApplicationController
   end
 
   def biology_report_params
-    params.expect(biology_report: [:test_date, :lab_name, :notes, :document])
+    params.expect(biology_report: [ :test_date, :lab_name, :notes, :document ])
   end
 end

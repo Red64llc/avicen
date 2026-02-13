@@ -13,7 +13,7 @@ class DocumentValidator < ActiveModel::Validator
   ALLOWED_TYPES = %w[application/pdf image/jpeg image/png].freeze
 
   def validate(record)
-    return unless record.document.attached?
+    return unless record.document&.attached?
 
     unless ALLOWED_TYPES.include?(record.document.content_type)
       record.errors.add(:document, "must be a PDF, JPEG, or PNG file")

@@ -101,9 +101,8 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not show other user's biology_report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get biology_report_url(other_report)
-    end
+    get biology_report_url(other_report)
+    assert_response :not_found
   end
 
   # New action tests
@@ -163,9 +162,8 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not get edit for other user's biology_report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get edit_biology_report_url(other_report)
-    end
+    get edit_biology_report_url(other_report)
+    assert_response :not_found
   end
 
   # Update action tests
@@ -197,13 +195,12 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not update other user's biology_report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch biology_report_url(other_report), params: {
-        biology_report: {
-          lab_name: "Hacked Lab"
-        }
+    patch biology_report_url(other_report), params: {
+      biology_report: {
+        lab_name: "Hacked Lab"
       }
-    end
+    }
+    assert_response :not_found
   end
 
   # Document upload tests
@@ -327,11 +324,12 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should cascade delete test_results when destroying biology_report" do
-    # Create test results for the report (using fixtures)
+    # Create a fresh report with a test result to avoid fixture interference
     biomarker = Biomarker.first
     skip "Biomarker fixtures not loaded" unless biomarker
 
-    @biology_report.test_results.create!(
+    report = Current.user.biology_reports.create!(test_date: Date.today, lab_name: "Test Lab")
+    report.test_results.create!(
       biomarker: biomarker,
       value: 95.0,
       unit: "mg/dL",
@@ -339,16 +337,19 @@ class BiologyReportsControllerTest < ActionDispatch::IntegrationTest
       ref_max: 100.0
     )
 
-    assert_difference(["BiologyReport.count", "TestResult.count"], -1) do
-      delete biology_report_url(@biology_report)
+    assert_difference("BiologyReport.count", -1) do
+      assert_difference("TestResult.count", -1) do
+        delete biology_report_url(report)
+      end
     end
   end
 
   test "should not destroy other user's biology_report" do
     other_report = biology_reports(:other_user_report)
-    assert_raises(ActiveRecord::RecordNotFound) do
+    assert_no_difference("BiologyReport.count") do
       delete biology_report_url(other_report)
     end
+    assert_response :not_found
   end
 
   test "unauthenticated users should be redirected to login" do

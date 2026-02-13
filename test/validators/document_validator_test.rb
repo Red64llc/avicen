@@ -1,4 +1,5 @@
 require "test_helper"
+require "ostruct"
 
 class DocumentValidatorTest < ActiveSupport::TestCase
   class DummyModel

@@ -238,7 +238,7 @@ biomarkers_data.each do |data|
     ref_min: data[:ref_min],
     ref_max: data[:ref_max]
   )
-  
+
   if biomarker.new_record?
     biomarker.save!
     puts "  Created biomarker: #{biomarker.name} (#{biomarker.code})"

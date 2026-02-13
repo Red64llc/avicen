@@ -188,13 +188,14 @@ class TestResultTest < ActiveSupport::TestCase
   test "out_of_range scope filters results by out_of_range status" do
     user = users(:one)
     report = BiologyReport.create!(user: user, test_date: Date.today)
-    biomarker = Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    biomarker = Biomarker.create!(name: "Test Glucose", code: "TGLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
 
     in_range = TestResult.create!(biology_report: report, biomarker: biomarker, value: 85, unit: "mg/dL", ref_min: 70, ref_max: 100)
     out_of_range_low = TestResult.create!(biology_report: report, biomarker: biomarker, value: 65, unit: "mg/dL", ref_min: 70, ref_max: 100)
     out_of_range_high = TestResult.create!(biology_report: report, biomarker: biomarker, value: 110, unit: "mg/dL", ref_min: 70, ref_max: 100)
 
-    out_of_range_results = TestResult.out_of_range
+    # Scope to just the test report to avoid fixture interference
+    out_of_range_results = report.test_results.out_of_range
     assert_equal 2, out_of_range_results.count
     assert_includes out_of_range_results, out_of_range_low
     assert_includes out_of_range_results, out_of_range_high
@@ -204,12 +205,13 @@ class TestResultTest < ActiveSupport::TestCase
   test "in_range scope filters results by in_range status" do
     user = users(:one)
     report = BiologyReport.create!(user: user, test_date: Date.today)
-    biomarker = Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    biomarker = Biomarker.create!(name: "Test Glucose", code: "TGLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
 
     in_range = TestResult.create!(biology_report: report, biomarker: biomarker, value: 85, unit: "mg/dL", ref_min: 70, ref_max: 100)
     out_of_range = TestResult.create!(biology_report: report, biomarker: biomarker, value: 110, unit: "mg/dL", ref_min: 70, ref_max: 100)
 
-    in_range_results = TestResult.in_range
+    # Scope to just the test report to avoid fixture interference
+    in_range_results = report.test_results.in_range
     assert_equal 1, in_range_results.count
     assert_includes in_range_results, in_range
     assert_not_includes in_range_results, out_of_range
@@ -218,13 +220,14 @@ class TestResultTest < ActiveSupport::TestCase
   test "for_biomarker scope groups results by biomarker" do
     user = users(:one)
     report = BiologyReport.create!(user: user, test_date: Date.today)
-    glucose = Biomarker.create!(name: "Glucose", code: "GLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
-    hemoglobin = Biomarker.create!(name: "Hemoglobin", code: "HGB", unit: "g/dL", ref_min: 12, ref_max: 16)
+    glucose = Biomarker.create!(name: "Test Glucose", code: "TGLU", unit: "mg/dL", ref_min: 70, ref_max: 100)
+    hemoglobin = Biomarker.create!(name: "Test Hemoglobin", code: "THGB", unit: "g/dL", ref_min: 12, ref_max: 16)
 
     result1 = TestResult.create!(biology_report: report, biomarker: glucose, value: 85, unit: "mg/dL", ref_min: 70, ref_max: 100)
     result2 = TestResult.create!(biology_report: report, biomarker: hemoglobin, value: 14, unit: "g/dL", ref_min: 12, ref_max: 16)
 
-    glucose_results = TestResult.for_biomarker(glucose.id)
+    # Scope to just the test report to avoid fixture interference
+    glucose_results = report.test_results.for_biomarker(glucose.id)
     assert_equal 1, glucose_results.count
     assert_includes glucose_results, result1
     assert_not_includes glucose_results, result2

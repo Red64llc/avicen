@@ -20,7 +20,7 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
       ref_min: 70,
       ref_max: 100
     )
-    
+
     TestResult.create!(
       biology_report: @biology_report2,
       biomarker: @biomarker,
@@ -58,7 +58,7 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
 
   test "returns 404 when biomarker not found" do
     visit biomarker_trends_path(id: 99999)
-    
+
     assert_text "not found", count: 1, minimum: 1
   end
 
@@ -72,7 +72,7 @@ class BiomarkerTrendsTest < ApplicationSystemTestCase
       ref_min: 70,
       ref_max: 100
     )
-    
+
     TestResult.create!(
       biology_report: @biology_report2,
       biomarker: @biomarker,
