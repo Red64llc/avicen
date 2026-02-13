@@ -111,7 +111,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Implement constructor accepting image blob and optional llm_client
   - _Requirements: 7.2, 7.6, 7.7_
 
-- [ ] 6.2 Implement biology report extraction logic
+- [x] 6.2 Implement biology report extraction logic
   - Build extraction prompt requesting structured test result data
   - Use ruby_llm gem with vision capabilities to process image
   - Send prompt with image to Claude API via ruby_llm
