@@ -14,7 +14,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Verify configuration loads correctly in development and test environments
   - _Requirements: 7.3, 7.4_
 
-- [ ] 2. Database migrations and model extensions
+- [x] 2. Database migrations and model extensions
 - [ ] 2.1 Add extraction support to Prescription model
   - Add migration for `extraction_status` integer column with default 0 and null: false
   - Add migration for `extracted_data` jsonb column (nullable)

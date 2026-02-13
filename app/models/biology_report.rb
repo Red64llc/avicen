@@ -4,6 +4,23 @@ class BiologyReport < ApplicationRecord
   has_many :test_results, dependent: :destroy
   has_one_attached :document
 
+  # Enums
+  # Extraction status for document scanning workflow
+  # - manual: Created without scanning (default)
+  # - pending: Document uploaded, extraction not started
+  # - processing: Extraction in progress
+  # - extracted: Extraction complete, awaiting review
+  # - confirmed: User confirmed extracted data
+  # - failed: Extraction failed
+  enum :extraction_status, {
+    manual: 0,
+    pending: 1,
+    processing: 2,
+    extracted: 3,
+    confirmed: 4,
+    failed: 5
+  }, prefix: :extraction
+
   # Validations
   validates :test_date, presence: true
   validates :user_id, presence: true
@@ -23,3 +40,4 @@ class BiologyReport < ApplicationRecord
     where("LOWER(lab_name) LIKE LOWER(?)", "%#{sanitized_query}%")
   }
 end
+
