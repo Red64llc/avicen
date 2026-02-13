@@ -1,11 +1,11 @@
 {
   "feature": "document-scanning",
   "phase": {
-    "type": "design-generating",
+    "type": "design-validation",
     "feature": "document-scanning"
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T11:55:05.570Z",
+  "updatedAt": "2026-02-13T12:21:04.607Z",
   "history": [
     {
       "phase": {
@@ -42,6 +42,20 @@
         "feature": "document-scanning"
       },
       "timestamp": "2026-02-13T11:55:05.570Z"
+    },
+    {
+      "phase": {
+        "type": "design-approval",
+        "feature": "document-scanning"
+      },
+      "timestamp": "2026-02-13T12:00:06.078Z"
+    },
+    {
+      "phase": {
+        "type": "design-validation",
+        "feature": "document-scanning"
+      },
+      "timestamp": "2026-02-13T12:21:04.607Z"
     }
   ],
   "metadata": {
@@ -70,6 +84,16 @@
       "outputTokens": 9823,
       "cacheReadTokens": 1160277,
       "cacheCreationTokens": 94892
+    },
+    "design-generating": {
+      "startedAt": "2026-02-13T11:55:05.573Z",
+      "completedAt": "2026-02-13T12:00:05.873Z",
+      "elapsedMs": 300300,
+      "costUsd": 1.8439237499999999,
+      "inputTokens": 17455,
+      "outputTokens": 17170,
+      "cacheReadTokens": 707871,
+      "cacheCreationTokens": 149117
     }
   },
   "artifacts": [
@@ -93,6 +117,13 @@
       "path": ".red64/specs/document-scanning/gap-analysis.md",
       "phase": "gap-analysis",
       "createdAt": "2026-02-13T11:03:43.099Z"
+    },
+    {
+      "name": "Design",
+      "filename": "design.md",
+      "path": ".red64/specs/document-scanning/design.md",
+      "phase": "design-generating",
+      "createdAt": "2026-02-13T12:00:06.076Z"
     }
   ],
   "version": 2
