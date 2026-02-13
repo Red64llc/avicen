@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T16:57:12.934Z",
+  "updatedAt": "2026-02-13T17:04:13.280Z",
   "history": [
     {
       "phase": {
@@ -1408,6 +1408,28 @@
       "timestamp": "2026-02-13T16:57:12.934Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-4.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T16:57:13.118Z",
+      "event": "TASK_START",
+      "subStep": "task-5-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-13T17:04:13.280Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-5-completed"
     }
   ],
   "metadata": {
@@ -1420,7 +1442,8 @@
       1,
       2,
       3,
-      4
+      4,
+      5
     ],
     "totalGroups": 13,
     "taskEntries": [
@@ -1757,9 +1780,32 @@
       {
         "id": "5",
         "title": "Prescription scanner service for AI extraction",
-        "startedAt": "2026-02-13T13:46:03.635Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-13T16:57:13.118Z",
+        "completedAt": "2026-02-13T17:04:13.278Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 25765,
+          "outputTokens": 23377,
+          "totalTokens": 49142,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 3375243,
+          "cacheCreationTokens": 165035,
+          "costUsd": 3.460799250000001
+        },
+        "contextUsage": {
+          "inputTokens": 25765,
+          "outputTokens": 23377,
+          "totalTokens": 49142,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 3375243,
+          "cacheCreationTokens": 165035,
+          "costUsd": 3.460799250000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 12.8825,
+          "cumulativeInputTokens": 181393,
+          "cumulativeUtilization": 90.6965,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "5.1",
@@ -2056,7 +2102,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "4.2"
+    "currentTaskId": "5"
   },
   "phaseMetrics": {
     "requirements-generating": {

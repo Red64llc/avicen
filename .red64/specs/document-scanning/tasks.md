@@ -69,7 +69,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Schema ensures structured JSON output from Claude
   - _Requirements: 4.2, 4.4, 7.5_
 
-- [ ] 5. Prescription scanner service for AI extraction
+- [x] 5. Prescription scanner service for AI extraction
 - [ ] 5.1 Create PrescriptionScannerService with error hierarchy
   - Define custom error classes: Error, ConfigurationError, AuthenticationError, RateLimitError, ExtractionError
   - Create ExtractionResult value object with success/error factory methods
