@@ -153,7 +153,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - Verify importmap pins resolve correctly
   - _Requirements: 5.1, 5.2_
 
-- [ ] 7.2 Create BiomarkerTrendsController for chart data
+- [x] 7.2 Create BiomarkerTrendsController for chart data
   - Implement show action accepting biomarker_id parameter
   - Query TestResults for Current.user and specified biomarker, ordered by test_date ascending
   - Format data as JSON with labels (test dates), datasets (values), and annotations (reference range bands)

@@ -1,0 +1,11 @@
+<% biomarkers.each do |biomarker| %>
+  <li role="option"
+      data-autocomplete-value="<%= biomarker.id %>"
+      data-biomarker-name="<%= biomarker.name %>"
+      data-biomarker-code="<%= biomarker.code %>"
+      data-biomarker-unit="<%= biomarker.unit %>"
+      data-biomarker-ref-min="<%= biomarker.ref_min %>"
+      data-biomarker-ref-max="<%= biomarker.ref_max %>">
+    <%= biomarker.name %> (<%= biomarker.code %>)
+  </li>
+<% end %>

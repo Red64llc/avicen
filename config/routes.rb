@@ -39,6 +39,12 @@ Rails.application.routes.draw do
   get "drugs/search", to: "drugs#search", as: :drugs_search
   get "drugs/search_test", to: "drugs#search_test", as: :drugs_search_test if Rails.env.test?
 
+  # Biomarker search for autocomplete
+  get "biomarkers/search", to: "biomarker_search#search", as: :biomarkers_search
+
+  # Biomarker trend visualization
+  get "biomarker_trends/:id", to: "biomarker_trends#show", as: :biomarker_trends
+
   # Biology Reports with nested test results
   resources :biology_reports do
     resources :test_results, only: [ :new, :create, :edit, :update, :destroy ]

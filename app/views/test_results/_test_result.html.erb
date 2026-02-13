@@ -1,6 +1,11 @@
 <%= tag.tr id: dom_id(test_result), class: "#{'bg-red-50' if test_result.out_of_range}" do %>
   <td class="px-6 py-4 whitespace-nowrap">
-    <div class="text-sm font-medium text-gray-900"><%= test_result.biomarker.name %></div>
+    <div class="text-sm font-medium text-gray-900">
+      <%= test_result.biomarker.name %>
+      <%= link_to "📊", biomarker_trends_path(test_result.biomarker),
+          class: "ml-2 text-blue-600 hover:text-blue-800",
+          title: "View trend for #{test_result.biomarker.name}" %>
+    </div>
     <div class="text-sm text-gray-500"><%= test_result.biomarker.code %></div>
   </td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
