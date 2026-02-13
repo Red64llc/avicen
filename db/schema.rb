@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_12_210003) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_13_140002) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -41,11 +41,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_12_210003) do
 
   create_table "biology_reports", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.json "extracted_data"
+    t.integer "extraction_status", default: 0, null: false
     t.string "lab_name"
     t.text "notes"
     t.date "test_date", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["extraction_status"], name: "index_biology_reports_on_extraction_status"
     t.index ["test_date"], name: "index_biology_reports_on_test_date"
     t.index ["user_id", "test_date"], name: "index_biology_reports_on_user_id_and_test_date"
     t.index ["user_id"], name: "index_biology_reports_on_user_id"
@@ -116,10 +119,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_12_210003) do
   create_table "prescriptions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "doctor_name"
+    t.json "extracted_data"
+    t.integer "extraction_status", default: 0, null: false
     t.text "notes"
     t.date "prescribed_date", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["extraction_status"], name: "index_prescriptions_on_extraction_status"
     t.index ["user_id", "prescribed_date"], name: "index_prescriptions_on_user_id_and_prescribed_date"
     t.index ["user_id"], name: "index_prescriptions_on_user_id"
   end

@@ -7,7 +7,7 @@
     "totalTasks": 0
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T13:34:45.067Z",
+  "updatedAt": "2026-02-13T13:38:30.843Z",
   "history": [
     {
       "phase": {
@@ -125,6 +125,28 @@
       "timestamp": "2026-02-13T13:34:45.067Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:34:45.326Z",
+      "event": "TASK_START",
+      "subStep": "task-2.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 1,
+        "totalTasks": 0
+      },
+      "timestamp": "2026-02-13T13:38:30.843Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-2.1-completed"
     }
   ],
   "metadata": {
@@ -208,9 +230,32 @@
       {
         "id": "2.1",
         "title": "Add extraction support to Prescription model",
-        "startedAt": null,
-        "completedAt": null,
-        "status": "pending"
+        "startedAt": "2026-02-13T13:34:45.325Z",
+        "completedAt": "2026-02-13T13:38:30.838Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 18549,
+          "outputTokens": 4648,
+          "totalTokens": 23197,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1251399,
+          "cacheCreationTokens": 73353,
+          "costUsd": 1.32892975
+        },
+        "contextUsage": {
+          "inputTokens": 18549,
+          "outputTokens": 4648,
+          "totalTokens": 23197,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1251399,
+          "cacheCreationTokens": 73353,
+          "costUsd": 1.32892975,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 9.2745,
+          "cumulativeInputTokens": 56121,
+          "cumulativeUtilization": 28.060499999999998,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "2.2",
@@ -570,7 +615,7 @@
         "status": "pending"
       }
     ],
-    "currentTaskId": "2"
+    "currentTaskId": "2.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
