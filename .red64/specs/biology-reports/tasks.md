@@ -183,7 +183,7 @@ This document outlines the implementation tasks for the biology reports feature.
   - _Requirements: 5.1, 5.3_
 
 - [x] 8. Implement biomarker index and filtering UI
-- [ ] 8.1 (P) Create biomarker index view showing recorded biomarkers
+- [x] 8.1 (P) Create biomarker index view showing recorded biomarkers
   - Query distinct biomarkers across Current.user's test results
   - Display biomarker list as clickable cards or links
   - Link each biomarker to its trend visualization page
