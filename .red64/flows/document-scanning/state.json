@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T00:33:25.862Z",
+  "updatedAt": "2026-02-14T00:52:19.741Z",
   "history": [
     {
       "phase": {
@@ -1804,6 +1804,50 @@
       "timestamp": "2026-02-14T00:33:25.862Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-8.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:33:26.021Z",
+      "event": "TASK_START",
+      "subStep": "task-8.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:49:50.811Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-8.3-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:49:50.813Z",
+      "event": "TASK_START",
+      "subStep": "task-8.4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:52:19.741Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.4-completed"
     }
   ],
   "metadata": {
@@ -2674,16 +2718,39 @@
       {
         "id": "8.3",
         "title": "Add routes for document scanning flow",
-        "startedAt": "2026-02-13T13:46:05.117Z",
+        "startedAt": "2026-02-14T00:33:26.021Z",
         "completedAt": null,
         "status": "failed"
       },
       {
         "id": "8.4",
         "title": "Add DocumentScansController tests",
-        "startedAt": "2026-02-13T13:46:05.192Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T00:49:50.813Z",
+        "completedAt": "2026-02-14T00:52:19.740Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 24608,
+          "outputTokens": 6758,
+          "totalTokens": 31366,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2231467,
+          "cacheCreationTokens": 116988,
+          "costUsd": 2.1523275
+        },
+        "contextUsage": {
+          "inputTokens": 24608,
+          "outputTokens": 6758,
+          "totalTokens": 31366,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2231467,
+          "cacheCreationTokens": 116988,
+          "costUsd": 2.1523275,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 12.304,
+          "cumulativeInputTokens": 413472,
+          "cumulativeUtilization": 206.736,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "9",
@@ -2847,7 +2914,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "8.2"
+    "currentTaskId": "8.4"
   },
   "phaseMetrics": {
     "requirements-generating": {

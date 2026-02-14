@@ -185,13 +185,13 @@ Implementation tasks for AI-powered document scanning feature.
   - For background extraction: enqueue DocumentExtractionJob and show processing status
   - _Requirements: 10.1, 10.2_
 
-- [ ] 8.3 Add routes for document scanning flow
+- [x] 8.3 Add routes for document scanning flow
   - Add resource routes under document_scans namespace
   - Configure routes for Turbo Frame requests
   - Add nested routes for type-specific flows if needed
   - _Requirements: 6.1, 6.2_
 
-- [ ] 8.4 Add DocumentScansController tests
+- [x] 8.4 Add DocumentScansController tests
   - Test authentication requirement for all actions
   - Test user scoping (cannot access other users' scans)
   - Test successful flow through capture, upload, extract, review, confirm
