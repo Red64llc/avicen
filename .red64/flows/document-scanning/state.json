@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T05:01:48.888Z",
+  "updatedAt": "2026-02-14T05:02:17.287Z",
   "history": [
     {
       "phase": {
@@ -2222,6 +2222,28 @@
       "timestamp": "2026-02-14T05:01:48.888Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-12.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:49.096Z",
+      "event": "TASK_START",
+      "subStep": "task-12.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:02:17.287Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.2-completed"
     }
   ],
   "metadata": {
@@ -3482,9 +3504,32 @@
       {
         "id": "12.2",
         "title": "Configure privacy-safe logging",
-        "startedAt": "2026-02-13T13:46:06.616Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T05:01:49.096Z",
+        "completedAt": "2026-02-14T05:02:17.285Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 78,
+          "outputTokens": 984,
+          "totalTokens": 1062,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 140943,
+          "cacheCreationTokens": 11041,
+          "costUsd": 0.16446774999999997
+        },
+        "contextUsage": {
+          "inputTokens": 78,
+          "outputTokens": 984,
+          "totalTokens": 1062,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 140943,
+          "cacheCreationTokens": 11041,
+          "costUsd": 0.16446774999999997,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 0.039,
+          "cumulativeInputTokens": 459321,
+          "cumulativeUtilization": 229.6605,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "12.3",
@@ -3522,7 +3567,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "12.1"
+    "currentTaskId": "12.2"
   },
   "phaseMetrics": {
     "requirements-generating": {
