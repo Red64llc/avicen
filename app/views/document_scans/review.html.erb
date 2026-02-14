@@ -1,0 +1,35 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Review Extracted Data</h1>
+
+    <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <p class="text-blue-800">
+        Review the extracted data below. Edit any fields as needed before confirming.
+      </p>
+    </div>
+
+    <%= form_with url: confirm_document_scans_path, method: :post, scope: :scan, local: false, data: { controller: "review-form", turbo_frame: "_top" } do |form| %>
+      <%= form.hidden_field :document_type, value: @record_type %>
+
+      <% if @record_type == "prescription" %>
+        <%= render "document_scans/prescription_form", form: form, extracted_data: @extracted_data %>
+      <% else %>
+        <%= render "document_scans/biology_report_form", form: form, extracted_data: @extracted_data %>
+      <% end %>
+
+      <!-- Navigation -->
+      <div class="flex justify-between mt-6">
+        <% if @record && !@record.extraction_confirmed? %>
+          <%= button_to "Cancel",
+              cancel_document_scan_path(@record, record_type: @record_type),
+              method: :delete,
+              class: "btn btn--secondary",
+              data: { turbo_confirm: "Are you sure? This will discard the extracted data." } %>
+        <% else %>
+          <%= link_to "Cancel", new_document_scan_path, class: "btn btn--secondary" %>
+        <% end %>
+        <%= form.submit "Confirm and Save", class: "btn btn--primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

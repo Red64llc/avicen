@@ -1,0 +1,39 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Extraction Failed</h1>
+
+    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <p class="text-red-800 font-medium">
+        Unable to extract data from your document.
+      </p>
+      <% if @error_message.present? %>
+        <p class="text-red-700 mt-2"><%= @error_message %></p>
+      <% end %>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-lg font-medium">What you can try:</h2>
+      <ul class="list-disc list-inside text-gray-600 space-y-2">
+        <% case @error_type %>
+        <% when :rate_limit %>
+          <li>Wait a few minutes and try again</li>
+          <li>Process your document in the background</li>
+        <% when :authentication %>
+          <li>Contact support - there may be a configuration issue</li>
+        <% when :extraction %>
+          <li>Make sure the image is clear and well-lit</li>
+          <li>Ensure the document text is readable</li>
+          <li>Try taking a new photo from directly above the document</li>
+        <% else %>
+          <li>Make sure the image is clear and well-lit</li>
+          <li>Ensure the entire document is visible</li>
+          <li>Try a different image format (JPEG or PNG recommended)</li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="flex justify-between mt-8">
+      <%= link_to "Try Again", new_document_scan_path, class: "btn btn--primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,14 @@
 <div class="max-w-4xl mx-auto">
-  <div class="mb-6">
+  <div class="mb-6 flex justify-between items-center">
     <%= link_to "Back to Prescriptions", prescriptions_path,
         class: "text-sm text-gray-500 hover:text-gray-700" %>
+    <%= link_to new_document_scan_path, class: "inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" do %>
+      <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      Scan Another Document
+    <% end %>
   </div>
 
   <div class="bg-white shadow rounded-lg p-4 sm:p-6 mb-6">
@@ -32,6 +39,19 @@
         </div>
       <% end %>
     </dl>
+
+    <% if @prescription.scanned_document.attached? %>
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">Scanned Document</h3>
+        <div class="flex items-center space-x-4">
+          <%= link_to "View Document", rails_blob_path(@prescription.scanned_document, disposition: "inline"), target: "_blank", class: "inline-flex items-center px-3 py-1.5 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+          <%= link_to "Download", rails_blob_path(@prescription.scanned_document, disposition: "attachment"), class: "inline-flex items-center px-3 py-1.5 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+        </div>
+        <% if @prescription.extraction_confirmed? %>
+          <p class="mt-2 text-xs text-gray-500">Created from scanned document via AI extraction</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <%= turbo_frame_tag "medications" do %>

@@ -1,0 +1,190 @@
+<%# Partial for individual test result fields in the biology report review form
+    Task 10.3 - Requirements: 5.1, 5.4, 5.7
+
+    Local variables:
+    - form: the form builder object
+    - result: hash containing test result data (biomarker_name, value, unit, etc.)
+    - index: the test result index for form field naming
+    - is_template: boolean, true when used in the template for adding new test results
+%>
+<% is_template ||= false %>
+<% low_confidence = result[:confidence].present? && result[:confidence] < 0.8 %>
+<% requires_verification = result[:requires_verification] || low_confidence %>
+<% out_of_range = result[:out_of_range] %>
+
+<div class="test-result-entry border rounded-lg p-4 relative <%= out_of_range ? 'border-red-400 bg-red-50' : (requires_verification ? 'border-yellow-400 bg-yellow-50' : 'border-gray-200') %>"
+     data-review-form-target="testResultEntry"
+     data-test-result-index="<%= index %>">
+
+  <%# Remove button %>
+  <button type="button"
+          class="absolute top-2 right-2 text-gray-400 hover:text-red-500 focus:outline-none"
+          data-action="click->review-form#removeTestResult"
+          title="Remove Test Result">
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    <span class="sr-only">Remove</span>
+  </button>
+
+  <%# Out-of-range warning %>
+  <% if out_of_range %>
+    <div class="mb-3 text-sm text-red-700 flex items-center">
+      <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      Value is outside reference range
+    </div>
+  <% elsif requires_verification %>
+    <%# Verification warning %>
+    <div class="mb-3 text-sm text-yellow-700 flex items-center">
+      <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      Please verify this test result
+    </div>
+  <% end %>
+
+  <%# Matched biomarker metadata %>
+  <% if result[:matched_biomarker_id].present? %>
+    <div class="mb-3 text-sm text-green-700 flex items-center bg-green-50 rounded px-2 py-1">
+      <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      <span>
+        Matched in database
+        <% if result[:matched_biomarker_code].present? %>
+          <span class="text-green-600 ml-1">(Code: <%= result[:matched_biomarker_code] %>)</span>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <%# Row 1: Biomarker name (with autocomplete) and Value %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    <%# Biomarker name with autocomplete %>
+    <div>
+      <%= form.label "test_results[#{index}][biomarker_name]", "Biomarker", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <div data-controller="biomarker-search"
+           data-biomarker-search-url-value="/biomarkers/search"
+           data-biomarker-search-min-length-value="2"
+           class="relative"
+           role="combobox">
+        <%= form.text_field "test_results[#{index}][biomarker_name]",
+            value: result[:biomarker_name],
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary pr-8",
+            data: {
+              biomarker_search_target: "input",
+              review_form_target: "field",
+              field_name: "test_results_#{index}_biomarker_name",
+              confidence: result[:confidence],
+              action: "input->review-form#markVerified blur->review-form#markVerified"
+            },
+            placeholder: "Search for a biomarker...",
+            autocomplete: "off" %>
+        <%= form.hidden_field "test_results[#{index}][biomarker_id]",
+            value: result[:matched_biomarker_id],
+            data: { biomarker_search_target: "hidden" } %>
+        <ul data-biomarker-search-target="results"
+            class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm hidden">
+        </ul>
+      </div>
+      <%# Hidden field for verification tracking %>
+      <%= form.hidden_field "test_results[#{index}][verified_biomarker_name]",
+          value: "",
+          data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_biomarker_name" } %>
+    </div>
+
+    <%# Value %>
+    <div>
+      <%= form.label "test_results[#{index}][value]", "Value", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field "test_results[#{index}][value]",
+          value: result[:value],
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary <%= out_of_range ? 'border-red-400 bg-red-50' : '' %>",
+          data: {
+            review_form_target: "field",
+            field_name: "test_results_#{index}_value",
+            confidence: result[:confidence],
+            action: "input->review-form#markVerified blur->review-form#markVerified"
+          },
+          placeholder: "e.g., 95" %>
+      <%= form.hidden_field "test_results[#{index}][verified_value]",
+          value: "",
+          data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_value" } %>
+    </div>
+  </div>
+
+  <%# Row 2: Unit and Reference Range %>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <%# Unit - auto-filled from biomarker search %>
+    <div>
+      <%= form.label "test_results[#{index}][unit]", "Unit", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field "test_results[#{index}][unit]",
+          value: result[:unit],
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+          data: {
+            review_form_target: "field",
+            biomarker_search_target: "unitField",
+            field_name: "test_results_#{index}_unit",
+            confidence: result[:confidence],
+            action: "input->review-form#markVerified blur->review-form#markVerified"
+          },
+          placeholder: "e.g., mg/dL" %>
+      <%= form.hidden_field "test_results[#{index}][verified_unit]",
+          value: "",
+          data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_unit" } %>
+    </div>
+
+    <%# Reference Min - auto-filled from biomarker search %>
+    <div>
+      <%= form.label "test_results[#{index}][ref_min]", "Ref Min", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.number_field "test_results[#{index}][ref_min]",
+          value: result[:reference_min],
+          step: "any",
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+          data: {
+            review_form_target: "field",
+            biomarker_search_target: "refMinField",
+            field_name: "test_results_#{index}_ref_min",
+            confidence: result[:confidence],
+            action: "input->review-form#markVerified blur->review-form#markVerified"
+          },
+          placeholder: "e.g., 70" %>
+      <%= form.hidden_field "test_results[#{index}][verified_ref_min]",
+          value: "",
+          data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_ref_min" } %>
+    </div>
+
+    <%# Reference Max - auto-filled from biomarker search %>
+    <div>
+      <%= form.label "test_results[#{index}][ref_max]", "Ref Max", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.number_field "test_results[#{index}][ref_max]",
+          value: result[:reference_max],
+          step: "any",
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+          data: {
+            review_form_target: "field",
+            biomarker_search_target: "refMaxField",
+            field_name: "test_results_#{index}_ref_max",
+            confidence: result[:confidence],
+            action: "input->review-form#markVerified blur->review-form#markVerified"
+          },
+          placeholder: "e.g., 100" %>
+      <%= form.hidden_field "test_results[#{index}][verified_ref_max]",
+          value: "",
+          data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_ref_max" } %>
+    </div>
+  </div>
+
+  <%# Confidence indicator for low confidence test results %>
+  <% if low_confidence %>
+    <div class="mt-3 flex items-center">
+      <div class="text-xs text-gray-500 flex items-center" data-review-form-target="confidence" data-confidence="<%= result[:confidence] %>">
+        <svg class="h-4 w-4 mr-1 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+        </svg>
+        Confidence: <%= (result[:confidence] * 100).round %>%
+      </div>
+    </div>
+  <% end %>
+</div>

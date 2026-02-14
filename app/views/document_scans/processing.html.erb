@@ -1,0 +1,62 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container text-center">
+    <h1 class="text-2xl font-semibold mb-6">
+      Processing <%= @document_type == "prescription" ? "Prescription" : "Biology Report" %>
+    </h1>
+
+    <div class="mb-8" data-processing-indicator>
+      <!-- Animated spinner -->
+      <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-primary border-t-transparent" role="status" aria-label="Processing document"></div>
+    </div>
+
+    <% if @estimated_time.present? %>
+      <div class="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg inline-block">
+        <p class="text-gray-700">
+          <span class="font-medium">Estimated processing time:</span>
+          <span class="text-primary font-semibold"><%= @estimated_time.round %> seconds</span>
+        </p>
+        <p class="text-sm text-gray-500 mt-1">
+          Time varies based on document complexity
+        </p>
+      </div>
+    <% end %>
+
+    <p class="text-gray-600 mb-4">
+      <% if @document_type == "prescription" %>
+        Your prescription is being analyzed in the background. We're extracting medication details, dosages, and prescriber information.
+      <% else %>
+        Your biology report is being analyzed in the background. We're extracting test results, biomarker values, and reference ranges.
+      <% end %>
+    </p>
+
+    <p class="text-sm text-gray-500 mb-8">
+      You can leave this page and continue using the app. We'll notify you when extraction is complete.
+    </p>
+
+    <% if @record %>
+      <div id="<%= "#{@record.class.name.underscore}_#{@record.id}_extraction_status" %>" class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <p class="text-blue-800">
+          Status: <span class="font-medium"><%= @record.extraction_status.humanize %></span>
+        </p>
+        <% if @document_type == "prescription" %>
+          <%= link_to "View Prescription", prescription_path(@record), class: "text-blue-600 hover:text-blue-800 underline mt-2 inline-block" %>
+        <% else %>
+          <%= link_to "View Report", biology_report_path(@record), class: "text-blue-600 hover:text-blue-800 underline mt-2 inline-block" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 flex justify-center space-x-4">
+      <% if @record && !@record.extraction_confirmed? %>
+        <%= button_to "Cancel Extraction",
+            cancel_document_scan_path(@record, record_type: @document_type),
+            method: :delete,
+            class: "btn btn--secondary",
+            data: { turbo_confirm: "Are you sure you want to cancel this extraction? The pending record will be deleted." } %>
+      <% end %>
+      <%= link_to "Scan Another Document", new_document_scan_path, class: "btn btn--primary" %>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_stream_from "#{Current.user.id}_document_extractions" %>

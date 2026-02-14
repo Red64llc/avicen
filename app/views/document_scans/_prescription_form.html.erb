@@ -1,0 +1,80 @@
+<div class="space-y-6" data-controller="review-form">
+  <!-- Prescription Details -->
+  <div class="bg-white border rounded-lg p-6">
+    <h2 class="text-lg font-medium mb-4">Prescription Details</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <%= form.label :doctor_name, "Doctor Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :doctor_name,
+            value: extracted_data[:doctor_name],
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+            data: {
+              review_form_target: "field",
+              field_name: "doctor_name",
+              action: "input->review-form#markVerified blur->review-form#markVerified"
+            } %>
+      </div>
+
+      <div>
+        <%= form.label :prescribed_date, "Prescription Date", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.date_field :prescribed_date,
+            value: extracted_data[:prescription_date],
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+            required: true,
+            data: {
+              review_form_target: "field",
+              field_name: "prescribed_date",
+              action: "input->review-form#markVerified blur->review-form#markVerified"
+            } %>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <%= form.label :notes, "Notes", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_area :notes,
+          rows: 2,
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" %>
+    </div>
+  </div>
+
+  <!-- Medications -->
+  <div class="bg-white border rounded-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-medium">Medications</h2>
+      <button type="button"
+              class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              data-action="click->review-form#addMedication">
+        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Medication
+      </button>
+    </div>
+
+    <% medications = extracted_data[:medications] || [] %>
+    <% if medications.any? %>
+      <div class="space-y-4" data-review-form-target="medicationsList">
+        <% medications.each_with_index do |med, index| %>
+          <%= render "document_scans/medication_fields",
+                     form: form,
+                     med: med,
+                     index: index %>
+        <% end %>
+      </div>
+    <% else %>
+      <div data-review-form-target="medicationsList" class="space-y-4">
+        <p class="text-gray-500 text-sm empty-medications-message">No medications were extracted. You can add them manually using the button above.</p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Hidden template for adding new medications -->
+  <template data-review-form-target="medicationTemplate">
+    <%= render "document_scans/medication_fields",
+               form: form,
+               med: { confidence: 1.0 },
+               index: "NEW_INDEX",
+               is_template: true %>
+  </template>
+</div>

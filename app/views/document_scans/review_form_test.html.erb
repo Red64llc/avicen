@@ -1,0 +1,102 @@
+<h1 class="text-2xl font-bold mb-6">Review Form Controller Test</h1>
+
+<div class="max-w-2xl">
+  <%# Test widget for review_form_controller.js Stimulus controller %>
+  <%# Tests the confidence highlighting and verification tracking features %>
+  <form data-controller="review-form"
+        data-review-form-confidence-threshold-value="0.8"
+        class="space-y-6">
+
+    <p class="text-sm text-gray-600 mb-4">
+      This form demonstrates the review form controller features:
+      low confidence fields are highlighted, and editing marks fields as verified.
+    </p>
+
+    <%# Field 1: Low confidence (0.6) - should be highlighted %>
+    <div class="space-y-1">
+      <label for="drug_name" class="block text-sm font-medium text-gray-700">
+        Drug Name
+        <span data-review-form-target="confidence"
+              data-confidence="0.6"
+              class="ml-2 text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-700">
+          60% confidence
+        </span>
+      </label>
+      <input type="text"
+             id="drug_name"
+             name="medication[drug_name]"
+             value="Amoxicillin"
+             data-review-form-target="field"
+             data-field-name="drug_name"
+             data-confidence="0.6"
+             data-action="input->review-form#markVerified blur->review-form#markVerified"
+             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+      <input type="hidden"
+             name="medication[drug_name_verified]"
+             value=""
+             data-review-form-target="verifiedInput"
+             data-field-name="drug_name" />
+    </div>
+
+    <%# Field 2: High confidence (0.95) - should NOT be highlighted %>
+    <div class="space-y-1">
+      <label for="dosage" class="block text-sm font-medium text-gray-700">
+        Dosage
+        <span data-review-form-target="confidence"
+              data-confidence="0.95"
+              class="ml-2 text-xs px-2 py-0.5 rounded bg-green-100 text-green-700">
+          95% confidence
+        </span>
+      </label>
+      <input type="text"
+             id="dosage"
+             name="medication[dosage]"
+             value="500mg"
+             data-review-form-target="field"
+             data-field-name="dosage"
+             data-confidence="0.95"
+             data-action="input->review-form#markVerified blur->review-form#markVerified"
+             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+      <input type="hidden"
+             name="medication[dosage_verified]"
+             value=""
+             data-review-form-target="verifiedInput"
+             data-field-name="dosage" />
+    </div>
+
+    <%# Field 3: Medium-low confidence (0.75) - should be highlighted %>
+    <div class="space-y-1">
+      <label for="frequency" class="block text-sm font-medium text-gray-700">
+        Frequency
+        <span data-review-form-target="confidence"
+              data-confidence="0.75"
+              class="ml-2 text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-700">
+          75% confidence
+        </span>
+      </label>
+      <input type="text"
+             id="frequency"
+             name="medication[frequency]"
+             value="Twice daily"
+             data-review-form-target="field"
+             data-field-name="frequency"
+             data-confidence="0.75"
+             data-action="input->review-form#markVerified blur->review-form#markVerified"
+             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
+      <input type="hidden"
+             name="medication[frequency_verified]"
+             value=""
+             data-review-form-target="verifiedInput"
+             data-field-name="frequency" />
+    </div>
+
+    <%# Submit button target %>
+    <div class="pt-4">
+      <button type="submit"
+              data-review-form-target="submitButton"
+              class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        Confirm and Save
+      </button>
+    </div>
+  </form>
+</div>

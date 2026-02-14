@@ -1,0 +1,11 @@
+<div class="document-scan-container">
+  <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+    <p class="text-red-800">
+      <%= message || "An error occurred. Please try again." %>
+    </p>
+  </div>
+
+  <div class="flex justify-between mt-8">
+    <%= link_to "Start Over", new_document_scan_path, class: "btn btn--primary" %>
+  </div>
+</div>

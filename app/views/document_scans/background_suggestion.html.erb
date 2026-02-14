@@ -1,0 +1,78 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Large Document Detected</h1>
+
+    <div class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-amber-800">
+            This document may take longer to process
+          </h3>
+          <p class="mt-2 text-sm text-amber-700">
+            Estimated processing time: <strong><%= @estimated_time.round %> seconds</strong>
+          </p>
+          <p class="mt-1 text-sm text-amber-600">
+            We recommend processing this document in the background so you can continue using the app.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <p class="text-gray-600 mb-4">
+        Choose how you'd like to process this <%= @document_type.humanize.downcase %>:
+      </p>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <!-- Background Processing Option (Recommended) -->
+        <%= form_with url: extract_document_scans_path, method: :post, scope: :scan, local: false, data: { turbo_frame: "document_scan_flow" }, class: "block" do |form| %>
+          <%= form.hidden_field :blob_id, value: @blob_id %>
+          <%= form.hidden_field :document_type, value: @document_type %>
+          <%= form.hidden_field :background, value: "1" %>
+
+          <button type="submit" class="w-full p-4 border-2 border-primary rounded-lg text-left hover:bg-primary-50 transition-colors group">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="block text-sm font-medium text-gray-900 group-hover:text-primary">
+                  Process in Background
+                </span>
+                <span class="block text-sm text-gray-500 mt-1">
+                  Continue using the app while we extract data
+                </span>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                Recommended
+              </span>
+            </div>
+          </button>
+        <% end %>
+
+        <!-- Synchronous Processing Option -->
+        <%= form_with url: extract_document_scans_path, method: :post, scope: :scan, local: false, data: { turbo_frame: "document_scan_flow" }, class: "block" do |form| %>
+          <%= form.hidden_field :blob_id, value: @blob_id %>
+          <%= form.hidden_field :document_type, value: @document_type %>
+          <%= form.hidden_field :force_sync, value: "1" %>
+
+          <button type="submit" class="w-full p-4 border rounded-lg text-left hover:bg-gray-50 transition-colors">
+            <span class="block text-sm font-medium text-gray-900">
+              Wait for Results
+            </span>
+            <span class="block text-sm text-gray-500 mt-1">
+              Stay on this page until extraction completes (~<%= @estimated_time.round %> sec)
+            </span>
+          </button>
+        <% end %>
+      </div>
+
+      <!-- Back Navigation -->
+      <div class="mt-6 pt-4 border-t">
+        <%= link_to "Back to Type Selection", select_type_document_scans_path(blob_id: @blob_id), class: "text-sm text-gray-600 hover:text-gray-900", data: { turbo_frame: "document_scan_flow" } %>
+      </div>
+    </div>
+  </div>
+<% end %>
