@@ -169,7 +169,7 @@ Implementation tasks for AI-powered document scanning feature.
   - _Requirements: 10.5, 10.6_
 
 - [x] 8. Document scans controller and routing
-- [ ] 8.1 Create DocumentScansController with scan flow actions
+- [x] 8.1 Create DocumentScansController with scan flow actions
   - Add new action for capture interface (camera/upload options)
   - Add upload action for handling direct upload completion
   - Add extract action for triggering extraction (sync or background)

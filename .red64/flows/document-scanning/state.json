@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T00:29:48.111Z",
+  "updatedAt": "2026-02-14T00:31:46.371Z",
   "history": [
     {
       "phase": {
@@ -1760,6 +1760,28 @@
       "timestamp": "2026-02-14T00:29:48.111Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-8-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:29:48.316Z",
+      "event": "TASK_START",
+      "subStep": "task-8.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:31:46.371Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.1-completed"
     }
   ],
   "metadata": {
@@ -2570,9 +2592,32 @@
       {
         "id": "8.1",
         "title": "Create DocumentScansController with scan flow actions",
-        "startedAt": "2026-02-13T13:46:04.990Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T00:29:48.316Z",
+        "completedAt": "2026-02-14T00:31:46.370Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 14518,
+          "outputTokens": 5011,
+          "totalTokens": 19529,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1151543,
+          "cacheCreationTokens": 101226,
+          "costUsd": 1.4166609999999997
+        },
+        "contextUsage": {
+          "inputTokens": 14518,
+          "outputTokens": 5011,
+          "totalTokens": 19529,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1151543,
+          "cacheCreationTokens": 101226,
+          "costUsd": 1.4166609999999997,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 7.259,
+          "cumulativeInputTokens": 383129,
+          "cumulativeUtilization": 191.5645,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "8.2",
@@ -2757,7 +2802,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "8"
+    "currentTaskId": "8.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
