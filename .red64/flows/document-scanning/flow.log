@@ -1119,3 +1119,48 @@ Or execute all pending tasks:
 [00:31:46] --- end command ---
 
 [00:31:46] Committing: feat(document-scanning): implement task 28 - Create DocumentScansController with scan flow actions...
+[00:31:46] Committed: 1410ff9
+[00:31:46] Task 8.1 completed
+[00:31:46] 
+[00:31:46] [28/54] Task 8.2: Implement extraction decision logic
+[00:31:46] --- Executing command ---
+[00:31:46] Command: claude -p "/red64:spec-impl document-scanning 8.2 -y"
+[00:31:46] Working dir: /Users/yacin/Workspace/Hackatons/avicen.worktrees/document-scanning
+[00:31:46] Sandbox: Docker isolated mode
+[00:31:46] Model: opus
+[00:33:25] {"type":"result","subtype":"success","is_error":false,"duration_ms":81770,"duration_api_ms":80818,"num_turns":21,"result":"## Task 8.2 Completion Summary\n\n**Task 8.2: Implement extraction decision logic** has been verified as complete.\n\n### Implementation Location\n- **Controller**: `app/controllers/document_scans_controller.rb`\n- **View**: `app/views/document_scans/background_suggestion.html.erb`\n\n### Implementation Details\n\n| Requirement | Implementation |\n|-------------|----------------|\n| Check if extraction > 5 seconds | `extraction_exceeds_threshold?` method uses 2MB threshold (line 230-232) |\n| Estimate extraction time | `estimate_extraction_time` method calculates based on `BASE_EXTRACTION_TIME + (megabytes × TIME_PER_MEGABYTE)` (lines 239-242) |\n| Offer background option | `render_background_suggestion` renders the suggestion view with two options (line 129) |\n| Sync extraction | `process_sync_extraction` calls scanner service directly and renders `extract_success` (lines 267-277) |\n| Background extraction | `process_background_extraction` enqueues `DocumentExtractionJob` and renders `processing` (lines 281-293) |\n\n### Tests\nTests for task 8.2 exist in `test/controllers/document_scans_controller_test.rb`:\n- `extract suggests background processing for large images`\n- `extract performs sync extraction for small images without background suggestion`\n- `extract respects background flag even for small images`\n- `extract with force_sync proceeds with sync extraction for large images`\n- `extraction_exceeds_threshold returns correct threshold based on image size`\n- `estimate_extraction_time returns seconds based on image size`\n- `background_suggestion view shows estimated time and options`\n\nThe task has been marked as completed in `tasks.md`.","session_id":"d28eea60-aa26-4ac3-95c0-074721d28948","total_cost_usd":0.6964992500000001,"usage":{"input_tokens":5735,"cache_creation_input_tokens":39557,"cache_read_input_tokens":684960,"output_tokens":3003,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0},"service_tier":"standard","cache_creation":{"ephemeral_1h_input_tokens":0,"ephemeral_5m_input_tokens":39557}},"modelUsage":{"claude-opus-4-5-20251101":{"inputTokens":5735,"outputTokens":3003,"cacheReadInputTokens":684960,"cacheCreationInputTokens":39557,"webSearchRequests":0,"costUSD":0.69346125,"contextWindow":200000,"maxOutputTokens":64000},"claude-haiku-4-5-20251001":{"inputTokens":2648,"outputTokens":78,"cacheReadInputTokens":0,"cacheCreationInputTokens":0,"webSearchRequests":0,"costUSD":0.003038,"contextWindow":200000,"maxOutputTokens":64000}},"permission_denials":[],"uuid":"3e4b9e3f-6bbe-4760-9c9d-7792d53c25ac"}
+[00:33:25] Exit code: 0
+[00:33:25] Success: true
+[00:33:25] --- stdout ---
+[00:33:25] ## Task 8.2 Completion Summary
+
+**Task 8.2: Implement extraction decision logic** has been verified as complete.
+
+### Implementation Location
+- **Controller**: `app/controllers/document_scans_controller.rb`
+- **View**: `app/views/document_scans/background_suggestion.html.erb`
+
+### Implementation Details
+
+| Requirement | Implementation |
+|-------------|----------------|
+| Check if extraction > 5 seconds | `extraction_exceeds_threshold?` method uses 2MB threshold (line 230-232) |
+| Estimate extraction time | `estimate_extraction_time` method calculates based on `BASE_EXTRACTION_TIME + (megabytes × TIME_PER_MEGABYTE)` (lines 239-242) |
+| Offer background option | `render_background_suggestion` renders the suggestion view with two options (line 129) |
+| Sync extraction | `process_sync_extraction` calls scanner service directly and renders `extract_success` (lines 267-277) |
+| Background extraction | `process_background_extraction` enqueues `DocumentExtractionJob` and renders `processing` (lines 281-293) |
+
+### Tests
+Tests for task 8.2 exist in `test/controllers/document_scans_controller_test.rb`:
+- `extract suggests background processing for large images`
+- `extract performs sync extraction for small images without background suggestion`
+- `extract respects background flag even for small images`
+- `extract with force_sync proceeds with sync extraction for large images`
+- `extraction_exceeds_threshold returns correct threshold based on image size`
+- `estimate_extraction_time returns seconds based on image size`
+- `background_suggestion view shows estimated time and options`
+
+The task has been marked as completed in `tasks.md`.
+[00:33:25] --- end command ---
+
+[00:33:25] Committing: feat(document-scanning): implement task 29 - Implement extraction decision logic...

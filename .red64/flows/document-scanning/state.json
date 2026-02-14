@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T00:31:46.371Z",
+  "updatedAt": "2026-02-14T00:33:25.862Z",
   "history": [
     {
       "phase": {
@@ -1782,6 +1782,28 @@
       "timestamp": "2026-02-14T00:31:46.371Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-8.1-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:31:46.568Z",
+      "event": "TASK_START",
+      "subStep": "task-8.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:33:25.862Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8.2-completed"
     }
   ],
   "metadata": {
@@ -2622,9 +2644,32 @@
       {
         "id": "8.2",
         "title": "Implement extraction decision logic",
-        "startedAt": "2026-02-13T13:46:05.053Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T00:31:46.567Z",
+        "completedAt": "2026-02-14T00:33:25.860Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5735,
+          "outputTokens": 3003,
+          "totalTokens": 8738,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 684960,
+          "cacheCreationTokens": 39557,
+          "costUsd": 0.6964992500000001
+        },
+        "contextUsage": {
+          "inputTokens": 5735,
+          "outputTokens": 3003,
+          "totalTokens": 8738,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 684960,
+          "cacheCreationTokens": 39557,
+          "costUsd": 0.6964992500000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8674999999999997,
+          "cumulativeInputTokens": 388864,
+          "cumulativeUtilization": 194.43200000000002,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "8.3",
@@ -2802,7 +2847,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "8.1"
+    "currentTaskId": "8.2"
   },
   "phaseMetrics": {
     "requirements-generating": {

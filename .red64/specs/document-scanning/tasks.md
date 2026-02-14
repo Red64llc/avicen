@@ -178,7 +178,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Scope all operations to authenticated user via Current.user
   - _Requirements: 1.1, 2.1, 5.5, 5.6, 9.2_
 
-- [ ] 8.2 Implement extraction decision logic
+- [x] 8.2 Implement extraction decision logic
   - Check if extraction might take longer than 5 seconds (based on image size or heuristic)
   - Offer background processing option when threshold exceeded
   - For sync extraction: call scanner service directly and render review
