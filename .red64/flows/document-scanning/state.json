@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T05:03:09.152Z",
+  "updatedAt": "2026-02-14T05:03:26.737Z",
   "history": [
     {
       "phase": {
@@ -2288,6 +2288,28 @@
       "timestamp": "2026-02-14T05:03:09.152Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-13-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:03:09.338Z",
+      "event": "TASK_START",
+      "subStep": "task-13.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:03:26.737Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-13.1-completed"
     }
   ],
   "metadata": {
@@ -3639,9 +3661,32 @@
       {
         "id": "13.1",
         "title": "Add integration tests for full scan flow",
-        "startedAt": "2026-02-13T13:46:06.880Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T05:03:09.338Z",
+        "completedAt": "2026-02-14T05:03:26.734Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 533,
+          "totalTokens": 6206,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60143,
+          "cacheCreationTokens": 8248,
+          "costUsd": 0.1233115
+        },
+        "contextUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 533,
+          "totalTokens": 6206,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60143,
+          "cacheCreationTokens": 8248,
+          "costUsd": 0.1233115,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8365,
+          "cumulativeInputTokens": 476772,
+          "cumulativeUtilization": 238.386,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "13.2",
@@ -3658,7 +3703,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "13"
+    "currentTaskId": "13.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
