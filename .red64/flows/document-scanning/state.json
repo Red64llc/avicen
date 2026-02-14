@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T03:53:09.265Z",
+  "updatedAt": "2026-02-14T03:53:34.688Z",
   "history": [
     {
       "phase": {
@@ -1980,6 +1980,28 @@
       "timestamp": "2026-02-14T03:53:09.265Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-10-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T03:53:09.470Z",
+      "event": "TASK_START",
+      "subStep": "task-10.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T03:53:34.688Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-10.1-completed"
     }
   ],
   "metadata": {
@@ -3000,9 +3022,32 @@
       {
         "id": "10.1",
         "title": "Create review_form_controller.js Stimulus controller",
-        "startedAt": "2026-02-13T13:46:05.710Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T03:53:09.470Z",
+        "completedAt": "2026-02-14T03:53:34.685Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5726,
+          "outputTokens": 852,
+          "totalTokens": 6578,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 86995,
+          "cacheCreationTokens": 14556,
+          "costUsd": 0.1844025
+        },
+        "contextUsage": {
+          "inputTokens": 5726,
+          "outputTokens": 852,
+          "totalTokens": 6578,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 86995,
+          "cacheCreationTokens": 14556,
+          "costUsd": 0.1844025,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.863,
+          "cumulativeInputTokens": 436413,
+          "cumulativeUtilization": 218.2065,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "10.2",
@@ -3117,7 +3162,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "10"
+    "currentTaskId": "10.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
