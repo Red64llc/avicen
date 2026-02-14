@@ -69,7 +69,7 @@ class PrescriptionTest < ActiveSupport::TestCase
     columns = Prescription.columns_hash
     assert_includes Prescription.column_names, "extracted_data"
     # SQLite uses json type
-    assert_includes [:json, :jsonb], columns["extracted_data"].type
+    assert_includes [ :json, :jsonb ], columns["extracted_data"].type
   end
 
   test "extracted_data is nullable" do
@@ -117,7 +117,7 @@ class PrescriptionTest < ActiveSupport::TestCase
     )
 
     # Create a mock PDF file
-    pdf_file = Tempfile.new(["test", ".pdf"])
+    pdf_file = Tempfile.new([ "test", ".pdf" ])
     pdf_file.write("%PDF-1.4")
     pdf_file.rewind
 

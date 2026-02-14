@@ -282,7 +282,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock HEIC file
-    heic_file = Tempfile.new(["test", ".heic"])
+    heic_file = Tempfile.new([ "test", ".heic" ])
     heic_file.write("fake heic content")
     heic_file.rewind
 
@@ -303,7 +303,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     report = BiologyReport.new(user: user, test_date: Date.today)
 
     # Create a mock HEIF file
-    heif_file = Tempfile.new(["test", ".heif"])
+    heif_file = Tempfile.new([ "test", ".heif" ])
     heif_file.write("fake heif content")
     heif_file.rewind
 
@@ -327,7 +327,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     # Create a large file (we'll simulate this by setting byte_size after attach)
     # Note: In actual test, the attached blob will have the real size
     # This test verifies the validator is wired up correctly
-    large_file = Tempfile.new(["large", ".pdf"])
+    large_file = Tempfile.new([ "large", ".pdf" ])
     large_file.write("%PDF-1.4" + ("x" * 100))  # Small file content for test
     large_file.rewind
 
@@ -378,7 +378,7 @@ class BiologyReportTest < ActiveSupport::TestCase
     columns = BiologyReport.columns_hash
     assert_includes BiologyReport.column_names, "extracted_data"
     # SQLite uses json type
-    assert_includes [:json, :jsonb], columns["extracted_data"].type
+    assert_includes [ :json, :jsonb ], columns["extracted_data"].type
   end
 
   test "extracted_data is nullable" do

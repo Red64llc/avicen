@@ -205,8 +205,8 @@ class DocumentScansSecurityTest < ActionDispatch::IntegrationTest
 
     params = {
       scan: {
-        extracted_data: { medications: [{ drug_name: "Secret Drug" }] },
-        medications: [{ drug_name: "Another Drug" }]
+        extracted_data: { medications: [ { drug_name: "Secret Drug" } ] },
+        medications: [ { drug_name: "Another Drug" } ]
       }
     }
 

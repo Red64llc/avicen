@@ -190,7 +190,7 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     # Should show document type selection
-    assert_select "select[name='scan[document_type]']" , false # Using radio buttons instead
+    assert_select "select[name='scan[document_type]']", false # Using radio buttons instead
     assert_select "input[type='radio'][name='scan[document_type]']", count: 2
   end
 
@@ -2733,7 +2733,7 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
     )
 
     # Records older than 24 hours in pending/processing status can be cleaned up
-    stale_prescriptions = Prescription.where(extraction_status: [:pending, :processing])
+    stale_prescriptions = Prescription.where(extraction_status: [ :pending, :processing ])
                                        .where("updated_at < ?", 24.hours.ago)
     assert_includes stale_prescriptions, old_prescription
   end

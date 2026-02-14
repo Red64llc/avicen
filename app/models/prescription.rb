@@ -31,4 +31,3 @@ class Prescription < ApplicationRecord
   # Scopes
   scope :ordered, -> { order(prescribed_date: :desc) }
 end
-

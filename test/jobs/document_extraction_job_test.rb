@@ -441,11 +441,11 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
   end
 
   test "job can be enqueued for later processing" do
-    assert_enqueued_with(job: DocumentExtractionJob, args: [{
+    assert_enqueued_with(job: DocumentExtractionJob, args: [ {
       record_type: "Prescription",
       record_id: @prescription.id,
       blob_id: @prescription.scanned_document.blob.id
-    }]) do
+    } ]) do
       DocumentExtractionJob.perform_later(
         record_type: "Prescription",
         record_id: @prescription.id,
@@ -532,7 +532,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
     # Simulate max retries exhausted by testing the callback handler directly
     # The handle_final_retry_failure class method is called when retries are exhausted
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: @prescription.id, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "Prescription", record_id: @prescription.id, blob_id: 1 } ]
 
     error = PrescriptionScannerService::RateLimitError.new("Rate limit")
 
@@ -546,7 +546,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
 
   test "rate limit error exhausts retries for BiologyReport and updates status" do
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 } ]
 
     error = BiologyReportScannerService::RateLimitError.new("Rate limit")
 
@@ -610,7 +610,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
   test "configuration error discard callback updates record status" do
     # Test the handle_discard class method directly
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: @prescription.id, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "Prescription", record_id: @prescription.id, blob_id: 1 } ]
 
     error = PrescriptionScannerService::ConfigurationError.new("Missing API key")
 
@@ -624,7 +624,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
 
   test "configuration error discard callback for BiologyReport updates status" do
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 } ]
 
     error = BiologyReportScannerService::ConfigurationError.new("Missing API key")
 
@@ -637,7 +637,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
 
   test "discard on configuration error gracefully handles missing record" do
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: 999_999, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "Prescription", record_id: 999_999, blob_id: 1 } ]
 
     error = PrescriptionScannerService::ConfigurationError.new("Missing API key")
 
@@ -649,7 +649,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
 
   test "retry exhaustion gracefully handles missing record" do
     mock_job = Minitest::Mock.new
-    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: 999_999, blob_id: 1 }]
+    mock_job.expect :arguments, [ { record_type: "Prescription", record_id: 999_999, blob_id: 1 } ]
 
     error = PrescriptionScannerService::RateLimitError.new("Rate limit")
 
@@ -683,7 +683,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
       medications: medications,
       doctor_name: "Dr. Test",
       prescription_date: "2026-02-01",
-      raw_response: { medications: [{ drug_name: "Aspirin" }] }
+      raw_response: { medications: [ { drug_name: "Aspirin" } ] }
     )
   end
 
@@ -701,7 +701,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
       test_results: test_results,
       lab_name: "Test Lab",
       test_date: "2026-02-01",
-      raw_response: { test_results: [{ biomarker_name: "Glucose" }] }
+      raw_response: { test_results: [ { biomarker_name: "Glucose" } ] }
     )
   end
 

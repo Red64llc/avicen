@@ -44,4 +44,3 @@ class BiologyReport < ApplicationRecord
     where("LOWER(lab_name) LIKE LOWER(?)", "%#{sanitized_query}%")
   }
 end
-

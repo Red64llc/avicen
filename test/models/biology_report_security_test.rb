@@ -91,7 +91,7 @@ class BiologyReportSecurityTest < ActiveSupport::TestCase
       extraction_status: :extracted,
       extracted_data: {
         lab_name: "Test Lab",
-        test_results: [{ biomarker_name: "Glucose", value: "95", confidence: 0.9 }]
+        test_results: [ { biomarker_name: "Glucose", value: "95", confidence: 0.9 } ]
       }
     )
 

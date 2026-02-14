@@ -92,7 +92,7 @@ class PrescriptionSecurityTest < ActiveSupport::TestCase
       extraction_status: :extracted,
       extracted_data: {
         doctor_name: "Dr. Test",
-        medications: [{ drug_name: "Test", confidence: 0.9 }]
+        medications: [ { drug_name: "Test", confidence: 0.9 } ]
       }
     )
 

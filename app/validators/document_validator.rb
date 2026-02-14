@@ -40,4 +40,3 @@ class DocumentValidator < ActiveModel::Validator
     end
   end
 end
-
