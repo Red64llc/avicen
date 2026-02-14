@@ -2420,8 +2420,9 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
 
     get review_document_scan_path(@prescription, record_type: "prescription")
     assert_response :success
-    # Should show warning about unmatched drug - either in data attribute or visible text
-    # The view uses matched_drug_id presence to show database match indicator
+    # Should show warning about unmatched drug (Task 11.3 - Requirement 8.4)
+    assert_match /Not in database/i, response.body
+    assert_select "[data-unmatched-drug]", count: 1
   end
 
   test "review allows custom biomarker entry when no database match found" do
@@ -2472,7 +2473,9 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
 
     get review_document_scan_path(@biology_report, record_type: "biology_report")
     assert_response :success
-    # Should show warning about unmatched biomarker
+    # Should show warning about unmatched biomarker (Task 11.3 - Requirement 8.5)
+    assert_match /Not in database/i, response.body
+    assert_select "[data-unmatched-biomarker]", count: 1
   end
 
   test "confirm allows saving prescription with custom drug entry" do

@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T04:06:06.534Z",
+  "updatedAt": "2026-02-14T05:01:07.292Z",
   "history": [
     {
       "phase": {
@@ -2090,6 +2090,94 @@
       "timestamp": "2026-02-14T04:06:06.534Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-11-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:06:06.726Z",
+      "event": "TASK_START",
+      "subStep": "task-11.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:21:43.725Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-11.1-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:21:43.727Z",
+      "event": "TASK_START",
+      "subStep": "task-11.2-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:40:20.297Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-11.2-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:40:20.299Z",
+      "event": "TASK_START",
+      "subStep": "task-11.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:59:52.118Z",
+      "event": "TASK_FAILED",
+      "subStep": "task-11.3-failed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T04:59:52.120Z",
+      "event": "TASK_START",
+      "subStep": "task-11.4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:07.292Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-11.4-completed"
     }
   ],
   "metadata": {
@@ -3238,30 +3326,53 @@
       {
         "id": "11.1",
         "title": "Implement image quality error detection",
-        "startedAt": "2026-02-13T13:46:06.110Z",
+        "startedAt": "2026-02-14T04:06:06.726Z",
         "completedAt": null,
         "status": "failed"
       },
       {
         "id": "11.2",
         "title": "Implement API error handling in UI",
-        "startedAt": "2026-02-13T13:46:06.189Z",
+        "startedAt": "2026-02-14T04:21:43.727Z",
         "completedAt": null,
         "status": "failed"
       },
       {
         "id": "11.3",
         "title": "Handle unknown drug and biomarker entries",
-        "startedAt": "2026-02-13T13:46:06.258Z",
+        "startedAt": "2026-02-14T04:40:20.299Z",
         "completedAt": null,
         "status": "failed"
       },
       {
         "id": "11.4",
         "title": "Implement state preservation for review",
-        "startedAt": "2026-02-13T13:46:06.371Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T04:59:52.119Z",
+        "completedAt": "2026-02-14T05:01:07.289Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 67,
+          "outputTokens": 2807,
+          "totalTokens": 2874,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 531331,
+          "cacheCreationTokens": 39530,
+          "costUsd": 0.585648
+        },
+        "contextUsage": {
+          "inputTokens": 67,
+          "outputTokens": 2807,
+          "totalTokens": 2874,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 531331,
+          "cacheCreationTokens": 39530,
+          "costUsd": 0.585648,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 0.0335,
+          "cumulativeInputTokens": 447897,
+          "cumulativeUtilization": 223.94850000000002,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "12",
@@ -3320,7 +3431,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "11"
+    "currentTaskId": "11.4"
   },
   "phaseMetrics": {
     "requirements-generating": {
