@@ -63,7 +63,12 @@ class RubyLlmConfigurationTest < ActiveSupport::TestCase
     # The actual key may be nil in test environment without credentials set up
     config = RubyLLM.config
     expected_key = Rails.application.credentials.dig(:anthropic, :api_key)
-    assert_equal expected_key, config.anthropic_api_key,
-      "Anthropic API key should be read from Rails credentials"
+    if expected_key.nil?
+      assert_nil config.anthropic_api_key,
+        "Anthropic API key should be nil when credentials are not set"
+    else
+      assert_equal expected_key, config.anthropic_api_key,
+        "Anthropic API key should be read from Rails credentials"
+    end
   end
 end

@@ -52,7 +52,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
       )
     end
 
-    mock_service.verify
+    assert mock_service.verify
   end
 
   test "routes to BiologyReportScannerService for BiologyReport record_type" do
@@ -68,7 +68,7 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
       )
     end
 
-    mock_service.verify
+    assert mock_service.verify
   end
 
   test "updates record extraction_status to processing before extraction" do

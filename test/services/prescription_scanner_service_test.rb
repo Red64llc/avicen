@@ -25,8 +25,8 @@ class PrescriptionScannerServiceTest < ActiveSupport::TestCase
   end
 
   teardown do
-    # Clean up mock processed image file
-    File.delete(@processed_image_path) if File.exist?(@processed_image_path)
+    # Clean up mock processed image file - use rm_f to handle race conditions in parallel tests
+    FileUtils.rm_f(@processed_image_path)
   end
 
   # --- Error Hierarchy Tests (Task 5.1) ---
