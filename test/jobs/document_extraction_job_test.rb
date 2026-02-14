@@ -463,6 +463,211 @@ class DocumentExtractionJobTest < ActiveJob::TestCase
     end
   end
 
+  # ============================================
+  # Task 7.4: Retry behavior on rate limit errors
+  # ============================================
+
+  test "retry on PrescriptionScannerService RateLimitError re-enqueues the job" do
+    # First call raises RateLimitError, subsequent calls should succeed
+    call_count = 0
+
+    PrescriptionScannerService.stub :new, ->(**args) {
+      mock_obj = Object.new
+      mock_obj.define_singleton_method(:call) do
+        call_count += 1
+        if call_count == 1
+          raise PrescriptionScannerService::RateLimitError, "Rate limit exceeded"
+        end
+        # Return success on retry
+        PrescriptionScannerService::ExtractionResult.success(
+          medications: [],
+          doctor_name: "Dr. Test",
+          prescription_date: "2026-02-01",
+          raw_response: {}
+        )
+      end
+      mock_obj
+    } do
+      # With perform_now, retry_on causes the job to be re-enqueued
+      # We verify the retry mechanism is configured by checking behavior
+      assert_enqueued_jobs 1 do
+        begin
+          DocumentExtractionJob.perform_now(
+            record_type: "Prescription",
+            record_id: @prescription.id,
+            blob_id: @prescription.scanned_document.blob.id
+          )
+        rescue PrescriptionScannerService::RateLimitError
+          # Expected on first attempt when using perform_now
+        end
+      end
+    end
+  end
+
+  test "retry on BiologyReportScannerService RateLimitError re-enqueues the job" do
+    call_count = 0
+
+    BiologyReportScannerService.stub :new, ->(**args) {
+      mock_obj = Object.new
+      mock_obj.define_singleton_method(:call) do
+        call_count += 1
+        if call_count == 1
+          raise BiologyReportScannerService::RateLimitError, "Rate limit exceeded"
+        end
+        BiologyReportScannerService::ExtractionResult.success(
+          test_results: [],
+          lab_name: "Test Lab",
+          test_date: "2026-02-01",
+          raw_response: {}
+        )
+      end
+      mock_obj
+    } do
+      assert_enqueued_jobs 1 do
+        begin
+          DocumentExtractionJob.perform_now(
+            record_type: "BiologyReport",
+            record_id: @biology_report.id,
+            blob_id: @biology_report.document.blob.id
+          )
+        rescue BiologyReportScannerService::RateLimitError
+          # Expected on first attempt when using perform_now
+        end
+      end
+    end
+  end
+
+  test "rate limit error exhausts retries and updates status to failed" do
+    # Simulate max retries exhausted by testing the callback handler directly
+    # The handle_final_retry_failure class method is called when retries are exhausted
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: @prescription.id, blob_id: 1 }]
+
+    error = PrescriptionScannerService::RateLimitError.new("Rate limit")
+
+    DocumentExtractionJob.handle_final_retry_failure(mock_job, error)
+
+    @prescription.reload
+    assert @prescription.extraction_failed?, "Should mark record as failed after retry exhaustion"
+    assert_equal "rate_limit_exhausted", @prescription.extracted_data["error_type"]
+    assert_includes @prescription.extracted_data["error_message"], "maximum retry attempts"
+  end
+
+  test "rate limit error exhausts retries for BiologyReport and updates status" do
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 }]
+
+    error = BiologyReportScannerService::RateLimitError.new("Rate limit")
+
+    DocumentExtractionJob.handle_final_retry_failure(mock_job, error)
+
+    @biology_report.reload
+    assert @biology_report.extraction_failed?, "Should mark record as failed after retry exhaustion"
+    assert_equal "rate_limit_exhausted", @biology_report.extracted_data["error_type"]
+  end
+
+  # ============================================
+  # Task 7.4: Discard behavior on configuration errors
+  # ============================================
+
+  test "discard on PrescriptionScannerService ConfigurationError does not retry" do
+    PrescriptionScannerService.stub :new, ->(**args) {
+      mock_obj = Object.new
+      mock_obj.define_singleton_method(:call) do
+        raise PrescriptionScannerService::ConfigurationError, "API key not configured"
+      end
+      mock_obj
+    } do
+      # Configuration errors should be discarded (not retried)
+      # The discard_on callback will handle the error
+      assert_no_enqueued_jobs do
+        DocumentExtractionJob.perform_now(
+          record_type: "Prescription",
+          record_id: @prescription.id,
+          blob_id: @prescription.scanned_document.blob.id
+        )
+      end
+    end
+
+    @prescription.reload
+    assert @prescription.extraction_failed?, "Should mark record as failed on configuration error"
+    assert_equal "configuration", @prescription.extracted_data["error_type"]
+  end
+
+  test "discard on BiologyReportScannerService ConfigurationError does not retry" do
+    BiologyReportScannerService.stub :new, ->(**args) {
+      mock_obj = Object.new
+      mock_obj.define_singleton_method(:call) do
+        raise BiologyReportScannerService::ConfigurationError, "API key not configured"
+      end
+      mock_obj
+    } do
+      assert_no_enqueued_jobs do
+        DocumentExtractionJob.perform_now(
+          record_type: "BiologyReport",
+          record_id: @biology_report.id,
+          blob_id: @biology_report.document.blob.id
+        )
+      end
+    end
+
+    @biology_report.reload
+    assert @biology_report.extraction_failed?, "Should mark record as failed on configuration error"
+    assert_equal "configuration", @biology_report.extracted_data["error_type"]
+  end
+
+  test "configuration error discard callback updates record status" do
+    # Test the handle_discard class method directly
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: @prescription.id, blob_id: 1 }]
+
+    error = PrescriptionScannerService::ConfigurationError.new("Missing API key")
+
+    DocumentExtractionJob.handle_discard(mock_job, error)
+
+    @prescription.reload
+    assert @prescription.extraction_failed?
+    assert_equal "configuration", @prescription.extracted_data["error_type"]
+    assert_includes @prescription.extracted_data["error_message"], "non-retryable"
+  end
+
+  test "configuration error discard callback for BiologyReport updates status" do
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "BiologyReport", record_id: @biology_report.id, blob_id: 1 }]
+
+    error = BiologyReportScannerService::ConfigurationError.new("Missing API key")
+
+    DocumentExtractionJob.handle_discard(mock_job, error)
+
+    @biology_report.reload
+    assert @biology_report.extraction_failed?
+    assert_equal "configuration", @biology_report.extracted_data["error_type"]
+  end
+
+  test "discard on configuration error gracefully handles missing record" do
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: 999_999, blob_id: 1 }]
+
+    error = PrescriptionScannerService::ConfigurationError.new("Missing API key")
+
+    # Should not raise when record doesn't exist
+    assert_nothing_raised do
+      DocumentExtractionJob.handle_discard(mock_job, error)
+    end
+  end
+
+  test "retry exhaustion gracefully handles missing record" do
+    mock_job = Minitest::Mock.new
+    mock_job.expect :arguments, [{ record_type: "Prescription", record_id: 999_999, blob_id: 1 }]
+
+    error = PrescriptionScannerService::RateLimitError.new("Rate limit")
+
+    # Should not raise when record doesn't exist
+    assert_nothing_raised do
+      DocumentExtractionJob.handle_final_retry_failure(mock_job, error)
+    end
+  end
+
   private
 
   def create_mock_blob(filename)

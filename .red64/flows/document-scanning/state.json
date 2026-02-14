@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T00:24:28.575Z",
+  "updatedAt": "2026-02-14T00:27:11.751Z",
   "history": [
     {
       "phase": {
@@ -1716,6 +1716,28 @@
       "timestamp": "2026-02-14T00:24:28.575Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-7.3-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:24:28.746Z",
+      "event": "TASK_START",
+      "subStep": "task-7.4-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:27:11.751Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.4-completed"
     }
   ],
   "metadata": {
@@ -2465,9 +2487,32 @@
       {
         "id": "7.4",
         "title": "Add DocumentExtractionJob tests",
-        "startedAt": "2026-02-13T13:46:04.832Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T00:24:28.746Z",
+        "completedAt": "2026-02-14T00:27:11.749Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 12831,
+          "outputTokens": 7707,
+          "totalTokens": 20538,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1478820,
+          "cacheCreationTokens": 90836,
+          "costUsd": 1.578105000000001
+        },
+        "contextUsage": {
+          "inputTokens": 12831,
+          "outputTokens": 7707,
+          "totalTokens": 20538,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1478820,
+          "cacheCreationTokens": 90836,
+          "costUsd": 1.578105000000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 6.415500000000001,
+          "cumulativeInputTokens": 346811,
+          "cumulativeUtilization": 173.4055,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "8",
@@ -2666,7 +2711,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "7.3"
+    "currentTaskId": "7.4"
   },
   "phaseMetrics": {
     "requirements-generating": {
