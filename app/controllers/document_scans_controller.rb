@@ -198,7 +198,7 @@ class DocumentScansController < ApplicationController
 
   # Strong parameters for scan operations
   def scan_params
-    params.require(:scan).permit(
+    permitted = params.require(:scan).permit(
       :image,
       :document_type,
       :blob_id,
@@ -208,10 +208,26 @@ class DocumentScansController < ApplicationController
       :prescribed_date,
       :lab_name,
       :test_date,
-      :notes,
-      medications: [ :drug_name, :dosage, :frequency, :duration, :quantity, :drug_id ],
-      test_results: [ :biomarker_name, :value, :unit, :ref_min, :ref_max, :biomarker_id ]
+      :notes
     )
+
+    # Handle medications as a hash with indexed keys (e.g., "0", "1", "2")
+    if params[:scan][:medications].is_a?(ActionController::Parameters)
+      permitted[:medications] = params[:scan][:medications].to_unsafe_h.values.map do |med|
+        med.slice("drug_name", "dosage", "frequency", "duration", "quantity", "drug_id")
+           .transform_keys(&:to_sym)
+      end
+    end
+
+    # Handle test_results as a hash with indexed keys (e.g., "0", "1", "2")
+    if params[:scan]&.dig(:test_results).is_a?(ActionController::Parameters)
+      permitted[:test_results] = params[:scan][:test_results].to_unsafe_h.values.map do |result|
+        result.slice("biomarker_name", "value", "unit", "ref_min", "ref_max", "biomarker_id")
+              .transform_keys(&:to_sym)
+      end
+    end
+
+    permitted
   end
 
   # Validate document type is one of the allowed values

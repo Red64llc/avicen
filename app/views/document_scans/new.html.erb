@@ -11,7 +11,7 @@
         <!-- Camera/Upload Section -->
         <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center" data-camera-target="dropzone">
           <div data-camera-target="preview" class="hidden mb-4">
-            <img src="" alt="Preview" class="max-h-64 mx-auto rounded-lg shadow" data-camera-target="previewImage">
+            <!-- Preview image is dynamically inserted by camera controller -->
           </div>
 
           <div data-camera-target="uploadArea">
@@ -61,6 +61,13 @@
 
               <p class="text-sm text-gray-500">or drag and drop</p>
               <p class="text-xs text-gray-400">JPEG, PNG, HEIC, or PDF (max 10MB)</p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gray-200">
+              <p class="text-sm text-gray-500">
+                Don't have a document to scan?
+                <%= link_to "Enter data manually", new_biology_report_path, class: "text-blue-600 hover:text-blue-800 underline" %>
+              </p>
             </div>
           </div>
 

@@ -72,14 +72,15 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
     <%# Biomarker name with autocomplete %>
     <div>
-      <%= form.label "test_results[#{index}][biomarker_name]", "Biomarker", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <label for="scan_test_results_<%= index %>_biomarker_name" class="block text-sm font-medium text-gray-700 mb-1">Biomarker</label>
       <div data-controller="biomarker-search"
            data-biomarker-search-url-value="/biomarkers/search"
            data-biomarker-search-min-length-value="2"
            class="relative"
            role="combobox">
-        <%= form.text_field "test_results[#{index}][biomarker_name]",
-            value: result[:biomarker_name],
+        <%= text_field_tag "scan[test_results][#{index}][biomarker_name]",
+            result[:biomarker_name],
+            id: "scan_test_results_#{index}_biomarker_name",
             class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary pr-8",
             data: {
               biomarker_search_target: "input",
@@ -90,24 +91,27 @@
             },
             placeholder: "Search for a biomarker...",
             autocomplete: "off" %>
-        <%= form.hidden_field "test_results[#{index}][biomarker_id]",
-            value: result[:matched_biomarker_id],
+        <%= hidden_field_tag "scan[test_results][#{index}][biomarker_id]",
+            result[:matched_biomarker_id],
+            id: "scan_test_results_#{index}_biomarker_id",
             data: { biomarker_search_target: "hidden" } %>
         <ul data-biomarker-search-target="results"
             class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm hidden">
         </ul>
       </div>
       <%# Hidden field for verification tracking %>
-      <%= form.hidden_field "test_results[#{index}][verified_biomarker_name]",
-          value: "",
+      <%= hidden_field_tag "scan[test_results][#{index}][verified_biomarker_name]",
+          "",
+          id: "scan_test_results_#{index}_verified_biomarker_name",
           data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_biomarker_name" } %>
     </div>
 
     <%# Value %>
     <div>
-      <%= form.label "test_results[#{index}][value]", "Value", class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.text_field "test_results[#{index}][value]",
-          value: result[:value],
+      <label for="scan_test_results_<%= index %>_value" class="block text-sm font-medium text-gray-700 mb-1">Value</label>
+      <%= text_field_tag "scan[test_results][#{index}][value]",
+          result[:value],
+          id: "scan_test_results_#{index}_value",
           class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary #{out_of_range ? 'border-red-400 bg-red-50' : ''}",
           data: {
             review_form_target: "field",
@@ -116,8 +120,9 @@
             action: "input->review-form#markVerified blur->review-form#markVerified"
           },
           placeholder: "e.g., 95" %>
-      <%= form.hidden_field "test_results[#{index}][verified_value]",
-          value: "",
+      <%= hidden_field_tag "scan[test_results][#{index}][verified_value]",
+          "",
+          id: "scan_test_results_#{index}_verified_value",
           data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_value" } %>
     </div>
   </div>
@@ -126,9 +131,10 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <%# Unit - auto-filled from biomarker search %>
     <div>
-      <%= form.label "test_results[#{index}][unit]", "Unit", class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.text_field "test_results[#{index}][unit]",
-          value: result[:unit],
+      <label for="scan_test_results_<%= index %>_unit" class="block text-sm font-medium text-gray-700 mb-1">Unit</label>
+      <%= text_field_tag "scan[test_results][#{index}][unit]",
+          result[:unit],
+          id: "scan_test_results_#{index}_unit",
           class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
           data: {
             review_form_target: "field",
@@ -138,16 +144,18 @@
             action: "input->review-form#markVerified blur->review-form#markVerified"
           },
           placeholder: "e.g., mg/dL" %>
-      <%= form.hidden_field "test_results[#{index}][verified_unit]",
-          value: "",
+      <%= hidden_field_tag "scan[test_results][#{index}][verified_unit]",
+          "",
+          id: "scan_test_results_#{index}_verified_unit",
           data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_unit" } %>
     </div>
 
     <%# Reference Min - auto-filled from biomarker search %>
     <div>
-      <%= form.label "test_results[#{index}][ref_min]", "Ref Min", class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.number_field "test_results[#{index}][ref_min]",
-          value: result[:reference_min],
+      <label for="scan_test_results_<%= index %>_ref_min" class="block text-sm font-medium text-gray-700 mb-1">Ref Min</label>
+      <%= number_field_tag "scan[test_results][#{index}][ref_min]",
+          result[:reference_min],
+          id: "scan_test_results_#{index}_ref_min",
           step: "any",
           class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
           data: {
@@ -158,16 +166,18 @@
             action: "input->review-form#markVerified blur->review-form#markVerified"
           },
           placeholder: "e.g., 70" %>
-      <%= form.hidden_field "test_results[#{index}][verified_ref_min]",
-          value: "",
+      <%= hidden_field_tag "scan[test_results][#{index}][verified_ref_min]",
+          "",
+          id: "scan_test_results_#{index}_verified_ref_min",
           data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_ref_min" } %>
     </div>
 
     <%# Reference Max - auto-filled from biomarker search %>
     <div>
-      <%= form.label "test_results[#{index}][ref_max]", "Ref Max", class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.number_field "test_results[#{index}][ref_max]",
-          value: result[:reference_max],
+      <label for="scan_test_results_<%= index %>_ref_max" class="block text-sm font-medium text-gray-700 mb-1">Ref Max</label>
+      <%= number_field_tag "scan[test_results][#{index}][ref_max]",
+          result[:reference_max],
+          id: "scan_test_results_#{index}_ref_max",
           step: "any",
           class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
           data: {
@@ -178,8 +188,9 @@
             action: "input->review-form#markVerified blur->review-form#markVerified"
           },
           placeholder: "e.g., 100" %>
-      <%= form.hidden_field "test_results[#{index}][verified_ref_max]",
-          value: "",
+      <%= hidden_field_tag "scan[test_results][#{index}][verified_ref_max]",
+          "",
+          id: "scan_test_results_#{index}_verified_ref_max",
           data: { review_form_target: "verifiedInput", field_name: "test_results_#{index}_ref_max" } %>
     </div>
   </div>

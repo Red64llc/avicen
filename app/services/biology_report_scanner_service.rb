@@ -184,11 +184,25 @@ class BiologyReportScannerService
     <<~PROMPT
       Analyze this laboratory/biology report image and extract test results.
 
+      IMPORTANT: The report may be in any language (French, Spanish, German, etc.).
+      Always translate biomarker names to standard English medical terminology.
+      For example:
+      - "Leucocytes" or "Globules blancs" → "White Blood Cell Count"
+      - "Hématies" or "Globules rouges" → "Red Blood Cell Count"
+      - "Hémoglobine" → "Hemoglobin"
+      - "Hématocrite" → "Hematocrit"
+      - "VGM" → "Mean Corpuscular Volume"
+      - "TCMH" → "Mean Corpuscular Hemoglobin"
+      - "CCMH" → "Mean Corpuscular Hemoglobin Concentration"
+      - "Plaquettes" → "Platelet Count"
+      - "Glycémie" → "Glucose"
+      - "Créatinine" → "Creatinine"
+
       Return a JSON object with exactly these fields:
       - lab_name: Name of the laboratory (string, optional)
       - test_date: Date of the test in YYYY-MM-DD format (string, optional)
       - test_results: Array of test result objects with:
-        - biomarker_name: Name of the test/biomarker (string, required)
+        - biomarker_name: Standard English name of the test/biomarker (string, required)
         - value: Measured value as string (string, required)
         - unit: Unit of measurement (string, optional)
         - reference_range: Normal range e.g. "3.5-5.0" (string, optional)

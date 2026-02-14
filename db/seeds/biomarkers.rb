@@ -23,6 +23,14 @@ biomarkers_data = [
     ref_max: 11.0
   },
   {
+    name: "Red Blood Cell Count",
+    code: "789-8",
+    unit: "10^6/uL",
+    ref_min: 4.5,
+    ref_max: 5.5,
+    notes: "Male reference range; female range is typically 4.0-5.0"
+  },
+  {
     name: "Platelet Count",
     code: "777-3",
     unit: "10^3/uL",
@@ -36,6 +44,27 @@ biomarkers_data = [
     ref_min: 38.8,
     ref_max: 50.0,
     notes: "Male reference range; female range is typically 34.9-44.5%"
+  },
+  {
+    name: "Mean Corpuscular Volume",
+    code: "787-2",
+    unit: "fL",
+    ref_min: 80.0,
+    ref_max: 100.0
+  },
+  {
+    name: "Mean Corpuscular Hemoglobin",
+    code: "785-6",
+    unit: "pg",
+    ref_min: 27.0,
+    ref_max: 33.0
+  },
+  {
+    name: "Mean Corpuscular Hemoglobin Concentration",
+    code: "786-4",
+    unit: "g/dL",
+    ref_min: 32.0,
+    ref_max: 36.0
   },
 
   # Metabolic Panel
