@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T05:02:17.287Z",
+  "updatedAt": "2026-02-14T05:02:39.392Z",
   "history": [
     {
       "phase": {
@@ -2244,6 +2244,28 @@
       "timestamp": "2026-02-14T05:02:17.287Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-12.2-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:02:17.478Z",
+      "event": "TASK_START",
+      "subStep": "task-12.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:02:39.391Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.3-completed"
     }
   ],
   "metadata": {
@@ -3534,9 +3556,32 @@
       {
         "id": "12.3",
         "title": "Implement record deletion cascade",
-        "startedAt": "2026-02-13T13:46:06.686Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T05:02:17.477Z",
+        "completedAt": "2026-02-14T05:02:39.389Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5725,
+          "outputTokens": 813,
+          "totalTokens": 6538,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 86964,
+          "cacheCreationTokens": 9425,
+          "costUsd": 0.15133824999999998
+        },
+        "contextUsage": {
+          "inputTokens": 5725,
+          "outputTokens": 813,
+          "totalTokens": 6538,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 86964,
+          "cacheCreationTokens": 9425,
+          "costUsd": 0.15133824999999998,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8625000000000003,
+          "cumulativeInputTokens": 465046,
+          "cumulativeUtilization": 232.523,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "13",
@@ -3567,7 +3612,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "12.2"
+    "currentTaskId": "12.3"
   },
   "phaseMetrics": {
     "requirements-generating": {
