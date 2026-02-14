@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-13T17:44:33.808Z",
+  "updatedAt": "2026-02-14T00:24:28.575Z",
   "history": [
     {
       "phase": {
@@ -1705,6 +1705,17 @@
       "timestamp": "2026-02-13T17:44:33.808Z",
       "event": "TASK_START",
       "subStep": "task-7.3-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:24:28.575Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-7.3-completed"
     }
   ],
   "metadata": {
@@ -2425,8 +2436,31 @@
         "id": "7.3",
         "title": "Add Turbo Stream broadcast on completion",
         "startedAt": "2026-02-13T17:44:33.808Z",
-        "completedAt": null,
-        "status": "in_progress"
+        "completedAt": "2026-02-14T00:24:28.572Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 25000,
+          "outputTokens": 4940,
+          "totalTokens": 29940,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1080921,
+          "cacheCreationTokens": 86498,
+          "costUsd": 1.3418430000000001
+        },
+        "contextUsage": {
+          "inputTokens": 25000,
+          "outputTokens": 4940,
+          "totalTokens": 29940,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 1080921,
+          "cacheCreationTokens": 86498,
+          "costUsd": 1.3418430000000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 12.5,
+          "cumulativeInputTokens": 333980,
+          "cumulativeUtilization": 166.98999999999998,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "7.4",
