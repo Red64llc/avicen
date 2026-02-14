@@ -100,7 +100,7 @@
       <%= form.label "test_results[#{index}][value]", "Value", class: "block text-sm font-medium text-gray-700 mb-1" %>
       <%= form.text_field "test_results[#{index}][value]",
           value: result[:value],
-          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary <%= out_of_range ? 'border-red-400 bg-red-50' : '' %>",
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary #{out_of_range ? 'border-red-400 bg-red-50' : ''}",
           data: {
             review_form_target: "field",
             field_name: "test_results_#{index}_value",

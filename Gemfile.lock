@@ -190,6 +190,9 @@ GEM
     mini_mime (1.1.5)
     minitest (6.0.1)
       prism (~> 1.5)
+    minitest-stub_any_instance (1.0.3)
+    mocha (3.0.2)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.8.0)
     multipart-post (2.4.1)
     net-http (0.9.1)
@@ -324,6 +327,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
+    ruby2_keywords (0.0.5)
     ruby_llm (1.11.0)
       base64
       event_stream_parser (~> 1)
@@ -445,6 +449,8 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  minitest-stub_any_instance
+  mocha
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.2)

@@ -70,4 +70,8 @@ group :test do
   gem "selenium-webdriver"
   # HTTP request stubbing for external API tests
   gem "webmock"
+  # Mocking and stubbing for tests
+  gem "mocha"
+  # Minitest method stubs (Object#stub)
+  gem "minitest-stub_any_instance"
 end

@@ -5,7 +5,8 @@ class BiologyReport < ApplicationRecord
   # Associations
   belongs_to :user
   has_many :test_results, dependent: :destroy
-  has_one_attached :document
+  # Task 12.3: Configure dependent purge for scanned documents (Requirement 9.6)
+  has_one_attached :document, dependent: :purge_later
 
   # Enums
   # Extraction status for document scanning workflow

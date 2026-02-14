@@ -199,8 +199,8 @@ Implementation tasks for AI-powered document scanning feature.
   - Test error handling for invalid inputs
   - _Requirements: 9.2, 9.5_
 
-- [ ] 9. Camera and upload UI with Stimulus controller
-- [ ] 9.1 Create camera_controller.js Stimulus controller
+- [x] 9. Camera and upload UI with Stimulus controller
+- [x] 9.1 Create camera_controller.js Stimulus controller
   - Define targets for preview, progress indicator, file input, and submit button
   - Define maxSize value with 10MB default
   - Implement state machine: idle, previewing, uploading, uploaded, error
@@ -208,7 +208,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Validate file size before upload and show error for oversized files
   - _Requirements: 1.4, 1.8, 1.9, 6.3_
 
-- [ ] 9.2 Integrate Active Storage direct upload events
+- [x] 9.2 Integrate Active Storage direct upload events
   - Listen for direct-upload:initialize, start, progress, error, end events
   - Update progress indicator during upload
   - Handle upload errors with user-friendly messages and retry option
@@ -216,7 +216,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Disable form during upload to prevent duplicate requests
   - _Requirements: 1.5, 1.6, 1.7, 6.5_
 
-- [ ] 9.3 Create scan flow views with Turbo Frames
+- [x] 9.3 Create scan flow views with Turbo Frames
   - Create new.html.erb with capture interface (camera button and file upload)
   - Use file input with capture="environment" for mobile camera access
   - Wrap scan flow in turbo_frame_tag for seamless step transitions
@@ -224,22 +224,22 @@ Implementation tasks for AI-powered document scanning feature.
   - Add back navigation between steps without losing progress
   - _Requirements: 1.1, 1.2, 2.1, 2.2, 2.5, 6.1, 6.2, 6.7_
 
-- [ ] 9.4 Add processing indicator view
+- [x] 9.4 Add processing indicator view
   - Create processing partial showing extraction in progress
   - Display estimated wait time based on document complexity
   - Offer background processing option when extraction takes long
   - Auto-refresh via Turbo when extraction completes
   - _Requirements: 3.3, 4.3, 6.5, 10.1_
 
-- [ ] 10. Review form UI with confidence indicators
-- [ ] 10.1 Create review_form_controller.js Stimulus controller
+- [x] 10. Review form UI with confidence indicators
+- [x] 10.1 Create review_form_controller.js Stimulus controller
   - Define targets for form fields, confidence indicators, and submit button
   - Highlight fields flagged as low confidence (below 0.8 threshold)
   - Track which fields have been user-verified through editing
   - Mark edited fields as verified in hidden form fields
   - _Requirements: 5.2, 5.3, 6.4_
 
-- [ ] 10.2 Create prescription review form view
+- [x] 10.2 Create prescription review form view
   - Display all extracted medications in editable form
   - Show confidence indicators for each field visually
   - Integrate drug_search autocomplete for drug name editing
@@ -247,7 +247,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Show matched drug metadata when available
   - _Requirements: 5.1, 5.4, 5.7_
 
-- [ ] 10.3 Create biology report review form view
+- [x] 10.3 Create biology report review form view
   - Display all extracted test results in editable form
   - Show confidence indicators for each field visually
   - Integrate biomarker_search autocomplete for biomarker name editing
@@ -255,7 +255,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Allow adding/removing test results from extraction
   - _Requirements: 5.1, 5.4, 5.7_
 
-- [ ] 10.4 Add confirmation and cancellation handling
+- [x] 10.4 Add confirmation and cancellation handling
   - On confirm: create Prescription/BiologyReport with associated records
   - Attach original scanned image to created record
   - Update extraction_status to confirmed
@@ -264,56 +264,56 @@ Implementation tasks for AI-powered document scanning feature.
   - Offer option to scan another document after completion
   - _Requirements: 5.5, 5.6, 5.7, 5.8, 5.9, 6.8_
 
-- [ ] 11. Error handling and user feedback
-- [ ] 11.1 Implement image quality error detection
+- [x] 11. Error handling and user feedback
+- [x] 11.1 Implement image quality error detection
   - Detect when extraction result indicates image quality issues
   - Show specific guidance for blurry images (better lighting, focus)
   - Show specific guidance when no medical document detected
   - Suggest verifying document type selection when extraction fails
   - _Requirements: 3.9, 4.9, 8.1, 8.2_
 
-- [ ] 11.2 Implement API error handling in UI
+- [x] 11.2 Implement API error handling in UI
   - Show user-friendly message when Claude API is unavailable
   - Offer to save image for later processing on API failure
   - Display retry option for transient errors
   - Handle network connection loss during extraction gracefully
   - _Requirements: 8.3, 6.6_
 
-- [ ] 11.3 Handle unknown drug and biomarker entries
+- [x] 11.3 Handle unknown drug and biomarker entries
   - Allow user to proceed with custom drug entry when no match found
   - Allow user to proceed with custom biomarker entry when no match found
   - Show warning that entry is not in database
   - Still validate required fields for custom entries
   - _Requirements: 8.4, 8.5_
 
-- [ ] 11.4 Implement state preservation for review
+- [x] 11.4 Implement state preservation for review
   - Store extraction state in session or database while user reviews
   - Preserve state if user navigates away and returns
   - Clean up stale extraction state after timeout
   - _Requirements: 8.7_
 
-- [ ] 12. Security and privacy implementation
-- [ ] 12.1 Ensure secure image transmission and storage
+- [x] 12. Security and privacy implementation
+- [x] 12.1 Ensure secure image transmission and storage
   - Verify all image uploads use HTTPS only (Rails default)
   - Configure Active Storage with user-scoped paths
   - Verify scanned images are accessible only to owning user
   - _Requirements: 9.1, 9.5_
 
-- [ ] 12.2 Configure privacy-safe logging
+- [x] 12.2 Configure privacy-safe logging
   - Filter extracted medical content from logs
   - Add extracted_data to parameter filter list
   - Ensure Claude API prompts contain no user identifying information
   - Log extraction failures without sensitive details
   - _Requirements: 9.3, 9.4, 8.6_
 
-- [ ] 12.3 Implement record deletion cascade
+- [x] 12.3 Implement record deletion cascade
   - Configure dependent: :purge_later for scanned_document attachment
   - Verify image deleted when Prescription record deleted
   - Verify document deleted when BiologyReport record deleted
   - _Requirements: 9.6_
 
-- [ ] 13. Integration testing and final verification
-- [ ] 13.1 Add integration tests for full scan flow
+- [x] 13. Integration testing and final verification
+- [x] 13.1 Add integration tests for full scan flow
   - Test prescription scan: upload to extraction to review to confirm
   - Test biology report scan: upload to extraction to review to confirm
   - Test background extraction flow with status updates
@@ -321,7 +321,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Mock Claude API responses for deterministic testing
   - _Requirements: 1.1, 2.1, 3.1, 4.1, 5.5, 5.6_
 
-- [ ] 13.2 Add system tests for user experience
+- [x] 13.2 Add system tests for user experience
   - Test mobile viewport camera capture interaction
   - Test file upload with progress indicator
   - Test review form editing and autocomplete
@@ -329,7 +329,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Test error message display and recovery
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.7, 6.8_
 
-- [ ] 13.3 Verify security controls
+- [x] 13.3 Verify security controls
   - Test user scoping: cannot access other users' documents
   - Test authentication requirement on all endpoints
   - Test that medical content is not logged

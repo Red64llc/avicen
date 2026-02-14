@@ -5,7 +5,8 @@ class Prescription < ApplicationRecord
   # Associations
   belongs_to :user
   has_many :medications, dependent: :destroy
-  has_one_attached :scanned_document
+  # Task 12.3: Configure dependent purge for scanned documents (Requirement 9.6)
+  has_one_attached :scanned_document, dependent: :purge_later
 
   # Enums
   # Extraction status for document scanning workflow
