@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T05:01:07.292Z",
+  "updatedAt": "2026-02-14T05:01:26.227Z",
   "history": [
     {
       "phase": {
@@ -2178,6 +2178,28 @@
       "timestamp": "2026-02-14T05:01:07.292Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-11.4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:07.494Z",
+      "event": "TASK_START",
+      "subStep": "task-12-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:26.227Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12-completed"
     }
   ],
   "metadata": {
@@ -2197,7 +2219,8 @@
       8,
       9,
       10,
-      11
+      11,
+      12
     ],
     "totalGroups": 13,
     "taskEntries": [
@@ -3377,9 +3400,32 @@
       {
         "id": "12",
         "title": "Security and privacy implementation",
-        "startedAt": "2026-02-13T13:46:06.454Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T05:01:07.494Z",
+        "completedAt": "2026-02-14T05:01:26.225Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 676,
+          "totalTokens": 6349,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60108,
+          "cacheCreationTokens": 7909,
+          "costUsd": 0.12475025000000001
+        },
+        "contextUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 676,
+          "totalTokens": 6349,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60108,
+          "cacheCreationTokens": 7909,
+          "costUsd": 0.12475025000000001,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8365,
+          "cumulativeInputTokens": 453570,
+          "cumulativeUtilization": 226.78500000000003,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "12.1",
@@ -3431,7 +3477,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "11.4"
+    "currentTaskId": "12"
   },
   "phaseMetrics": {
     "requirements-generating": {
