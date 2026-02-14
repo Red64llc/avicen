@@ -1,0 +1,42 @@
+<%# Processing indicator partial for document extraction %>
+<%# Displays animated spinner, estimated wait time, and status information %>
+<%# %>
+<%# Locals: %>
+<%#   document_type: String - "prescription" or "biology_report" %>
+<%#   estimated_time: Float - estimated processing time in seconds (optional) %>
+<%#   record: ActiveRecord - the Prescription or BiologyReport being processed (optional) %>
+<%#   show_leave_message: Boolean - whether to show "you can leave" message (default: true) %>
+
+<% document_type ||= "prescription" %>
+<% show_leave_message = local_assigns.fetch(:show_leave_message, true) %>
+
+<div class="processing-indicator text-center" data-processing-indicator>
+  <div class="mb-6">
+    <!-- Animated spinner -->
+    <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-primary border-t-transparent" role="status" aria-label="Processing document">
+    </div>
+  </div>
+
+  <% if local_assigns[:estimated_time].present? && estimated_time.to_f > 0 %>
+    <div class="mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg inline-block">
+      <p class="text-gray-700 text-sm">
+        <span class="font-medium">Estimated processing time:</span>
+        <span class="text-primary font-semibold"><%= estimated_time.round %> seconds</span>
+      </p>
+    </div>
+  <% end %>
+
+  <p class="text-gray-600 mb-3">
+    <% if document_type == "prescription" %>
+      Extracting prescription data...
+    <% else %>
+      Extracting biology report data...
+    <% end %>
+  </p>
+
+  <% if show_leave_message %>
+    <p class="text-sm text-gray-500">
+      You can leave this page and continue using the app.
+    </p>
+  <% end %>
+</div>

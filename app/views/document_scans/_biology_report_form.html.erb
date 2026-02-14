@@ -1,0 +1,93 @@
+<%# Biology Report Review Form Partial
+    Task 10.3 - Requirements: 5.1, 5.4, 5.7
+
+    Displays extracted biology report data in an editable form with:
+    - Confidence indicators for each field
+    - Out-of-range value highlighting
+    - Biomarker search autocomplete with auto-fill
+    - Dynamic add/remove test results
+
+    Local variables:
+    - form: the form builder object
+    - extracted_data: hash containing extracted biology report data
+%>
+<div class="space-y-6" data-controller="review-form">
+  <!-- Report Details -->
+  <div class="bg-white border rounded-lg p-6">
+    <h2 class="text-lg font-medium mb-4">Report Details</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <%= form.label :lab_name, "Laboratory Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :lab_name,
+            value: extracted_data[:lab_name],
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+            data: {
+              review_form_target: "field",
+              field_name: "lab_name",
+              action: "input->review-form#markVerified blur->review-form#markVerified"
+            } %>
+      </div>
+
+      <div>
+        <%= form.label :test_date, "Test Date", class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.date_field :test_date,
+            value: extracted_data[:test_date],
+            class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary",
+            required: true,
+            data: {
+              review_form_target: "field",
+              field_name: "test_date",
+              action: "input->review-form#markVerified blur->review-form#markVerified"
+            } %>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <%= form.label :notes, "Notes", class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_area :notes,
+          rows: 2,
+          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" %>
+    </div>
+  </div>
+
+  <!-- Test Results -->
+  <div class="bg-white border rounded-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-medium">Test Results</h2>
+      <button type="button"
+              class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              data-action="click->review-form#addTestResult">
+        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Test Result
+      </button>
+    </div>
+
+    <% test_results = extracted_data[:test_results] || [] %>
+    <% if test_results.any? %>
+      <div class="space-y-4" data-review-form-target="testResultsList">
+        <% test_results.each_with_index do |result, index| %>
+          <%= render "document_scans/test_result_fields",
+                     form: form,
+                     result: result,
+                     index: index %>
+        <% end %>
+      </div>
+    <% else %>
+      <div data-review-form-target="testResultsList" class="space-y-4">
+        <p class="text-gray-500 text-sm empty-test-results-message">No test results were extracted. You can add them manually using the button above.</p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Hidden template for adding new test results -->
+  <template data-review-form-target="testResultTemplate">
+    <%= render "document_scans/test_result_fields",
+               form: form,
+               result: { confidence: 1.0 },
+               index: "NEW_INDEX",
+               is_template: true %>
+  </template>
+</div>

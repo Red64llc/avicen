@@ -17,8 +17,8 @@ class BiologyReportsBaselineRenderingTest < ApplicationSystemTestCase
     # Verify main container exists
     assert_selector "div.container, div.mx-auto"
 
-    # Verify "New Report" button exists (as shown in index view)
-    assert_link "New Report", href: new_biology_report_path
+    # Verify "New Report" button exists (links to document scanning workflow)
+    assert_link "New Report", href: new_document_scan_path
 
     # Verify Turbo Frame for reports list exists
     assert_selector "turbo-frame#biology_reports_list"

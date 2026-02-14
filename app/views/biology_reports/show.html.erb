@@ -1,6 +1,13 @@
 <div class="container mx-auto px-4 py-8">
-  <div class="mb-6">
+  <div class="mb-6 flex justify-between items-center">
     <%= link_to "← Back to Reports", biology_reports_path, class: "text-blue-600 hover:text-blue-800" %>
+    <%= link_to new_document_scan_path, class: "inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" do %>
+      <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      Scan Another Document
+    <% end %>
   </div>
 
   <div class="bg-white rounded-lg shadow p-8">
@@ -39,6 +46,9 @@
           <%= link_to "View Document", rails_blob_path(@biology_report.document, disposition: "inline"), target: "_blank", class: "btn btn-primary" %>
           <%= link_to "Download", rails_blob_path(@biology_report.document, disposition: "attachment"), class: "btn btn-secondary" %>
         </div>
+        <% if @biology_report.extraction_confirmed? %>
+          <p class="mt-2 text-xs text-gray-500">Created from scanned document via AI extraction</p>
+        <% end %>
       </div>
     <% end %>
 

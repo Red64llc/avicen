@@ -1,0 +1,19 @@
+<div id="<%= "#{record_type.underscore}_#{record.id}_extraction_status" %>" class="p-4 rounded-lg <%= status == :extracted ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200' %>">
+  <% if status == :extracted %>
+    <p class="text-green-800 font-medium">Extraction Complete!</p>
+    <p class="text-green-700 text-sm mt-1">
+      Your document has been processed successfully.
+    </p>
+    <% if record_type == "Prescription" %>
+      <%= link_to "Review Extracted Data", review_document_scan_path(record, record_type: "prescription"), class: "btn btn--primary mt-3 inline-block" %>
+    <% else %>
+      <%= link_to "Review Extracted Data", review_document_scan_path(record, record_type: "biology_report"), class: "btn btn--primary mt-3 inline-block" %>
+    <% end %>
+  <% else %>
+    <p class="text-red-800 font-medium">Extraction Failed</p>
+    <p class="text-red-700 text-sm mt-1">
+      We couldn't extract data from your document. Please try again with a clearer image.
+    </p>
+    <%= link_to "Try Again", new_document_scan_path, class: "btn btn--secondary mt-3 inline-block" %>
+  <% end %>
+</div>

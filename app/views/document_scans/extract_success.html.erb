@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Review Extracted Data</h1>
+
+    <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+      <p class="text-green-800">
+        Data extracted successfully. Please review and edit as needed before confirming.
+      </p>
+    </div>
+
+    <%= form_with url: confirm_document_scans_path, method: :post, scope: :scan, local: false, data: { controller: "review-form", turbo_frame: "_top" } do |form| %>
+      <%= form.hidden_field :document_type, value: @document_type %>
+      <%= form.hidden_field :blob_id, value: @blob_id %>
+
+      <% if @document_type == "prescription" %>
+        <%= render "document_scans/prescription_form", form: form, extracted_data: @extracted_data %>
+      <% else %>
+        <%= render "document_scans/biology_report_form", form: form, extracted_data: @extracted_data %>
+      <% end %>
+
+      <!-- Navigation -->
+      <div class="flex justify-between mt-6">
+        <%= link_to "Cancel", new_document_scan_path, class: "btn btn--secondary", data: { turbo_frame: "document_scan_flow" } %>
+        <%= form.submit "Confirm and Save", class: "btn btn--primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

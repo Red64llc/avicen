@@ -1,0 +1,55 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Extraction Failed</h1>
+
+    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <p class="text-red-800 font-medium">
+        Unable to extract data from your document.
+      </p>
+      <% if @error_message.present? %>
+        <p class="text-red-700 mt-2"><%= @error_message %></p>
+      <% end %>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-lg font-medium">What you can try:</h2>
+      <ul class="list-disc list-inside text-gray-600 space-y-2">
+        <% case @error_type %>
+        <% when :rate_limit %>
+          <li>Wait a few minutes and try again</li>
+          <li>Process your document in the background</li>
+        <% when :authentication %>
+          <li>Contact support - there may be a configuration issue</li>
+        <% when :api_error %>
+          <li>The service is temporarily unavailable - please try again later</li>
+          <li>Save your image to process later when the service is available</li>
+          <li>Retry the extraction or process in the background</li>
+        <% when :network_error %>
+          <li>Check your network connection and try again</li>
+          <li>Your connection may be offline - verify your internet access</li>
+          <li>Retry when your connection is restored</li>
+        <% when :extraction %>
+          <li>Make sure the image is clear and well-lit</li>
+          <li>Ensure the document text is readable</li>
+          <li>Try taking a new photo from directly above the document</li>
+        <% else %>
+          <li>Make sure the image is clear and well-lit</li>
+          <li>Ensure the entire document is visible</li>
+          <li>Try a different image format (JPEG or PNG recommended)</li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mt-8">
+      <%= link_to "Try Again", new_document_scan_path, class: "btn btn--primary" %>
+      <% if @blob_id.present? && [:api_error, :network_error, :rate_limit].include?(@error_type) %>
+        <%= form_with url: extract_document_scans_path, method: :post, class: "inline" do |f| %>
+          <%= f.hidden_field :blob_id, value: @blob_id, name: "scan[blob_id]" %>
+          <%= f.hidden_field :document_type, value: @document_type, name: "scan[document_type]" %>
+          <%= f.hidden_field :background, value: "1", name: "scan[background]" %>
+          <%= f.submit "Process in Background", class: "btn btn--secondary" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

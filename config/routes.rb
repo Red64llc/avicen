@@ -51,6 +51,22 @@ Rails.application.routes.draw do
     resources :test_results, only: [ :new, :create, :edit, :update, :destroy ]
   end
 
+  # Document Scanning - AI-powered document capture and extraction
+  resources :document_scans, only: [ :new ] do
+    collection do
+      post :upload       # Handle direct upload completion, shows type selection
+      get :select_type   # Display type selection with existing blob (for back navigation)
+      post :extract      # Trigger extraction (sync or background)
+      post :confirm      # Create final Prescription or BiologyReport record
+    end
+    member do
+      get :review        # Display extracted data in editable form
+      delete :cancel     # Cancel extraction and discard data (Requirement 5.7)
+    end
+  end
+  get "document_scans/camera_test", to: "document_scans#camera_test", as: :document_scans_camera_test if Rails.env.test?
+  get "document_scans/review_form_test", to: "document_scans#review_form_test", as: :document_scans_review_form_test if Rails.env.test?
+
   # Dashboard for authenticated users
   get "dashboard", to: "dashboard#show", as: :dashboard
 

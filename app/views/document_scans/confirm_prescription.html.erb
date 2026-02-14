@@ -1,0 +1,31 @@
+<%= turbo_frame_tag "document_scan_flow" do %>
+  <div class="document-scan-container">
+    <h1 class="text-2xl font-semibold mb-6">Review Prescription</h1>
+
+    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <p class="text-red-800">
+        Please correct the errors below before saving.
+      </p>
+      <% if @prescription.errors.any? %>
+        <ul class="mt-2 list-disc list-inside text-red-700 text-sm">
+          <% @prescription.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <%= form_with url: confirm_document_scans_path, method: :post, scope: :scan, local: false, data: { controller: "review-form", turbo_frame: "_top" } do |form| %>
+      <%= form.hidden_field :document_type, value: "prescription" %>
+      <%= form.hidden_field :blob_id, value: @blob_id %>
+
+      <%= render "document_scans/prescription_form", form: form, extracted_data: @extracted_data %>
+
+      <!-- Navigation -->
+      <div class="flex justify-between mt-6">
+        <%= link_to "Cancel", new_document_scan_path, class: "btn btn--secondary" %>
+        <%= form.submit "Confirm and Save", class: "btn btn--primary" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
