@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T05:01:26.227Z",
+  "updatedAt": "2026-02-14T05:01:48.888Z",
   "history": [
     {
       "phase": {
@@ -2200,6 +2200,28 @@
       "timestamp": "2026-02-14T05:01:26.227Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-12-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:26.420Z",
+      "event": "TASK_START",
+      "subStep": "task-12.1-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T05:01:48.888Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-12.1-completed"
     }
   ],
   "metadata": {
@@ -3430,9 +3452,32 @@
       {
         "id": "12.1",
         "title": "Ensure secure image transmission and storage",
-        "startedAt": "2026-02-13T13:46:06.532Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T05:01:26.420Z",
+        "completedAt": "2026-02-14T05:01:48.886Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 921,
+          "totalTokens": 6594,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60141,
+          "cacheCreationTokens": 8343,
+          "costUsd": 0.13360424999999998
+        },
+        "contextUsage": {
+          "inputTokens": 5673,
+          "outputTokens": 921,
+          "totalTokens": 6594,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 60141,
+          "cacheCreationTokens": 8343,
+          "costUsd": 0.13360424999999998,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 2.8365,
+          "cumulativeInputTokens": 459243,
+          "cumulativeUtilization": 229.62150000000003,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "12.2",
@@ -3477,7 +3522,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "12"
+    "currentTaskId": "12.1"
   },
   "phaseMetrics": {
     "requirements-generating": {
