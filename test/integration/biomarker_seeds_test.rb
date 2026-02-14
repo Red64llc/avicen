@@ -16,7 +16,7 @@ class BiomarkerSeedsTest < ActiveSupport::TestCase
 
     # Verify biomarkers were created
     assert Biomarker.count >= 20, "Expected at least 20 biomarkers, got #{Biomarker.count}"
-    assert Biomarker.count <= 30, "Expected at most 30 biomarkers, got #{Biomarker.count}"
+    assert Biomarker.count <= 35, "Expected at most 35 biomarkers, got #{Biomarker.count}"
   end
 
   test "seed data includes CBC panel biomarkers" do

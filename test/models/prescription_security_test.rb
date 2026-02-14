@@ -5,6 +5,8 @@ require "test_helper"
 # Task 12.1, 12.3: Security tests for Prescription model
 # Requirements: 9.1, 9.5, 9.6
 class PrescriptionSecurityTest < ActiveSupport::TestCase
+  include ActionDispatch::TestProcess::FixtureFile
+  include ActiveJob::TestHelper
   setup do
     @user = users(:one)
     @other_user = users(:two)
@@ -58,11 +60,13 @@ class PrescriptionSecurityTest < ActiveSupport::TestCase
     assert @prescription.scanned_document.attached?
     blob_id = @prescription.scanned_document.blob.id
 
-    # Destroy the prescription
+    # Destroy the prescription - this schedules the blob for purging
     @prescription.destroy!
 
-    # The blob should be scheduled for purging
-    # In test environment, purge_later is executed inline
+    # Execute enqueued purge jobs
+    perform_enqueued_jobs
+
+    # The blob should now be purged
     assert_raises(ActiveRecord::RecordNotFound) do
       ActiveStorage::Blob.find(blob_id)
     end
@@ -70,9 +74,11 @@ class PrescriptionSecurityTest < ActiveSupport::TestCase
 
   test "prescription destruction cascades to medications" do
     # Verify existing cascade behavior for medications
+    drug = drugs(:aspirin)
     medication = @prescription.medications.create!(
-      drug_name: "Test Drug",
-      dosage: "100mg"
+      drug: drug,
+      dosage: "100mg",
+      form: "tablet"
     )
 
     assert_difference "Medication.count", -@prescription.medications.count do

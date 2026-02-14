@@ -180,24 +180,24 @@ class DocumentScansSecurityTest < ActionDispatch::IntegrationTest
   # Requirements: 9.3, 9.4
 
   test "filter_parameters includes medical content filters" do
-    filter_params = Rails.application.config.filter_parameters
+    filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
 
-    # Medical data filters
-    assert_includes filter_params, :extracted_data
-    assert_includes filter_params, :medications
-    assert_includes filter_params, :test_results
-    assert_includes filter_params, :drug_name
-    assert_includes filter_params, :biomarker_name
+    # Medical data filters - verify they get filtered
+    assert_equal "[FILTERED]", filter.filter(extracted_data: "secret")[:extracted_data]
+    assert_equal "[FILTERED]", filter.filter(medications: "secret")[:medications]
+    assert_equal "[FILTERED]", filter.filter(test_results: "secret")[:test_results]
+    assert_equal "[FILTERED]", filter.filter(drug_name: "secret")[:drug_name]
+    assert_equal "[FILTERED]", filter.filter(biomarker_name: "secret")[:biomarker_name]
 
     # PII filters
-    assert_includes filter_params, :doctor_name
-    assert_includes filter_params, :lab_name
+    assert_equal "[FILTERED]", filter.filter(doctor_name: "secret")[:doctor_name]
+    assert_equal "[FILTERED]", filter.filter(lab_name: "secret")[:lab_name]
   end
 
   test "filter_parameters includes extraction response filter" do
-    filter_params = Rails.application.config.filter_parameters
+    filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
 
-    assert_includes filter_params, :raw_response
+    assert_equal "[FILTERED]", filter.filter(raw_response: "secret")[:raw_response]
   end
 
   test "medical content is filtered in request parameters" do
@@ -303,7 +303,7 @@ class DocumentScansSecurityTest < ActionDispatch::IntegrationTest
   private
 
   def sign_in_as(user)
-    post sessions_path, params: { session: { email: user.email, password: "password" } }
+    post session_path, params: { email_address: user.email_address, password: "password" }
   end
 
   def sign_out

@@ -46,9 +46,10 @@ class BiologyReportFormViewTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     # Should display editable fields for each test result
-    assert_select "input[name*='test_results'][name*='biomarker_name']", count: 2
-    assert_select "input[name*='test_results'][name*='value']", count: 2
-    assert_select "input[name*='test_results'][name*='unit']", count: 2
+    # Use type='text' to exclude hidden fields (verified_* fields) and template fields
+    assert_select "[data-review-form-target='testResultsList'] input[type='text'][name*='biomarker_name']", count: 2
+    assert_select "[data-review-form-target='testResultsList'] input[type='text'][name*='value']", count: 2
+    assert_select "[data-review-form-target='testResultsList'] input[type='text'][name*='unit']", count: 2
   end
 
   test "review form includes reference min and max fields for test results" do
@@ -518,7 +519,8 @@ class BiologyReportFormViewTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     # Test result fields should be properly nested with index
-    assert_select "input[name*='test_results[0]']", minimum: 1
+    # Field names are in format: scan[test_results][index][field_name]
+    assert_select "input[name*='test_results][0]']", minimum: 1
   end
 
   # --- Template for adding new test results ---

@@ -5,6 +5,8 @@ require "test_helper"
 # Task 12.1, 12.3: Security tests for BiologyReport model
 # Requirements: 9.1, 9.5, 9.6
 class BiologyReportSecurityTest < ActiveSupport::TestCase
+  include ActionDispatch::TestProcess::FixtureFile
+  include ActiveJob::TestHelper
   setup do
     @user = users(:one)
     @other_user = users(:two)
@@ -58,11 +60,13 @@ class BiologyReportSecurityTest < ActiveSupport::TestCase
     assert @biology_report.document.attached?
     blob_id = @biology_report.document.blob.id
 
-    # Destroy the biology report
+    # Destroy the biology report - this schedules the blob for purging
     @biology_report.destroy!
 
-    # The blob should be scheduled for purging
-    # In test environment, purge_later is executed inline
+    # Execute enqueued purge jobs
+    perform_enqueued_jobs
+
+    # The blob should now be purged
     assert_raises(ActiveRecord::RecordNotFound) do
       ActiveStorage::Blob.find(blob_id)
     end

@@ -456,8 +456,8 @@ class DocumentScansController < ApplicationController
       prescription.medications.create!(
         drug: drug,
         dosage: med_params[:dosage] || "As prescribed",
-        form: "tablet", # Default form, user can edit later
-        frequency: med_params[:frequency],
+        form: med_params[:form] || "tablet", # Default form, user can edit later
+        instructions: med_params[:frequency], # frequency is stored as instructions
         active: true
       )
     end

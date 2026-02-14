@@ -671,10 +671,11 @@ class ReviewFormControllerTest < ApplicationSystemTestCase
     new_entry = find("[data-review-form-target='testResultEntry'][data-test-result-index='1']")
 
     # Verify field names include the correct index
+    # Field names are in format: scan[test_results][index][field_name]
     within(new_entry) do
-      assert_selector "input[name*='test_results[1][biomarker_name]']"
-      assert_selector "input[name*='test_results[1][value]']"
-      assert_selector "input[name*='test_results[1][unit]']"
+      assert_selector "input[name*='test_results][1][biomarker_name]']"
+      assert_selector "input[name*='test_results][1][value]']"
+      assert_selector "input[name*='test_results][1][unit]']"
     end
   end
 
@@ -702,7 +703,7 @@ class ReviewFormControllerTest < ApplicationSystemTestCase
 
     # Check that the new entry's first input is focused
     focused_element = page.evaluate_script("document.activeElement.name")
-    assert_match(/test_results\[1\]/, focused_element, "New test result's first input should be focused")
+    assert_match(/test_results\]\[1\]/, focused_element, "New test result's first input should be focused")
   end
 
   test "biology report review form integrates biomarker_search autocomplete" do
@@ -726,7 +727,8 @@ class ReviewFormControllerTest < ApplicationSystemTestCase
     # Biomarker name input should have biomarker-search controller
     assert_selector "[data-controller*='biomarker-search']"
     assert_selector "[data-biomarker-search-target='input']"
-    assert_selector "[data-biomarker-search-target='results']"
+    # Results dropdown is hidden initially, shown when user types
+    assert_selector "[data-biomarker-search-target='results']", visible: :all
   end
 
   test "biology report review form includes auto-fill targets for biomarker search" do

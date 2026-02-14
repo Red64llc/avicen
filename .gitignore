@@ -39,3 +39,4 @@
 # Ignore bundled gems, but not vendor/javascript (importmap dependencies)
 /vendor/bundle
 !/vendor/javascript
+**/.DS_Store

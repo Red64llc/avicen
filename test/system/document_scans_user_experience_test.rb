@@ -106,8 +106,8 @@ class DocumentScansUserExperienceTest < ApplicationSystemTestCase
 
     visit review_document_scan_path(prescription, record_type: "prescription")
 
-    # Should display extracted data
-    assert_text "Dr. Display Test"
+    # Should display extracted data in form inputs
+    assert_selector "input[value='Dr. Display Test']"
     # Medication data should be in form inputs
     assert_selector "input[value='Aspirin']"
     assert_selector "input[value='100mg']"
@@ -129,8 +129,8 @@ class DocumentScansUserExperienceTest < ApplicationSystemTestCase
 
     visit review_document_scan_path(biology_report, record_type: "biology_report")
 
-    # Should display extracted data
-    assert_text "System Test Lab"
+    # Should display extracted data in form inputs
+    assert_selector "input[value='System Test Lab']"
     # Test result data should be in form inputs
     assert_selector "input[value='Glucose']"
     assert_selector "input[value='95']"
@@ -195,8 +195,8 @@ class DocumentScansUserExperienceTest < ApplicationSystemTestCase
 
     visit review_document_scan_path(prescription, record_type: "prescription")
 
-    # Should have cancel link
-    assert_selector "a", text: /cancel/i
+    # Should have cancel button (button_to when record is not confirmed)
+    assert_selector "button", text: /cancel/i
   end
 
   # --- Task 13.2: Error Message Display and Recovery Tests ---

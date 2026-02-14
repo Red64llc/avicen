@@ -135,20 +135,20 @@ class CameraControllerTest < ApplicationSystemTestCase
 
     wait_for_stimulus_controller("camera")
 
-    # Set maxSize to 1KB for clear error message
+    # Set maxSize to 10 bytes so our test image (67 bytes) exceeds it
     page.execute_script(<<~JS)
       (function() {
         const element = document.querySelector("[data-controller='camera']");
         const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "camera");
-        controller.maxSizeValue = 1024; // 1KB
+        controller.maxSizeValue = 10; // 10 bytes
       })()
     JS
 
-    # Attach a file larger than 1KB
+    # Attach a file larger than 10 bytes
     attach_file "camera_input", Rails.root.join("test/fixtures/files/test_image.png"), make_visible: true
 
     # Error message should mention the size limit
-    assert_selector "[data-camera-target='error']", wait: 5
+    assert_selector "[data-camera-target='error']:not(.hidden)", wait: 5
     error_text = find("[data-camera-target='error']").text
     assert_match(/MB|size/i, error_text, "Error should mention size constraint")
   end
@@ -424,11 +424,11 @@ class CameraControllerTest < ApplicationSystemTestCase
     input = find("[data-camera-target='input']", visible: :all)
     assert_not input.disabled?, "File input should be re-enabled after retry"
 
-    # Error should be hidden
-    assert_selector "[data-camera-target='error'].hidden", wait: 5
+    # Error should be hidden (use visible: :all since hidden class sets display: none)
+    assert_selector "[data-camera-target='error'].hidden", visible: :all, wait: 5
 
     # Retry button should be hidden
-    assert_selector "[data-camera-target='retryButton'].hidden", wait: 5
+    assert_selector "[data-camera-target='retryButton'].hidden", visible: :all, wait: 5
   end
 
   test "file input is re-enabled after successful upload" do

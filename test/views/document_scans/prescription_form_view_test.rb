@@ -46,9 +46,10 @@ class PrescriptionFormViewTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     # Should display editable fields for each medication
-    assert_select "input[name*='medications'][name*='drug_name']", count: 2
-    assert_select "input[name*='medications'][name*='dosage']", count: 2
-    assert_select "input[name*='medications'][name*='frequency']", count: 2
+    # Use type='text' to exclude hidden fields (verified_* fields) and template fields
+    assert_select "[data-review-form-target='medicationsList'] input[type='text'][name*='drug_name']", count: 2
+    assert_select "[data-review-form-target='medicationsList'] input[type='text'][name*='dosage']", count: 2
+    assert_select "[data-review-form-target='medicationsList'] input[type='text'][name*='frequency']", count: 2
   end
 
   test "review form includes duration and quantity fields for medications" do

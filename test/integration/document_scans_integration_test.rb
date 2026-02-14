@@ -110,7 +110,8 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
           biomarker_name: "Integration Glucose",
           value: "95",
           unit: "mg/dL",
-          reference_range: "70-100",
+          reference_min: 70,
+          reference_max: 100,
           confidence: 0.92,
           out_of_range: false
         )
@@ -237,6 +238,9 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
   end
 
   test "cancellation at type selection step preserves nothing" do
+    initial_prescription_count = Prescription.count
+    initial_biology_report_count = BiologyReport.count
+
     image = fixture_file_upload("test_image.jpg", "image/jpeg")
     blob = ActiveStorage::Blob.create_and_upload!(
       io: image.open,
@@ -252,9 +256,9 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
     get new_document_scan_path
     assert_response :success
 
-    # No records created
-    assert_nil Prescription.find_by(scanned_document_blob_id: blob.id)
-    assert_nil BiologyReport.find_by(document_blob_id: blob.id)
+    # No records should have been created
+    assert_equal initial_prescription_count, Prescription.count
+    assert_equal initial_biology_report_count, BiologyReport.count
   end
 
   test "cancellation at review step discards extracted data" do
@@ -356,7 +360,8 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
           biomarker_name: "Glucose",
           value: "95",
           unit: "mg/dL",
-          reference_range: "70-100",
+          reference_min: 70,
+          reference_max: 100,
           confidence: 0.95,
           out_of_range: false
         ),
@@ -364,7 +369,8 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
           biomarker_name: "Cholesterol",
           value: "220",
           unit: "mg/dL",
-          reference_range: "0-200",
+          reference_min: 0,
+          reference_max: 200,
           confidence: 0.92,
           out_of_range: true  # Out of range
         ),
@@ -372,7 +378,8 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
           biomarker_name: "Hemoglobin",
           value: "14.5",
           unit: "g/dL",
-          reference_range: "12-17",
+          reference_min: 12,
+          reference_max: 17,
           confidence: 0.88,
           out_of_range: false
         )
@@ -400,6 +407,6 @@ class DocumentScansIntegrationTest < ActionDispatch::IntegrationTest
   private
 
   def sign_in_as(user)
-    post sessions_path, params: { session: { email: user.email, password: "password" } }
+    post session_path, params: { email_address: user.email_address, password: "password" }
   end
 end

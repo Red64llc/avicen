@@ -763,7 +763,7 @@ class BiologyReportScannerServiceTest < ActiveSupport::TestCase
   end
 
   test "returns error result on API error" do
-    mock_client = mock_llm_client_that_raises(RubyLLM::Error.new("API Error"))
+    mock_client = mock_llm_client_that_raises(RubyLLM::Error.new(nil))
 
     stub_image_processing do
       service = BiologyReportScannerService.new(

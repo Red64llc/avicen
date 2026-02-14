@@ -137,7 +137,7 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
     large_blob = blob.dup
     large_blob.define_singleton_method(:byte_size) { 3.megabytes }
 
-    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id] == blob.id ? large_blob : nil } do
+    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id].to_i == blob.id ? large_blob : nil } do
       post extract_document_scans_path, params: {
         scan: {
           document_type: "prescription",
@@ -406,7 +406,7 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
     large_blob = blob.dup
     large_blob.define_singleton_method(:byte_size) { 3.megabytes }
 
-    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id] == blob.id ? large_blob : nil } do
+    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id].to_i == blob.id ? large_blob : nil } do
       post extract_document_scans_path, params: {
         scan: {
           document_type: "prescription",
@@ -572,7 +572,7 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
     large_blob = blob.dup
     large_blob.define_singleton_method(:byte_size) { 3.megabytes }
 
-    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id] == blob.id ? large_blob : nil } do
+    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id].to_i == blob.id ? large_blob : nil } do
       post extract_document_scans_path, params: {
         scan: {
           document_type: "prescription",
@@ -1358,14 +1358,14 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
           blob_id: blob.id,
           doctor_name: "Dr. With Medication",
           prescribed_date: "2026-02-01",
-          medications: [
-            {
+          medications: {
+            "0" => {
               drug_name: "Aspirin",
               drug_id: drug.id,
               dosage: "100mg",
               frequency: "daily"
             }
-          ]
+          }
         }
       }
     end
@@ -1393,14 +1393,14 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
           blob_id: blob.id,
           lab_name: "With Results Lab",
           test_date: "2026-02-01",
-          test_results: [
-            {
+          test_results: {
+            "0" => {
               biomarker_name: "Glucose",
               biomarker_id: biomarker.id,
               value: "95",
               unit: "mg/dL"
             }
-          ]
+          }
         }
       }
     end
@@ -1639,11 +1639,10 @@ class DocumentScansControllerTest < ActionDispatch::IntegrationTest
       content_type: "image/jpeg"
     )
 
-    # Stub to return large byte_size for more complex document
-    large_blob = blob.dup
-    large_blob.define_singleton_method(:byte_size) { 5.megabytes }
+    # Stub byte_size to return large value for more complex document
+    blob.define_singleton_method(:byte_size) { 5.megabytes }
 
-    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id] == blob.id ? large_blob : nil } do
+    ActiveStorage::Blob.stub :find_by, ->(args) { args[:id].to_i == blob.id ? blob : nil } do
       post extract_document_scans_path, params: {
         scan: {
           document_type: "prescription",

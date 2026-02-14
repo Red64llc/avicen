@@ -144,42 +144,42 @@ class DocumentScansRoutingTest < ActionDispatch::IntegrationTest
 
   test "index route does not exist for document_scans" do
     # Document scans are transient - no index listing needed
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :get, path: "/document_scans" })
     end
   end
 
   test "show route does not exist for document_scans" do
     # Use review action instead of standard show
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :get, path: "/document_scans/1" })
     end
   end
 
   test "edit route does not exist for document_scans" do
     # Edit is handled via review action
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :get, path: "/document_scans/1/edit" })
     end
   end
 
   test "create route does not exist for document_scans" do
     # Creation is handled via confirm action
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :post, path: "/document_scans" })
     end
   end
 
   test "update route does not exist for document_scans" do
     # Update is not needed - use confirm to create final record
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :patch, path: "/document_scans/1" })
     end
   end
 
   test "destroy route does not exist for document_scans" do
     # Destroy is not needed for scan flow
-    assert_raises(ActionController::RoutingError) do
+    assert_raises(Minitest::Assertion) do
       assert_recognizes({}, { method: :delete, path: "/document_scans/1" })
     end
   end
