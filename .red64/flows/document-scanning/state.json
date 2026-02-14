@@ -7,7 +7,7 @@
     "totalTasks": 54
   },
   "createdAt": "2026-02-13T10:49:32.222Z",
-  "updatedAt": "2026-02-14T00:27:11.751Z",
+  "updatedAt": "2026-02-14T00:29:48.111Z",
   "history": [
     {
       "phase": {
@@ -1738,6 +1738,28 @@
       "timestamp": "2026-02-14T00:27:11.751Z",
       "event": "TASK_COMPLETE",
       "subStep": "task-7.4-completed"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:27:11.941Z",
+      "event": "TASK_START",
+      "subStep": "task-8-started"
+    },
+    {
+      "phase": {
+        "type": "implementing",
+        "feature": "document-scanning",
+        "currentTask": 6,
+        "totalTasks": 54
+      },
+      "timestamp": "2026-02-14T00:29:48.111Z",
+      "event": "TASK_COMPLETE",
+      "subStep": "task-8-completed"
     }
   ],
   "metadata": {
@@ -1753,7 +1775,8 @@
       4,
       5,
       6,
-      7
+      7,
+      8
     ],
     "totalGroups": 13,
     "taskEntries": [
@@ -2517,9 +2540,32 @@
       {
         "id": "8",
         "title": "Document scans controller and routing",
-        "startedAt": "2026-02-13T13:46:04.917Z",
-        "completedAt": null,
-        "status": "failed"
+        "startedAt": "2026-02-14T00:27:11.940Z",
+        "completedAt": "2026-02-14T00:29:48.109Z",
+        "status": "completed",
+        "tokenUsage": {
+          "inputTokens": 21800,
+          "outputTokens": 6609,
+          "totalTokens": 28409,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2304291,
+          "cacheCreationTokens": 138530,
+          "costUsd": 2.3107520000000012
+        },
+        "contextUsage": {
+          "inputTokens": 21800,
+          "outputTokens": 6609,
+          "totalTokens": 28409,
+          "model": "claude-opus-4-5-20251101",
+          "cacheReadTokens": 2304291,
+          "cacheCreationTokens": 138530,
+          "costUsd": 2.3107520000000012,
+          "contextWindowSize": 200000,
+          "utilizationPercent": 10.9,
+          "cumulativeInputTokens": 368611,
+          "cumulativeUtilization": 184.30550000000002,
+          "modelFamily": "unknown"
+        }
       },
       {
         "id": "8.1",
@@ -2711,7 +2757,7 @@
         "status": "failed"
       }
     ],
-    "currentTaskId": "7.4"
+    "currentTaskId": "8"
   },
   "phaseMetrics": {
     "requirements-generating": {

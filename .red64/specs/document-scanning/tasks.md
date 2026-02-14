@@ -168,7 +168,7 @@ Implementation tasks for AI-powered document scanning feature.
   - Test discard behavior on configuration errors
   - _Requirements: 10.5, 10.6_
 
-- [ ] 8. Document scans controller and routing
+- [x] 8. Document scans controller and routing
 - [ ] 8.1 Create DocumentScansController with scan flow actions
   - Add new action for capture interface (camera/upload options)
   - Add upload action for handling direct upload completion
